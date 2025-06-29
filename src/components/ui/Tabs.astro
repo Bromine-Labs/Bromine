@@ -23,6 +23,7 @@ import { Icon } from "astro-icon/components"
     const tab = document.createElement('div');
     tab.className = 'flex items-center min-w-0 max-w-xs px-4 py-2 border-r border-overlay hover:bg-overlay cursor-pointer';
     tab.dataset.tabId = id;
+    tab.draggable = true;
     
     const favicon = document.createElement('span');
     favicon.className = 'mr-2 text-sm';
@@ -108,15 +109,55 @@ import { Icon } from "astro-icon/components"
   document.addEventListener('DOMContentLoaded', () => {
     checkState();
 
-
-
     document.getElementById('new-tab-btn')?.addEventListener('click', () => {
       if (window.newTab) window.newTab();
     });
+
+    let draggingTab = null;
+
+    tabsContainer.addEventListener('dragstart', (e) => {
+      if (e.target.hasAttribute('data-tab-id')) {
+        draggingTab = e.target;
+        setTimeout(() => {
+          if (draggingTab) draggingTab.classList.add('dragging');
+        }, 0);
+      }
+    });
+
+    tabsContainer.addEventListener('dragend', () => {
+      if (draggingTab) {
+        draggingTab.classList.remove('dragging');
+        draggingTab = null;
+      }
+    });
+
+    tabsContainer.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      if (!draggingTab) return;
+
+      const afterElement = getDragAfterElement(tabsContainer, e.clientX);
+      if (afterElement === null) {
+        tabsContainer.appendChild(draggingTab);
+      } else {
+        tabsContainer.insertBefore(draggingTab, afterElement);
+      }
+    });
+
+    function getDragAfterElement(container, x) {
+      const draggableElements = [...container.querySelectorAll('[data-tab-id]:not(.dragging)')];
+
+      return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = x - box.left - box.width / 2;
+        if (offset < 0 && offset > closest.offset) {
+          return { offset: offset, element: child };
+        } else {
+          return closest;
+        }
+      }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
     
     document.addEventListener('new-tab', (e) => {
-
- 
       const tabId = e.detail.tabNumber;
       if (!tabs.some(tab => tab.id === tabId)) {
         createTab(tabId, 'New Tab');
@@ -139,9 +180,6 @@ import { Icon } from "astro-icon/components"
       }
       checkState();
     });
-    
-
-    
   });
 </script>
 
@@ -168,8 +206,7 @@ import { Icon } from "astro-icon/components"
     border-bottom-color: var(--color-iris);
   }
 
-  .sortable-ghost {
+  .dragging {
     opacity: 0.5;
-    background: var(--color-highlight-med);
   }
 </style>
