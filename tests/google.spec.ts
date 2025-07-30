@@ -3,7 +3,7 @@ test.describe("Google", () => {
     test("The front page can load.", async ({ page }) => {
 
         await page.route("**", route => route.continue());
-        await page.goto("/");
+        await page.goto("http://localhost:4321/");
         await page.waitForSelector("#address");
         const bar = page.locator("#address");
         const title = await page.locator("h1.text-text.font-semibold").textContent();
@@ -27,7 +27,7 @@ test.describe("Google", () => {
     test("The Google Apps menu opens and content is visible.", async ({ page }) => {
 
         await page.route("**", route => route.continue());
-        await page.goto("/");
+        await page.goto("http://localhost:4321/");
         await page.waitForSelector("#address");
         const bar = page.locator("#address");
         const title = await page.locator("h1.text-text.font-semibold").textContent();
