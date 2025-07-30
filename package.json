@@ -6,11 +6,13 @@
     "dev": "astro dev",
     "check": "bunx biome check --write * && astro check",
     "build": "astro build --experimental-static-build",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "test": "bunx playwright test"
   },
   "dependencies": {
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/ts-plugin": "^1.10.4",
+    "@estruyf/github-actions-reporter": "^1.10.0",
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.43",
     "@mercuryworkshop/bare-mux": "^2.1.7",
@@ -31,5 +33,9 @@
     "unix-dgram",
     "utf-8-validate",
     "workerd"
-  ]
+  ],
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.1.0"
+  }
 }

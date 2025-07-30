@@ -30,3 +30,9 @@ pnpm-debug.log*
 .netlify
 dist
 .wrangler
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

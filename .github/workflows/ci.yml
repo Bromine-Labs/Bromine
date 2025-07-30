@@ -67,15 +67,11 @@ jobs:
         run: bun install
         working-directory: ${{ env.BUILD_PATH }}
 
-      - name: Build with Astro
-        run: |
-          bun run build
-        working-directory: ${{ env.BUILD_PATH }}
+      - name: Install Playwright Browsers
+        run: bunx playwright install --with-deps
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ${{ env.BUILD_PATH }}/dist
+      - name: Run Playwright tests
+        run: bun test
 
   dockerci:
     name: Docker CI
@@ -100,33 +96,29 @@ jobs:
       - name: Push Docker container
         run: docker push ghcr.io/coding4hours/bromine:$IMAGE_TAG
 
-    deploy:
-      name: Deploy
-      needs: [lint, test]
-      runs-on: ubuntu-latest
-      concurrency:
-        group: "pages"
-        cancel-in-progress: false
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v4
-
-        - name: Install Bun
-          uses: oven-sh/setup-bun@v1
-          with:
-            bun-version: latest
-
-        - name: Install dependencies with Bun
-          run: bun install
-          working-directory: ${{ env.BUILD_PATH }}
-
-        - name: Build with Astro
-          run: bun run build
-          working-directory: ${{ env.BUILD_PATH }}
-
-        - name: Deploy
-          id: deployment
-          uses: actions/deploy-pages@v4
+  deploy:
+    name: Deploy
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - name: Install dependencies with Bun
+        run: bun install
+        working-directory: ${{ env.BUILD_PATH }}
+      - name: Build with Astro
+        run: bun run build
+        working-directory: ${{ env.BUILD_PATH }}
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
 
   release:
     name: Release on Tag
