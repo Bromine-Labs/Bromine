@@ -51,38 +51,35 @@ async function registerSW(): Promise<void> {
 }
 
 
+requestIdleCallback(async () => {
 await import("@/assets/scram/scramjet.all.js");
-const { ScramjetController } = $scramjetLoadController();
 
+const { ScramjetController } = $scramjetLoadController();
 const scramjet = new ScramjetController({
-  files: {
-    wasm: "/scram/scramjet.wasm.wasm",
-    all: "/scram/scramjet.all.js",
-    sync: "/scram/scramjet.sync.js",
-  },
-  flags: {
-    rewriterLogs: false,
-    naiiveRewriter: false,
-    scramitize: false,
-  },
-  siteFlags: {
-    "https://www.google.com/(search|sorry).*": {
-      naiiveRewriter: true,
-    },
-    "https://worker-playground.glitch.me/.*": {
-      serviceworkers: true,
-    },
-  },
+	files: {
+		wasm: "/scram/scramjet.wasm.wasm",
+		all: "/scram/scramjet.all.js",
+		sync: "/scram/scramjet.sync.js",
+	},
+	flags: {
+		rewriterLogs: false,
+		scramitize: false,
+		cleanErrors: true,
+	},
+	siteFlags: {
+		"https://worker-playground.glitch.me/.*": {
+			serviceworkers: true,
+		},
+	},
 });
 scramjet.init();
-// requestIdleCallback(async () => {
-
+window.scramjet = scramjet;
 registerSW()
   .then(() => console.log("lethal.js: Service Worker registered"))
   .catch((err) =>
     console.error("lethal.js: Failed to register Service Worker", err),
   );
-// });
+});
 
 
 //////////////////////////////

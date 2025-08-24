@@ -12,8 +12,10 @@ import ProxyFrame from "@/components/utils/ProxyFrame.astro";
   <ProxyFrame/>
 </Layout>
 <script>
+  (()=>{ if(window.top.location.origin == 'null')
+    return;
   if (localStorage.getItem("ab") === "true") {
-      const popup = open("about:blank", "_blank");
+    const popup = open("about:blank", "_blank");
     if (!popup || popup.closed) {
       alert(
         "Please allow popups for about bnalk to work.",
@@ -54,5 +56,5 @@ import ProxyFrame from "@/components/utils/ProxyFrame.astro";
       doc.head.appendChild(script);
     }
 
-}
+  }})();
 </script>
