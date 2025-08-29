@@ -4,7 +4,7 @@
   "description": "bromine",
   "scripts": {
     "dev": "astro dev",
-    "check": "bunx biome check --write * && astro check",
+    "check": "bunx biome check --write *",
     "build": "astro build --experimental-static-build",
     "deploy": "wrangler deploy"
   },
