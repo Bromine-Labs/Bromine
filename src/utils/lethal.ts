@@ -142,7 +142,7 @@ export async function setProxy(proxy: string): Promise<void> {
     );
 
     // @ts-ignore
-    import("@/assets/bareworker.js/uv.config.js");
+    import("@/assets/uv.config.js");
   }
   proxyOption = proxy;
 }
