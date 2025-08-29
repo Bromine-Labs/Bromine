@@ -52,7 +52,7 @@ async function registerSW(): Promise<void> {
 
 
 requestIdleCallback(async () => {
-await import("@/assets/scram/scramjet.all.js");
+await import("@/assets/bareworker.js/scram/scramjet.all.js");
 
 const { ScramjetController } = $scramjetLoadController();
 const scramjet = new ScramjetController({
@@ -142,7 +142,7 @@ export async function setProxy(proxy: string): Promise<void> {
     );
 
     // @ts-ignore
-    import("@/assets/uv.config.js");
+    import("@/assets/bareworker.js/uv.config.js");
   }
   proxyOption = proxy;
 }

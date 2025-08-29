@@ -14,7 +14,6 @@
 
 ## Not Started
 
-- [ ] panic key
 - [ ] ai
 - [ ] custom script injection
 - [ ] vertical tabs
