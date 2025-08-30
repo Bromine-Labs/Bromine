@@ -1,44 +1,40 @@
 ---
 import Layout from "@/Layout.astro";
+import {Icon} from "astro-icon/components"
 ---
 <Layout title="g@mes - bromine" desc="bromine's bad g@mes page">
   <script
-  is:inline
-  async
-  defer
-  src="/embed.js"
-
-  data-api="https://bread-org.github.io/s16.g@mes"
-  data-api2="https://bread-org.github.io/s16.chunk2"
-
-  data-target="#gameContainer"
+		src="@/utils/g2mes.ts"
 ></script>
-  <section id="gameContainer">
+  <section id="g2meContainer">
 
 <div class="max-w-xs rounded-md border border-overlay bg-base shadow-sm overflow-auto">
   <img
-    src="https://via.placeholder.com/320x180.png?text=Game+Image"
-    alt="Game Name"
+    src="https://via.placeholder.com/320x180.png?text=G2me+Image"
+    alt="G2me Name"
     class="w-full object-cover"
   />
   <div class="p-4">
-    <h3 class="text-lg font-semibold text-text truncate">Game Name</h3>
+    <h3 class="text-lg font-semibold text-text truncate">G2me Name</h3>
   </div>
 </div>
 
   </section>
-    <div id="gamePageContainer" class="hidden fixed inset-0 z-[999] flex flex-col items-center justify-start p-5 md:p-10 box-border">
-        <div class="flex justify-between items-center w-full max-w-5xl mb-4">
-            <button onclick="closegame()" class="p-3 bg-surface rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300 outline outline-2 outline-offset-2 outline-muted items-center space-x-2">
-                <i data-lucide="arrow-left" class="w-5 h-5"></i>
-                <span>Back to Games</span>
-            </button>
-            <button id="fullscreenBtn" class="p-3 bg-surface rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300 outline outline-2 outline-offset-2 outline-muted flex items-center space-x-2" title="Fullscreen">
-                <i data-lucide="maximize" class="w-5 h-5"></i>
+	<div id="g2mePageContainer" class="bg-surface/90 hidden fixed inset-0 z-[999] flex flex-col items-center justify-start p-5 md:p-10 box-border">
+			<div class="flex justify-between items-center w-full max-w-5xl mb-4">
+
+            <button id="backBtn" class="p-3 bg-surface rounded-lg transition-all duration-200 outline-2 outline-offset-2 outline-muted flex items-center space-x-2">
+							<Icon name="ph:arrow-left" class="size-5"/>
+                <span>Back</span>
+						</button>
+
+						<button id="fullscreenBtn" class="p-3 bg-surface rounded-lg transition-all duration-200 outline-2 outline-offset-2 outline-muted flex items-center space-x-2" title="Fullscreen">
+							<Icon name="ph:arrows-out" class="size-5"/>
                 <span>Fullscreen</span>
             </button>
-        </div>
-        <h2 id="gamePageTitle" class="text-3xl font-bold mt-4 mb-4 text-center"></h2>
-        <iframe id="gamePageFrame" class="bg-surface/95 w-full flex-grow border-none rounded-xl shadow-lg outline outline-2 outline-offset-2 outline-muted" allowfullscreen></iframe>
+				</div>
+
+        <h2 id="g2mePageTitle" class="text-3xl font-bold mt-4 mb-4 text-center"></h2>
+        <iframe id="g2mePageFrame" class="bg-surface/95 w-full flex-grow border-none rounded-xl shadow-lg outline-2 outline-offset-2 outline-muted" allowfullscreen></iframe>
     </div>
 </Layout>

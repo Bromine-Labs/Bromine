@@ -11,7 +11,7 @@ export interface Props {
 const { title = "bromine", desc = "a really shitty site" } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" data-theme="">
   <head>
     <meta name="description" content={desc} />
     <meta charset="UTF-8" />
@@ -80,10 +80,9 @@ const { title = "bromine", desc = "a really shitty site" } = Astro.props;
           ]
         }
 </script>
-<script defer>
+<script >
 import { currentFrame } from "./utils/lethal";
 
-  requestIdleCallback(() => {
     const originalSetItem = localStorage.setItem;
     localStorage.setItem = function (key) {
       originalSetItem.apply(this, arguments);
@@ -93,7 +92,6 @@ import { currentFrame } from "./utils/lethal";
 
 currentFrame.contentWindow.postMessage({ type: `${key}-changed` }, "*");
     };
-
     window.addEventListener("theme-changed", () => {
       document.body.dataset.theme = localStorage.getItem("theme");
     });
@@ -108,11 +106,8 @@ currentFrame.contentWindow.postMessage({ type: `${key}-changed` }, "*");
     };
 
     window.addEventListener("cloak-changed", cloak);
-    document.addEventListener("DOMContentLoaded", () => {
       document.body.dataset.theme = localStorage.getItem("theme");
       cloak();
-    });
-  });
 </script>
   </head>
   <body class="text-text bg-base flex">
