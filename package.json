@@ -14,7 +14,7 @@
     "@astrojs/sitemap": "^3.5.1",
     "@astrojs/ts-plugin": "^1.10.4",
     "@iconify-json/ph": "^1.2.2",
-    "@iconify-json/simple-icons": "^1.2.48",
+    "@iconify-json/simple-icons": "^1.2.49",
     "@mercuryworkshop/bare-mux": "^2.1.7",
     "@playform/compress": "^0.1.9",
     "@tailwindcss/vite": "^4.1.12",
@@ -22,16 +22,5 @@
     "astro-icon": "^1.1.5",
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2"
-  },
-  "trustedDependencies": [
-    "@parcel/watcher",
-    "@tailwindcss/oxide",
-    "bufferutil",
-    "esbuild",
-    "netlify-cli",
-    "sharp",
-    "unix-dgram",
-    "utf-8-validate",
-    "workerd"
-  ]
+  }
 }
