@@ -179,12 +179,13 @@ export class Tab {
 
     this.frame = document.createElement("iframe");
     this.frame.setAttribute("class", "w-full h-full border-0 fixed");
+		// wierd ass hack to get scrolling to work
+    this.frame.setAttribute("class", "w-full h-full border-0 absolute");
     this.frame.setAttribute("title", "Proxy Frame");
     this.frame.setAttribute("src", "/newtab");
-    this.frame.setAttribute("loading", "lazy");
-
     this.frame.setAttribute("id", `frame-${tabCounter}`);
     framesElement.appendChild(this.frame);
+
 
     this.switch();
 
