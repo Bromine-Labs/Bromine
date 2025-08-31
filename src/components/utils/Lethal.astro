@@ -23,9 +23,9 @@
     "https://search.brave.com/search?q=%s"
 
 
-  let backend = localStorage.getItem("proxy-backend") || "uv"
-  let wisp = localStorage.getItem("wisp-server") || "wss://anura.pro/"
-  let transport = localStorage.getItem("proxy-transport")
+  let backend = localStorage.getItem("prσxy-backend") || "uv"
+  let wisp = localStorage.getItem("wísp-server") || "wss://anura.pro/"
+  let transport = localStorage.getItem("prσxy-transport")
 
   setWisp(wisp)
   setProxy(backend)
@@ -56,19 +56,19 @@
     search = localStorage.getItem("search-engine") as string
   })
 
-  window.addEventListener("proxy-backend-changed", () => {
-    backend = localStorage.getItem("proxy-backend") as string
-    setProxy(localStorage.getItem("proxy-backend") as string)
+  window.addEventListener("prσxy-backend-changed", () => {
+    backend = localStorage.getItem("prσxy-backend") as string
+    setProxy(localStorage.getItem("prσxy-backend") as string)
   })
 
-  window.addEventListener("wisp-server-changed", () => {
-    wisp = localStorage.getItem("wisp-server") as string
-    setWisp(localStorage.getItem("wisp-server") as string)
+  window.addEventListener("wísp-server-changed", () => {
+    wisp = localStorage.getItem("wísp-server") as string
+    setWisp(localStorage.getItem("wísp-server") as string)
   })
 
-  window.addEventListener("proxy-transport-changed", () => {
-    transport = localStorage.getItem("proxy-transport") as Transport
-    setTransport(localStorage.getItem("proxy-transport") as Transport)
+  window.addEventListener("prσxy-transport-changed", () => {
+    transport = localStorage.getItem("prσxy-transport") as Transport
+    setTransport(localStorage.getItem("prσxy-transport") as Transport)
   })
 
   setFrames(document.getElementById("frames") as HTMLElement);

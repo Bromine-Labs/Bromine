@@ -10,7 +10,7 @@ const connection = new BareMuxConnection("/bareworker.js");
 
 let wispURL: string;
 let transportURL: string;
-let proxyOption: string;
+let pr0xyOption: string;
 
 export let tabCounter: number = 0;
 export let currentTab: number = 0;
@@ -133,9 +133,9 @@ export function getWisp(): string {
   return wispURL;
 }
 
-export async function setProxy(proxy: string): Promise<void> {
-  console.log(`lethal.js: Setting proxy backend to ${proxy}`);
-  if (proxy === "uv") {
+export async function setPr0xy(pr0xy: string): Promise<void> {
+  console.log(`lethal.js: Setting pr0xy backend to ${pr0xy}`);
+  if (pr0xy === "uv") {
     import(
       // @ts-ignore
       "https://unpkg.com/@titaniumnetwork-dev/ultraviolet@3.2.10/dist/uv.bundle.js"
@@ -144,11 +144,11 @@ export async function setProxy(proxy: string): Promise<void> {
     // @ts-ignore
     import("@/assets/uv.config.js");
   }
-  proxyOption = proxy;
+  pr0xyOption = pr0xy;
 }
 
-export function getProxy(): string {
-  return proxyOption;
+export function getPr0xy(): string {
+  return pr0xyOption;
 }
 
 export async function getProxied(input: string): Promise<any> {
@@ -160,7 +160,7 @@ export async function getProxied(input: string): Promise<any> {
 
   const url = makeURL(input);
 
-  if (proxyOption === "scram") return scramjet.encodeUrl(url);
+  if (pr0xyOption === "scram") return scramjet.encodeUrl(url);
 
   return window.__uv$config.prefix + window.__uv$config.encodeUrl(url);
 }
@@ -181,7 +181,7 @@ export class Tab {
     this.frame.setAttribute("class", "w-full h-full border-0 fixed");
 		// wierd ass hack to get scrolling to work
     this.frame.setAttribute("class", "w-full h-full border-0 absolute");
-    this.frame.setAttribute("title", "Proxy Frame");
+    this.frame.setAttribute("title", "Pr0xy Frame");
     this.frame.setAttribute("src", "/newtab");
     this.frame.setAttribute("id", `frame-${tabCounter}`);
     framesElement.appendChild(this.frame);

@@ -40,19 +40,19 @@ import Suggestions from "@/components/utils/Suggestions.astro";
   import {
     setTransport,
     setWisp,
-    setProxy,
+    setPr0xy,
     makeURL,
     currentFrame,
     getProxied,
   } from "@/utils/lethal"
 
 
-  let backend = localStorage.getItem("proxy-backend") || "uv" as string
-  let wisp = localStorage.getItem("wisp-server") || "wss://anura.pro/" as string
-  let transport = localStorage.getItem("proxy-transport") as string
+  let backend = localStorage.getItem("prσxy-backend") || "uv" as string
+  let wisp = localStorage.getItem("wísp-server") || "wss://anura.pro/" as string
+  let transport = localStorage.getItem("prσxy-transport") as string
 
   setWisp(wisp)
-  setProxy(backend)
+  setPr0xy(backend)
 
   if (transport) setTransport(transport as Transport)
   else if (navigator.userAgent.indexOf("Firefox") > 0) setTransport("libcurl")
@@ -81,19 +81,19 @@ import Suggestions from "@/components/utils/Suggestions.astro";
     search = localStorage.getItem("search-engine") as string
   })
 
-  window.addEventListener("proxy-backend-changed", () => {
-    backend = localStorage.getItem("proxy-backend") as string
-    setProxy(localStorage.getItem("proxy-backend") as string)
+  window.addEventListener("prσxy-backend-changed", () => {
+    backend = localStorage.getItem("prσxy-backend") as string
+    setPr0xy(localStorage.getItem("prσxy-backend") as string)
   })
 
-  window.addEventListener("wisp-server-changed", () => {
-    wisp = localStorage.getItem("wisp-server") as string
-    setWisp(localStorage.getItem("wisp-server") as string)
+  window.addEventListener("wísp-server-changed", () => {
+    wisp = localStorage.getItem("wísp-server") as string
+    setWisp(localStorage.getItem("wísp-server") as string)
   })
 
-  window.addEventListener("proxy-transport-changed", () => {
-    transport = localStorage.getItem("proxy-transport") as Transport
-    setTransport(localStorage.getItem("proxy-transport") as Transport)
+  window.addEventListener("prσxy-transport-changed", () => {
+    transport = localStorage.getItem("prσxy-transport") as Transport
+    setTransport(localStorage.getItem("prσxy-transport") as Transport)
   })
         </script>
     </main>

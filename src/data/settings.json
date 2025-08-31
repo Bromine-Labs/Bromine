@@ -106,7 +106,7 @@
           "label": "About Blank",
           "type": "toggle",
           "defaultValue": "false",
-          "description": "About blanks the proxy. Hides the proxy from history but not back/forward buttons."
+          "description": "About blanks the prσxy. Hides the proxy from history but not back/forward buttons."
         },
         {
           "id": "cloak",
@@ -159,15 +159,15 @@
       "title": "Proxy",
       "settings": [
         {
-          "id": "proxy-backend",
-          "label": "Proxy Backend",
+          "id": "prσxy-backend",
+          "label": "Prσxy Backend",
           "type": "select",
           "defaultValue": "uv",
-          "description": "Select the core proxy engine. Scramjet is experimental and very fast.",
+          "description": "Select the core prσxy engine. Scramjet is experimental and very fast.",
           "options": [
             {
               "value": "uv",
-              "label": "Ultraviolet"
+              "label": "Ultraviσlet"
             },
             {
               "value": "scram",
@@ -176,30 +176,30 @@
           ]
         },
         {
-          "id": "proxy-transport",
-          "label": "Proxy Transport",
+          "id": "prσxy-transport",
+          "label": "Prσxy Transport",
           "type": "select",
           "defaultValue": "epoxy",
-          "description": "Select the transport layer for proxy communication. Epoxy is best for chrome and libcurl with firefox,",
+          "description": "Select the transport layer for prσxy communication. Epσxy is best for chrome and libcurl with firefox,",
           "options": [
             {
               "value": "epoxy",
-              "label": "Epoxy"
+              "label": "Epσxy"
             },
             {
               "value": "libcurl",
-              "label": "Libcurl"
+              "label": "Libcúrl"
             }
           ]
         },
         {
-          "id": "wisp-server",
+          "id": "wísp-server",
           "label": "Wisp Server",
           "type": "text",
           "defaultValue": "",
           "regex": "^wss:\\/\\/[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)+\\/$",
           "validationMessage": "bro look at the description idiot",
-          "placeholder": "wss://wisp.pro/",
+          "placeholder": "wss://wísp.pro/",
           "description": "The transport server used. This requires a '/' at the end"
         }
       ]
