@@ -17,14 +17,14 @@ export let currentTab: number = 0;
 export let framesElement: HTMLElement;
 export let currentFrame: HTMLIFrameElement;
 export const addressInput: HTMLInputElement = document.getElementById(
-  "address",
+	"address",
 ) as HTMLInputElement;
 
 const transportOptions: TransportOptions = {
-  epoxy:
-    "https://unpkg.com/@mercuryworkshop/epoxy-transport@2.1.27/dist/index.mjs",
-  libcurl:
-    "https://unpkg.com/@mercuryworkshop/libcurl-transport@1.5.0/dist/index.mjs",
+	epoxy:
+		"https://unpkg.com/@mercuryworkshop/epoxy-transport@2.1.27/dist/index.mjs",
+	libcurl:
+		"https://unpkg.com/@mercuryworkshop/libcurl-transport@1.5.0/dist/index.mjs",
 };
 
 //////////////////////////////
@@ -34,51 +34,48 @@ const stockSW = "/ultraworker.js";
 const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
 async function registerSW(): Promise<void> {
-  if (!navigator.serviceWorker) {
-    if (
-      location.protocol !== "https:" &&
-      !swAllowedHostnames.includes(location.hostname)
-    )
-      throw new Error("Service workers cannot be registered without https.");
+	if (!navigator.serviceWorker) {
+		if (
+			location.protocol !== "https:" &&
+			!swAllowedHostnames.includes(location.hostname)
+		)
+		throw new Error("Service workers cannot be registered without https.");
 
-    throw new Error("Your browser doesn't support service workers.");
-  }
+		throw new Error("Your browser doesn't support service workers.");
+	}
 
-  await navigator.serviceWorker.register(stockSW);
-
-
-
+	await navigator.serviceWorker.register(stockSW);
 }
 
 
 requestIdleCallback(async () => {
-await import("@/assets/scram/scramjet.all.js");
+	await import("@/assets/scram/scramjet.all.js");
 
-const { ScramjetController } = $scramjetLoadController();
-const scramjet = new ScramjetController({
-	files: {
-		wasm: "/scram/scramjet.wasm.wasm",
-		all: "/scram/scramjet.all.js",
-		sync: "/scram/scramjet.sync.js",
-	},
-	flags: {
-		rewriterLogs: false,
-		scramitize: false,
-		cleanErrors: true,
-	},
-	siteFlags: {
-		"https://worker-playground.glitch.me/.*": {
-			serviceworkers: true,
+	const { ScramjetController } = $scramjetLoadController();
+	const scramjet = new ScramjetController({
+		files: {
+			wasm: "/scram/scramjet.wasm.wasm",
+			all: "/scram/scramjet.all.js",
+			sync: "/scram/scramjet.sync.js",
 		},
-	},
-});
-scramjet.init();
-window.scramjet = scramjet;
-registerSW()
-  .then(() => console.log("lethal.js: Service Worker registered"))
-  .catch((err) =>
-    console.error("lethal.js: Failed to register Service Worker", err),
-  );
+		flags: {
+			rewriterLogs: false,
+			scramitize: false,
+			cleanErrors: true,
+		},
+		siteFlags: {
+			"https://worker-playground.glitch.me/.*": {
+				serviceworkers: true,
+			},
+		},
+	});
+	scramjet.init();
+	window.scramjet = scramjet;
+	registerSW()
+	.then(() => console.log("lethal.js: Service Worker registered"))
+	.catch((err) =>
+				 console.error("lethal.js: Failed to register Service Worker", err),
+				);
 });
 
 
@@ -86,246 +83,246 @@ registerSW()
 ///        Functions       ///
 //////////////////////////////
 export function makeURL(
-  input: string,
-  template = "https://search.brave.com/search?q=%s",
+	input: string,
+	template = "https://search.brave.com/search?q=%s",
 ): string {
-  try {
-    return new URL(input).toString();
-  } catch (err) { }
+		try {
+			return new URL(input).toString();
+		} catch (err) { }
 
-  const url = new URL(`http://${input}`);
-  if (url.hostname.includes(".")) return url.toString();
+		const url = new URL(`http://${input}`);
+			if (url.hostname.includes(".")) return url.toString();
 
-  return template.replace("%s", encodeURIComponent(input));
-}
+		return template.replace("%s", encodeURIComponent(input));
+	}
 
-async function updateBareMux(): Promise<void> {
-  if (transportURL != null && wispURL != null) {
-    console.log(
-      `lethal.js: Setting BareMux to ${transportURL} and Wisp to ${wispURL}`,
-    );
-    await connection.setTransport(transportURL, [{ wisp: wispURL }]);
-  }
-}
+	async function updateBareMux(): Promise<void> {
+		if (transportURL != null && wispURL != null) {
+			console.log(
+				`lethal.js: Setting BareMux to ${transportURL} and Wisp to ${wispURL}`,
+			);
+			await connection.setTransport(transportURL, [{ wisp: wispURL }]);
+		}
+	}
 
-export async function setTransport(transport: Transport): Promise<void> {
-  console.log(`lethal.js: Setting transport to ${transport}`);
-  transportURL = transportOptions[transport];
-  if (!transportURL) {
-    transportURL = transport;
-  }
+	export async function setTransport(transport: Transport): Promise<void> {
+		console.log(`lethal.js: Setting transport to ${transport}`);
+		transportURL = transportOptions[transport];
+		if (!transportURL) {
+			transportURL = transport;
+		}
 
-  await updateBareMux();
-}
+		await updateBareMux();
+	}
 
-export function getTransport(): string {
-  return transportURL;
-}
+	export function getTransport(): string {
+		return transportURL;
+	}
 
-export async function setWisp(wisp: string): Promise<void> {
-  console.log(`lethal.js: Setting Wisp to ${wisp}`);
-  wispURL = wisp;
+	export async function setWisp(wisp: string): Promise<void> {
+		console.log(`lethal.js: Setting Wisp to ${wisp}`);
+		wispURL = wisp;
 
-  await updateBareMux();
-}
+		await updateBareMux();
+	}
 
-export function getWisp(): string {
-  return wispURL;
-}
+	export function getWisp(): string {
+		return wispURL;
+	}
 
-export async function setPr0xy(pr0xy: string): Promise<void> {
-  console.log(`lethal.js: Setting pr0xy backend to ${pr0xy}`);
-  if (pr0xy === "uv") {
-    import(
-      // @ts-ignore
-      "https://unpkg.com/@titaniumnetwork-dev/ultraviolet@3.2.10/dist/uv.bundle.js"
-    );
+	export async function setPr0xy(pr0xy: string): Promise<void> {
+		console.log(`lethal.js: Setting pr0xy backend to ${pr0xy}`);
+		if (pr0xy === "uv") {
+			import(
+				// @ts-ignore
+				"https://unpkg.com/@titaniumnetwork-dev/ultraviolet@3.2.10/dist/uv.bundle.js"
+			);
 
-    // @ts-ignore
-    import("@/assets/uv.config.js");
-  }
-  pr0xyOption = pr0xy;
-}
+			// @ts-ignore
+			import("@/assets/uv.config.js");
+		}
+		pr0xyOption = pr0xy;
+	}
 
-export function getPr0xy(): string {
-  return pr0xyOption;
-}
+	export function getPr0xy(): string {
+		return pr0xyOption;
+	}
 
-export async function getProxied(input: string): Promise<any> {
+	export async function getProxied(input: string): Promise<any> {
 
-  if (input.startsWith("bromine://")) {
-    return input.replace("bromine://", "/")
-  }
-
-
-  const url = makeURL(input);
-
-  if (pr0xyOption === "scram") return scramjet.encodeUrl(url);
-
-  return window.__uv$config.prefix + window.__uv$config.encodeUrl(url);
-}
-
-export function setFrames(frames: HTMLElement): void {
-  framesElement = frames;
-}
-
-export class Tab {
-  frame: HTMLIFrameElement;
-  tabNumber: number;
-
-  constructor() {
-    tabCounter++;
-    this.tabNumber = tabCounter;
-
-    this.frame = document.createElement("iframe");
-    this.frame.setAttribute("class", "w-full h-full border-0 fixed");
-		// wierd ass hack to get scrolling to work
-    this.frame.setAttribute("class", "w-full h-full border-0 absolute");
-    this.frame.setAttribute("title", "Pr0xy Frame");
-    this.frame.setAttribute("src", "/newtab");
-    this.frame.setAttribute("id", `frame-${tabCounter}`);
-    framesElement.appendChild(this.frame);
+		if (input.startsWith("bromine://")) {
+			return input.replace("bromine://", "/")
+		}
 
 
-    this.switch();
+		const url = makeURL(input);
 
-    this.frame.addEventListener("load", () => {
-      this.handleLoad();
-    });
+		if (pr0xyOption === "scram") return scramjet.encodeUrl(url);
 
-    document.dispatchEvent(
-      new CustomEvent("new-tab", {
-        detail: {
-          tabNumber: tabCounter,
-        },
-      }),
-    );
-  }
+		return window.__uv$config.prefix + window.__uv$config.encodeUrl(url);
+	}
 
-  switch(): void {
-    currentTab = this.tabNumber;
-    let frames = framesElement.querySelectorAll("iframe");
-    let framesArr = [...frames];
-    framesArr.forEach((frame) => {
-      frame.classList.add("hidden");
-    });
-    this.frame.classList.remove("hidden");
+	export function setFrames(frames: HTMLElement): void {
+		framesElement = frames;
+	}
 
-    currentFrame = document.getElementById(
-      `frame-${this.tabNumber}`,
-    ) as HTMLIFrameElement;
+	export class Tab {
+		frame: HTMLIFrameElement;
+		tabNumber: number;
 
-    addressInput.value = decodeURIComponent(
-      (currentFrame?.contentWindow?.location.href ?? "")
-        .split("/")
-        .pop() as string,
-    );
+		constructor() {
+			tabCounter++;
+			this.tabNumber = tabCounter;
 
-    document.dispatchEvent(
-      new CustomEvent("switch-tab", {
-        detail: {
-          tabNumber: this.tabNumber,
-        },
-      }),
-    );
-  }
+			this.frame = document.createElement("iframe");
+			this.frame.setAttribute("class", "w-full h-full border-0 fixed");
+			// wierd ass hack to get scrolling to work
+			this.frame.setAttribute("class", "w-full h-full border-0 absolute");
+			this.frame.setAttribute("title", "Pr0xy Frame");
+			this.frame.setAttribute("src", "/newtab");
+			this.frame.setAttribute("id", `frame-${tabCounter}`);
+			framesElement.appendChild(this.frame);
 
-  close(): void {
-    this.frame.remove();
 
-    document.dispatchEvent(
-      new CustomEvent("close-tab", {
-        detail: {
-          tabNumber: this.tabNumber,
-        },
-      }),
-    );
-  }
+			this.switch();
 
-  handleLoad(): void {
-    if (this.tabNumber !== currentTab) return;
-    let url = decodeURIComponent(
-      this.frame?.contentWindow?.location.href.split("/").pop() as string,
-    );
-    let title = this.frame?.contentWindow?.document.title;
+			this.frame.addEventListener("load", () => {
+				this.handleLoad();
+			});
 
-    let history = localStorage.getItem("history")
-      ? JSON.parse(localStorage.getItem("history") as string)
-      : [];
-    history = [...history, { url: url, title: title }];
-    localStorage.setItem("history", JSON.stringify(history));
+			document.dispatchEvent(
+				new CustomEvent("new-tab", {
+					detail: {
+						tabNumber: tabCounter,
+					},
+				}),
+			);
+		}
 
-    document.dispatchEvent(
-      new CustomEvent("url-changed", {
-        detail: {
-          tabId: currentTab,
-          title: title,
-          url: url,
-        },
-      }),
-    );
+		switch(): void {
+			currentTab = this.tabNumber;
+			let frames = framesElement.querySelectorAll("iframe");
+			let framesArr = [...frames];
+			framesArr.forEach((frame) => {
+				frame.classList.add("hidden");
+			});
+			this.frame.classList.remove("hidden");
 
-    if (url === "newtab") url = "bromine://newtab";
+			currentFrame = document.getElementById(
+				`frame-${this.tabNumber}`,
+			) as HTMLIFrameElement;
 
-    addressInput.value = url;
-  }
-}
+			addressInput.value = decodeURIComponent(
+				(currentFrame?.contentWindow?.location.href ?? "")
+				.split("/")
+				.pop() as string,
+			);
 
-export async function newTab() {
-  new Tab();
-}
+			document.dispatchEvent(
+				new CustomEvent("switch-tab", {
+					detail: {
+						tabNumber: this.tabNumber,
+					},
+				}),
+			);
+		}
 
-export function switchTab(tabNumber: number): void {
-  let frames = framesElement.querySelectorAll("iframe");
-  let framesArr = [...frames];
-  framesArr.forEach((frame) => {
-    if (frame.id != `frame-${tabNumber}`) frame.classList.add("hidden");
-    else frame.classList.remove("hidden");
-  });
+		close(): void {
+			this.frame.remove();
 
-  currentTab = tabNumber;
-  currentFrame = document.getElementById(
-    `frame-${tabNumber}`,
-  ) as HTMLIFrameElement;
+			document.dispatchEvent(
+				new CustomEvent("close-tab", {
+					detail: {
+						tabNumber: this.tabNumber,
+					},
+				}),
+			);
+		}
 
-  addressInput.value = decodeURIComponent(
-    (currentFrame?.contentWindow?.location.href ?? "")
-      .split("/")
-      .pop() as string,
-  );
+		handleLoad(): void {
+			if (this.tabNumber !== currentTab) return;
+			let url = decodeURIComponent(
+				this.frame?.contentWindow?.location.href.split("/").pop() as string,
+			);
+			let title = this.frame?.contentWindow?.document.title;
 
-  document.dispatchEvent(
-    new CustomEvent("switch-tab", {
-      detail: {
-        tabNumber: tabNumber,
-      },
-    }),
-  );
-}
+			let history = localStorage.getItem("history")
+				? JSON.parse(localStorage.getItem("history") as string)
+				: [];
+				history = [...history, { url: url, title: title }];
+				localStorage.setItem("history", JSON.stringify(history));
 
-export function closeTab(tabNumber: number): void {
-  let frames = framesElement.querySelectorAll("iframe");
-  let framesArr = [...frames];
-  framesArr.forEach((frame) => {
-    if (frame.id === `frame-${tabNumber}`) {
-      frame.remove();
-    }
-  });
+				document.dispatchEvent(
+					new CustomEvent("url-changed", {
+						detail: {
+							tabId: currentTab,
+							title: title,
+							url: url,
+						},
+					}),
+				);
 
-  if (currentTab === tabNumber) {
-    const otherFrames = framesElement.querySelectorAll("iframe");
-    if (otherFrames.length > 0) {
-      switchTab(parseInt(otherFrames[0].id.replace("frame-", "")));
-    } else {
-      newTab();
-    }
-  }
+				if (url === "newtab") url = "bromine://newtab";
 
-  document.dispatchEvent(
-    new CustomEvent("close-tab", {
-      detail: {
-        tabNumber: tabNumber,
-      },
-    }),
-  );
-}
+					addressInput.value = url;
+		}
+	}
+
+	export async function newTab() {
+		new Tab();
+	}
+
+	export function switchTab(tabNumber: number): void {
+		let frames = framesElement.querySelectorAll("iframe");
+		let framesArr = [...frames];
+		framesArr.forEach((frame) => {
+			if (frame.id != `frame-${tabNumber}`) frame.classList.add("hidden");
+			else frame.classList.remove("hidden");
+		});
+
+		currentTab = tabNumber;
+		currentFrame = document.getElementById(
+			`frame-${tabNumber}`,
+		) as HTMLIFrameElement;
+
+		addressInput.value = decodeURIComponent(
+			(currentFrame?.contentWindow?.location.href ?? "")
+			.split("/")
+			.pop() as string,
+		);
+
+		document.dispatchEvent(
+			new CustomEvent("switch-tab", {
+				detail: {
+					tabNumber: tabNumber,
+				},
+			}),
+		);
+	}
+
+	export function closeTab(tabNumber: number): void {
+		let frames = framesElement.querySelectorAll("iframe");
+		let framesArr = [...frames];
+		framesArr.forEach((frame) => {
+			if (frame.id === `frame-${tabNumber}`) {
+				frame.remove();
+			}
+		});
+
+		if (currentTab === tabNumber) {
+			const otherFrames = framesElement.querySelectorAll("iframe");
+			if (otherFrames.length > 0) {
+				switchTab(parseInt(otherFrames[0].id.replace("frame-", "")));
+			} else {
+				newTab();
+			}
+		}
+
+		document.dispatchEvent(
+			new CustomEvent("close-tab", {
+				detail: {
+					tabNumber: tabNumber,
+				},
+			}),
+		);
+	}
