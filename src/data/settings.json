@@ -92,11 +92,11 @@
       ]
     },
     {
-      "title": "Cloaking",
+      "title": "Clσaking",
       "settings": [
         {
           "id": "stealth-mode",
-          "label": "Stealth Mode",
+          "label": "Stealth Mσde",
           "type": "toggle",
           "defaultValue": "on",
           "description": "This will hide all your activity from even browser back/forward arrows!"
@@ -106,11 +106,11 @@
           "label": "About Blank",
           "type": "toggle",
           "defaultValue": "false",
-          "description": "About blanks the prσxy. Hides the proxy from history but not back/forward buttons."
+          "description": "About blanks the prσxy. Hides the prσxy from history but not back/forward buttons."
         },
         {
           "id": "cloak",
-          "label": "Cloaking",
+          "label": "Clσaking",
           "type": "select",
           "defaultValue": "bromine|favicon.svg",
           "description": "Disguises the tab with a different title and favicon to hide your activity.",
