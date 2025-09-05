@@ -80,32 +80,32 @@ const flatSettingsConfig = settingsData.sections.flatMap(
         </section>
       ))
     }
-    <div class="border-t border-overlay pt-4">
+
+		<div class="border-t border-overlay pt-4 flex items-center space-x-3 text-lg text-text">
+  		<a
+ 				href="https://github.com/Bromine-Labs/Bromine"
+				target="_blank"
+ 				rel="noopener noreferrer"
+ 				aria-label="GitHub Repository"
+ 				class="hover:text-iris transition-colors"
+ 			>
+ 				<Icon name="ph:github-logo-bold" />
+ 			</a>
+ 			<a
+ 				href="https://discord.gg/a3dMNq9D2K"
+ 				target="_blank"
+ 				rel="noopener noreferrer"
+ 				aria-label="Discord Server"
+ 				class="hover:text-iris transition-colors"
+		  >
+			  <Icon name="ph:discord-logo-bold" />
+		  </a>
 			<p class="text-xs text-text">
-  			<a
-  				href="https://github.com/Bromine-Labs/Bromine"
-  				target="_blank"
-  				rel="noopener noreferrer"
-  				aria-label="GitHub Repository"
-  				class="hover:text-iris transition-colors"
-  			>
-  				<Icon name="ph:github-logo-bold" class="size-5" />
-  				Github
-  			</a>
-  			<a
-  				href="https://discord.gg/a3dMNq9D2K"
-  				target="_blank"
-  				rel="noopener noreferrer"
-  				aria-label="Discord Server"
-  				class="text-iris font-semibold transition-colors"
-			  >
-				  <Icon name="ph:discord-logo-bold" class="size-5"/>
-				  Discord
-			  </a>
-			  Ping: <span id="ping-result" class="font-mono">Pinging...</span>
-			  Made with ❤️ by https://github.com/Coding4hours.
+	  		Ping: <span id="ping-result" class="font-mono">Pinging...</span>
       </p>
-    </div>
+		</div>
+		<span class="text-sm">Made with ❤️ by <a class="text-iris" href="https://github.com/Coding4hours">Coding4hours.</a></span>
+
   </div>
 
   <div
