@@ -2,11 +2,11 @@
 import Layout from "@/Layout.astro";
 import {Icon} from "astro-icon/components"
 ---
-<Layout title="g&mes - bromine" desc="bromine's bad g&mes page">
+<Layout title="gmes - bromine" desc="bromine's bad gmes page">
   <script
-		src="@/utils/g&mes.ts"
+		src="@/utils/gmes.ts"
 ></script>
-  <section id="g2meContainer">
+  <section id="gmeContainer">
 
 <div class="max-w-xs rounded-md border border-overlay bg-base shadow-sm overflow-auto">
   <img
@@ -20,7 +20,7 @@ import {Icon} from "astro-icon/components"
 </div>
 
   </section>
-	<div id="g2mePageContainer" class="bg-surface/90 hidden fixed inset-0 z-[999] flex flex-col items-center justify-start p-5 md:p-10 box-border">
+	<div id="gmePageContainer" class="bg-surface/90 hidden fixed inset-0 z-[999] flex flex-col items-center justify-start p-5 md:p-10 box-border">
 			<div class="flex justify-between items-center w-full max-w-5xl mb-4">
 
             <button id="backBtn" class="p-3 bg-surface rounded-lg transition-all duration-200 outline-2 outline-offset-2 outline-muted flex items-center space-x-2">
@@ -34,7 +34,7 @@ import {Icon} from "astro-icon/components"
             </button>
 				</div>
 
-        <h2 id="g2mePageTitle" class="text-3xl font-bold mt-4 mb-4 text-center"></h2>
-        <iframe id="g2mePageFrame" class="bg-surface/95 w-full flex-grow border-none rounded-xl shadow-lg outline-2 outline-offset-2 outline-muted" allowfullscreen></iframe>
+        <h2 id="gmePageTitle" class="text-3xl font-bold mt-4 mb-4 text-center"></h2>
+        <iframe id="gmePageFrame" class="bg-surface/95 w-full flex-grow border-none rounded-xl shadow-lg outline-2 outline-offset-2 outline-muted" allowfullscreen></iframe>
     </div>
 </Layout>

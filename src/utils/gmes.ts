@@ -1,4 +1,4 @@
-import g2mesData from "@/assets/g2mes.json";
+import gmesData from "@/assets/gmes.json";
 import { getProxied } from "@/utils/lethal.ts";
 
 (() => {
@@ -9,7 +9,7 @@ import { getProxied } from "@/utils/lethal.ts";
         return;
     }
 
-    target.innerHTML = "<p style='text-align: center; font-family: sans-serif; color: #555;'>Loading g2mes...</p>";
+    target.innerHTML = "<p style='text-align: center; font-family: sans-serif; color: #555;'>Loading gmes...</p>";
 
     const g2mePageContainerHtml = `
         <div id="g2mePageContainer" style="
@@ -52,16 +52,16 @@ import { getProxied } from "@/utils/lethal.ts";
     `;
     document.body.insertAdjacentHTML('beforeend', g2mePageContainerHtml);
 
-    const allG2mes = g2mesData;
+    const allGmes = gmesData;
     let currentPage = 1;
-    const g2mesPerPage = 20;
+    const gmesPerPage = 20;
 
-    const renderG2mes = () => {
-        const startIndex = (currentPage - 1) * g2mesPerPage;
-        const g2mesToShow = allG2mes.slice(startIndex, startIndex + g2mesPerPage);
-        const totalPages = Math.ceil(allG2mes.length / g2mesPerPage);
+    const renderGmes = () => {
+        const startIndex = (currentPage - 1) * gmesPerPage;
+        const gmesToShow = allGmes.slice(startIndex, startIndex + gmesPerPage);
+        const totalPages = Math.ceil(allGmes.length / gmesPerPage);
 
-        const g2mesHtml = g2mesToShow.map(g2me => `
+        const gmesHtml = gmesToShow.map(g2me => `
             <div
               onclick="openg2me('${g2me.url}', '${g2me.title}')"
               class="bg-base border border-overlay rounded-xl p-3 m-2 inline-block w-48 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
@@ -84,22 +84,22 @@ import { getProxied } from "@/utils/lethal.ts";
             </div>
         `;
 
-        target.innerHTML = `<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px;">${g2mesHtml}</div>${paginationHtml}`;
+        target.innerHTML = `<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px;">${gmesHtml}</div>${paginationHtml}`;
     };
 
     target.addEventListener('click', (event) => {
-        const totalPages = Math.ceil(allG2mes.length / g2mesPerPage);
+        const totalPages = Math.ceil(allGmes.length / gmesPerPage);
         if (event.target.id === 'prev-page' && currentPage > 1) {
             currentPage--;
-            renderG2mes();
+            renderGmes();
         }
         if (event.target.id === 'next-page' && currentPage < totalPages) {
             currentPage++;
-            renderG2mes();
+            renderGmes();
         }
     });
 
-    renderG2mes();
+    renderGmes();
 
 
     window.openg2me = async (url, title) => {
