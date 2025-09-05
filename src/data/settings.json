@@ -156,25 +156,8 @@
       ]
     },
     {
-      "title": "Proxy",
+      "title": "Prσxy",
       "settings": [
-        {
-          "id": "prσxy-backend",
-          "label": "Prσxy Backend",
-          "type": "select",
-          "defaultValue": "uv",
-          "description": "Select the core prσxy engine. Scramjet is experimental and very fast.",
-          "options": [
-            {
-              "value": "uv",
-              "label": "Ultraviσlet"
-            },
-            {
-              "value": "scram",
-              "label": "Scramjet"
-            }
-          ]
-        },
         {
           "id": "prσxy-transport",
           "label": "Prσxy Transport",

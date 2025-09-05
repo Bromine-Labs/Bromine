@@ -23,12 +23,10 @@
     "https://search.brave.com/search?q=%s"
 
 
-  let backend = localStorage.getItem("prσxy-backend") || "uv"
   let wisp = localStorage.getItem("wísp-server") || "wss://anura.pro/"
   let transport = localStorage.getItem("prσxy-transport")
 
   setWisp(wisp)
-  setProxy(backend)
 
   if (transport) setTransport(transport as Transport)
   else if (navigator.userAgent.indexOf("Firefox") > 0) setTransport("libcurl")
@@ -54,11 +52,6 @@
 
   window.addEventListener("search-engine-changed", () => {
     search = localStorage.getItem("search-engine") as string
-  })
-
-  window.addEventListener("prσxy-backend-changed", () => {
-    backend = localStorage.getItem("prσxy-backend") as string
-    setProxy(localStorage.getItem("prσxy-backend") as string)
   })
 
   window.addEventListener("wísp-server-changed", () => {
