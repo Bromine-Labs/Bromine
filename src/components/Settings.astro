@@ -71,7 +71,7 @@ const flatSettingsConfig = settingsData.sections.flatMap(
                       id={setting.id}
                       class="sr-only peer"
                     />
-                    <div class="bg-pine w-11 h-6 bg-overlay rounded-full peer peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-iris peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-iris" />
+                    <div class="bg-pine w-11 h-6 rounded-full peer peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-iris peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-iris" />
                   </label>
                 )}
               </div>
@@ -81,8 +81,29 @@ const flatSettingsConfig = settingsData.sections.flatMap(
       ))
     }
     <div class="border-t border-overlay pt-4">
-      <p class="text-xs text-text">
-        Ping: <span id="ping-result" class="font-mono">Pinging...</span>
+			<p class="text-xs text-text">
+  			<a
+  				href="https://github.com/Bromine-Labs/Bromine"
+  				target="_blank"
+  				rel="noopener noreferrer"
+  				aria-label="GitHub Repository"
+  				class="hover:text-iris transition-colors"
+  			>
+  				<Icon name="ph:github-logo-bold" class="size-5" />
+  				Github
+  			</a>
+  			<a
+  				href="https://discord.gg/a3dMNq9D2K"
+  				target="_blank"
+  				rel="noopener noreferrer"
+  				aria-label="Discord Server"
+  				class="text-iris font-semibold transition-colors"
+			  >
+				  <Icon name="ph:discord-logo-bold" class="size-5"/>
+				  Discord
+			  </a>
+			  Ping: <span id="ping-result" class="font-mono">Pinging...</span>
+			  Made with ❤️ by https://github.com/Coding4hours.
       </p>
     </div>
   </div>
