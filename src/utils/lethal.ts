@@ -93,9 +93,6 @@ export function makeURL(
     return new URL(input).toString();
   } catch (err) { }
 
-  const url = new URL(`http://${input}`);
-  if (url.hostname.includes(".")) return url.toString();
-
   return template.replace("%s", encodeURIComponent(input));
 }
 
@@ -247,7 +244,7 @@ export class Tab {
 
     if (url === "newtab") url = "bromine://newtab";
 
-    addressInput.value = url;
+    if(this.frame == currentFrame) addressInput.value = url;
   }
 }
 
