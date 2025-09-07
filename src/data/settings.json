@@ -163,8 +163,12 @@
           "label": "Prσxy Transport",
           "type": "select",
           "defaultValue": "epoxy",
-          "description": "Select the transport layer for prσxy communication. Epσxy is best for chrome and libcurl with firefox,",
+          "description": "Select the transport layer for prσxy communication. Epσxy is best for chrome and libcurl with firefox, and bare is deprecated.",
           "options": [
+						{
+							"value": "bare",
+							"label": "Bare"
+						},
             {
               "value": "epoxy",
               "label": "Epσxy"
@@ -177,11 +181,9 @@
         },
         {
           "id": "wísp-server",
-          "label": "Wisp Server",
+          "label": "Wisp/Bare Server",
           "type": "text",
           "defaultValue": "",
-          "regex": "^wss:\\/\\/[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)+\\/$",
-          "validationMessage": "bro look at the description idiot",
           "placeholder": "wss://wísp.pro/",
           "description": "The transport server used. This requires a '/' at the end"
         }

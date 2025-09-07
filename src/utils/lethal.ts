@@ -20,6 +20,7 @@ export const addressInput: HTMLInputElement = document.getElementById(
 ) as HTMLInputElement;
 
 const transportOptions: TransportOptions = {
+	bare: "https://unpkg.com/@mercuryworkshop/bare-as-module3@2.2.5/dist/index.mjs",
 	// libcurl: "https://unpkg.com/@nightnetwork/reflux@1.0.3/dist/index.mjs",
 	epoxy:
 		"https://unpkg.com/@mercuryworkshop/epoxy-transport@2.1.27/dist/index.mjs",
@@ -101,6 +102,10 @@ async function updateBareMux(): Promise<void> {
     console.log(
       `lethal.js: Setting BareMux to ${transportURL} and Wisp to ${wispURL}`,
     );
+		if (transportURL == "https://unpkg.com/@mercuryworkshop/bare-as-module3@2.2.5/dist/index.mjs") 
+			await connection.setTransport(transportURL, [wispURL])
+		
+		else 
     await connection.setTransport(transportURL, [{ wisp: wispURL }]);
   }
 }
@@ -109,8 +114,10 @@ export async function setTransport(transport: Transport): Promise<void> {
   console.log(`lethal.js: Setting transport to ${transport}`);
   transportURL = transportOptions[transport];
   if (!transportURL) {
+
     transportURL = transport;
   }
+
 
   await updateBareMux();
 }
