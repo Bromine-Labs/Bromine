@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: remove snap
+        uses: ading2210/gh-actions-remove-snap@v1
       - uses: actions/checkout@v4
 
       - name: Audit URLs using Lighthouse
