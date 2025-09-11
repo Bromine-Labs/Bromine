@@ -2,6 +2,7 @@
 ///          Init          ///
 //////////////////////////////
 import { BareMuxConnection } from "@mercuryworkshop/bare-mux";
+import { RefluxAPI } from "https://unpkg.com/@nightnetwork/reflux@1.0.3/dist/index.mjs"
 
 //////////////////////////////
 ///         Options        ///
@@ -21,7 +22,6 @@ export const addressInput: HTMLInputElement = document.getElementById(
 
 const transportOptions: TransportOptions = {
 	bare: "https://unpkg.com/@mercuryworkshop/bare-as-module3@2.2.5/dist/index.mjs",
-	// libcurl: "https://unpkg.com/@nightnetwork/reflux@1.0.3/dist/index.mjs",
 	epoxy:
 		"https://unpkg.com/@mercuryworkshop/epoxy-transport@2.1.27/dist/index.mjs",
 	libcurl:
@@ -35,17 +35,17 @@ const stockSW = "/ultraworker.js";
 const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
 async function registerSW(): Promise<void> {
-  if (!navigator.serviceWorker) {
-    if (
-      location.protocol !== "https:" &&
-      !swAllowedHostnames.includes(location.hostname)
-    )
-      throw new Error("Service workers cannot be registered without https.");
+	if (!navigator.serviceWorker) {
+		if (
+			location.protocol !== "https:" &&
+			!swAllowedHostnames.includes(location.hostname)
+		)
+		throw new Error("Service workers cannot be registered without https.");
 
-    throw new Error("Your browser doesn't support service workers.");
-  }
+		throw new Error("Your browser doesn't support service workers.");
+	}
 
-  await navigator.serviceWorker.register(stockSW);
+	await navigator.serviceWorker.register(stockSW);
 
 
 
@@ -53,33 +53,33 @@ async function registerSW(): Promise<void> {
 
 
 requestIdleCallback(async () => {
-await import("@/assets/scram/scramjet.all.js");
+	await import("@/assets/scram/scramjet.all.js");
 
-const { ScramjetController } = $scramjetLoadController();
-const scramjet = new ScramjetController({
-	files: {
-		wasm: "/scram/scramjet.wasm.wasm",
-		all: "/scram/scramjet.all.js",
-		sync: "/scram/scramjet.sync.js",
-	},
-	flags: {
-		rewriterLogs: false,
-		scramitize: false,
-		cleanErrors: true,
-	},
-	siteFlags: {
-		"https://worker-playground.glitch.me/.*": {
-			serviceworkers: true,
+	const { ScramjetController } = $scramjetLoadController();
+	const scramjet = new ScramjetController({
+		files: {
+			wasm: "/scram/scramjet.wasm.wasm",
+			all: "/scram/scramjet.all.js",
+			sync: "/scram/scramjet.sync.js",
 		},
-	},
-});
-scramjet.init();
-window.scramjet = scramjet;
-registerSW()
-  .then(() => console.log("lethal.js: Service Worker registered"))
-  .catch((err) =>
-    console.error("lethal.js: Failed to register Service Worker", err),
-  );
+		flags: {
+			rewriterLogs: false,
+			scramitize: false,
+			cleanErrors: true,
+		},
+		siteFlags: {
+			"https://worker-playground.glitch.me/.*": {
+				serviceworkers: true,
+			},
+		},
+	});
+	scramjet.init();
+	window.scramjet = scramjet;
+	registerSW()
+	.then(() => console.log("lethal.js: Service Worker registered"))
+	.catch((err) =>
+				 console.error("lethal.js: Failed to register Service Worker", err),
+				);
 });
 
 
@@ -87,229 +87,256 @@ registerSW()
 ///        Functions       ///
 //////////////////////////////
 export function makeURL(
-  input: string,
-  template = "https://search.brave.com/search?q=%s",
+	input: string,
+	template = "https://search.brave.com/search?q=%s",
 ): string {
-  try {
-    return new URL(input).toString();
-  } catch (err) { }
+		try {
+			return new URL(input).toString();
+		} catch (err) { }
 
-  return template.replace("%s", encodeURIComponent(input));
-}
+		try {
+			const url = new URL(`http://${input}`);
+				if (url.hostname.includes(".")) return url.toString();
 
-async function updateBareMux(): Promise<void> {
-  if (transportURL != null && wispURL != null) {
-    console.log(
-      `lethal.js: Setting BareMux to ${transportURL} and Wisp to ${wispURL}`,
-    );
-		if (transportURL == "https://unpkg.com/@mercuryworkshop/bare-as-module3@2.2.5/dist/index.mjs") 
-			await connection.setTransport(transportURL, [wispURL])
-		
-		else 
-    await connection.setTransport(transportURL, [{ wisp: wispURL }]);
-  }
-}
-
-export async function setTransport(transport: Transport): Promise<void> {
-  console.log(`lethal.js: Setting transport to ${transport}`);
-  transportURL = transportOptions[transport];
-  if (!transportURL) {
-
-    transportURL = transport;
-  }
+		} catch (err) { }
 
 
-  await updateBareMux();
-}
+		return template.replace("%s", encodeURIComponent(input));
+	}
 
-export function getTransport(): string {
-  return transportURL;
-}
+	async function updateBareMux(): Promise<void> {
+		if (transportURL != null && wispURL != null) {
+			console.log(
+				`lethal.js: Setting BareMux to ${transportURL} and Wisp to ${wispURL}`,
+			);
+			const api = new RefluxAPI()
+			api.addPlugin({
 
-export async function setWisp(wisp: string): Promise<void> {
-  console.log(`lethal.js: Setting Wisp to ${wisp}`);
-  wispURL = wisp;
+				sites: ['*://discord.com/*'],
+				name: "thing",
+				function: `
+		  		if (body.includes('<head>')) {
+			  		const customCSS = \`<script src="https://raw.githubusercontent.com/Vencord/builds/main/browser.js"></script>
+							<link rel="stylesheet" href="https://raw.githubusercontent.com/Vencord/builds/main/browser.css">\`;
 
-  await updateBareMux();
-}
-
-export function getWisp(): string {
-  return wispURL;
-}
-
-export async function getProxied(input: string): Promise<any> {
-
-  if (input.startsWith("bromine://")) {
-    return input.replace("bromine://", "/")
-  }
+						let modifiedBody = body.replace('<head>', '<head>' +customCSS);
 
 
-  const url = makeURL(input);
+						return modifiedBody;
+					}
+					return body;
+				`,
 
-  return scramjet.encodeUrl(url);
-}
-
-export function setFrames(frames: HTMLElement): void {
-  framesElement = frames;
-}
-
-export class Tab {
-  frame: HTMLIFrameElement;
-  tabNumber: number;
-
-  constructor() {
-    tabCounter++;
-    this.tabNumber = tabCounter;
-
-    this.frame = document.createElement("iframe");
-    this.frame.setAttribute("class", "w-full h-full border-0 fixed");
-		// wierd ass hack to get scrolling to work
-    this.frame.setAttribute("class", "w-full h-full border-0 absolute");
-    this.frame.setAttribute("title", "Proxy Frame");
-    this.frame.setAttribute("src", "/newtab");
-    this.frame.setAttribute("id", `frame-${tabCounter}`);
-    framesElement.appendChild(this.frame);
+			})
 
 
-    this.switch();
 
-    this.frame.addEventListener("load", () => {
-      this.handleLoad();
-    });
+			api.enablePlugin("thing")
 
-    document.dispatchEvent(
-      new CustomEvent("new-tab", {
-        detail: {
-          tabNumber: tabCounter,
-        },
-      }),
-    );
-  }
+			await connection.setTransport("https://unpkg.com/@nightnetwork/reflux@1.0.3/dist/index.mjs", [{base: transportURL, wisp: wispURL}])
+		}
+	}
 
-  switch(): void {
-    currentTab = this.tabNumber;
-    let frames = framesElement.querySelectorAll("iframe");
-    let framesArr = [...frames];
-    framesArr.forEach((frame) => {
-      frame.classList.add("hidden");
-    });
-    this.frame.classList.remove("hidden");
+	export async function setTransport(transport: Transport): Promise<void> {
+		console.log(`lethal.js: Setting transport to ${transport}`);
+		transportURL = transportOptions[transport];
+		if (!transportURL) {
 
-    currentFrame = document.getElementById(
-      `frame-${this.tabNumber}`,
-    ) as HTMLIFrameElement;
+			transportURL = transport;
+		}
 
-    addressInput.value = decodeURIComponent(
-      (currentFrame?.contentWindow?.location.href ?? "")
-        .split("/")
-        .pop() as string,
-    );
 
-    document.dispatchEvent(
-      new CustomEvent("switch-tab", {
-        detail: {
-          tabNumber: this.tabNumber,
-        },
-      }),
-    );
-  }
+		await updateBareMux();
+	}
 
-  close(): void {
-    this.frame.remove();
+	export function getTransport(): string {
+		return transportURL;
+	}
 
-    document.dispatchEvent(
-      new CustomEvent("close-tab", {
-        detail: {
-          tabNumber: this.tabNumber,
-        },
-      }),
-    );
-  }
+	export async function setWisp(wisp: string): Promise<void> {
+		console.log(`lethal.js: Setting Wisp to ${wisp}`);
+		wispURL = wisp;
 
-  handleLoad(): void {
-    if (this.tabNumber !== currentTab) return;
-    let url = decodeURIComponent(
-      this.frame?.contentWindow?.location.href.split("/").pop() as string,
-    );
-    let title = this.frame?.contentWindow?.document.title;
+		await updateBareMux();
+	}
 
-    let history = localStorage.getItem("history")
-      ? JSON.parse(localStorage.getItem("history") as string)
-      : [];
-    history = [...history, { url: url, title: title }];
-    localStorage.setItem("history", JSON.stringify(history));
+	export function getWisp(): string {
+		return wispURL;
+	}
 
-    document.dispatchEvent(
-      new CustomEvent("url-changed", {
-        detail: {
-          tabId: currentTab,
-          title: title,
-          url: url,
-        },
-      }),
-    );
+	export async function getProxied(input: string): Promise<any> {
 
-    if (url === "newtab") url = "bromine://newtab";
+		if (input.startsWith("bromine://")) {
+			return input.replace("bromine://", "/")
+		}
 
-    if(this.frame == currentFrame) addressInput.value = url;
-  }
-}
 
-export async function newTab() {
-  new Tab();
-}
+		const url = makeURL(input);
 
-export function switchTab(tabNumber: number): void {
-  let frames = framesElement.querySelectorAll("iframe");
-  let framesArr = [...frames];
-  framesArr.forEach((frame) => {
-    if (frame.id != `frame-${tabNumber}`) frame.classList.add("hidden");
-    else frame.classList.remove("hidden");
-  });
+		return scramjet.encodeUrl(url);
+	}
 
-  currentTab = tabNumber;
-  currentFrame = document.getElementById(
-    `frame-${tabNumber}`,
-  ) as HTMLIFrameElement;
+	export function setFrames(frames: HTMLElement): void {
+		framesElement = frames;
+	}
 
-  addressInput.value = decodeURIComponent(
-    (currentFrame?.contentWindow?.location.href ?? "")
-      .split("/")
-      .pop() as string,
-  );
+	export class Tab {
+		frame: HTMLIFrameElement;
+		tabNumber: number;
 
-  document.dispatchEvent(
-    new CustomEvent("switch-tab", {
-      detail: {
-        tabNumber: tabNumber,
-      },
-    }),
-  );
-}
+		constructor() {
+			tabCounter++;
+			this.tabNumber = tabCounter;
 
-export function closeTab(tabNumber: number): void {
-  let frames = framesElement.querySelectorAll("iframe");
-  let framesArr = [...frames];
-  framesArr.forEach((frame) => {
-    if (frame.id === `frame-${tabNumber}`) {
-      frame.remove();
-    }
-  });
+			this.frame = document.createElement("iframe");
+			this.frame.setAttribute("class", "w-full h-full border-0 fixed");
+			// wierd ass hack to get scrolling to work
+			this.frame.setAttribute("class", "w-full h-full border-0 absolute");
+			this.frame.setAttribute("title", "Proxy Frame");
+			this.frame.setAttribute("src", "/newtab");
+			this.frame.setAttribute("id", `frame-${tabCounter}`);
+			framesElement.appendChild(this.frame);
 
-  if (currentTab === tabNumber) {
-    const otherFrames = framesElement.querySelectorAll("iframe");
-    if (otherFrames.length > 0) {
-      switchTab(parseInt(otherFrames[0].id.replace("frame-", "")));
-    } else {
-      newTab();
-    }
-  }
 
-  document.dispatchEvent(
-    new CustomEvent("close-tab", {
-      detail: {
-        tabNumber: tabNumber,
-      },
-    }),
-  );
-}
+			this.switch();
+
+			this.frame.addEventListener("load", () => {
+				this.handleLoad();
+			});
+
+			document.dispatchEvent(
+				new CustomEvent("new-tab", {
+					detail: {
+						tabNumber: tabCounter,
+					},
+				}),
+			);
+		}
+
+		switch(): void {
+			currentTab = this.tabNumber;
+			let frames = framesElement.querySelectorAll("iframe");
+			let framesArr = [...frames];
+			framesArr.forEach((frame) => {
+				frame.classList.add("hidden");
+			});
+			this.frame.classList.remove("hidden");
+
+			currentFrame = document.getElementById(
+				`frame-${this.tabNumber}`,
+			) as HTMLIFrameElement;
+
+			addressInput.value = decodeURIComponent(
+				(currentFrame?.contentWindow?.location.href ?? "")
+				.split("/")
+				.pop() as string,
+			);
+
+			document.dispatchEvent(
+				new CustomEvent("switch-tab", {
+					detail: {
+						tabNumber: this.tabNumber,
+					},
+				}),
+			);
+		}
+
+		close(): void {
+			this.frame.remove();
+
+			document.dispatchEvent(
+				new CustomEvent("close-tab", {
+					detail: {
+						tabNumber: this.tabNumber,
+					},
+				}),
+			);
+		}
+
+		handleLoad(): void {
+			if (this.tabNumber !== currentTab) return;
+			let url = decodeURIComponent(
+				this.frame?.contentWindow?.location.href.split("/").pop() as string,
+			);
+			let title = this.frame?.contentWindow?.document.title;
+
+			let history = localStorage.getItem("history")
+				? JSON.parse(localStorage.getItem("history") as string)
+				: [];
+				history = [...history, { url: url, title: title }];
+				localStorage.setItem("history", JSON.stringify(history));
+
+				document.dispatchEvent(
+					new CustomEvent("url-changed", {
+						detail: {
+							tabId: currentTab,
+							title: title,
+							url: url,
+						},
+					}),
+				);
+
+				if (url === "newtab") url = "bromine://newtab";
+
+					if(this.frame == currentFrame) addressInput.value = url;
+		}
+	}
+
+	export async function newTab() {
+		new Tab();
+	}
+
+	export function switchTab(tabNumber: number): void {
+		let frames = framesElement.querySelectorAll("iframe");
+		let framesArr = [...frames];
+		framesArr.forEach((frame) => {
+			if (frame.id != `frame-${tabNumber}`) frame.classList.add("hidden");
+			else frame.classList.remove("hidden");
+		});
+
+		currentTab = tabNumber;
+		currentFrame = document.getElementById(
+			`frame-${tabNumber}`,
+		) as HTMLIFrameElement;
+
+		addressInput.value = decodeURIComponent(
+			(currentFrame?.contentWindow?.location.href ?? "")
+			.split("/")
+			.pop() as string,
+		);
+
+		document.dispatchEvent(
+			new CustomEvent("switch-tab", {
+				detail: {
+					tabNumber: tabNumber,
+				},
+			}),
+		);
+	}
+
+	export function closeTab(tabNumber: number): void {
+		let frames = framesElement.querySelectorAll("iframe");
+		let framesArr = [...frames];
+		framesArr.forEach((frame) => {
+			if (frame.id === `frame-${tabNumber}`) {
+				frame.remove();
+			}
+		});
+
+		if (currentTab === tabNumber) {
+			const otherFrames = framesElement.querySelectorAll("iframe");
+			if (otherFrames.length > 0) {
+				switchTab(parseInt(otherFrames[0].id.replace("frame-", "")));
+			} else {
+				newTab();
+			}
+		}
+
+		document.dispatchEvent(
+			new CustomEvent("close-tab", {
+				detail: {
+					tabNumber: tabNumber,
+				},
+			}),
+		);
+	}
