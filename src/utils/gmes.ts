@@ -2,17 +2,17 @@ import gmesData from "@/assets/gmes.json";
 import { getProxied } from "@/utils/lethal.ts";
 
 (() => {
-    const target = document.querySelector("#g2meContainer");
+    const target = document.querySelector("#gmeContainer");
 
     if (!target) {
-        console.error("Target container #g2meContainer not found.");
+        console.error("Target container #gmeContainer not found.");
         return;
     }
 
     target.innerHTML = "<p style='text-align: center; font-family: sans-serif; color: #555;'>Loading gmes...</p>";
 
-    const g2mePageContainerHtml = `
-        <div id="g2mePageContainer" style="
+    const gmePageContainerHtml = `
+        <div id="gmePageContainer" style="
             display: none;
             position: fixed;
             top: 0;
@@ -28,7 +28,7 @@ import { getProxied } from "@/utils/lethal.ts";
             box-sizing: border-box;
             overflow: auto;
         ">
-            <button onclick="closeg2me()" style="
+            <button onclick="closegme()" style="
                 position: absolute;
                 top: 10px;
                 right: 10px;
@@ -40,9 +40,9 @@ import { getProxied } from "@/utils/lethal.ts";
                 border: none;
                 border-radius: 5px;
                 z-index: 1000;
-            ">Close G2me</button>
-            <h2 id="g2mePageTitle" style="margin-top: 20px; color: #333;"></h2>
-            <iframe id="g2mePageFrame" src="" frameborder="0" style="
+            ">Close Gme</button>
+            <h2 id="gmePageTitle" style="margin-top: 20px; color: #333;"></h2>
+            <iframe id="gmePageFrame" src="" frameborder="0" style="
                 width: 100%;
                 height: calc(100% - 70px);
                 border: none;
@@ -50,7 +50,7 @@ import { getProxied } from "@/utils/lethal.ts";
             "></iframe>
         </div>
     `;
-    document.body.insertAdjacentHTML('beforeend', g2mePageContainerHtml);
+    document.body.insertAdjacentHTML('beforeend', gmePageContainerHtml);
 
     const allGmes = gmesData;
     let currentPage = 1;
@@ -61,18 +61,18 @@ import { getProxied } from "@/utils/lethal.ts";
         const gmesToShow = allGmes.slice(startIndex, startIndex + gmesPerPage);
         const totalPages = Math.ceil(allGmes.length / gmesPerPage);
 
-        const gmesHtml = gmesToShow.map(g2me => `
+        const gmesHtml = gmesToShow.map(gme => `
             <div
-              onclick="openg2me('${g2me.url}', '${g2me.title}')"
+              onclick="opengme('${gme.url}', '${gme.title}')"
               class="bg-base border border-overlay rounded-xl p-3 m-2 inline-block w-48 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
             >
               <img
-                src="/images/${g2me.alt}.webp"
-                alt="${g2me.title} thumbnail"
+                src="/images/${gme.alt}.webp"
+                alt="${gme.title} thumbnail"
                 class="w-full h-28 object-cover rounded-md"
                 onerror="this.onerror=null;this.src='https://placehold.co/200x120/cccccc/333333?text=No+Image';"
               />
-              <h3 class="mt-2 font-medium text-text truncate">${g2me.title}</h3>
+              <h3 class="mt-2 font-medium text-text truncate">${gme.title}</h3>
             </div>
         `).join('');
 
@@ -102,30 +102,30 @@ import { getProxied } from "@/utils/lethal.ts";
     renderGmes();
 
 
-    window.openg2me = async (url, title) => {
-        const g2mePageContainer = document.getElementById("g2mePageContainer");
-        const g2mePageFrame = document.getElementById("g2mePageFrame");
-        const g2mePageTitle = document.getElementById("g2mePageTitle");
+    window.opengme = async (url, title) => {
+        const gmePageContainer = document.getElementById("gmePageContainer");
+        const gmePageFrame = document.getElementById("gmePageFrame");
+        const gmePageTitle = document.getElementById("gmePageTitle");
 
-        g2mePageTitle.textContent = title;
-        g2mePageFrame.src = await getProxied(url);
-        g2mePageContainer.style.display = "flex";
+        gmePageTitle.textContent = title;
+        gmePageFrame.src = await getProxied(url);
+        gmePageContainer.style.display = "flex";
         document.body.style.overflow = 'hidden';
     };
 
-    window.closeg2me = () => {
-        const g2mePageContainer = document.getElementById("g2mePageContainer");
-        const g2mePageFrame = document.getElementById("g2mePageFrame");
+    window.closegme = () => {
+        const gmePageContainer = document.getElementById("gmePageContainer");
+        const gmePageFrame = document.getElementById("gmePageFrame");
 
-        g2mePageFrame.src = "";
-        g2mePageContainer.style.display = "none";
+        gmePageFrame.src = "";
+        gmePageContainer.style.display = "none";
         document.body.style.overflow = '';
     };
 
 		document.getElementById("backBtn").addEventListener("click", () => {
-			closeg2me();
+			closegme();
 		})
 		document.getElementById("fullscreenBtn").addEventListener("click", () => {
-			document.getElementById("g2mePageFrame").requestFullscreen();
+			document.getElementById("gmePageFrame").requestFullscreen();
 		})
 })();
