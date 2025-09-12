@@ -1,11 +1,16 @@
 import gmesData from "@/assets/gmes.json";
-import { getProxied } from "@/utils/lethal.ts";
 
 (() => {
     const target = document.querySelector("#gmeContainer");
+    const searchInput = document.getElementById("search");
 
     if (!target) {
         console.error("Target container #gmeContainer not found.");
+        return;
+    }
+
+    if (!searchInput) {
+        console.error("Search input with id 'search' not found.");
         return;
     }
 
@@ -53,53 +58,36 @@ import { getProxied } from "@/utils/lethal.ts";
     document.body.insertAdjacentHTML('beforeend', gmePageContainerHtml);
 
     const allGmes = gmesData;
-    let currentPage = 1;
-    const gmesPerPage = 20;
 
-    const renderGmes = () => {
-        const startIndex = (currentPage - 1) * gmesPerPage;
-        const gmesToShow = allGmes.slice(startIndex, startIndex + gmesPerPage);
-        const totalPages = Math.ceil(allGmes.length / gmesPerPage);
+    const renderGmes = (gmesToRender) => {
+        if (gmesToRender.length === 0) {
+            target.innerHTML = "<p style='text-align: center; font-family: sans-serif; color: #555;'>No gmes found.</p>";
+            return;
+        }
 
-        const gmesHtml = gmesToShow.map(gme => `
+        const gmesHtml = gmesToRender.map(gme => `
             <div
               onclick="opengme('${gme.url}', '${gme.title}')"
               class="bg-base border border-overlay rounded-xl p-3 m-2 inline-block w-48 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
             >
-              <img
-                src="/images/${gme.alt}.webp"
-                alt="${gme.title} thumbnail"
-                class="w-full h-28 object-cover rounded-md"
-                onerror="this.onerror=null;this.src='https://placehold.co/200x120/cccccc/333333?text=No+Image';"
-              />
               <h3 class="mt-2 font-medium text-text truncate">${gme.title}</h3>
             </div>
         `).join('');
 
-        const paginationHtml = `
-            <div id="pagination-controls" style="text-align: center; margin-top: 20px; width: 100%;">
-                <button id="prev-page" ${currentPage === 1 ? 'disabled' : ''} style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: ${currentPage === 1 ? '#ccc' : '#007bff'}; color: white; border: none; border-radius: 5px; margin-right: 10px;">Previous</button>
-                <span style="margin: 0 10px; font-family: sans-serif;">Page ${currentPage} of ${totalPages}</span>
-                <button id="next-page" ${currentPage < totalPages ? '' : 'disabled'} style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: ${currentPage < totalPages ? '#007bff' : '#ccc'}; color: white; border: none; border-radius: 5px; margin-left: 10px;">Next</button>
-            </div>
-        `;
-
-        target.innerHTML = `<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px;">${gmesHtml}</div>${paginationHtml}`;
+        target.innerHTML = `<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px;">${gmesHtml}</div>`;
     };
 
-    target.addEventListener('click', (event) => {
-        const totalPages = Math.ceil(allGmes.length / gmesPerPage);
-        if (event.target.id === 'prev-page' && currentPage > 1) {
-            currentPage--;
-            renderGmes();
-        }
-        if (event.target.id === 'next-page' && currentPage < totalPages) {
-            currentPage++;
-            renderGmes();
-        }
+    // Event listener for the search input
+    searchInput.addEventListener("input", (event) => {
+        const searchQuery = event.target.value.toLowerCase();
+        const filteredGmes = allGmes.filter(gme =>
+            gme.title.toLowerCase().includes(searchQuery)
+        );
+        renderGmes(filteredGmes);
     });
 
-    renderGmes();
+    // Initial render of all gmes
+    renderGmes(allGmes);
 
 
     window.opengme = async (url, title) => {
@@ -108,7 +96,7 @@ import { getProxied } from "@/utils/lethal.ts";
         const gmePageTitle = document.getElementById("gmePageTitle");
 
         gmePageTitle.textContent = title;
-        gmePageFrame.src = await getProxied(url);
+        gmePageFrame.src = url;
         gmePageContainer.style.display = "flex";
         document.body.style.overflow = 'hidden';
     };
@@ -122,10 +110,10 @@ import { getProxied } from "@/utils/lethal.ts";
         document.body.style.overflow = '';
     };
 
-		document.getElementById("backBtn").addEventListener("click", () => {
-			closegme();
-		})
-		document.getElementById("fullscreenBtn").addEventListener("click", () => {
-			document.getElementById("gmePageFrame").requestFullscreen();
-		})
+    document.getElementById("backBtn").addEventListener("click", () => {
+        closegme();
+    })
+    document.getElementById("fullscreenBtn").addEventListener("click", () => {
+        document.getElementById("gmePageFrame").requestFullscreen();
+    })
 })();

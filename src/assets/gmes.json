@@ -1,591 +1,1662 @@
 [
 	{
-		"title": "2048",
-		"alt": "2048",
-		"url": "https://2048-online.io/"
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/10-minutes-till-dawn/index.html",
+		"title": "10 Minutes Till Dawn"
 	},
-  {
-    "title": "Swordbattle.io",
-    "url": "https://swordbattle.io/",
-    "alt": "swordbattle"
-  },
-  {
-    "title": "Stabfish.io",
-    "url": "https://stabfish.io/",
-    "alt": "stabfish"
-  },
-  {
-    "title": "Dynast.io",
-    "url": "https://dynast.io",
-    "alt": "dynast-io"
-  },
-  {
-    "title": "Twisted Cooking Mama",
-    "url": "https://twisted-cooking-mama.g2me-files.crazyg2mes.com/ruffle/twisted-cooking-mama/1/twistedcookingmama.html?v=1.273",
-    "alt": "twistedcookingmama"
-  },
-  {
-    "title": "Marbles Garden",
-    "url": "https://www.coolmathg2mes.com/0-marbles-garden/play",
-    "alt": "marblesgarden"
-  },
-  {
-    "title": "Fancy Pants Adventure",
-    "url": "https://g2mes.crazyg2mes.com/en_US/fancy-pants-adventure-world/index.html?v=1.273",
-    "alt": "fancypantsadventures"
-  },
-  {
-    "title": "Fancy Pants Adventure 2",
-    "url": "https://g2mes.crazyg2mes.com/en_US/fancy-pants-adventure-world/index.html?v=1.273",
-    "alt": "fancypantsadventures2"
-  },
-  {
-    "title": "Rooftop Snipers 2",
-    "url": "https://h5cdn.github.io/s6/rooftop-snipers-2/",
-    "alt": "rooftopsnipers2"
-  },
-  {
-    "title": "Stickman Archero Fight",
-    "url": "https://html5.g2medistribution.com/rvvASMiM/3f4c166817ad4fd4b5b05d9adba22fcd/index.html",
-    "alt": "stickman-archero-fight"
-  },
-  {
-    "title": "Earn to Die 2012 Part 2",
-    "url": "https://g2mes-online.io/g2me/EarnToDie/index.html",
-    "alt": "earntodie2012part2"
-  },
-  {
-    "title": "Lostg2mer",
-    "url": "https://lostg2mer.io",
-    "alt": "lostg2merio"
-  },
-  {
-    "title": "Thisissand",
-    "url": "https://thisissand.com/",
-    "alt": "thisissand"
-  },
-  {
-    "title": "digdig.io",
-    "url": "https://digdig.io/",
-    "alt": "digdigio"
-  },
-  {
-    "title": "Big Tower Tiny Square",
-    "url": "https://www.coolmathg2mes.com/0-big-tower-tiny-square/play",
-    "alt": "bigtowertinysquare"
-  },
-  {
-    "title": "The Impossible Quiz",
-    "url": "https://the-impossible-quiz.g2me-files.crazyg2mes.com/ruffle/theimpossiblequiz.html",
-    "alt": "theimpossiblequiz"
-  },
-  {
-    "title": "Helix Jump",
-    "url": "https://helix-jump.g2me-files.crazyg2mes.com/helix-jump/1/index.html",
-    "alt": "helixjump"
-  },
-  {
-    "title": "skribbl",
-    "url": "https://skribbl.io/",
-    "alt": "skribblio"
-  },
-  {
-    "title": "Wings!",
-    "url": "https://wings.io/",
-    "alt": "wingsio"
-  },
-  {
-    "title": "Stomped.io",
-    "url": "https://stomped.io",
-    "alt": "stompedio"
-  },
-  {
-    "title": "Age of War",
-    "url": "https://age-of-war.g2me-files.crazyg2mes.com/ruffle/ageofwar.html",
-    "alt": "ageofwar"
-  },
-  {
-    "title": "Brain Test",
-    "alt": "braintest"
-  },
-  {
-    "title": "Gladihoppers",
-    "url": "https://bonbang.github.io/store99/gladihoppers/index.html",
-    "alt": "gladihoppers"
-  },
-  {
-    "title": "Snow Rider 3D",
-    "url": "https://html5.g2medistribution.com/rvvASMiM/3b79a8537ebc414fb4f9672a9b8c68c8/index.html?gd_zone_config=eyJwYXJlbnRVUkwiOiJodHRwczovL3Nub3dyaWRlcjNkLmNvbS8iLCJwYXJlbnREb21haW4iOiJzbm93cmlkZXIzZC5jb20iLCJ0b3BEb21haW4iOiJzbm93cmlkZXIzZC5jb20iLCJoYXNJbXByZXNzaW9uIjpmYWxzZSwibG9hZGVyRW5hYmxlZCI6dHJ1ZSwiaG9zdCI6Imh0bWw1LmdhbWVkaXN0cmlidXRpb24uY29tIiwidmVyc2lvbiI6IjEuNS4xNiJ9",
-    "alt": "snowrider3d"
-  },
-  {
-    "title": "3 Slices",
-    "url": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2F3-slices.xml",
-    "alt": "3slices"
-  },
-  {
-    "title": "Buckshot Roulette",
-    "url": "https://buckshotroulette.online/g2me/v11/",
-    "alt": "buckshotroulette"
-  },
-  {
-    "title": "Starblast",
-    "url": "https://starblast.io",
-    "alt": "starblastio"
-  },
-  {
-    "title": "CSGO Parkour",
-    "url": "https://yandex.com/g2mes/app/203069?flags={%22adv_sticky_banner_disabled%22:true}",
-    "alt": "csgoparkour"
-  },
-  {
-    "title": "Parkour Block 3D",
-    "url": "https://html5.g2medistribution.com/1461d40bb77f48e6be72489959a1ac04/",
-    "alt": "parkourblock3d"
-  },
-  {
-    "title": "Jelly Mario",
-    "url": "https://jellymar.io",
-    "alt": "jellymario"
-  },
-  {
-    "title": "Tyran.io",
-    "url": "https://tyran.io",
-    "alt": "tyranio"
-  },
-  {
-    "title": "Arras.io",
-    "url": "https://arras.io/",
-    "alt": "arrasio"
-  },
-  {
-    "title": "mk48.io",
-    "url": "https://mk48.io/",
-    "alt": "mk48io"
-  },
-  {
-    "title": "Bandit.RIP",
-    "url": "https://bandit.rip/",
-    "alt": "banditrip"
-  },
-  {
-    "title": "Addicting G2mes",
-    "url": "https://www.addictingg2mes.com/",
-    "alt": "addictingg2mes"
-  },
-  {
-    "title": "Deeeep.io",
-    "url": "https://beta.deeeep.io",
-    "alt": "deeeepio"
-  },
-  {
-    "title": "ev.io",
-    "url": "https://ev.io",
-    "alt": "evio"
-  },
-  {
-    "title": "Brain Test 2",
-    "url": "https://g2mes.poki.com/458768/df221093-aae9-4c0d-b458-efb16ae8e3ab",
-    "alt": "braintest2"
-  },
-  {
-    "title": "Brain Test 3",
-    "url": "https://g2mes.poki.com/458768/1f3ae540-a95f-4f20-a000-29512612e341",
-    "alt": "braintest3"
-  },
-  {
-    "title": "Donitz - itch.io",
-    "url": "https://donitz.itch.io/",
-    "alt": "itch"
-  },
-  {
-    "title": "Territorial.io",
-    "url": "https://territorial.io",
-    "alt": "territorialio"
-  },
-  {
-    "title": "Stickman Hook",
-    "url": "/e/stickman-hook/index.html",
-    "alt": "stickmanhook"
-  },
-  {
-    "title": "Tube Jumpers",
-    "url": "https://unblocked76.github.io/tube-jumpers/",
-    "alt": "tubejumpers"
-  },
-  {
-    "title": "Tunnel Rush",
-    "url": "https://5dd2e8e4-015f-11ea-ad56-9cb6d0d995f7.poki-gdn.com/5627efae-e960-407d-82a5-3da708eb4e68/index.html",
-    "alt": "tunnelrush"
-  },
-  {
-    "title": "Tunnel Rush 2",
-    "url": "https://a7e6d137-c3c1-46e6-a3db-04c2d33c98a8.poki-gdn.com/71e6bddd-9b0e-4621-a11a-9503086f69d5/index.html",
-    "alt": "tunnelrush2"
-  },
-  {
-    "title": "Rainbow Obby",
-    "url": "https://785a4295-96c4-43e5-b237-fb07fc3ef44d.poki-gdn.com/f1d39f75-7a25-41de-86cf-ba00804737b5/index.html",
-    "alt": "rainbowobby"
-  },
-  {
-    "title": "Candy Jump",
-    "url": "https://candyjump.g2mes235.com/",
-    "alt": "candyjump"
-  },
-  {
-    "title": "Google Feud",
-    "url": "https://googlefeud.com/",
-    "alt": "googlefeud"
-  },
-  {
-    "title": "Minecraft Classic",
-    "url": "https://classic.minecraft.net",
-    "alt": "mc"
-  },
-  {
-    "title": "Learn to Fly 3",
-    "url": "https://www.silverg2mes.com/en/learn-to-fly-3/iframe",
-    "alt": "learntofly3"
-  },
-  {
-    "title": "YoHoHo.io",
-    "url": "https://yohoho.io/",
-    "alt": "yohoho"
-  },
-  {
-    "title": "AntWar.io",
-    "url": "https://antwar.io/",
-    "alt": "antwario"
-  },
-  {
-    "title": "Tetr.io",
-    "url": "https://tetr.io/",
-    "alt": "tetrio"
-  },
-  {
-    "title": "Time Shooter 2",
-    "url": "https://html5.g2medistribution.com/62a72f2da7cb4b609579a47653546e6a/",
-    "alt": "timeshooter2"
-  },
-  {
-    "title": "Merge Fruit",
-    "url": "https://html5.g2medistribution.com/2dee9d404697435aa76111eb4015e1d5/",
-    "alt": "mergefruit"
-  },
-  {
-    "title": "There Is No G2me",
-    "url": "https://5dd2d607-015f-11ea-ad56-9cb6d0d995f7.poki-gdn.com/38959ae1-110b-49ab-86ae-df425fd7862a/index.html",
-    "alt": "thereisnog2me"
-  },
-  {
-    "title": "Jetpack Joyride",
-    "url": "/e/jetpack-joyride/index.html",
-    "alt": "jetpackjoyride"
-  },
-  {
-    "title": "FeedVid",
-    "url": "https://v6p9d9t4.ssl.hwcdn.net/html/4941980-683813/index.html",
-    "alt": "feedvid"
-  },
-  {
-    "title": "florr.io",
-    "url": "https://florr.io",
-    "alt": "florr"
-  },
-  {
-    "title": "Rocket Bot Royale",
-    "url": "https://rocketbotroyale2.winterpixel.io/",
-    "alt": "rocketbotroyale"
-  },
-  {
-    "title": "Happy Wheels",
-    "url": "https://files.crazyg2mes.com/ruffle/happywheels.html",
-    "alt": "happywheels"
-  },
-  {
-    "title": "Papa's Burgeria",
-    "url": "https://www.coolmathg2mes.com/0-papas-burgeria/play",
-    "alt": "papasburgeria"
-  },
-  {
-    "title": "Papa's Cheeseria",
-    "url": "https://www.coolmathg2mes.com/0-papas-cheeseria/play",
-    "alt": "papascheeseria"
-  },
-  {
-    "title": "Papa's Pancakeria",
-    "url": "https://www.coolmathg2mes.com/0-papas-pancakeria/play",
-    "alt": "papaspancakeria"
-  },
-  {
-    "title": "Papa's Wingeria",
-    "url": "https://www.coolmathg2mes.com/0-papas-wingeria/play",
-    "alt": "papaswingeria"
-  },
-  {
-    "title": "Riddle School 1",
-    "url": "https://uploads.ungrounded.net/ruffle_wrapper/ruffleembed.html?v=1.0.67&browsermode=default&props=%7B%22ruffle%22%3A%22%2Fruffle_wrapper%2Flib%2Fruffle.js%3F1695474658%22%2C%22public_path%22%3A%22%2Fruffle_wrapper%2Flib%2F%22%2C%22swf%22%3A%22https%3A%2F%2Fuploads.ungrounded.net%2F314000%2F314680_Riddle_School.swf%3F1148577264%22%2C%22vars%22%3A%7B%22NewgroundsAPI_PublisherID%22%3A1%2C%22NewgroundsAPI_SandboxID%22%3A%2265103f0745c96%22%2C%22NewgroundsAPI_SessionID%22%3A%22%22%2C%22NewgroundsAPI_UserName%22%3A%22%26lt%3Bdeleted%26gt%3B%22%2C%22NewgroundsAPI_UserID%22%3A0%2C%22ng_usertitle%22%3A%22%26lt%3Bdeleted%26gt%3B%22%7D%2C%22width%22%3A550%2C%22height%22%3A400%2C%22icon%22%3A%22https%3A%2F%2Fpicon.ngfiles.com%2F314000%2Fflash_314680_card.webp%3Ff1607914286%22%2C%22warnOnUnsupportedContent%22%3Afalse%7D",
-    "alt": "riddle-school"
-  },
-  {
-    "title": "Powerline.IO",
-    "url": "https://powerline.io",
-    "alt": "powerline"
-  },
-  {
-    "title": "Papa's Scooperia",
-    "url": "https://files.crazyg2mes.com/ruffle/papasscooperia.html",
-    "alt": "papasscooperia"
-  },
-  {
-    "title": "Papa's Sushiria",
-    "url": "https://files.crazyg2mes.com/ruffle/papassushiria.html",
-    "alt": "papassushiria"
-  },
-  {
-    "title": "Burrito Bison",
-    "url": "https://f.silverg2mes.com/awayfl/index.html?swf=burrito-bison.swf",
-    "alt": "burritobison"
-  },
-  {
-    "title": "Fireboy And Watergirl 2 In The Light Temple",
-    "url": "https://www.coolmathg2mes.com/sites/default/files/public_g2mes/40210/",
-    "alt": "fireboyandwatergirllighttemple"
-  },
-  {
-    "title": "Fireboy And Watergirl 4 In The Crystal Temple",
-    "url": "https://www.coolmathg2mes.com/sites/default/files/public_g2mes/40212/",
-    "alt": "fireboyandwatergirlcrystaltemple"
-  },
-  {
-    "title": "Fireboy And Watergirl 5: Elements",
-    "url": "https://www.coolmathg2mes.com/sites/default/files/public_g2mes/40218",
-    "alt": "fireboyandwatergirlelements"
-  },
-  {
-    "title": "Fireboy And Watergirl 6: Fairy Tales",
-    "url": "https://html5.g2medistribution.com/rvvASMiM/be3cff113c4e4f069b7614851825ffe9/index.html",
-    "alt": "fireboyandwatergirlfairytales"
-  },
-  {
-    "title": "Fireboy And Watergirl In The Forest Temple",
-    "url": "https://www.coolmathg2mes.com/sites/default/files/public_g2mes/40034/",
-    "alt": "fireboyandwatergirlforesttemple"
-  },
-  {
-    "title": "Gunspin",
-    "url": "https://html5.g2medistribution.com/rvvASMiM/917cce8c44c44638a8cdc2a1794b65c8/index.html",
-    "alt": "gunspin"
-  },
-  {
-    "title": "Thelast Royale",
-    "url": "https://thelast.io",
-    "alt": "thelast-io"
-  },
-  {
-    "title": "mope.io",
-    "url": "https://thelast.io",
-    "alt": "mope-io"
-  },
-  {
-    "title": "Tiny Fishing",
-    "url": "https://www.dob5.com/d/file/g2mes/tiny-fishing/",
-    "alt": "tinyfishing"
-  },
-  {
-    "title": "Johnny Upgrade",
-    "url": "https://lagged.com/api/play2/johnny-upgrade3/",
-    "alt": "johnnyupgrade"
-  },
-  {
-    "title": "bloxd.io",
-    "url": "https://bloxd.io",
-    "alt": "bloxd-io"
-  },
-  {
-    "title": "Duck Life 1",
-    "url": "https://www.hoodamath.com/mobile/g2mes/duck-life/g2me.html",
-    "alt": "ducklife"
-  },
-  {
-    "title": "Duck Life 2",
-    "url": "https://www.hoodamath.com/mobile/g2mes/duck-life-2-world-champion/g2me.html",
-    "alt": "ducklife"
-  },
-  {
-    "title": "Duck Life 3",
-    "url": "https://www.hoodamath.com/mobile/g2mes/duck-life-3-evolution/g2me.html",
-    "alt": "ducklife"
-  },
-  {
-    "title": "Papa's Freezeria",
-    "url": "https://www.coolmathg2mes.com/0-papas-freezeria/play",
-    "alt": "papasfreezeria"
-  },
-  {
-    "title": "Evades",
-    "url": "https://evades.io",
-    "alt": "evadesio"
-  },
-  {
-    "title": "Bullet Force Multiplayer",
-    "url": "https://www.crazyg2mes.com/g2me/bullet-force-multiplayer",
-    "alt": "BFM"
-  },
-  {
-    "title": "Crazy G2mes",
-    "url": "https://www.crazyg2mes.com/",
-    "alt": "crazy"
-  },
-  {
-    "title": "Cubes 2048",
-    "url": "https://www.crazyg2mes.com/g2me/cubes-2048-io",
-    "alt": "C2048"
-  },
-  {
-    "title": "DOOM",
-    "url": "https://archive.org/details/doom-play",
-    "alt": "DOOM"
-  },
-  {
-    "title": "FNAF 2",
-    "url": "https://sussyg2medeveloper.github.io/FNAF2/",
-    "alt": "FNAF2"
-  },
-  {
-    "title": "FNAF 3",
-    "url": "https://sussyg2medeveloper.github.io/fnaf3/",
-    "alt": "FNAF3"
-  },
-  {
-    "title": "FNAF Web",
-    "url": "https://wellsousaaa.github.io/Five-Nights-at-Freddys-Web/",
-    "alt": "FNAFWeb"
-  },
-  {
-    "title": "Riddle School 4",
-    "url": "https://riddle-school-4.g2me-files.crazyg2mes.com/ruffle/riddleschool4.html",
-    "alt": "rs4"
-  },
-  {
-    "title": "Riddle School 5",
-    "url": "https://riddle-school-5.g2me-files.crazyg2mes.com/ruffle/riddleschool5.html",
-    "alt": "rs5"
-  },
-  {
-    "title": "GBA Emulator",
-    "url": "https://ds.44670.org/gba/",
-    "alt": "gba"
-  },
-  {
-    "title": "Itch.io",
-    "url": "https://itch.io",
-    "alt": "itch"
-  },
-  {
-    "title": "N-Gon",
-    "url": "https://landgreen.github.io/sidescroller/",
-    "alt": "NGON"
-  },
-  {
-    "title": "Nintendo DS Emulator",
-    "url": "https://ds.44670.org/",
-    "alt": "ds"
-  },
-  {
-    "title": "Nintendo 64 Emulator",
-    "url": "https://www.neilb.net/n64wasm/",
-    "alt": "N64"
-  },
-  {
-    "title": "Playstation 2 Emulator",
-    "url": "https://playjs.purei.org/",
-    "alt": "PS2"
-  },
-  {
-    "title": "Run 3",
-    "url": "https://www.coolmathg2mes.com/0-run-3/play",
-    "alt": "run3"
-  },
-  {
-    "title": "Subway Surfers: San Francisco ",
-    "url": "https://raw.githack.com/3kh0/3kh0-assets/main/subway-surfers/index.html",
-    "alt": "SF"
-  },
-  {
-    "title": "Survivor.io",
-    "url": "https://html5.g2medistribution.com/rvvASMiM/f1c451e586c04b4c8cba01b0c50d9090/index.html",
-    "alt": "SVI"
-  },
-  {
-    "title": "Web Retro",
-    "url": "/e/index.html",
-    "alt": "webretro"
-  },
-  {
-    "title": "Slope",
-    "url": "https://watchdocumentaries.com/wp-content/uploads/g2mes/slope/",
-    "alt": "slope"
-  },
-  {
-    "title": "Fortnite (Geforce NOW)",
-    "url": "https://play.geforcenow.com/mall/#/deeplink?g2me-id=46bfab06-d864-465d-9e56-2d9e45cdee0a",
-    "alt": "fortnite"
-  },
-  {
-    "title": "Bomb Party",
-    "url": "https://jklm.fun",
-    "alt": "BP"
-  },
-  {
-    "title": "1",
-    "url": "/e/1/1/index.html",
-    "alt": "1"
-  },
-  {
-    "title": "1v1.LOL",
-    "url": "https://1v1.lol",
-    "alt": "1v1-lol"
-  },
-  {
-    "title": "2D Rocket League",
-    "url": "https://v6p9d9t4.ssl.hwcdn.net/html/3325334/index.html",
-    "alt": "2D-Rocket-League"
-  },
-  {
-    "title": "3D Dino G2me",
-    "url": "https://lagged.com/api/play2/t-rex-3d2/",
-    "alt": "trex-run-3D"
-  },
-  {
-    "title": "60 Sec. Burger Run",
-    "url": "https://www.coolmathg2mes.com/0-60-second-burger-run/play",
-    "alt": "60-second-burger-run"
-  },
-  {
-    "title": "8 Ball Pool",
-    "url": "https://8ball-pool.io",
-    "alt": "8ball"
-  },
-  {
-    "title": "A Dark Room",
-    "url": "https://adarkroom.doublespeakg2mes.com",
-    "alt": "ADR"
-  },
-  {
-    "title": "Ace Attorney",
-    "url": "https://f.kbhg2mes.com/r/gba/?r=ace-attorney",
-    "alt": "aa"
-  },
-  {
-    "title": "AC - Wild World",
-    "url": "https://static.arcadespot.com/retroemulator.php?system=nds&g2me=2017/10/animal-crossing-wild-world1.zip",
-    "alt": "acww"
-  },
-  {
-    "title": "Adventure Capitalist",
-    "url": "https://than1089.github.io/adventure-capitalist/",
-    "alt": "adventure-capitalist"
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/100ng/index.html",
+		"title": "100ng"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/1v1lol/index.html",
+		"title": "1v1lol"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/1v1space/index.html",
+		"title": "1v1space"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/2020-game/index.html",
+		"title": "2020 Game"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/2048-multitask/index.html",
+		"title": "2048 Multitask"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/2048/index.html",
+		"title": "2048"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/8ball-billards-classic/index.html",
+		"title": "8ball Billards Classic"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/9007199254740992/index.html",
+		"title": "9007199254740992"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/DogeMiner/index.html",
+		"title": "DogeMiner"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/FullScreenMario/Source/index.html",
+		"title": "Source"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/HexGL/index.html",
+		"title": "HexGL"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/OfflineParadise/index.html",
+		"title": "OfflineParadise"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/Squid Gun Fest/index.html",
+		"title": "Squid Gun Fest"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/Stickman-Survival/index.html",
+		"title": "Stickman Survival"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/achievementunlocked/index.html",
+		"title": "Achievementunlocked"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/adarkroom/index.html",
+		"title": "Adarkroom"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/adrenalinechallenge/index.html",
+		"title": "Adrenalinechallenge"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/age-of-war/index.html",
+		"title": "Age Of War"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/alien-invaders-io/index.html",
+		"title": "Alien Invaders Io"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/alienhominid/index.html",
+		"title": "Alienhominid"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/align-4/index.html",
+		"title": "Align 4"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/among-us/index.html",
+		"title": "Among Us"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/angry-birds/index.html",
+		"title": "Angry Birds"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/anti-terrorist-rush/index.html",
+		"title": "Anti Terrorist Rush"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/arcade-wizard/index.html",
+		"title": "Arcade Wizard"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/asciispace/index.html",
+		"title": "Asciispace"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/aspiring-artist/index.html",
+		"title": "Aspiring Artist"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/asteroids/index.html",
+		"title": "Asteroids"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/astray/index.html",
+		"title": "Astray"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/avalanche/index.html",
+		"title": "Avalanche"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/awesome-tanks-2/index.html",
+		"title": "Awesome Tanks 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/backcountry/index.html",
+		"title": "Backcountry"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/backflip-dive-3d/index.html",
+		"title": "Backflip Dive 3d"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/backrooms/index.html",
+		"title": "Backrooms"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/bad-ice-cream-2/index.html",
+		"title": "Bad Ice Cream 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/bad-ice-cream-3/index.html",
+		"title": "Bad Ice Cream 3"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/bad-ice-cream/index.html",
+		"title": "Bad Ice Cream"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/baldis-basics/index.html",
+		"title": "Baldis Basics"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/basket-bros-io/index.html",
+		"title": "Basket Bros Io"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/basketball-io/index.html",
+		"title": "Basketball Io"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/basketball-legends-2020/index.html",
+		"title": "Basketball Legends 2020"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/basketball-stars/index.html",
+		"title": "Basketball Stars"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/battleforgondor/index.html",
+		"title": "Battleforgondor"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/bigredbutton/index.html",
+		"title": "Bigredbutton"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/binding-of-isaac/index.html",
+		"title": "Binding Of Isaac"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/bitlife/index.html",
+		"title": "Bitlife"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/blacholesquare/index.html",
+		"title": "Blacholesquare"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/blackholesquare/index.html",
+		"title": "Blackholesquare"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/blackknight/index.html",
+		"title": "Blackknight"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/blocky-snakes/index.html",
+		"title": "Blocky Snakes"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/bloonstd/index.html",
+		"title": "Bloonstd"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/bloonstd2/index.html",
+		"title": "Bloonstd2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/bloxors/index.html",
+		"title": "Bloxors"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/bounceback/index.html",
+		"title": "Bounceback"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/boxel-rebound/index.html",
+		"title": "Boxel Rebound"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/boxhead2play/index.html",
+		"title": "Boxhead2play"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/brave-explorers/index.html",
+		"title": "Brave Explorers"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/breakingthebank/index.html",
+		"title": "Breakingthebank"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/breaklock/index.html",
+		"title": "Breaklock"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/breakout/index.html",
+		"title": "Breakout"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/btd4/index.html",
+		"title": "Btd4"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/btts/index.html",
+		"title": "Btts"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/burning-man-2/index.html",
+		"title": "Burning Man 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/cannon-basketball-4/index.html",
+		"title": "Cannon Basketball 4"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/canyondefense/index.html",
+		"title": "Canyondefense"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/captaincallisto/index.html",
+		"title": "Captaincallisto"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/cars-simulator/index.html",
+		"title": "Cars Simulator"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/cell-machine/index.html",
+		"title": "Cell Machine"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/championarcher/index.html",
+		"title": "Championarcher"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/chess/index.html",
+		"title": "Chess"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/chill-radio/index.html",
+		"title": "Chill Radio"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/chromaincident/index.html",
+		"title": "Chromaincident"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/chrome-dino/index.html",
+		"title": "Chrome Dino"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/chromedino/index.html",
+		"title": "Chromedino"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/circlo/index.html",
+		"title": "Circlo"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/city-blocks-2/index.html",
+		"title": "City Blocks 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/clean-up-io/index.html",
+		"title": "Clean Up Io"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/cluster-rush/index.html",
+		"title": "Cluster Rush"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/color-switch-2-challenges/index.html",
+		"title": "Color Switch 2 Challenges"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/connect3/index.html",
+		"title": "Connect3"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/cookie-clicker/index.html",
+		"title": "Cookie Clicker"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/cookieclicker/index.html",
+		"title": "Cookieclicker"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/core-ball/index.html",
+		"title": "Core Ball"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/craftmine/index.html",
+		"title": "Craftmine"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/creativekillchamber/index.html",
+		"title": "Creativekillchamber"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/crossyroad/index.html",
+		"title": "Crossyroad"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/crowd city 2/index.html",
+		"title": "Crowd City 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/csgo-clicker/index.html",
+		"title": "Csgo Clicker"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ctr-holiday/index.html",
+		"title": "Ctr Holiday"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ctr-tr/index.html",
+		"title": "Ctr Tr"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ctr/index.html",
+		"title": "Ctr"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/cubefield/index.html",
+		"title": "Cubefield"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/cupcake2048/index.html",
+		"title": "Cupcake2048"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/cuttherope/index.html",
+		"title": "Cuttherope"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/cuttherope2/index.html",
+		"title": "Cuttherope2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/dadish/index.html",
+		"title": "Dadish"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/dadish3/index.html",
+		"title": "Dadish3"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/dadishtwo/index.html",
+		"title": "Dadishtwo"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/dante/index.html",
+		"title": "Dante"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/deal-or-no-deal/index.html",
+		"title": "Deal Or No Deal"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/death-run-3d/index.html",
+		"title": "Death Run 3d"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/death-soul/index.html",
+		"title": "Death Soul"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/deathrun/index.html",
+		"title": "Deathrun"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/defend-the-tank/index.html",
+		"title": "Defend The Tank"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/dino/index.html",
+		"title": "Dino"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/doctor-acorn2/index.html",
+		"title": "Doctor Acorn2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/dodge/index.html",
+		"title": "Dodge"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/doge-miner-2/index.html",
+		"title": "Doge Miner 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/doge-mining-simulator/index.html",
+		"title": "Doge Mining Simulator"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/doge2048/index.html",
+		"title": "Doge2048"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/dont-drop-the-white-ball-2/index.html",
+		"title": "Dont Drop The White Ball 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/doodle-jump/index.html",
+		"title": "Doodle Jump"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/doublewires/index.html",
+		"title": "Doublewires"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/douchebag-workout-2/index.html",
+		"title": "Douchebag Workout 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/dragon-vs-bricks/index.html",
+		"title": "Dragon Vs Bricks"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/draw-the-hill/index.html",
+		"title": "Draw The Hill"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/drive-mad/index.html",
+		"title": "Drive Mad"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/duck-life-treasurehunt/index.html",
+		"title": "Duck Life Treasurehunt"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ducklife/index.html",
+		"title": "Ducklife"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ducklife1/index.html",
+		"title": "Ducklife1"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ducklife2/index.html",
+		"title": "Ducklife2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ducklife3/index.html",
+		"title": "Ducklife3"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ducklife4/index.html",
+		"title": "Ducklife4"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/duke-dashington-remastered/index.html",
+		"title": "Duke Dashington Remastered"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/dungeon-craft/index.html",
+		"title": "Dungeon Craft"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/edge-surf/index.html",
+		"title": "Edge Surf"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/edgenotfound/index.html",
+		"title": "Edgenotfound"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/elastic-face/index.html",
+		"title": "Elastic Face"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/elasticman/index.html",
+		"title": "Elasticman"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/emulator-js/index.html",
+		"title": "Emulator Js"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/endlesswar3/index.html",
+		"title": "Endlesswar3"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/escapingtheprison/index.html",
+		"title": "Escapingtheprison"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/evil-glitch/index.html",
+		"title": "Evil Glitch"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/evilglitch/index.html",
+		"title": "Evilglitch"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/evolution/index.html",
+		"title": "Evolution"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/exo/index.html",
+		"title": "Exo"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/factory-balls-forever/index.html",
+		"title": "Factory Balls Forever"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/factoryballs/index.html",
+		"title": "Factoryballs"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/factoryballsforever/index.html",
+		"title": "Factoryballsforever"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/fake-virus/index.html",
+		"title": "Fake Virus"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/fancypantsadventures/index.html",
+		"title": "Fancypantsadventures"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/fbwg/index.html",
+		"title": "Fbwg"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/finns-fantastic-food-machine/index.html",
+		"title": "Finns Fantastic Food Machine"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/fireboywatergirlforesttemple/index.html",
+		"title": "Fireboywatergirlforesttemple"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/fireice/index.html",
+		"title": "Fireice"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/firewater/index.html",
+		"title": "Firewater"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/flappy-2048/index.html",
+		"title": "Flappy 2048"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/flappy-bird/index.html",
+		"title": "Flappy Bird"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/flappy-defense/index.html",
+		"title": "Flappy Defense"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/flappybird/index.html",
+		"title": "Flappybird"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/flashtetris/index.html",
+		"title": "Flashtetris"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/flippy-fish/index.html",
+		"title": "Flippy Fish"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/flood-runner-2/index.html",
+		"title": "Flood Runner 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/fridaynightfunkin/index.html",
+		"title": "Fridaynightfunkin"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/friendlyfire/index.html",
+		"title": "Friendlyfire"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/froggys-battle/index.html",
+		"title": "Froggys Battle"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/fruitninja/index.html",
+		"title": "Fruitninja"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/frying-nemo/index.html",
+		"title": "Frying Nemo"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/game-inside/index.html",
+		"title": "Game Inside"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/generic-fishing-game/index.html",
+		"title": "Generic Fishing Game"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/geodash-2/index.html",
+		"title": "Geodash 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/geodash/index.html",
+		"title": "Geodash"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/geometry_jump_sketchy/index.html",
+		"title": "Geometry_jump_sketchy"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/geometrydash/index.html",
+		"title": "Geometrydash"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/georgeandtheprinter/index.html",
+		"title": "Georgeandtheprinter"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/getaway-shootout/index.html",
+		"title": "Getaway Shootout"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/getting-over-it/index.html",
+		"title": "Getting Over It"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/gimme-the-airpod/index.html",
+		"title": "Gimme The Airpod"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/glass-city/index.html",
+		"title": "Glass City"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/go-ball/index.html",
+		"title": "Go Ball"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/golf/index.html",
+		"title": "Golf"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/goodnight/index.html",
+		"title": "Goodnight"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/google-snake/index.html",
+		"title": "Google Snake"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/google-solitaire/index.html",
+		"title": "Google Solitaire"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/gopher/index.html",
+		"title": "Gopher"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/gravity-soccer/index.html",
+		"title": "Gravity Soccer"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/green/index.html",
+		"title": "Green"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/greybox/index.html",
+		"title": "Greybox"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/grindcraft/index.html",
+		"title": "Grindcraft"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/grow-in-the-hole/index.html",
+		"title": "Grow In The Hole"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/gun-mayhem-2/index.html",
+		"title": "Gun Mayhem 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/gun-mayhem-redux/index.html",
+		"title": "Gun Mayhem Redux"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/gun-mayhem/index.html",
+		"title": "Gun Mayhem"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/gunspin/index.html",
+		"title": "Gunspin"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/hackertype/index.html",
+		"title": "Hackertype"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/happy-hop/index.html",
+		"title": "Happy Hop"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/happy-wheels/index.html",
+		"title": "Happy Wheels"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/hba/index.html",
+		"title": "Hba"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/helicopter/index.html",
+		"title": "Helicopter"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/helios/index.html",
+		"title": "Helios"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/hexempire/index.html",
+		"title": "Hexempire"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/hextris/index.html",
+		"title": "Hextris"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/house-of-hazards/index.html",
+		"title": "House Of Hazards"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/icys-purple-head/index.html",
+		"title": "Icys Purple Head"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/idle-breakout/index.html",
+		"title": "Idle Breakout"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/idle-shark/index.html",
+		"title": "Idle Shark"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/impossiblequiz/index.html",
+		"title": "Impossiblequiz"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/interactivebuddy/index.html",
+		"title": "Interactivebuddy"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/iscribble-io/index.html",
+		"title": "Iscribble Io"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/jelly-truck/index.html",
+		"title": "Jelly Truck"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/jetpack/index.html",
+		"title": "Jetpack"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/jimothy-piggerton/index.html",
+		"title": "Jimothy Piggerton"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/just-one-boss/index.html",
+		"title": "Just One Boss"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/justfall/index.html",
+		"title": "Justfall"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/kart-fight-io/index.html",
+		"title": "Kart Fight Io"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/kitchen-gun-game/index.html",
+		"title": "Kitchen Gun Game"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/kittencannon/index.html",
+		"title": "Kittencannon"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/klocki/index.html",
+		"title": "Klocki"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/konnekt/index.html",
+		"title": "Konnekt"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/krunker/index.html",
+		"title": "Krunker"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/learntofly/index.html",
+		"title": "Learntofly"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/learntofly2/index.html",
+		"title": "Learntofly2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/line-rider/index.html",
+		"title": "Line Rider"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/linquest/index.html",
+		"title": "Linquest"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/madalin-stunt-cars-2/index.html",
+		"title": "Madalin Stunt Cars 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/madalin-stunt-cars-3/index.html",
+		"title": "Madalin Stunt Cars 3"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/makeitmeme/index.html",
+		"title": "Makeitmeme"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/mario/index.html",
+		"title": "Mario"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/marvinspectrum/index.html",
+		"title": "Marvinspectrum"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/matrixrampage/index.html",
+		"title": "Matrixrampage"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/mc1.5.2/index.html",
+		"title": "Mc1.5.2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/mcbeta0.30/index.html",
+		"title": "Mcbeta0.30"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/mcbeta1.3/index.html",
+		"title": "Mcbeta1.3"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/meat-boy/index.html",
+		"title": "Meat Boy"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/meme2048/index.html",
+		"title": "Meme2048"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/minecraft-classic/index.html",
+		"title": "Minecraft Classic"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/minecraft/index.html",
+		"title": "Minecraft"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/minecraftbeta/index.html",
+		"title": "Minecraftbeta"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/minesweeper/index.html",
+		"title": "Minesweeper"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/mini-stilts/index.html",
+		"title": "Mini Stilts"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/miniputt/index.html",
+		"title": "Miniputt"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/missiles/index.html",
+		"title": "Missiles"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/moto-x3m-2/index.html",
+		"title": "Moto X3m 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/moto-x3m-pool-party/index.html",
+		"title": "Moto X3m Pool Party"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/motox3m-pool/index.html",
+		"title": "Motox3m Pool"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/motox3m-spooky/index.html",
+		"title": "Motox3m Spooky"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/motox3m-winter/index.html",
+		"title": "Motox3m Winter"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/motox3m/index.html",
+		"title": "Motox3m"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/motox3m2/index.html",
+		"title": "Motox3m2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/motox3mwinter/index.html",
+		"title": "Motox3mwinter"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/my-friend-pedro/index.html",
+		"title": "My Friend Pedro"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/n-gon/index.html",
+		"title": "N Gon"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ninja/index.html",
+		"title": "Ninja"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ninjavsevilcorp/index.html",
+		"title": "Ninjavsevilcorp"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ns-shaft/index.html",
+		"title": "Ns Shaft"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/om-bounce/index.html",
+		"title": "Om Bounce"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/one-screen-run-2/index.html",
+		"title": "One Screen Run 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/one-screen-run/index.html",
+		"title": "One Screen Run"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/osu/index.html",
+		"title": "Osu"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ovo/index.html",
+		"title": "Ovo"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/packabunchas/index.html",
+		"title": "Packabunchas"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/pacman-fps/index.html",
+		"title": "Pacman Fps"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/pacman/index.html",
+		"title": "Pacman"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/pandemic2/index.html",
+		"title": "Pandemic2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/papa-louie/index.html",
+		"title": "Papa Louie"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/papas-burgeria/index.html",
+		"title": "Papas Burgeria"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/papas-freezeria/index.html",
+		"title": "Papas Freezeria"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/papas-hot-doggeria/index.html",
+		"title": "Papas Hot Doggeria"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/papas-pancakeria/index.html",
+		"title": "Papas Pancakeria"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/papas-pizzeria/index.html",
+		"title": "Papas Pizzeria"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/papas-sushiria/index.html",
+		"title": "Papas Sushiria"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/papas-wingeria/index.html",
+		"title": "Papas Wingeria"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/papasburgeria/index.html",
+		"title": "Papasburgeria"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/papaspizzaria/index.html",
+		"title": "Papaspizzaria"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/paperio2/index.html",
+		"title": "Paperio2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/papery-planes/index.html",
+		"title": "Papery Planes"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/particle-clicker/index.html",
+		"title": "Particle Clicker"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/particleclicker/index.html",
+		"title": "Particleclicker"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/path-finder/index.html",
+		"title": "Path Finder"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/pe-noire/index.html",
+		"title": "Pe Noire"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/pikwip/index.html",
+		"title": "Pikwip"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/pixel-cave/index.html",
+		"title": "Pixel Cave"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/pizzeria-simulator/index.html",
+		"title": "Pizzeria Simulator"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/polybranch/index.html",
+		"title": "Polybranch"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/popcat-classic/index.html",
+		"title": "Popcat Classic"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/portalflash/index.html",
+		"title": "Portalflash"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/precision-client/index.html",
+		"title": "Precision Client"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/protektor/index.html",
+		"title": "Protektor"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/push-the-square/index.html",
+		"title": "Push The Square"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/push-your-luck/index.html",
+		"title": "Push Your Luck"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/pushback/index.html",
+		"title": "Pushback"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/puzzle-ball/index.html",
+		"title": "Puzzle Ball"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/pvz-2/index.html",
+		"title": "Pvz 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/q1k3/index.html",
+		"title": "Q1k3"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/racer/index.html",
+		"title": "Racer"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/radiusraid/index.html",
+		"title": "Radiusraid"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/retro-bowl/index.html",
+		"title": "Retro Bowl"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/retrobowl/index.html",
+		"title": "Retrobowl"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/retrohaunt/index.html",
+		"title": "Retrohaunt"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/rise-of-neon-square/index.html",
+		"title": "Rise Of Neon Square"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/roadblocks/index.html",
+		"title": "Roadblocks"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/rocking-sky-trip/index.html",
+		"title": "Rocking Sky Trip"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/rolling-forests/index.html",
+		"title": "Rolling Forests"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/rolly-vortex/index.html",
+		"title": "Rolly Vortex"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/rooftop-snipers/index.html",
+		"title": "Rooftop Snipers"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/run-3/index.html",
+		"title": "Run 3"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/run3/index.html",
+		"title": "Run3"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/sand-game/index.html",
+		"title": "Sand Game"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/sandboxels/index.html",
+		"title": "Sandboxels"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/scrambled-eggs/index.html",
+		"title": "Scrambled Eggs"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/scrapmetal/index.html",
+		"title": "Scrapmetal"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/senya-and-oscar-2/index.html",
+		"title": "Senya And Oscar 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/sg/index.html",
+		"title": "Sg"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/shadow-world-adventure/index.html",
+		"title": "Shadow World Adventure"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/shards/index.html",
+		"title": "Shards"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/shift-flash-2/index.html",
+		"title": "Shift Flash 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/shift-flash/index.html",
+		"title": "Shift Flash"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/short-life-2/index.html",
+		"title": "Short Life 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/short-ride/index.html",
+		"title": "Short Ride"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/shuttledeck/index.html",
+		"title": "Shuttledeck"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/skyblock/index.html",
+		"title": "Skyblock"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/sleepingbeauty/index.html",
+		"title": "Sleepingbeauty"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/slice-of-sasha/index.html",
+		"title": "Slice Of Sasha"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/slither snake/index.html",
+		"title": "Slither Snake"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/slither/index.html",
+		"title": "Slither"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/slope-ball/index.html",
+		"title": "Slope Ball"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/slope/index.html",
+		"title": "Slope"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/slope2/index.html",
+		"title": "Slope2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/sm63/index.html",
+		"title": "Sm63"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/sm64/index.html",
+		"title": "Sm64"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/smashkarts/index.html",
+		"title": "Smashkarts"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/smokingbarrels/index.html",
+		"title": "Smokingbarrels"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/snake/index.html",
+		"title": "Snake"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/snowbattle/index.html",
+		"title": "Snowbattle"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/soldier-legend/index.html",
+		"title": "Soldier Legend"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/solitaire/index.html",
+		"title": "Solitaire"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/sonic-the-hedgehog/index.html",
+		"title": "Sonic The Hedgehog"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/sort-the-court/index.html",
+		"title": "Sort The Court"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/soundboard/index.html",
+		"title": "Soundboard"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/space-company/index.html",
+		"title": "Space Company"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/spacecompany/index.html",
+		"title": "Spacecompany"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/spacegarden/index.html",
+		"title": "Spacegarden"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/spacehuggers/index.html",
+		"title": "Spacehuggers"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/spelunky/index.html",
+		"title": "Spelunky"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/ssf/index.html",
+		"title": "Ssf"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/stack-bump-3d/index.html",
+		"title": "Stack Bump 3d"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/stack/index.html",
+		"title": "Stack"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/station-141/index.html",
+		"title": "Station 141"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/stealingthediamond/index.html",
+		"title": "Stealingthediamond"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/stick-archers-battle/index.html",
+		"title": "Stick Archers Battle"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/stickclimb/index.html",
+		"title": "Stickclimb"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/stickman-boost/index.html",
+		"title": "Stickman Boost"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/stickman-dismount/index.html",
+		"title": "Stickman Dismount"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/stickman-epic-battle/index.html",
+		"title": "Stickman Epic Battle"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/stickman-golf/index.html",
+		"title": "Stickman Golf"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/stickman/index.html",
+		"title": "Stickman"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/stickwar/index.html",
+		"title": "Stickwar"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/stormthehouse2/index.html",
+		"title": "Stormthehouse2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/subway-surfers-bali/index.html",
+		"title": "Subway Surfers Bali"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/subway-surfers/index.html",
+		"title": "Subway Surfers"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/super-mario-maker-online/index.html",
+		"title": "Super Mario Maker Online"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/super-puffer-fish-3d/index.html",
+		"title": "Super Puffer Fish 3d"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/superhero-io/index.html",
+		"title": "Superhero Io"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/superhot/index.html",
+		"title": "Superhot"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/supermarioconstruct/index.html",
+		"title": "Supermarioconstruct"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/swerve/index.html",
+		"title": "Swerve"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/synesthesia/index.html",
+		"title": "Synesthesia"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tactical-weapon-pack-2/index.html",
+		"title": "Tactical Weapon Pack 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tacticalassasin2/index.html",
+		"title": "Tacticalassasin2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tail-of-the-dragon/index.html",
+		"title": "Tail Of The Dragon"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tam-indian-truck-simulator-3d/index.html",
+		"title": "Tam Indian Truck Simulator 3d"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tank-trouble-2/index.html",
+		"title": "Tank Trouble 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tanuki-sunset/index.html",
+		"title": "Tanuki Sunset"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/temple-run-2/index.html",
+		"title": "Temple Run 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tetris/index.html",
+		"title": "Tetris"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/the-final-earth-2/index.html",
+		"title": "The Final Earth 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/the-final-earth/index.html",
+		"title": "The Final Earth"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/the-impossible-quiz-2/index.html",
+		"title": "The Impossible Quiz 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/the-impossible-quiz/index.html",
+		"title": "The Impossible Quiz"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/the-little-giant/index.html",
+		"title": "The Little Giant"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/thebattle/index.html",
+		"title": "Thebattle"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/theheist/index.html",
+		"title": "Theheist"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/themazeofspacegoblins/index.html",
+		"title": "Themazeofspacegoblins"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/there-is-no-game/index.html",
+		"title": "There Is No Game"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/thisistheonlylevel/index.html",
+		"title": "Thisistheonlylevel"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/time-shooter-3/index.html",
+		"title": "Time Shooter 3"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tiny-fishing/index.html",
+		"title": "Tiny Fishing"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tiny-fragments/index.html",
+		"title": "Tiny Fragments"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tiny-islands/index.html",
+		"title": "Tiny Islands"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/topple-adventure/index.html",
+		"title": "Topple Adventure"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tosstheturtle/index.html",
+		"title": "Tosstheturtle"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tough-growth/index.html",
+		"title": "Tough Growth"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/towermaster/index.html",
+		"title": "Towermaster"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/townscaper/index.html",
+		"title": "Townscaper"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/trimps/index.html",
+		"title": "Trimps"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tube-jumpers/index.html",
+		"title": "Tube Jumpers"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tunnel-rush/index.html",
+		"title": "Tunnel Rush"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tunnelz/index.html",
+		"title": "Tunnelz"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/tv-static/index.html",
+		"title": "Tv Static"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/twitch-tetris/index.html",
+		"title": "Twitch Tetris"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/underrun/index.html",
+		"title": "Underrun"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/unfold-2/index.html",
+		"title": "Unfold 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/up-left-out/index.html",
+		"title": "Up Left Out"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/veloce/index.html",
+		"title": "Veloce"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/vex3/index.html",
+		"title": "Vex3"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/vex4/index.html",
+		"title": "Vex4"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/vex5/index.html",
+		"title": "Vex5"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/vex6/index.html",
+		"title": "Vex6"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/vex7/index.html",
+		"title": "Vex7"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/waterworks/index.html",
+		"title": "Waterworks"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/webretro/index.html",
+		"title": "Webretro"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/winter-falling-price/index.html",
+		"title": "Winter Falling Price"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/wipo/index.html",
+		"title": "Wipo"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/wolf3d/index.html",
+		"title": "Wolf3d"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/wordle/index.html",
+		"title": "Wordle"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/worlds-hardest-game-2/index.html",
+		"title": "Worlds Hardest Game 2"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/worlds-hardest-game/index.html",
+		"title": "Worlds Hardest Game"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/x-trial-racing/index.html",
+		"title": "X Trial Racing"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/xx142-b2exe/index.html",
+		"title": "Xx142 B2exe"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/yoshifabrication/index.html",
+		"title": "Yoshifabrication"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/you-are-bezos/index.html",
+		"title": "You Are Bezos"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/zig-zag/index.html",
+		"title": "Zig Zag"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/zombocalypse/index.html",
+		"title": "Zombocalypse"
+	},
+	{
+		"url": "https://raw.githack.com/Bromine-labs/bromine-assets/main/zombs-royale/index.html",
+		"title": "Zombs Royale"
 	}
 ]

@@ -5,21 +5,11 @@ import {Icon} from "astro-icon/components"
 <Layout title="gmes - bromine" desc="bromine's bad gmes page">
   <script
 		src="@/utils/gmes.ts"
-></script>
-  <section id="gmeContainer">
-
-<div class="max-w-xs rounded-md border border-overlay bg-base shadow-sm overflow-auto">
-  <img
-    src="https://via.placeholder.com/320x180.png?text=G2me+Image"
-    alt="G2me Name"
-    class="w-full object-cover"
-  />
-  <div class="p-4">
-    <h3 class="text-lg font-semibold text-text truncate">G2me Name</h3>
-  </div>
-</div>
-
-  </section>
+		></script>
+	<div class="flex justify-center w-full my-4">
+		<input id="search" type="text" placeholder="Search gmes..." class="bg-surface text-text focus:outline-none shadow-md rounded-md w-1/2 px-4 py-2">
+	</div>
+  <section id="gmeContainer"></section>
 	<div id="gmePageContainer" class="bg-surface/90 hidden fixed inset-0 z-[999] flex flex-col items-center justify-start p-5 md:p-10 box-border">
 			<div class="flex justify-between items-center w-full max-w-5xl mb-4">
 
