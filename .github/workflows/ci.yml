@@ -101,6 +101,9 @@ jobs:
 
       - name: Push Docker container
         run: docker push ghcr.io/coding4hours/bromine:$IMAGE_TAG
+        
+      - name: Push Docker container
+        run: docker push ghcr.io/coding4hours/bromine:latest
 
   deploy:
     name: Deploy to GitHub Pages
