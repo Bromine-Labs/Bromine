@@ -68,7 +68,7 @@ import gmesData from "@/assets/gmes.json";
         const gmesHtml = gmesToRender.map(gme => `
             <div
               onclick="opengme('${gme.alt}', '${gme.title}')"
-              class="bg-base border border-overlay rounded-xl p-3 m-2 inline-block w-48 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
+              class="bg-base border border-overlay rounded-xl p-3 m-2 inline-block w-64 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
             >
               <h3 class="mt-2 font-medium text-text truncate">${gme.title}</h3>
             </div>
