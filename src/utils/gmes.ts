@@ -67,7 +67,7 @@ import gmesData from "@/assets/gmes.json";
 
         const gmesHtml = gmesToRender.map(gme => `
             <div
-              onclick="opengme('${gme.url}', '${gme.title}')"
+              onclick="opengme('${gme.alt}', '${gme.title}')"
               class="bg-base border border-overlay rounded-xl p-3 m-2 inline-block w-48 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
             >
               <h3 class="mt-2 font-medium text-text truncate">${gme.title}</h3>
@@ -90,13 +90,13 @@ import gmesData from "@/assets/gmes.json";
     renderGmes(allGmes);
 
 
-    window.opengme = async (url, title) => {
+    window.opengme = async (alt, title) => {
         const gmePageContainer = document.getElementById("gmePageContainer");
         const gmePageFrame = document.getElementById("gmePageFrame");
         const gmePageTitle = document.getElementById("gmePageTitle");
 
         gmePageTitle.textContent = title;
-        gmePageFrame.src = url;
+        gmePageFrame.src = `https://raw.githack.com/Bromine-Labs/bromine-assets/main/${alt}/index.html`;
         gmePageContainer.style.display = "flex";
         document.body.style.overflow = 'hidden';
     };
