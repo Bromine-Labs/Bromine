@@ -31,7 +31,6 @@ const { title = "bromine", desc = "Bromine is the ultimate spot where elements m
 
     <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
 
-<script type='text/partytown' src='https://learningbuildingroughly.com/6a/68/23/6a682360a5ba34dbb19ac9e618a93d11.js'></script>
 
     <meta property="og:site_name" content="Bromine" />
     <meta property="og:title" content={title} />
@@ -78,34 +77,40 @@ const { title = "bromine", desc = "Bromine is the ultimate spot where elements m
         }
 </script>
 <script >
-import { currentFrame } from "./utils/lethal";
+import {
+    currentFrame
+} from "./utils/lethal";
 
-    const originalSetItem = localStorage.setItem;
-    localStorage.setItem = function (key) {
-      originalSetItem.apply(this, arguments);
-      window.dispatchEvent(new Event(`${key}-changed`));
+const originalSetItem = localStorage.setItem;
+localStorage.setItem = function(key) {
+    originalSetItem.apply(this, arguments);
+    window.dispatchEvent(new Event(`${key}-changed`));
 
 
 
-currentFrame.contentWindow.postMessage({ type: `${key}-changed` }, "*");
-    };
-    window.addEventListener("theme-changed", () => {
-      document.body.dataset.theme = localStorage.getItem("theme");
-    });
+    window.parent.postMessage({
+        type: `${key}-changed`
+    }, "*");
+    currentFrame.contentWindow.postMessage({
+        type: `${key}-changed`
+    }, "*");
+};
+window.addEventListener("theme-changed", () => {
+    document.body.dataset.theme = localStorage.getItem("theme");
+});
 
-    const cloak = () => {
-      const cloakValue = localStorage.getItem("cloak");
-      if (!cloakValue || cloakValue === 'none') return;
-      const cloakk = cloakValue.split("|");
-      document.title = cloakk[0];
-      const icon = document.querySelector("link[rel=icon]");
-      if (icon) icon.href = cloakk[1];
-    };
+const cloak = () => {
+    const cloakValue = localStorage.getItem("cloak");
+    if (!cloakValue || cloakValue === 'none') return;
+    const cloakk = cloakValue.split("|");
+    document.title = cloakk[0];
+    const icon = document.querySelector("link[rel=icon]");
+    if (icon) icon.href = cloakk[1];
+};
 
-    window.addEventListener("cloak-changed", cloak);
-      document.body.dataset.theme = localStorage.getItem("theme");
-      cloak();
-</script>
+window.addEventListener("cloak-changed", cloak);
+document.body.dataset.theme = localStorage.getItem("theme");
+cloak();</script>
   </head>
   <body class="text-text bg-base flex">
     <a

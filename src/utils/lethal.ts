@@ -2,7 +2,6 @@
 ///          Init          ///
 //////////////////////////////
 import { BareMuxConnection } from "@mercuryworkshop/bare-mux";
-import { RefluxAPI } from "https://unpkg.com/@nightnetwork/reflux@1.0.3/dist/index.mjs"
 
 //////////////////////////////
 ///         Options        ///
@@ -109,31 +108,9 @@ export function makeURL(
 			console.log(
 				`lethal.js: Setting BareMux to ${transportURL} and Wisp to ${wispURL}`,
 			);
-			const api = new RefluxAPI()
-			api.addPlugin({
-
-				sites: ['*://discord.com/*'],
-				name: "thing",
-				function: `
-		  		if (body.includes('<head>')) {
-			  		const customCSS = \`<script src="https://raw.githubusercontent.com/Vencord/builds/main/browser.js"></script>
-							<link rel="stylesheet" href="https://raw.githubusercontent.com/Vencord/builds/main/browser.css">\`;
-
-						let modifiedBody = body.replace('<head>', '<head>' +customCSS);
 
 
-						return modifiedBody;
-					}
-					return body;
-				`,
-
-			})
-
-
-
-			api.enablePlugin("thing")
-
-			await connection.setTransport("https://unpkg.com/@nightnetwork/reflux@1.0.3/dist/index.mjs", [{base: transportURL, wisp: wispURL}])
+			await connection.setTransport(transportURL, [{wisp: wispURL}])
 		}
 	}
 
@@ -193,7 +170,8 @@ export function makeURL(
 			// wierd ass hack to get scrolling to work
 			this.frame.setAttribute("class", "w-full h-full border-0 absolute");
 			this.frame.setAttribute("title", "Proxy Frame");
-			this.frame.setAttribute("src", `${location.origin.replace("http://", "https://")}/newtab`);
+			this.frame.setAttribute("src", "/newtab")
+			// this.frame.setAttribute("src", `${location.origin.replace("http://", "https://")}/newtab`);
 			this.frame.setAttribute("id", `frame-${tabCounter}`);
 			framesElement.appendChild(this.frame);
 
