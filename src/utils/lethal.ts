@@ -109,7 +109,6 @@ export function makeURL(
 				`lethal.js: Setting BareMux to ${transportURL} and Wisp to ${wispURL}`,
 			);
 
-
 			await connection.setTransport(transportURL, [{wisp: wispURL}])
 		}
 	}
