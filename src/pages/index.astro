@@ -1,11 +1,13 @@
 ---
 import { Image } from "astro:assets"
 ---
+
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Monaco Education - Empowering Students</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+	<title>Monaco Education - Empowering Students</title>
+	<meta name="description" content="Monaco Education provides dynamic, inclusive, and tech-enhanced learning for future-ready minds. We go beyond textbooks with hands-on experiences, a supportive community, and personalized growth paths tailored for each student."/>
 
     <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
   <style>
@@ -13,6 +15,15 @@ import { Image } from "astro:assets"
       box-sizing: border-box;
 		}
 
+@font-face {
+  font-family: "Switzer";
+  font-style: normal;
+  src:
+    local("Switzer"),
+    local("Switzer"),
+    url("/switzer.woff2") format("woff2");
+  font-display: swap;
+}
 		html{ 
 			overflow: auto;
  margin: 0px; 
@@ -23,7 +34,7 @@ import { Image } from "astro:assets"
 }
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Switzer', sans-serif;
       background: #f4f6f8;
       color: #222;
 			line-height: 1.6;
@@ -293,7 +304,7 @@ import { Image } from "astro:assets"
 			<p>Monaco Education provides dynamic, inclusive, and tech-enhanced learning for future-ready minds. We go beyond textbooks with hands-on experiences, a supportive community, and personalized growth paths tailored for each student.</p>
     </div>
     <div class="hero-img">
-      <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students learning in classroom" />
+      <img fetchpriority="high" src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students learning in classroom" />
     </div>
   </section>
 
@@ -301,21 +312,21 @@ import { Image } from "astro:assets"
     <h2>Our Programs</h2>
     <div class="cards">
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1581092580491-5a96a0eacb01?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Elementary Program" />
+        <img src="https://images.unsplash.com/photo-1600926565634-ff972dfb33a3?ixlib=rb-4.1.0&auto=format&fit=crop&w=348&h=231&q=80" alt="Elementary Program" />
         <div class="card-body">
           <h3>Elementary (K–5)</h3>
           <p>Interactive learning through stories, games, and exploration. We foster curiosity and foundational skills in a joyful, supportive environment. Our curriculum encourages creativity and social development from the very start.</p>
         </div>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Middle School Program" />
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=348&h=246&&q=80" alt="Middle School Program" />
         <div class="card-body">
           <h3>Middle School (6–8)</h3>
           <p>Project-based learning with real-world problem solving. We emphasize collaboration, critical thinking, and STEM education. Students engage with hands-on activities that build confidence and independence.</p>
         </div>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="High School Program" />
+        <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238?ixlib=rb-4.0.3&auto=format&fit=crop&w=348&h=231&q=80" alt="High School Program" />
         <div class="card-body">
           <h3>High School (9–12)</h3>
           <p>College & career readiness, leadership training, and innovation labs prepare students for a successful future. We offer advanced placement courses, internships, and mentoring to empower ambition and skill development.</p>
