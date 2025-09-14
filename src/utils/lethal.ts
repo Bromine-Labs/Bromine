@@ -108,6 +108,7 @@ export function makeURL(
 			console.log(
 				`lethal.js: Setting BareMux to ${transportURL} and Wisp to ${wispURL}`,
 			);
+
 			await connection.setTransport(transportURL, [{wisp: wispURL}])
 		}
 	}
@@ -168,7 +169,8 @@ export function makeURL(
 			// wierd ass hack to get scrolling to work
 			this.frame.setAttribute("class", "w-full h-full border-0 absolute");
 			this.frame.setAttribute("title", "Proxy Frame");
-			this.frame.setAttribute("src", `${location.origin.replace("http://", "https://")}/newtab`);
+			this.frame.setAttribute("src", "/newtab")
+			// this.frame.setAttribute("src", `${location.origin.replace("http://", "https://")}/newtab`);
 			this.frame.setAttribute("id", `frame-${tabCounter}`);
 			framesElement.appendChild(this.frame);
 
