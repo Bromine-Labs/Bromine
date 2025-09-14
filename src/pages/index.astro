@@ -8,22 +8,15 @@ import { Image } from "astro:assets"
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Monaco Education - Empowering Students</title>
 	<meta name="description" content="Monaco Education provides dynamic, inclusive, and tech-enhanced learning for future-ready minds. We go beyond textbooks with hands-on experiences, a supportive community, and personalized growth paths tailored for each student."/>
-
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
   <style>
     * {
       box-sizing: border-box;
 		}
 
-@font-face {
-  font-family: "Switzer";
-  font-style: normal;
-  src:
-    local("Switzer"),
-    local("Switzer"),
-    url("/switzer.woff2") format("woff2");
-  font-display: swap;
-}
 		html{ 
 			overflow: auto;
  margin: 0px; 
@@ -34,7 +27,7 @@ import { Image } from "astro:assets"
 }
     body {
       margin: 0;
-      font-family: 'Switzer', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: #f4f6f8;
       color: #222;
 			line-height: 1.6;
