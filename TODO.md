@@ -22,5 +22,4 @@
 - [ ] custom theme
 - [ ] glassmorphism
 - [ ] extensions
-- [ ] mica theme
 - [ ] mrigate to qwik

@@ -1,458 +1,60 @@
 ---
-import { Image } from "astro:assets"
+import Layout from "@/Layout.astro";
+
+import Tabs from "@/components/ui/Tabs.astro";
+import Omnibar from "@/components/ui/Omnibar.astro";
+import Frame from "@/components/utils/Frame.astro";
 ---
 
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Monaco Education - Empowering Students</title>
-	<meta name="description" content="Monaco Education provides dynamic, inclusive, and tech-enhanced learning for future-ready minds. We go beyond textbooks with hands-on experiences, a supportive community, and personalized growth paths tailored for each student."/>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
-  <style>
-    * {
-      box-sizing: border-box;
-		}
+<Layout title="bromine">
+  <Tabs />
+  <Omnibar />
+  <Frame/>
+</Layout>
+<script>
+  (()=>{ if(window.top.location.origin == 'null')
+    return;
+  if (localStorage.getItem("ab") === "true") {
+    const popup = open("about:blank", "_blank");
+    if (!popup || popup.closed) {
+      alert(
+        "Please allow popups for about bnalk to work.",
+      );
+    } else {
+      const doc = popup.document;
+      const iframe = doc.createElement("iframe");
+      const style = iframe.style;
+      const link = doc.createElement("link");
 
-		html{ 
-			overflow: auto;
- margin: 0px; 
- padding: 0px; 
- height: 100%; 
- border: none;
+      const name = "My Drive - Google Drive";
+      const icon = "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
 
-}
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f4f6f8;
-      color: #222;
-			line-height: 1.6;
- margin: 0px; 
- padding: 0px; 
- height: 100%; 
- border: none;
-            overflow: auto;
-    }
-    header {
-      background-color: #003e8a;
-      color: #fff;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-    nav a {
-      color: white;
-      margin-left: 1.8rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: color 0.3s;
-      font-size: 1.05rem;
-    }
-    nav a:hover {
-      color: #ffd600;
-      text-decoration: underline;
-    }
-    .hero {
-      position: relative;
-      color: white;
-      text-align: left;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      padding: 4rem 2rem 5rem 2rem;
-      background: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center/cover;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; bottom: 0; left: 0; right: 0;
-      background: rgba(0, 62, 138, 0.7);
-      z-index: 0;
-    }
-    .hero-text {
-      position: relative;
-      flex: 1 1 500px;
-      max-width: 650px;
-      z-index: 1;
-    }
-    .hero-text h2 {
-      font-size: 3.2rem;
-      margin-bottom: 1rem;
-      font-weight: 800;
-      line-height: 1.1;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-    }
-    .hero-text p {
-      font-size: 1.4rem;
-      max-width: 600px;
-      font-weight: 500;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-    }
-    .hero-img {
-      position: relative;
-      flex: 1 1 400px;
-      max-width: 450px;
-      margin-left: auto;
-      z-index: 1;
-    }
-    .hero-img img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    }
-    .section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-    }
-    .section h2 {
-      font-size: 2.4rem;
-      text-align: center;
-      margin-bottom: 2.5rem;
-      color: #003e8a;
-      font-weight: 700;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem;
-    }
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      overflow: hidden;
-      transition: transform 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-bottom: 2px solid #003e8a;
-    }
-    .card-body {
-      padding: 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .card-body h3 {
-      margin-top: 0;
-      color: #003e8a;
-      font-size: 1.6rem;
-      margin-bottom: 0.7rem;
-    }
-    .card-body p {
-      font-size: 1.1rem;
-      flex-grow: 1;
-      color: #444;
-    }
-    .about, .contact, .testimonials, .faq, .news {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
-		}
+      doc.title = name;
+      link.rel = "icon";
+      link.href = icon;
 
-    .about img, .contact img, .news img {
-      max-width: 500px;
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-    .about-text, .contact-form, .testimonials-list, .faq-list, .news-content {
-      flex: 1;
-      min-width: 300px;
-    }
-    .contact-form form {
-      display: flex;
-      flex-direction: column;
-    }
-    .contact-form input, .contact-form textarea {
-      margin-bottom: 1.2rem;
-      padding: 1rem;
-      font-size: 1rem;
-      border: 1px solid #bbb;
-      border-radius: 8px;
-      transition: border-color 0.3s;
-    }
-    .contact-form input:focus, .contact-form textarea:focus {
-      border-color: #003e8a;
-      outline: none;
-    }
-    .contact-form button {
-      background-color: #003e8a;
-      color: white;
-      border: none;
-      padding: 1rem;
-      border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: background-color 0.3s;
-    }
-    .contact-form button:hover {
-      background-color: #002c5c;
-    }
-    footer {
-      background-color: #00254d;
-      color: #ddd;
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-    }
-    footer a {
-      color: #ffd600;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    .testimonial, .faq-item, .news-article {
-      background: white;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-      color: #333;
-    }
-    .faq-item h4, .news-article h4 {
-      margin: 0 0 0.7rem 0;
-      color: #003e8a;
-      font-weight: 700;
-      font-size: 1.25rem;
-    }
-    .testimonial p {
-      font-style: italic;
-      font-size: 1.1rem;
-    }
-    @media (max-width: 768px) {
-      .hero, .about, .contact, .testimonials, .faq, .news {
-        flex-direction: column;
-      }
-      .hero-text, .hero-img {
-        max-width: 100%;
-      }
-      .hero-text h2 {
-        font-size: 2.5rem;
-      }
-    }
-  </style>
-<script >
-    const cloak = () => {
-        const cloakValue = localStorage.getItem("cloak");
-        if (cloakValue || cloakValue !== 'none') {
-            const cloakk = cloakValue.split("|");
-            document.title = cloakk[0];
-            const icon = document.querySelector("link[rel=icon]");
+      iframe.src = location.href;
+      style.position = "fixed";
+      style.top = style.bottom = style.left = style.right = 0;
+      style.border = style.outline = "none";
+      style.width = style.height = "100%";
 
-            if (icon) icon.href = cloakk[1];
-        }
-    };
+      doc.head.appendChild(link);
+      doc.body.appendChild(iframe);
 
-   setInterval(function(event) {
-            cloak()
-		},1)
+      const pLink = "https://classroom.google.com/h"
+      location.replace(pLink);
+
+      const script = doc.createElement("script");
+      script.textContent = `
+      window.onbeforeunload = function (event) {
+        const confirmationMessage = 'Leave Site?';
+        (event || window.event).returnValue = confirmationMessage;
+        return confirmationMessage;
+      };
+    `;
+      doc.head.appendChild(script);
+    }
+
+  }})();
 </script>
-</head>
-<body>
-  <header>
-		<h1 onclick="location.href = '/home'">Monaco Education</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#programs">Programs</a>
-      <a href="#about">About</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#faq">FAQ</a>
-      <a href="#news">News</a>
-			<a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <div class="hero-text">
-      <h2>Empowering K–12 Students to Thrive</h2>
-			<p>Monaco Education provides dynamic, inclusive, and tech-enhanced learning for future-ready minds. We go beyond textbooks with hands-on experiences, a supportive community, and personalized growth paths tailored for each student.</p>
-    </div>
-    <div class="hero-img">
-      <img fetchpriority="high" src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students learning in classroom" />
-    </div>
-  </section>
-
-  <section class="section" id="programs">
-    <h2>Our Programs</h2>
-    <div class="cards">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1600926565634-ff972dfb33a3?ixlib=rb-4.1.0&auto=format&fit=crop&w=348&h=231&q=80" alt="Elementary Program" />
-        <div class="card-body">
-          <h3>Elementary (K–5)</h3>
-          <p>Interactive learning through stories, games, and exploration. We foster curiosity and foundational skills in a joyful, supportive environment. Our curriculum encourages creativity and social development from the very start.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=348&h=246&&q=80" alt="Middle School Program" />
-        <div class="card-body">
-          <h3>Middle School (6–8)</h3>
-          <p>Project-based learning with real-world problem solving. We emphasize collaboration, critical thinking, and STEM education. Students engage with hands-on activities that build confidence and independence.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238?ixlib=rb-4.0.3&auto=format&fit=crop&w=348&h=231&q=80" alt="High School Program" />
-        <div class="card-body">
-          <h3>High School (9–12)</h3>
-          <p>College & career readiness, leadership training, and innovation labs prepare students for a successful future. We offer advanced placement courses, internships, and mentoring to empower ambition and skill development.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="about">
-    <h2>About Monaco Education</h2>
-    <div class="about">
-      <img src="https://images.unsplash.com/photo-1614028673495-a58e814c0a2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Teacher helping students" />
-      <div class="about-text">
-        <p>Founded in 2020, Monaco Education is an innovative K–12 learning platform combining traditional academics with 21st-century skills. We focus on personal growth, creativity, and confidence.</p>
-        <p>Our certified educators use a tech-first approach and a supportive environment to help every learner rise to their potential with custom learning paths and enrichment options.</p>
-        <p>We collaborate with schools, parents, and communities to ensure every student’s needs are met with tailored resources, accessibility tools, and emotional support.</p>
-        <p>Monaco Education is committed to diversity, equity, and inclusion, fostering a culture where every student feels valued and empowered.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="testimonials">
-    <h2>What Parents and Students Say</h2>
-    <div class="testimonials-list">
-      <div class="testimonial">
-        <p>"My daughter has never been more excited about learning. Monaco Education changed her perspective on school!" – Sarah R.</p>
-      </div>
-      <div class="testimonial">
-        <p>"The teachers are amazing, and the tech makes it fun and interactive. 10/10!" – Jason, 7th Grade</p>
-      </div>
-      <div class="testimonial">
-        <p>"Monaco prepared my son for college applications better than his previous school ever did." – Michelle T.</p>
-      </div>
-      <div class="testimonial">
-        <p>"Every day feels like an opportunity to grow. I love the projects and the friends I've made!" – Priya, 9th Grade</p>
-      </div>
-      <div class="testimonial">
-        <p>"The personalized learning plans helped me focus on my strengths and improve my weaknesses efficiently." – Leo, 11th Grade</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="faq">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <h4>Is Monaco Education fully online?</h4>
-        <p>Yes, we offer 100% online learning with optional in-person meetups in select locations for enrichment and social engagement.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Are your teachers certified?</h4>
-        <p>All educators are state-certified and experienced in online and hybrid learning environments.</p>
-      </div>
-      <div class="faq-item">
-        <h4>What curriculum do you use?</h4>
-        <p>We follow U.S. Common Core standards and integrate STEM, arts, and social-emotional learning modules for a holistic approach.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Do you support special education?</h4>
-        <p>Absolutely. We provide IEP support, accessibility accommodations, and trained staff for diverse learning needs.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Can students access recorded lessons?</h4>
-        <p>Yes, all lessons are recorded and available for review anytime through our student portal.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="news">
-    <h2>Latest News</h2>
-    <div class="news">
-      <img src="https://images.unsplash.com/photo-1596496057305-4c04c3e83886?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="News" />
-      <div class="news-content">
-        <div class="news-article">
-          <h4>Monaco Launches AI Tutor Pilot</h4>
-          <p>We're testing an AI-based tutoring assistant to help students with math and science homework—launching Fall 2025! This innovative program aims to provide personalized guidance and instant feedback.</p>
-        </div>
-        <div class="news-article">
-          <h4>New Scholarship Program for 2026</h4>
-          <p>Applications are now open for low-income families to access Monaco Education with full tuition coverage. Our goal is to make quality education accessible to all students regardless of their background.</p>
-        </div>
-        <div class="news-article">
-          <h4>Partnership with Coding For All</h4>
-          <p>Our new partnership brings free beginner coding bootcamps to all Monaco middle school students, promoting STEM skills and creativity for future careers.</p>
-        </div>
-        <div class="news-article">
-          <h4>Expanded Mental Health Resources</h4>
-          <p>We have expanded our counseling services and wellness programs to better support students’ social and emotional well-being.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="contact">
-    <h2>Contact Us</h2>
-    <div class="contact">
-      <img id="contact" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Contact illustration" />
-      <div class="contact-form">
-        <form action="https://formspree.io/f/yourFormID" method="POST">
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
-          <button type="submit">Send Message</button>
-        </form>
-        <p>Email us: <a href="/cdn-cgi/l/email-protection#a4cdcac2cbe4c9cbcac5c7cbc1c0d1c7c5d0cdcbca8acdcac2cb"><span class="__cf_email__" data-cfemail="3e575058517e5351505f5d515b5a4b5d5f4a5751501057505851">[email&#160;protected]</span></a></p>
-      </div>
-    </div>
-	</section>
-	<script>
-		function clicked(){
-	
-					localStorage.setItem("clicked", "true")
-			document.body.innerHTML =`<iframe             frameborder="0" 
-            marginheight="0" 
-            marginwidth="0" 
-            width="100%" 
-            height="100%" 
-            scrolling="auto" src='/home'></h1>`
-		}
-	
-		if(localStorage.getItem("clicked") === "true")
-			clicked()
-	
-    document.addEventListener('auxclick', function(event) {
-      if (event.target.tagName === 'IMG' && event.button === 1) {
-				event.preventDefault();
-				clicked()
-      }
-    });
-	</script>
-
-  <footer>
-    <p>&copy; 2025 Monaco Education. All rights reserved.</p>
-  </footer>
-</body>
-</html>
