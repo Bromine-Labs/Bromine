@@ -38,16 +38,11 @@ Then go to [localhost:8080](http://localhost:8080)
 
 - Scramjet
 - Epoxy
-- Ultraviolet
+- Libcurl
 - Astro
-- Html
-- CSS
-- Javascript
 - Typescript
 - Tailwind CSS
 - Bare-Mux
-- Libcurl
-- lethal-js
 - alu adblocker(doesnt really count) made by wearr
 - workerware
 
