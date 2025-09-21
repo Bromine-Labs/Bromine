@@ -1,11 +1,22 @@
 import gmesData from "@/assets/gmes.json";
 
 (() => {
-    const target = document.querySelector("#gmeContainer");
-    const searchInput = document.getElementById("search");
+	fetch('https://api.github.com/repos/Bromine-Labs/asseting-bromine/commits/main')
+	.then(response => {
+		return response.json();
+	})
+	.then(data => {
+		window.gamesha = data.sha;
+	})
+	.catch(error => {
+		console.error('Error fetching commit SHA:', error);
+		return null;
+	});
+	const target = document.querySelector("#gmeContainer");
+	const searchInput = document.getElementById("search");
 
-    if (!target) {
-        console.error("Target container #gmeContainer not found.");
+	if (!target) {
+		console.error("Target container #gmeContainer not found.");
         return;
     }
 
@@ -77,7 +88,6 @@ import gmesData from "@/assets/gmes.json";
         target.innerHTML = `<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px;">${gmesHtml}</div>`;
     };
 
-    // Event listener for the search input
     searchInput.addEventListener("input", (event) => {
         const searchQuery = event.target.value.toLowerCase();
         const filteredGmes = allGmes.filter(gme =>
@@ -86,7 +96,6 @@ import gmesData from "@/assets/gmes.json";
         renderGmes(filteredGmes);
     });
 
-    // Initial render of all gmes
     renderGmes(allGmes);
 
 
@@ -96,8 +105,7 @@ import gmesData from "@/assets/gmes.json";
         const gmePageTitle = document.getElementById("gmePageTitle");
 
         gmePageTitle.textContent = title;
-        gmePageFrame.src = `https://raw.githack.com/Bromine-Labs/asseting-bromine/main/${alt}.html`;
-        // gmePageFrame.src = `https://raw.githack.com/Bromine-Labs/bromine-assets/main/${alt}/index.html`;
+        gmePageFrame.src = `https://rawcdn.githack.com/Bromine-Labs/asseting-bromine/${gamesha}/${alt}.html?min=1`;
         gmePageContainer.style.display = "flex";
         document.body.style.overflow = 'hidden';
     };
