@@ -15,7 +15,7 @@ import Popup from "@/Popup.astro"
 </Popup>
 
 <script>
-  import { getProxied } from "@/utils/lethal.ts";
+	import { currentFrame, getProxied } from "@/utils/lethal.ts";
 
   function renderList() {
     const history = JSON.parse(localStorage.getItem("history") || "[]");

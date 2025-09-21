@@ -19,6 +19,8 @@ export const addressInput: HTMLInputElement = document.getElementById(
 	"address",
 ) as HTMLInputElement;
 
+window.tabs = [];
+
 const transportOptions: TransportOptions = {
 	bare: "https://unpkg.com/@mercuryworkshop/bare-as-module3@2.2.5/dist/index.mjs",
 	epoxy:
@@ -79,6 +81,7 @@ requestIdleCallback(async () => {
 	.catch((err) =>
 				 console.error("lethal.js: Failed to register Service Worker", err),
 				);
+				new Tab()
 });
 
 
@@ -159,32 +162,41 @@ export function makeURL(
 	export class Tab {
 		frame: HTMLIFrameElement;
 		tabNumber: number;
+		// START: Added properties to store useful tab info
+		title: string = "New Tab";
+		url: string = "/newtab";
+		// END: Added properties
 
 		constructor() {
 			tabCounter++;
 			this.tabNumber = tabCounter;
 
-			this.frame = document.createElement("iframe");
-			this.frame.setAttribute("class", "w-full h-full border-0 fixed");
+			this.frame = scramjet.createFrame();
+			this.frame.frame.setAttribute("class", "w-full h-full border-0 fixed");
 			// wierd ass hack to get scrolling to work
-			this.frame.setAttribute("class", "w-full h-full border-0 absolute");
-			this.frame.setAttribute("title", "Proxy Frame");
-			this.frame.setAttribute("src", "/newtab")
-			// this.frame.setAttribute("src", `${location.origin.replace("http://", "https://")}/newtab`);
-			this.frame.setAttribute("id", `frame-${tabCounter}`);
-			framesElement.appendChild(this.frame);
+			this.frame.frame.setAttribute("class", "w-full h-full border-0 absolute");
+			this.frame.frame.setAttribute("title", "Proxy Frame");
+			this.frame.frame.setAttribute("src", "/newtab")
+			// this.frame.frame.setAttribute("src", `${location.origin.replace("http://", "https://")}/newtab`);
+			this.frame.frame.setAttribute("id", `frame-${tabCounter}`);
+			framesElement.appendChild(this.frame.frame);
 
+			// START: Add the new tab instance to our global array
+			window.tabs.push(this);
+			// END: Add instance
 
 			this.switch();
 
-			this.frame.addEventListener("load", () => {
-				this.handleLoad();
+			this.frame.addEventListener("urlchange", (e) => {
+				this.handleLoad(e.url);
 			});
 
 			document.dispatchEvent(
 				new CustomEvent("new-tab", {
 					detail: {
 						tabNumber: tabCounter,
+						// You can pass the whole instance if other parts of the app need it
+						tab: this,
 					},
 				}),
 			);
@@ -197,7 +209,7 @@ export function makeURL(
 			framesArr.forEach((frame) => {
 				frame.classList.add("hidden");
 			});
-			this.frame.classList.remove("hidden");
+			this.frame.frame.classList.remove("hidden");
 
 			currentFrame = document.getElementById(
 				`frame-${this.tabNumber}`,
@@ -219,7 +231,11 @@ export function makeURL(
 		}
 
 		close(): void {
-			this.frame.remove();
+			this.frame.frame.remove();
+
+			// START: Remove this tab from the global array on close
+			window.tabs = window.tabs.filter(tab => tab.tabNumber !== this.tabNumber);
+			// END: Remove from array
 
 			document.dispatchEvent(
 				new CustomEvent("close-tab", {
@@ -230,32 +246,33 @@ export function makeURL(
 			);
 		}
 
-		handleLoad(): void {
+		handleLoad(url): void {
 			if (this.tabNumber !== currentTab) return;
-			let url = decodeURIComponent(
-				this.frame?.contentWindow?.location.href.split("/").pop() as string,
+
+			let title = this.frame.frame?.contentWindow?.document.title;
+
+			this.title = title;
+			this.url = url;
+			try{ 
+				let history = localStorage.getItem("history")
+					? JSON.parse(localStorage.getItem("history") as string)
+					: [];
+					history = [...history, { url: url, title: title }];
+					localStorage.setItem("history", JSON.stringify(history));
+
+			} catch{}
+			document.dispatchEvent(
+				new CustomEvent("url-changed", {
+					detail: {
+						tabId: currentTab,
+						title: title,
+						url: url,
+					},
+				}),
 			);
-			let title = this.frame?.contentWindow?.document.title;
-
-			let history = localStorage.getItem("history")
-				? JSON.parse(localStorage.getItem("history") as string)
-				: [];
-				history = [...history, { url: url, title: title }];
-				localStorage.setItem("history", JSON.stringify(history));
-
-				document.dispatchEvent(
-					new CustomEvent("url-changed", {
-						detail: {
-							tabId: currentTab,
-							title: title,
-							url: url,
-						},
-					}),
-				);
-
 				if (url === "newtab") url = "bromine://newtab";
 
-					if(this.frame == currentFrame) addressInput.value = url;
+					if(this.frame.frame == currentFrame) addressInput.value = url;
 		}
 	}
 
@@ -263,57 +280,39 @@ export function makeURL(
 		new Tab();
 	}
 
+	// START: Refactored to use the window.tabs array
 	export function switchTab(tabNumber: number): void {
-		let frames = framesElement.querySelectorAll("iframe");
-		let framesArr = [...frames];
-		framesArr.forEach((frame) => {
-			if (frame.id != `frame-${tabNumber}`) frame.classList.add("hidden");
-			else frame.classList.remove("hidden");
-		});
-
-		currentTab = tabNumber;
-		currentFrame = document.getElementById(
-			`frame-${tabNumber}`,
-		) as HTMLIFrameElement;
-
-		addressInput.value = decodeURIComponent(
-			(currentFrame?.contentWindow?.location.href ?? "")
-			.split("/")
-			.pop() as string,
-		);
-
-		document.dispatchEvent(
-			new CustomEvent("switch-tab", {
-				detail: {
-					tabNumber: tabNumber,
-				},
-			}),
-		);
+		const tabToSwitchTo = window.tabs.find(tab => tab.tabNumber === tabNumber);
+		if (tabToSwitchTo) {
+			tabToSwitchTo.switch();
+		} else {
+			console.warn(`lethal.js: Attempted to switch to non-existent tab #${tabNumber}`);
+		}
 	}
+	// END: Refactored switchTab
 
+	// START: Refactored to use the window.tabs array
 	export function closeTab(tabNumber: number): void {
-		let frames = framesElement.querySelectorAll("iframe");
-		let framesArr = [...frames];
-		framesArr.forEach((frame) => {
-			if (frame.id === `frame-${tabNumber}`) {
-				frame.remove();
-			}
-		});
+		const tabToClose = window.tabs.find(tab => tab.tabNumber === tabNumber);
 
-		if (currentTab === tabNumber) {
-			const otherFrames = framesElement.querySelectorAll("iframe");
-			if (otherFrames.length > 0) {
-				switchTab(parseInt(otherFrames[0].id.replace("frame-", "")));
-			} else {
-				newTab();
+		if (tabToClose) {
+			// The close method handles removing the frame and updating the array
+			tabToClose.close();
+
+			// If we closed the currently active tab, we need to switch to another one
+			if (currentTab === tabNumber) {
+				if (window.tabs.length > 0) {
+					// Switch to the first available tab to maintain original behavior
+					window.tabs[0].switch();
+				} else {
+					// If no tabs are left, create a new one
+					newTab();
+				}
 			}
+		} else {
+			console.warn(`lethal.js: Attempted to close non-existent tab #${tabNumber}`);
 		}
 
-		document.dispatchEvent(
-			new CustomEvent("close-tab", {
-				detail: {
-					tabNumber: tabNumber,
-				},
-			}),
-		);
+		// The "close-tab" event is dispatched from within the Tab's close() method
 	}
+	// END: Refactored closeTab
