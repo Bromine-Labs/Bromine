@@ -15,130 +15,144 @@ import { Icon } from "astro-icon/components";
 </nav>
 
 <script>
-import { newTab, switchTab, closeTab } from "@/utils/lethal.ts";
+  import { newTab, switchTab, closeTab } from "@/utils/lethal.ts";
 
-  let tabs = [];
   const tabsDiv = document.getElementById("tabs");
 
+  /**
+   * Generates a favicon URL from a given page URL.
+   */
   const getIcon = (url: string) =>
     /^https?:\/\/[\w.-]+\.[a-z]{2,}/i.test(url)
       ? `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,URL&size=64&url=${url}`
-      : "https://images.placeholders.dev/24";
+      : "https://images.placeholders.dev/24"; // Fallback for local/internal pages
 
-function createTab(id: string, title = "New Tab", url = "") {
-    const tab = document.createElement("div");
-    tab.className =
+  /**
+   * Creates the DOM element for a tab and links it to the tab instance.
+   * @param {object} tabInstance - The instance of the Tab class from window.tabs.
+   */
+  function createTabElement(tabInstance) {
+    const tabEl = document.createElement("div");
+    tabEl.className =
       "flex items-center min-w-[8rem] max-w-xs px-4 py-1 border-r border-overlay hover:bg-overlay cursor-pointer transition-all duration-150 draggable-tab";
-    tab.dataset.tabId = id;
-    tab.draggable = true;
+    tabEl.dataset.tabId = tabInstance.tabNumber;
+    tabEl.draggable = true;
 
-    tab.innerHTML = `
-      <img class="w-4 h-4 mr-2 rounded" alt="Favicon" src="${getIcon(url)}" />
-      <span class="tab truncate flex-1 text-sm">${title}</span>
+    tabEl.innerHTML = `
+      <img class="w-4 h-4 mr-2 rounded" alt="Favicon" src="${getIcon(tabInstance.url)}" />
+      <span class="tab truncate flex-1 text-sm">${tabInstance.title}</span>
       <button class="ml-2 text-text/50 hover:text-text text-sm focus:outline-none">&times;</button>
     `;
 
-    tab.querySelector("button").onclick = (e) => {
+    // Attach event listeners
+    tabEl.querySelector("button").onclick = (e) => {
       e.stopPropagation();
-      closeTab?.(id);
+      closeTab?.(tabInstance.tabNumber);
     };
-    tab.onclick = () => switchTab?.(id);
+    tabEl.onclick = () => switchTab?.(tabInstance.tabNumber);
 
-  tabsDiv?.appendChild(tab);
-    tabs.push({ id, element: tab, title, url });
+    // Link the DOM element to the tab instance for easy access
+    tabInstance.uiElement = tabEl;
 
-    return tab;
+    tabsDiv?.appendChild(tabEl);
   }
 
-  function checkState() {
-    const frames = [...document.querySelectorAll('iframe[id^="frame-"]')]
-    const frameIds = frames.map((f) => parseInt(f.id.replace("frame-", ""), 10));
-
-    tabs = tabs.filter(({ id, element }) => {
-      if (!frameIds.includes(id)) {
-        element.remove();
-        return false;
-      }
-      return true;
+  /**
+   * Sets the active styles for the currently selected tab.
+   * @param {number} activeId - The tab number of the active tab.
+   */
+  function updateActiveStyles(activeId) {
+    window.tabs.forEach((tab) => {
+      if (!tab.uiElement) return;
+      const isActive = tab.tabNumber === activeId;
+      tab.uiElement.classList.toggle("bg-overlay", isActive);
+      tab.uiElement.classList.toggle("active", isActive);
+      tab.uiElement.classList.toggle("font-medium", isActive);
+      tab.uiElement.classList.toggle("border-b-2", isActive);
+      tab.uiElement.classList.toggle("border-iris", isActive);
     });
-
-    frameIds.forEach((id) => {
-      if (!tabs.some((t) => t.id === id)) createTab(id);
-    });
-
-    const visible = frames.find((f) => !f.classList.contains("hidden"));
-    if (visible) {
-      const activeId = parseInt(visible.id.replace("frame-", ""), 10);
-      tabs.forEach(({ id, element }) => {
-        const isActive = id === activeId;
-        element.classList.toggle("bg-overlay", isActive);
-        element.classList.toggle("active", isActive);
-        element.classList.toggle("font-medium", isActive);
-        element.classList.toggle("border-b-2", isActive);
-        element.classList.toggle("border-iris", isActive);
-      });
-    }
   }
-
-  document.getElementById("new-tab-btn")?.addEventListener("click", () => newTab?.());
+  
+  // -- Event Listeners for lethal.ts events --
 
   document.addEventListener("new-tab", (e) => {
-    if (!tabs.some((t) => t.id === e.detail.tabNumber)) createTab(e.detail.tabNumber);
-    checkState();
+    // The event detail now contains the full tab instance
+    const newTabInstance = e.detail.tab;
+    createTabElement(newTabInstance);
+    // A new tab is always active immediately
+    updateActiveStyles(newTabInstance.tabNumber);
   });
 
   document.addEventListener("switch-tab", (e) => {
-    const activeId = e.detail.tabNumber;
-    tabs.forEach(({ id, element }) => {
-      const isActive = id === activeId;
-      element.classList.toggle("bg-overlay", isActive);
-      element.classList.toggle("active", isActive);
-      element.classList.toggle("font-medium", isActive);
-      element.classList.toggle("border-b-2", isActive);
-      element.classList.toggle("border-iris", isActive);
-    });
+    updateActiveStyles(e.detail.tabNumber);
   });
 
   document.addEventListener("url-changed", (e) => {
-    const tab = tabs.find((t) => t.id === e.detail.tabId);
-    if (!tab) return;
-    tab.title = e.detail.title || "New Tab";
-    tab.url = e.detail.url || "";
-    tab.element.querySelector(".tab").textContent = tab.title;
-    tab.element.querySelector("img").src = getIcon(tab.url);
+    const { tabId, title, url } = e.detail;
+    // Find the tab instance in our single source of truth
+    const tab = window.tabs.find((t) => t.tabNumber === tabId);
+    if (!tab || !tab.uiElement) return;
+
+    // Update the UI using the instance's linked element
+    tab.uiElement.querySelector(".tab").textContent = title || "New Tab";
+    tab.uiElement.querySelector("img").src = getIcon(url);
   });
 
   document.addEventListener("close-tab", (e) => {
-    const idx = tabs.findIndex((t) => t.id === e.detail.tabNumber);
-    if (idx === -1) return;
-    tabs[idx].element.remove();
-    tabs.splice(idx, 1);
-    checkState();
+    const tabNumberToClose = e.detail.tabNumber;
+    const tabElementToRemove = tabsDiv.querySelector(`[data-tab-id="${tabNumberToClose}"]`);
+    if (tabElementToRemove) {
+      tabElementToRemove.remove();
+    }
   });
 
-  checkState();
+  // -- Initialization --
+
+  document.getElementById("new-tab-btn")?.addEventListener("click", () => newTab?.());
+  
+  // Initial render for any tabs that might exist on page load
+  function renderInitialTabs() {
+    if (window.tabs && window.tabs.length > 0) {
+      tabsDiv.innerHTML = ''; // Clear any existing server-rendered content
+      window.tabs.forEach(createTabElement);
+      // Ensure the correct tab is marked as active
+      if (window.currentTab) {
+          updateActiveStyles(window.currentTab);
+      }
+    }
+  }
+
+  // lethal.ts might initialize after this script runs, so we wait briefly.
+  // A more robust solution might use a custom event like "lethal-ready".
+  setTimeout(renderInitialTabs, 100);
+
 </script>
 
 <script>
-  const tabsDiv = document.getElementById("tabs");
+  // This drag-and-drop logic can remain as is, as it directly manipulates
+  // the DOM order and does not need to interact with the state array.
+  const tabsContainer = document.getElementById("tabs");
   let dragged;
 
-  tabsDiv.addEventListener("dragstart", (e) => {
+  tabsContainer.addEventListener("dragstart", (e) => {
+    if (!e.target.classList.contains('draggable-tab')) return;
     dragged = e.target;
     e.target.style.opacity = "0.5";
   });
 
-  tabsDiv.addEventListener("dragend", (e) => {
-    e.target.style.opacity = "";
+  tabsContainer.addEventListener("dragend", (e) => {
+    if (e.target.classList.contains('draggable-tab')) {
+      e.target.style.opacity = "";
+    }
   });
 
-  tabsDiv.addEventListener("dragover", (e) => {
+  tabsContainer.addEventListener("dragover", (e) => {
     e.preventDefault();
-    const afterElement = getDragAfterElement(tabsDiv, e.clientX);
+    const afterElement = getDragAfterElement(tabsContainer, e.clientX);
     if (afterElement == null) {
-      tabsDiv.appendChild(dragged);
+      tabsContainer.appendChild(dragged);
     } else {
-      tabsDiv.insertBefore(dragged, afterElement);
+      tabsContainer.insertBefore(dragged, afterElement);
     }
   });
 

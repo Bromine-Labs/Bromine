@@ -1,7 +1,6 @@
 declare global {
 
   interface Window {
-    __uv$config: any;
     $scramjetLoadController: () => { ScramjetController: any };
   }
 
@@ -12,6 +11,11 @@ declare global {
     libcurl: string;
   }
   type Transport = keyof TransportOptions;
+
+	interface Window {
+		tabs: Tab[];
+		scramjet: any;
+  }
 }
 
 export { };
