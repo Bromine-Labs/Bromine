@@ -96,7 +96,8 @@ import gmesData from "@/assets/gmes.json";
         const gmePageTitle = document.getElementById("gmePageTitle");
 
         gmePageTitle.textContent = title;
-        gmePageFrame.src = `https://raw.githack.com/Bromine-Labs/bromine-assets/main/${alt}/index.html`;
+        gmePageFrame.src = `https://raw.githack.com/Bromine-Labs/asseting-bromine/main/${alt}.html`;
+        // gmePageFrame.src = `https://raw.githack.com/Bromine-Labs/bromine-assets/main/${alt}/index.html`;
         gmePageContainer.style.display = "flex";
         document.body.style.overflow = 'hidden';
     };

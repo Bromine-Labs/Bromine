@@ -162,10 +162,8 @@ export function makeURL(
 	export class Tab {
 		frame: HTMLIFrameElement;
 		tabNumber: number;
-		// START: Added properties to store useful tab info
 		title: string = "New Tab";
 		url: string = "/newtab";
-		// END: Added properties
 
 		constructor() {
 			tabCounter++;
@@ -181,9 +179,7 @@ export function makeURL(
 			this.frame.frame.setAttribute("id", `frame-${tabCounter}`);
 			framesElement.appendChild(this.frame.frame);
 
-			// START: Add the new tab instance to our global array
 			window.tabs.push(this);
-			// END: Add instance
 
 			this.switch();
 
@@ -195,7 +191,6 @@ export function makeURL(
 				new CustomEvent("new-tab", {
 					detail: {
 						tabNumber: tabCounter,
-						// You can pass the whole instance if other parts of the app need it
 						tab: this,
 					},
 				}),
@@ -233,9 +228,7 @@ export function makeURL(
 		close(): void {
 			this.frame.frame.remove();
 
-			// START: Remove this tab from the global array on close
 			window.tabs = window.tabs.filter(tab => tab.tabNumber !== this.tabNumber);
-			// END: Remove from array
 
 			document.dispatchEvent(
 				new CustomEvent("close-tab", {
@@ -280,7 +273,6 @@ export function makeURL(
 		new Tab();
 	}
 
-	// START: Refactored to use the window.tabs array
 	export function switchTab(tabNumber: number): void {
 		const tabToSwitchTo = window.tabs.find(tab => tab.tabNumber === tabNumber);
 		if (tabToSwitchTo) {
@@ -289,30 +281,21 @@ export function makeURL(
 			console.warn(`lethal.js: Attempted to switch to non-existent tab #${tabNumber}`);
 		}
 	}
-	// END: Refactored switchTab
 
-	// START: Refactored to use the window.tabs array
 	export function closeTab(tabNumber: number): void {
 		const tabToClose = window.tabs.find(tab => tab.tabNumber === tabNumber);
 
 		if (tabToClose) {
-			// The close method handles removing the frame and updating the array
 			tabToClose.close();
 
-			// If we closed the currently active tab, we need to switch to another one
 			if (currentTab === tabNumber) {
 				if (window.tabs.length > 0) {
-					// Switch to the first available tab to maintain original behavior
 					window.tabs[0].switch();
 				} else {
-					// If no tabs are left, create a new one
 					newTab();
 				}
 			}
 		} else {
 			console.warn(`lethal.js: Attempted to close non-existent tab #${tabNumber}`);
 		}
-
-		// The "close-tab" event is dispatched from within the Tab's close() method
 	}
-	// END: Refactored closeTab
