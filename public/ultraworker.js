@@ -27,15 +27,15 @@ if (navigator.userAgent.includes("Firefox")) {
 }
 
 
-const openRequest = indexedDB.open(DB_NAME, 1);
+const openRequest = indexedDB.open('spoobland', 1);
 
 openRequest.onsuccess = function() {
     const db = openRequest.result;
 
     try {
-        const transaction = db.transaction(STORE_NAME, 'readonly');
-        const store = transaction.objectStore(STORE_NAME);
-        const getRequest = store.get(SETTING_KEY);
+        const transaction = db.transaction("spooblanda", 'readonly');
+        const store = transaction.objectStore("spooblanda");
+        const getRequest = store.get("spooblandia");
 
 
         getRequest.onsuccess = function() {
@@ -69,5 +69,3 @@ self.addEventListener("fetch", (event) => {
 	event.respondWith(handleRequest(event))
 })
 
-self.addEventListener('install', () => self.skipWaiting());
-self.addEventListener('activate', () => self.clients.claim());
