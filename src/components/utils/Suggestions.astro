@@ -17,17 +17,22 @@
 	const form = document.getElementById("form");
 
 	let currentHighlightedIndex = -1;
-	const worker = new Worker('/workers/fetchSuggestions.js', { type: 'module' });
 
 	const fetchSuggs = (query) => {
-		return new Promise((resolve) => {
-			const handleMessage = (event) => {
-				worker.removeEventListener("message", handleMessage);
-				resolve(event.data);
-			};
+		return new Promise(async (resolve) => {
+			if (!query) {
+				resolve([])
+				return;
+			}
 
-			worker.addEventListener("message", handleMessage);
-			worker.postMessage(query);
+			try {
+				const response = await fetch(await getProxied(`https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}`));
+				const data = await response.json();
+				const suggestions = data.map(item => item.phrase);
+				resolve(suggestions);
+			} catch (err) {
+				resolve([]);
+			}
 		});
 	};
 
