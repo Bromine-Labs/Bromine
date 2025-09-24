@@ -1,17 +1,17 @@
 import gmesData from "@/assets/gmes.json";
 
 (() => {
-	fetch('https://api.github.com/repos/Bromine-Labs/asseting-bromine/commits/main')
-	.then(response => {
-		return response.json();
-	})
-	.then(data => {
-		window.gamesha = data.sha;
-	})
-	.catch(error => {
-		console.error('Error fetching commit SHA:', error);
-		return null;
-	});
+	// fetch('https://api.github.com/repos/Bromine-Labs/asseting-bromine/commits/main')
+	// .then(response => {
+	// 	return response.json();
+	// })
+	// .then(data => {
+	// 	window.gamesha = data.sha;
+	// })
+	// .catch(error => {
+	// 	console.error('Error fetching commit SHA:', error);
+	// 	return null;
+	// });
 	const target = document.querySelector("#gmeContainer");
 	const searchInput = document.getElementById("search");
 
@@ -105,7 +105,7 @@ import gmesData from "@/assets/gmes.json";
         const gmePageTitle = document.getElementById("gmePageTitle");
 
         gmePageTitle.textContent = title;
-        gmePageFrame.src = `https://rawcdn.githack.com/Bromine-Labs/asseting-bromine/${gamesha}/${alt}.html?min=1`;
+        gmePageFrame.src = `https://raw.githack.com/Bromine-Labs/asseting-bromine/main/${alt}.html`;
         gmePageContainer.style.display = "flex";
         document.body.style.overflow = 'hidden';
     };
