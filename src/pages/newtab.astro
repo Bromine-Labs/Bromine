@@ -28,7 +28,7 @@ import Suggestions from "@/components/utils/Suggestions.astro";
                placeholder="Search the world wide web"
                >
          </form>
-<script>
+<script defer>
 	if(localStorage.getItem("ads") === "true") {
             const containerId = "container-b113e1888ef757be96cdcc722c0f31c8";
             if (!document.getElementById(containerId)) {
