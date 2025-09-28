@@ -1,33 +1,23 @@
 import gmesData from "@/assets/gmes.json";
 
 (() => {
-	// fetch('https://api.github.com/repos/Bromine-Labs/asseting-bromine/commits/main')
-	// .then(response => {
-	// 	return response.json();
-	// })
-	// .then(data => {
-	// 	window.gamesha = data.sha;
-	// })
-	// .catch(error => {
-	// 	console.error('Error fetching commit SHA:', error);
-	// 	return null;
-	// });
+
 	const target = document.querySelector("#gmeContainer");
 	const searchInput = document.getElementById("search");
 
 	if (!target) {
 		console.error("Target container #gmeContainer not found.");
-        return;
-    }
+		return;
+	}
 
-    if (!searchInput) {
-        console.error("Search input with id 'search' not found.");
-        return;
-    }
+	if (!searchInput) {
+		console.error("Search input with id 'search' not found.");
+		return;
+	}
 
-    target.innerHTML = "<p style='text-align: center; font-family: sans-serif; color: #555;'>Loading gmes...</p>";
+	target.innerHTML = "<p style='text-align: center; font-family: sans-serif; color: #555;'>Loading gmes...</p>";
 
-    const gmePageContainerHtml = `
+	const gmePageContainerHtml = `
         <div id="gmePageContainer" style="
             display: none;
             position: fixed;
@@ -99,30 +89,53 @@ import gmesData from "@/assets/gmes.json";
     renderGmes(allGmes);
 
 
-    window.opengme = async (alt, title) => {
-        const gmePageContainer = document.getElementById("gmePageContainer");
-        const gmePageFrame = document.getElementById("gmePageFrame");
-        const gmePageTitle = document.getElementById("gmePageTitle");
 
-        gmePageTitle.textContent = title;
-        gmePageFrame.src = `https://raw.githack.com/Bromine-Labs/asseting-bromine/main/${alt}.html`;
-        gmePageContainer.style.display = "flex";
-        document.body.style.overflow = 'hidden';
+
+window.opengme = async (alt, title) => {
+    const frame = document.getElementById("gmePageFrame");
+    document.getElementById("gmePageTitle").textContent = title;
+    document.getElementById("gmePageContainer").style.display = "flex";
+    document.body.style.overflow = 'hidden';
+
+    frame.onload = async () => {
+        if (frame.dataset.loaded) return;
+        const doc = frame.contentDocument;
+
+        const html = await fetch(`https://cdn.jsdelivr.net/gh/bromine-labs/asseting-bromine@main/${alt}.html`)
+            .then(r => r.text());
+
+        doc.open();
+        doc.write(html);
+        doc.close();
+
+        // Re-run scripts
+        doc.querySelectorAll('script').forEach(s => {
+            const script = doc.createElement('script');
+            script.src = s.src || '';
+            if (!s.src) script.textContent = s.textContent;
+            s.replaceWith(script);
+        });
+
+        frame.dataset.loaded = true;
     };
 
-    window.closegme = () => {
-        const gmePageContainer = document.getElementById("gmePageContainer");
-        const gmePageFrame = document.getElementById("gmePageFrame");
+    frame.src = "/nothing.html";
+};
 
-        gmePageFrame.src = "";
-        gmePageContainer.style.display = "none";
-        document.body.style.overflow = '';
-    };
 
-    document.getElementById("backBtn").addEventListener("click", () => {
-        closegme();
-    })
-    document.getElementById("fullscreenBtn").addEventListener("click", () => {
-        document.getElementById("gmePageFrame").requestFullscreen();
-    })
+		window.closegme = () => {
+			const gmePageContainer = document.getElementById("gmePageContainer");
+			const gmePageFrame = document.getElementById("gmePageFrame");
+
+			gmePageFrame.src = "";
+			gmePageContainer.style.display = "none";
+			document.body.style.overflow = '';
+		};
+
+		document.getElementById("backBtn").addEventListener("click", () => {
+			closegme();
+		})
+		document.getElementById("fullscreenBtn").addEventListener("click", () => {
+			document.getElementById("gmePageFrame").requestFullscreen();
+		})
 })();
