@@ -5,6 +5,8 @@ import gmesData from "@/assets/gmes.json";
 	const target = document.querySelector("#gmeContainer");
 	const searchInput = document.getElementById("search");
 
+  searchInput.placeholder = `Search from ${gmesData.length} games`
+
 	if (!target) {
 		console.error("Target container #gmeContainer not found.");
 		return;
@@ -68,7 +70,7 @@ import gmesData from "@/assets/gmes.json";
 
         const gmesHtml = gmesToRender.map(gme => `
             <div
-              onclick="opengme('${gme.alt}', '${gme.title}')"
+              onclick="opengme('${gme.alt}', '${gme.title}', '${gme.frame}')"
               class="bg-base border border-overlay rounded-xl p-3 m-2 inline-block w-64 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
             >
               <h3 class="mt-2 font-medium text-text truncate">${gme.title}</h3>
@@ -91,36 +93,45 @@ import gmesData from "@/assets/gmes.json";
 
 
 
-window.opengme = async (alt, title) => {
+window.opengme = async (alt, title, frameGme) => {
     const frame = document.getElementById("gmePageFrame");
-    document.getElementById("gmePageTitle").textContent = title;
-    document.getElementById("gmePageContainer").style.display = "flex";
-    document.body.style.overflow = 'hidden';
+    const container = document.getElementById("gmePageContainer");
+    const titleEl = document.getElementById("gmePageTitle");
 
-    frame.onload = async () => {
-        if (frame.dataset.loaded) return;
-        const doc = frame.contentDocument;
+    titleEl.textContent = title;
+    container.style.display = "flex";
+    document.body.style.overflow = "hidden";
 
-        const html = await fetch(`https://cdn.jsdelivr.net/gh/bromine-labs/asseting-bromine@main/${alt}.html`)
-            .then(r => r.text());
+    if (frameGme) {
+        // Directly load raw.githack URL
+        frame.src = `https://raw.githack.com/Bromine-Labs/asseting-bromine/main/${alt}`;
+    } else {
+			frame.onload = async () => {
+				if (frame.dataset.loaded) return;
+				const doc = frame.contentDocument;
 
-        doc.open();
-        doc.write(html);
-        doc.close();
+				const html = await fetch(`https://cdn.jsdelivr.net/gh/bromine-labs/asseting-bromine@main/${alt}`)
+					.then(r => r.text());
 
-        // Re-run scripts
-        doc.querySelectorAll('script').forEach(s => {
-            const script = doc.createElement('script');
-            script.src = s.src || '';
-            if (!s.src) script.textContent = s.textContent;
-            s.replaceWith(script);
-        });
+				doc.open();
+				doc.write(html);
+				doc.close();
 
-        frame.dataset.loaded = true;
-    };
+				// Re-run scripts
+				doc.querySelectorAll('script').forEach(s => {
+					const script = doc.createElement('script');
+					script.src = s.src || '';
+					if (!s.src) script.textContent = s.textContent;
+					s.replaceWith(script);
+				});
 
-    frame.src = "/nothing.html";
+				frame.dataset.loaded = true;
+			};
+
+			frame.src = "/nothing.html";
+    }
 };
+
 
 
 		window.closegme = () => {
