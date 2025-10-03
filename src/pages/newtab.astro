@@ -29,7 +29,7 @@ import Suggestions from "@/components/utils/Suggestions.astro";
                >
          </form>
 <script defer>
-	if(localStorage.getItem("ads") === "true") {
+	if(localStorage.getItem("ads") != "false") {
             const containerId = "container-b113e1888ef757be96cdcc722c0f31c8";
             if (!document.getElementById(containerId)) {
             	const div = document.createElement("div");
@@ -44,14 +44,7 @@ import Suggestions from "@/components/utils/Suggestions.astro";
             adScript.src = "//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js";
             
             document.head.appendChild(adScript);
-            
-            const adScript = document.createElement("script");
-            adScript.async = true;
-            adScript.setAttribute("type", "text/javascript");
-            
-            adScript.src = "//learningbuildingroughly.com/1d/ec/d3/1decd3acf780aa46df113c762d0e32cf.js";
-            
-		document.head.appendChild(adScript);
+
 	}
          </script>
          <script>
