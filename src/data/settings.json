@@ -88,13 +88,6 @@
 							"label": "Yandex"
 						}
 					]
-				},
-				{
-					"id": "ads",
-					"label": "Ads",
-					"type": "toggle",
-					"defaultValue": "true",
-					"description": "Disables/Enables Ads"
 				}
 			]
 		},

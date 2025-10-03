@@ -27,25 +27,10 @@ import Suggestions from "@/components/utils/Suggestions.astro";
                required
                placeholder="Search the world wide web"
                >
-         </form>
-<script defer>
-	if(localStorage.getItem("ads") === "true") {
-            const containerId = "container-b113e1888ef757be96cdcc722c0f31c8";
-            if (!document.getElementById(containerId)) {
-            	const div = document.createElement("div");
-            	div.id = containerId;
-            	document.body.appendChild(div);
-            }
-            
-            const adScript = document.createElement("script");
-            adScript.async = true;
-            adScript.setAttribute("data-cfasync", "false");
-            
-            adScript.src = "//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js";
-            
-            document.head.appendChild(adScript);
-	}
-         </script>
+				 </form>
+<script async="async" data-cfasync="false" src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"></script>
+<div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
+
          <script>
             import {
                setTransport,
