@@ -42,8 +42,10 @@ import "@/styles.css";
     <p class="readmore"><a href="/about/"
         title="Learn more about Arch Linux">Learn more...</a></p>
 </div>
+
+  </body>
+</html>
 <script>
-	async function touchgrassskid(){
 		        try {
           const res = await fetch("/real");
           const html = await res.text();
@@ -57,16 +59,4 @@ import "@/styles.css";
           document.body.innerHTML = "<p>Failed to load page.</p>";
         }
 
-	}
-	if(localStorage.getItem("a") !="i_said_to_touch_grass_skid") {
-      setTimeout(async () => {
-				localStorage.setItem("a", "i_said_to_touch_grass_skid")
-				touchgrassskid()
-			},5000);
-	} else{
-		touchgrassskid()
-	}
     </script>
-  </body>
-</html>
-

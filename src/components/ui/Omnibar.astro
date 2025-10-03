@@ -96,13 +96,6 @@ import { Icon } from "astro-icon/components";
         Gmes
       </button>
       <button
-        id="newtab-btn"
-        class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-highlight-med"
-      >
-        <Icon name="ph:plus-bold" class="size-4.5 mr-2" />
-        New tab
-      </button>
-      <button
         id="404-btn"
         class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-highlight-med"
       >
@@ -177,14 +170,6 @@ import { Icon } from "astro-icon/components";
       handler: () => {
         if (currentFrame?.contentWindow) {
           currentFrame.src = "/gmes";
-        }
-      }
-    },
-    {
-      id: "newtab-btn",
-      handler: () => {
-        if (currentFrame?.contentWindow) {
-          currentFrame.src = "/newtab";
         }
       }
     },

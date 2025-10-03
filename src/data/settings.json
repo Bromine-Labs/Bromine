@@ -52,7 +52,7 @@
 					"id": "search-engine",
 					"label": "Default Search Engine",
 					"type": "select",
-					"defaultValue": "https://search.brave.com/search?q=%s",
+					"defaultValue": "https://duckduckgo.com/?q=%s&ia=web",
 					"description": "choose the search engine used when you search from the address bar.",
 					"options": [
 						{
@@ -88,13 +88,6 @@
 							"label": "Yandex"
 						}
 					]
-				},
-				{
-					"id": "ads",
-					"label": "Ads",
-					"type": "toggle",
-					"defaultValue": "true",
-					"description": "Disables/Enables Ads"
 				}
 			]
 		},
