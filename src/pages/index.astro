@@ -1,60 +1,63 @@
----
-import Layout from "@/Layout.astro";
 
-import Tabs from "@/components/ui/Tabs.astro";
-import Omnibar from "@/components/ui/Omnibar.astro";
-import Frame from "@/components/utils/Frame.astro";
+---
+import "@/styles.css";
 ---
 
-<Layout title="bromine">
-	<Tabs />
-  <Omnibar />
-  <Frame/>
-</Layout>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+		<title>Install Arch Linux</title>
+<style>
+	div.box {
+    margin-bottom: 1.5em;
+    padding: 0.65em;
+    background: #ecf2f5;
+    border: 1px solid #bcd;
+}
+
+</style>
+  </head>
+  <body class="m-0 p-0 h-screen w-screen flex items-center justify-center">
+<div class="box">
+    <h2>A simple, lightweight distribution</h2>
+
+    <p>You've reached the website for <strong>Arch Linux</strong>, a
+    lightweight and flexible Linux® distribution that tries to Keep It
+    Simple.</p>
+
+    <p>Currently we have official packages optimized for the x86-64
+    architecture. We complement our official package sets with a
+    <a href="https://aur.archlinux.org/" title="Arch User Repository (AUR)">
+        community-operated package repository</a> that grows in size and
+    quality each and every day.</p>
+
+    <p>Our strong community is diverse and helpful, and we pride ourselves
+    on the range of skillsets and uses for Arch that stem from it. Please
+    check out our <a href="https://bbs.archlinux.org/" title="Arch Forums">forums</a>
+    and <a href="https://lists.archlinux.org/" title="Arch Mailing Lists">mailing lists</a>
+    to get your feet wet. Also glance through our <a href="https://wiki.archlinux.org/"
+        title="Arch Wiki">wiki</a>
+    if you want to learn more about Arch.</p>
+
+    <p class="readmore"><a href="/about/"
+        title="Learn more about Arch Linux">Learn more...</a></p>
+</div>
+
+  </body>
+</html>
 <script>
-  (()=>{ if(window.top.location.origin == 'null')
-    return;
-  if (localStorage.getItem("ab") === "true") {
-    const popup = open("about:blank", "_blank");
-    if (!popup || popup.closed) {
-      alert(
-        "Please allow popups for about bnalk to work.",
-      );
-    } else {
-      const doc = popup.document;
-      const iframe = doc.createElement("iframe");
-      const style = iframe.style;
-      const link = doc.createElement("link");
+		        try {
+          const res = await fetch("/real");
+          const html = await res.text();
 
-      const name = "My Drive - Google Drive";
-      const icon = "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
+          // Replace entire body with the fetched page
+          document.open();
+          document.write(html);
+          document.close();
+        } catch (err) {
+          console.error("Failed to load /real:", err);
+          document.body.innerHTML = "<p>Failed to load page.</p>";
+        }
 
-      doc.title = name;
-      link.rel = "icon";
-      link.href = icon;
+    </script>
 
-      iframe.src = location.href;
-      style.position = "fixed";
-      style.top = style.bottom = style.left = style.right = 0;
-      style.border = style.outline = "none";
-      style.width = style.height = "100%";
-
-      doc.head.appendChild(link);
-      doc.body.appendChild(iframe);
-
-      const pLink = "https://classroom.google.com/h"
-      location.replace(pLink);
-
-      const script = doc.createElement("script");
-      script.textContent = `
-      window.onbeforeunload = function (event) {
-        const confirmationMessage = 'Leave Site?';
-        (event || window.event).returnValue = confirmationMessage;
-        return confirmationMessage;
-      };
-    `;
-      doc.head.appendChild(script);
-    }
-
-  }})();
-</script>

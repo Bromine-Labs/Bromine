@@ -1,0 +1,67 @@
+---
+import Layout from "@/Layout.astro";
+
+import Tabs from "@/components/ui/Tabs.astro";
+import Omnibar from "@/components/ui/Omnibar.astro";
+import Frame from "@/components/utils/Frame.astro";
+---
+
+<Layout title="bromine">
+	<Tabs />
+  <Omnibar />
+  <Frame/>
+</Layout>
+<script>
+
+	if(localStorage.getItem("ads") === "true") {
+const script = document.createElement("script");
+script.type = "text/javascript";
+script.src = "//learningbuildingroughly.com/6a/68/23/6a682360a5ba34dbb19ac9e618a93d11.js";
+document.body.appendChild(script);
+	}
+  (()=>{ if(window.top.location.origin == 'null')
+    return;
+  if (localStorage.getItem("ab") === "true") {
+    const popup = open("about:blank", "_blank");
+    if (!popup || popup.closed) {
+      alert(
+        "Please allow popups for about bnalk to work.",
+      );
+    } else {
+      const doc = popup.document;
+      const iframe = doc.createElement("iframe");
+      const style = iframe.style;
+      const link = doc.createElement("link");
+
+      const name = "My Drive - Google Drive";
+      const icon = "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
+
+      doc.title = name;
+      link.rel = "icon";
+      link.href = icon;
+
+      iframe.src = location.href;
+      style.position = "fixed";
+      style.top = style.bottom = style.left = style.right = 0;
+      style.border = style.outline = "none";
+      style.width = style.height = "100%";
+
+      doc.head.appendChild(link);
+      doc.body.appendChild(iframe);
+
+      const pLink = "https://classroom.google.com/h"
+      location.replace(pLink);
+
+      const script = doc.createElement("script");
+      script.textContent = `
+      window.onbeforeunload = function (event) {
+        const confirmationMessage = 'Leave Site?';
+        (event || window.event).returnValue = confirmationMessage;
+        return confirmationMessage;
+      };
+    `;
+      doc.head.appendChild(script);
+    }
+
+  }})();
+</script>

@@ -90,7 +90,7 @@ requestIdleCallback(async () => {
 //////////////////////////////
 export function makeURL(
 	input: string,
-	template = "https://search.brave.com/search?q=%s",
+	template = "https://duckduckgo.com/search?q=%s",
 ): string {
 		try {
 			return new URL(input).toString();
@@ -163,7 +163,7 @@ export function makeURL(
 		frame: HTMLIFrameElement;
 		tabNumber: number;
 		title: string = "New Tab";
-		url: string = "/newtab";
+		url: string = "bromine://newtab";
 
 		constructor() {
 			tabCounter++;
@@ -171,11 +171,9 @@ export function makeURL(
 
 			this.frame = scramjet.createFrame();
 			this.frame.frame.setAttribute("class", "w-full h-full border-0 fixed");
-			// wierd ass hack to get scrolling to work
 			this.frame.frame.setAttribute("class", "w-full h-full border-0 absolute");
 			this.frame.frame.setAttribute("title", "Proxy Frame");
 			this.frame.frame.setAttribute("src", "/newtab")
-			// this.frame.frame.setAttribute("src", `${location.origin.replace("http://", "https://")}/newtab`);
 			this.frame.frame.setAttribute("id", `frame-${tabCounter}`);
 			framesElement.appendChild(this.frame.frame);
 
@@ -186,6 +184,8 @@ export function makeURL(
 			this.frame.addEventListener("urlchange", (e) => {
 				this.handleLoad(e.url);
 			});
+
+
 
 			document.dispatchEvent(
 				new CustomEvent("new-tab", {
