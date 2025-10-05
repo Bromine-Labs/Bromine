@@ -90,7 +90,7 @@ jobs:
         working-directory: ${{ env.BUILD_PATH }}
 
       - name: Install astro-single-file integration
-        run: bunx astro add -D astro-single-file
+        run: bunx astro add astro-single-file -D --yes
 
       - name: Clone target repo
         run: |
