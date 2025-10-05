@@ -96,7 +96,11 @@ jobs:
       - name: Copy updated content
         run: |
           rm -rf target-repo/*
-          cp -r !(target-repo) target-repo/
+          for f in *; do
+              if [ "$f" != "target-repo" ]; then
+                  cp -r "$f" target-repo/
+              fi
+          done
 
 
       - name: Commit and push changes
