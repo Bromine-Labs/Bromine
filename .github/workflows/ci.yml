@@ -80,6 +80,11 @@ jobs:
           done
           echo "Lite cleanup complete."
 
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
       - name: Install Lite dependencies
         run: bun install
         working-directory: ${{ env.BUILD_PATH }}
