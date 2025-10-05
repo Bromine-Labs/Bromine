@@ -60,62 +60,30 @@ jobs:
 
       - name: Clean subdirectories (keep only required files)
         run: |
-          shopt -s extglob
-
-          find
-            \( -path "src/components/Footer.astro" \
-            -o -path "src/gmes.json" \
-            -o -path "src/gmes.astro" \
-            -o -path "src/utils/gmes.ts" \
-            -o -path "src/layouts/Layout.astro" \) -delete
-
-          find src -type d -empty -delete
-
-          rm -rf public/*
-
           set -euo pipefail
-          
-          if [ $# -lt 1 ]; then
-            echo "Usage: $0 file1 [file2 ...]"
-            exit 1
-          fi
-          
-          for file in "$@"; do
-            if [ ! -f "$file" ]; then
-              echo "skip: $file (not a file)"
-              continue
-            fi
-          
-            # Create a backup
-            cp -- "$file" "$file.bak"
-            echo "backup: $file.bak"
-          
-            # Do transformations:
-            # 1) remove import Lethal ...; lines (handles different quote styles and paths)
-            # 2) remove <script>...</script> blocks that mention ./utils/lethal or currentFrame
-            # 3) remove lines containing the JSX tag <Lethal />
-            # 4) remove any lines that reference currentFrame.
-            #
-            # We use perl with dot-all mode for block removals, then sed for line removals.
-            tmp="$(mktemp)"
-          
+
+          find src -type f ! \( \
+              -path "src/components/Footer.astro" -o \
+              -path "src/gmes.json" -o \
+              -path "src/gmes.astro" -o \
+              -path "src/utils/gmes.ts" -o \
+              -path "src/components/ui/Footer.astro" \
+          \) -delete
+          find src -type d -empty -delete
+          rm -rf public/*
+          for file in $(find src -type f -name "*.astro" -o -name "*.ts"); do
+            cp "$file" "$file.bak"
             perl -0777 -pe '
-              # 1) remove import Lethal ...;
               s{^\s*import\s+Lethal\b[^;]*;\s*}{}mg;
-          
-              # 2) remove any <script>...</script> block that mentions ./utils/lethal or currentFrame
               s{<script\b[^>]*>.*?(?:\./utils/lethal|currentFrame).*?<\/script>\s*}{}isg;
-            ' -- "$file" \
+            ' "$file" \
             | sed -E '/\<Lethal[[:space:]]*\/\>/d' \
             | sed '/currentFrame\./d' \
-            > "$tmp"
-          
-            mv "$tmp" "$file"
-            echo "processed: $file"
+            > "$file.tmp"
+            mv "$file.tmp" "$file"
           done
-
-
           echo "Lite cleanup complete."
+
 
       - name: Clone target repo
         run: |
