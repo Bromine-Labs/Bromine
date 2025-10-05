@@ -25,7 +25,7 @@ jobs:
       - name: Cache Bun modules
         uses: actions/cache@v3
         with:
-          path: ~/.bun/deps # or the actual bun cache directory, verify below
+          path: ~/.bun/deps
           key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
           restore-keys: |
             ${{ runner.os }}-bun-
@@ -47,6 +47,102 @@ jobs:
         uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: Dockerfile
+          
+  sync_to_lite:
+    name: Sync to Bromine Lite
+    needs: [lint]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Clean subdirectories (keep only required files)
+        run: |
+          shopt -s extglob
+
+            \( -path "src/components/Footer.astro" \
+            -o -path "src/gmes.json" \
+            -o -path "src/gmes.astro" \
+            -o -path "src/utils/gmes.ts" \
+            -o -path "src/layouts/Layout.astro" \) -delete
+
+          find src -type d -empty -delete
+
+          rm -rf public/*
+
+          set -euo pipefail
+          
+          if [ $# -lt 1 ]; then
+            echo "Usage: $0 file1 [file2 ...]"
+            exit 1
+          fi
+          
+          for file in "$@"; do
+            if [ ! -f "$file" ]; then
+              echo "skip: $file (not a file)"
+              continue
+            fi
+          
+            # Create a backup
+            cp -- "$file" "$file.bak"
+            echo "backup: $file.bak"
+          
+            # Do transformations:
+            # 1) remove import Lethal ...; lines (handles different quote styles and paths)
+            # 2) remove <script>...</script> blocks that mention ./utils/lethal or currentFrame
+            # 3) remove lines containing the JSX tag <Lethal />
+            # 4) remove any lines that reference currentFrame.
+            #
+            # We use perl with dot-all mode for block removals, then sed for line removals.
+            tmp="$(mktemp)"
+          
+            perl -0777 -pe '
+              # 1) remove import Lethal ...;
+              s{^\s*import\s+Lethal\b[^;]*;\s*}{}mg;
+          
+              # 2) remove any <script>...</script> block that mentions ./utils/lethal or currentFrame
+              s{<script\b[^>]*>.*?(?:\./utils/lethal|currentFrame).*?<\/script>\s*}{}isg;
+            ' -- "$file" \
+            | sed -E '/\<Lethal[[:space:]]*\/\>/d' \
+            | sed '/currentFrame\./d' \
+            > "$tmp"
+          
+            mv "$tmp" "$file"
+            echo "processed: $file"
+          done
+
+
+          echo "Lite cleanup complete."
+
+      - name: Clone target repo
+        run: |
+          git clone https://github.com/Bromine-Labs/BromineLite.git target-repo
+        env:
+          GIT_TERMINAL_PROMPT: 0
+
+      - name: Copy updated content
+        run: |
+          rsync -av --delete --exclude '.git' --exclude '.github' ./ target-repo/
+
+      - name: Commit and push changes
+        run: |
+          cd target-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Sync from source repo (Lite version)"
+            git push origin main
+          fi
+        env:
+          GIT_TERMINAL_PROMPT: 0
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
 
   build:
     name: Build
@@ -70,8 +166,7 @@ jobs:
         working-directory: ${{ env.BUILD_PATH }}
 
       - name: Build with Astro
-        run: |
-          bun run build
+        run: bun run build
         working-directory: ${{ env.BUILD_PATH }}
 
       - name: Upload artifact
@@ -89,11 +184,10 @@ jobs:
       - name: Set image tag
         run: echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
 
-      - name: Build Docker image
+      - name: Build Docker image (timestamped)
         run: docker build . --file Dockerfile --tag ghcr.io/coding4hours/bromine:$IMAGE_TAG
 
-
-      - name: Build Docker image
+      - name: Build Docker image (latest)
         run: docker build . --file Dockerfile --tag ghcr.io/coding4hours/bromine:latest
 
       - name: Log in to GitHub Container Registry
@@ -103,15 +197,17 @@ jobs:
           username: "coding4Hours"
           password: ${{ secrets.TOKEN }}
 
-      - name: Push Docker container
+      - name: Push Docker container (timestamped)
         run: docker push ghcr.io/coding4hours/bromine:$IMAGE_TAG
         
-      - name: Push Docker container
+      - name: Push Docker container (latest)
         run: docker push ghcr.io/coding4hours/bromine:latest
+
+
 
   deploy:
     name: Deploy to GitHub Pages
-    needs: [lint, build]
+    needs: [lint, build, sync_to_other_repo]
     runs-on: ubuntu-latest
     concurrency:
       group: "pages"
@@ -120,4 +216,3 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
-
