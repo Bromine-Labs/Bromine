@@ -96,7 +96,8 @@ jobs:
       - name: Copy updated content
         run: |
           rm -rf target-repo/*
-          rsync -av --delete --exclude '.git' --exclude '.github' ./ target-repo/
+          cp * target-repo/
+
 
       - name: Commit and push changes
         run: |
