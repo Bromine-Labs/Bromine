@@ -67,6 +67,9 @@ jobs:
               -path "src/utils/gmes.ts" -o \
               -path "src/components/ui/Footer.astro" \
           \) -delete
+
+          rm TODO.md Dockerfile .gitignore .dockerignore
+          
           find src -type d -empty -delete
           rm -rf public/*
           for file in $(find src -type f -name "*.astro" -o -name "*.ts"); do
@@ -79,6 +82,7 @@ jobs:
             | sed '/currentFrame\./d' \
             > "$file.tmp"
             mv "$file.tmp" "$file"
+            rm "$file.bak"
           done
           echo "Lite cleanup complete."
 
