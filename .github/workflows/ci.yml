@@ -75,6 +75,7 @@ jobs:
           find src -type d -empty -delete
 
           mv src/pages/gmes.astro src/pages/index.astro
+          sed -i '/@import "\.\/data\/themes\.css";/d' src/styles.css
           
           rm -rf public/*
           for file in $(find src -type f -name "*.astro" -o -name "*.ts"); do
