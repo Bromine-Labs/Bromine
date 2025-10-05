@@ -207,7 +207,7 @@ jobs:
 
   deploy:
     name: Deploy to GitHub Pages
-    needs: [lint, build, sync_to_other_repo]
+    needs: [lint, build]
     runs-on: ubuntu-latest
     concurrency:
       group: "pages"
