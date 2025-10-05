@@ -18,8 +18,6 @@ jobs:
     name: Check
     runs-on: ubuntu-latest
     steps:
-      - name: remove snap
-        uses: ading2210/gh-actions-remove-snap@v1
       - uses: actions/checkout@v4
       
       - name: Cache Bun modules
@@ -100,17 +98,19 @@ jobs:
           cd target-repo
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
+      
           git add .
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
             git commit -m "Sync from source repo (Lite version)"
+            # Use HTTPS with token for authentication
+            git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/Bromine-Labs/BromineLite.git
             git push origin main
           fi
         env:
-          GIT_TERMINAL_PROMPT: 0
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
 
 
   build:
