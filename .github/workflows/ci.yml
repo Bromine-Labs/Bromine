@@ -66,12 +66,16 @@ jobs:
               -path "src/pages/gmes.astro" -o \
               -path "src/Layout.astro" -o \
               -path "src/utils/gmes.ts" -o \
+              -path "src/styles.css" -o \
               -path "src/components/ui/Footer.astro" \
           \) -delete
 
           rm TODO.md Dockerfile .gitignore .dockerignore
           
           find src -type d -empty -delete
+
+          mv src/pages/gmes.astro src/pages/index.astro
+          
           rm -rf public/*
           for file in $(find src -type f -name "*.astro" -o -name "*.ts"); do
             cp "$file" "$file.bak"
