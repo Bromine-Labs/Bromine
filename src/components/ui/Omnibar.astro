@@ -49,9 +49,18 @@ import { Icon } from "astro-icon/components";
       </div>
     </div>
 
+
+    <button
+      aria-label="gmes"
+      id="gmes-btn"
+      class="shadow-md bg-surface p-1.5 rounded-md hover:bg-highlight-med"
+    >
+      <Icon name="ph:game-controller-bold" class="size-4.5" />
+    </button>
+
     <Bookmarks />
-    <History />
-    <Settings />
+		<Settings />
+
   </div>
 
   <div class="relative flex-shrink-0">
@@ -72,35 +81,14 @@ import { Icon } from "astro-icon/components";
       >
         <Icon name="ph:code-bold" class="size-4.5 mr-2" />
         Dev Tools
-      </button>
+			</button>
+    	<History />
       <button
         id="full-btn"
         class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-highlight-med"
       >
         <Icon name="ph:arrows-out-bold" class="size-4.5 mr-2" />
         Fullscreen
-      </button>
-      <hr/>
-
-
-      <span class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-highlight-med">
-        Bromine Pages
-      </span>
-      <hr/>
-
-
-      <button
-        id="gmes-btn"
-        class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-highlight-med"
-      >
-        Gmes
-      </button>
-      <button
-        id="404-btn"
-        class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-highlight-med"
-      >
-        <Icon name="ph:warning-bold" class="size-4.5 mr-2" />
-        404 Page
       </button>
     </div>
   </div>
@@ -170,14 +158,6 @@ import { Icon } from "astro-icon/components";
       handler: () => {
         if (currentFrame?.contentWindow) {
           currentFrame.src = "/gmes";
-        }
-      }
-    },
-    {
-      id: "404-btn",
-      handler: () => {
-        if (currentFrame?.contentWindow) {
-          currentFrame.src = "/404";
         }
       }
     },

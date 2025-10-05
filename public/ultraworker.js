@@ -12,46 +12,10 @@ if (navigator.userAgent.includes("Firefox")) {
 
 const { ScramjetServiceWorker } = $scramjetLoadWorker();
 const scramjet = new ScramjetServiceWorker();
-(async function () {
-	await scramjet.loadConfig();
-})();
+
 const ww = new WorkerWare({});
 
 
-
-if (navigator.userAgent.includes("Firefox")) {
-	Object.defineProperty(globalThis, "crossOriginIsolated", {
-		value: true,
-		writable: true
-	});
-}
-
-
-const openRequest = indexedDB.open('spoobland', 1);
-
-openRequest.onsuccess = function() {
-    const db = openRequest.result;
-
-    try {
-        const transaction = db.transaction("spooblanda", 'readonly');
-        const store = transaction.objectStore("spooblanda");
-        const getRequest = store.get("spooblandia");
-
-
-        getRequest.onsuccess = function() {
-            const isEnabled = getRequest.result;
-
-            if (isEnabled === true) {
-                console.log("[SW] Setting is 'true'. Activating adblock plugin.");
-                ww.use({
-		  							function: self.adblockExt.filterRequest,
-                    events: ["fetch"],
-                    name: "Adblock",
-                });
-            }
-        };
-    } catch {}
-};
 
 async function handleRequest(event) {
 	let mwResponse = await ww.run(event)();
@@ -59,8 +23,10 @@ async function handleRequest(event) {
 		return;
 
 
-	if (scramjet.route(event)) 
+	if (scramjet.route(event)) {
+		await scramjet.loadConfig();
 		return scramjet.fetch(event)
+	}
 
 	return await fetch(event.request)
 }

@@ -6,9 +6,18 @@ import {Icon} from "astro-icon/components"
   <script
 		src="@/utils/gmes.ts"
 		></script>
-	<div class="flex justify-center w-full my-4">
-		<input id="search" type="text" placeholder="Search gmes..." class="bg-surface text-text focus:outline-none shadow-md rounded-md w-1/2 px-4 py-2">
-	</div>
+
+
+<div class="w-full sticky top-0 z-50 backdrop-blur backdrop-opacity-70 shadow-md flex justify-center py-3">
+	<input 
+		id="search" 
+		type="text" 
+		placeholder="Search gmes..." 
+		class="bg-surface text-text focus:outline-none shadow rounded-md w-1/2 px-4 py-2"
+	>
+</div>
+
+
 	<section id="gmeContainer"></section>
 <script async="async" data-cfasync="false" src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"></script>
 <div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>

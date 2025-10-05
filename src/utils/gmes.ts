@@ -128,7 +128,7 @@ window.opengme = async (alt, title, frameGme) => {
 				frame.dataset.loaded = true;
 			};
 
-			frame.src = "/nothing.html";
+			frame.src = "/asdf.html";
     }
 };
 
