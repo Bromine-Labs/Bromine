@@ -80,6 +80,12 @@ jobs:
           done
           echo "Lite cleanup complete."
 
+      - name: Install Lite dependencies
+        run: bun install
+        working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Install astro-single-file integration
+        run: bunx astro add -D astro-single-file
 
       - name: Clone target repo
         run: |
