@@ -96,7 +96,7 @@ jobs:
       - name: Copy updated content
         run: |
           rm -rf target-repo/*
-          cp * target-repo/
+          cp -r * target-repo/
 
 
       - name: Commit and push changes
