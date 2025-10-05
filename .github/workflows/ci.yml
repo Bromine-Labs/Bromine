@@ -62,7 +62,7 @@ jobs:
 
           find src -type f ! \( \
               -path "src/components/Footer.astro" -o \
-              -path "src/assetsgmes.json" -o \
+              -path "src/assets/gmes.json" -o \
               -path "src/pages/gmes.astro" -o \
               -path "src/utils/gmes.ts" -o \
               -path "src/components/ui/Footer.astro" \
