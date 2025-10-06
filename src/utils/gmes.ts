@@ -32,7 +32,7 @@ target.innerHTML = `
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px;">
     ${gmesToRender.map(gme => `
       <div
-        onclick="opengme('${gme.alt}', '${gme.title}', '${gme.frame}')"
+        onclick="opengme('${gme.file_name}', '${gme.title}', '${gme.frame}')"
         class="bg-base border border-overlay rounded-xl p-3 m-2 inline-block w-64 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
       >
         <h3 class="mt-2 font-medium text-text truncate">${gme.title}</h3>
@@ -56,7 +56,7 @@ target.innerHTML = `
 
 
 
-window.opengme = async (alt, title, frameGme) => {
+window.opengme = async (file_name, title, frameGme) => {
     const frame = document.getElementById("gmePageFrame");
     const container = document.getElementById("gmePageContainer");
     const titleEl = document.getElementById("gmePageTitle");
@@ -67,7 +67,7 @@ window.opengme = async (alt, title, frameGme) => {
 
     if (frameGme == true) {
         // Directly load raw.githack URL
-        frame.src = `https://raw.githack.com/Bromine-Labs/asseting-bromine/main/${alt}`;
+        frame.src = `https://raw.githack.com/Bromine-Labs/asseting-bromine/main/${file_name}`;
     } else {
 
         delete frame.dataset.loaded;
@@ -75,7 +75,7 @@ window.opengme = async (alt, title, frameGme) => {
 				if (frame.dataset.loaded) return;
 				const doc = frame.contentDocument;
 
-				const html = await fetch(`https://cdn.jsdelivr.net/gh/bromine-labs/asseting-bromine@main/${alt}`)
+				const html = await fetch(`https://cdn.jsdelivr.net/gh/bromine-labs/asseting-bromine@main/${file_name}`)
 					.then(r => r.text());
 
 				doc.open();

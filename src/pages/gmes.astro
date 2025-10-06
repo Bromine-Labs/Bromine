@@ -8,15 +8,21 @@ import {Icon} from "astro-icon/components"
 		></script>
 
 
-<div class="w-full sticky top-0 z-50 backdrop-blur backdrop-opacity-70 shadow-md flex justify-center py-3">
-	<input 
-		id="search" 
-		type="text" 
-		placeholder="Search gmes..." 
-		class="bg-surface text-text focus:outline-none shadow rounded-md w-1/2 px-4 py-2"
-	>
-</div>
 
+
+
+
+<div class="flex justify-center py-3 sticky top-0 backdrop-blur shadow-md z-50">
+  <div class="flex items-center w-full max-w-xl bg-surface rounded-md shadow px-3">
+    <Icon name="ph:magnifying-glass-bold" class="size-5 text-muted"/>
+    <input
+      class="flex-1 bg-transparent pl-3 py-2 focus:outline-none text-text w-full"
+      id="search"
+      placeholder="Search..."
+      type="text"
+    />
+  </div>
+</div>
 
 	<section id="gmeContainer"></section>
 <script async="async" data-cfasync="false" src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"></script>
