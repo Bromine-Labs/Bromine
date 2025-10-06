@@ -33,54 +33,6 @@ jobs:
         run: bun run check
         working-directory: ${{ env.BUILD_PATH }}
 
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
-
-      - name: Install Lite dependencies
-        run: bun install
-        working-directory: ${{ env.BUILD_PATH }}
-
-      - name: Install astro-single-file integration
-        run: bunx astro add astro-single-file -D --yes
-
-      - name: Clone target repo
-        run: |
-          git clone https://github.com/Bromine-Labs/BromineLite.git target-repo
-        env:
-          GIT_TERMINAL_PROMPT: 0
-
-      - name: Copy updated content
-        run: |
-          rm -rf target-repo/*
-          for f in *; do
-              if [ "$f" != "target-repo" ]; then
-                  cp -r "$f" target-repo/
-              fi
-          done
-
-
-      - name: Commit and push changes
-        run: |
-          cd target-repo
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      
-          git add .
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "Sync from source repo (Lite version)"
-            # Use HTTPS with token for authentication
-            git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/Bromine-Labs/BromineLite.git
-            git push origin main
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-
-
-
   build:
     name: Build
     needs: [lint]
