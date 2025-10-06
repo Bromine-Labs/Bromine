@@ -18,12 +18,13 @@ const ww = new WorkerWare({});
 
 
 async function handleRequest(event) {
+		await scramjet.loadConfig();
+	
 	let mwResponse = await ww.run(event)();
 	if (mwResponse.includes(null))
 		return;
 
 
-		await scramjet.loadConfig();
 	if (scramjet.route(event)) {
 	
 		return scramjet.fetch(event)
