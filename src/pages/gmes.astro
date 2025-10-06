@@ -20,22 +20,34 @@ import {Icon} from "astro-icon/components"
 
 	<section id="gmeContainer"></section>
 <script async="async" data-cfasync="false" src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"></script>
-<div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
-	<div id="gmePageContainer" class="bg-surface/90 hidden fixed inset-0 z-[999] flex flex-col items-center justify-start p-5 md:p-10 box-border">
-			<div class="flex justify-between items-center w-full  mb-4">
+	<div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
 
-            <button id="backBtn" class="p-3 bg-surface rounded-lg transition-all duration-200 outline-2 outline-offset-2 outline-muted flex items-center space-x-2">
-							<Icon name="ph:arrow-left" class="size-5"/>
-                <span>Back</span>
-						</button>
 
-						<button id="fullscreenBtn" class="p-3 bg-surface rounded-lg transition-all duration-200 outline-2 outline-offset-2 outline-muted flex items-center space-x-2" title="Fullscreen">
-							<Icon name="ph:arrows-out" class="size-5"/>
-                <span>Fullscreen</span>
-            </button>
-				</div>
+<div
+  id="gmePageContainer"
+  class="hidden fixed inset-0 z-[999] bg-surface/90"
+>
+  <!-- Title on the top-left -->
+  <h2
+    id="gmePageTitle"
+    class="z-50 absolute top-[15px] left-[20px] text-3xl font-bold text-white"
+  ></h2>
 
-        <h2 id="gmePageTitle" class="text-3xl font-bold mt-4 mb-4 text-center"></h2>
-        <iframe id="gmePageFrame" class="bg-surface/95 w-full flex-grow border-none rounded-xl shadow-lg outline-2 outline-offset-2 outline-muted" allowfullscreen></iframe>
-    </div>
+  <!-- Close button on the top-right -->
+  <button
+    id="backBtn"
+    class="z-50 flex items-center absolute top-[15px] right-[20px] px-4 py-2 text-text cursor-pointer bg-highlight-med/70 text-white rounded-lg border-0 hover:bg-surface/70 transition"
+  >
+    <Icon name="ph:x" class="size-5" />
+    Close
+  </button>
+
+  <!-- Fullscreen iframe -->
+  <iframe
+    id="gmePageFrame"
+    class="absolute top-0 left-0 w-full h-full border-none"
+    allowfullscreen
+  ></iframe>
+</div>
+
 </Layout>

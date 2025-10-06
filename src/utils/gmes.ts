@@ -19,47 +19,6 @@ import gmesData from "@/assets/gmes.json";
 
 	target.innerHTML = "<p style='text-align: center; font-family: sans-serif; color: #555;'>Loading gmes...</p>";
 
-	const gmePageContainerHtml = `
-        <div id="gmePageContainer" style="
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #fff;
-            z-index: 999;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow: auto;
-        ">
-            <button onclick="closegme()" style="
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                padding: 10px 15px;
-                font-size: 16px;
-                cursor: pointer;
-                background-color: #dc3545;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                z-index: 1000;
-            ">Close Gme</button>
-            <h2 id="gmePageTitle" style="margin-top: 20px; color: #333;"></h2>
-            <iframe id="gmePageFrame" src="" frameborder="0" style="
-                width: 100%;
-                height: calc(100% - 70px);
-                border: none;
-                margin-top: 10px;
-            "></iframe>
-        </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', gmePageContainerHtml);
-
     const allGmes = gmesData;
 
     const renderGmes = (gmesToRender) => {
@@ -68,16 +27,20 @@ import gmesData from "@/assets/gmes.json";
             return;
         }
 
-        const gmesHtml = gmesToRender.map(gme => `
-            <div
-              onclick="opengme('${gme.alt}', '${gme.title}', '${gme.frame}')"
-              class="bg-base border border-overlay rounded-xl p-3 m-2 inline-block w-64 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
-            >
-              <h3 class="mt-2 font-medium text-text truncate">${gme.title}</h3>
-            </div>
-        `).join('');
 
-        target.innerHTML = `<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px;">${gmesHtml}</div>`;
+target.innerHTML = `
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px;">
+    ${gmesToRender.map(gme => `
+      <div
+        onclick="opengme('${gme.alt}', '${gme.title}', '${gme.frame}')"
+        class="bg-base border border-overlay rounded-xl p-3 m-2 inline-block w-64 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
+      >
+        <h3 class="mt-2 font-medium text-text truncate">${gme.title}</h3>
+      </div>
+    `).join('')}
+  </div>
+`;
+
     };
 
     searchInput.addEventListener("input", (event) => {
@@ -99,13 +62,15 @@ window.opengme = async (alt, title, frameGme) => {
     const titleEl = document.getElementById("gmePageTitle");
 
     titleEl.textContent = title;
-    container.style.display = "flex";
+    container.classList.remove("hidden");
     document.body.style.overflow = "hidden";
 
     if (frameGme == true) {
         // Directly load raw.githack URL
         frame.src = `https://raw.githack.com/Bromine-Labs/asseting-bromine/main/${alt}`;
     } else {
+
+        delete frame.dataset.loaded;
 			frame.onload = async () => {
 				if (frame.dataset.loaded) return;
 				const doc = frame.contentDocument;
@@ -139,7 +104,7 @@ window.opengme = async (alt, title, frameGme) => {
 			const gmePageFrame = document.getElementById("gmePageFrame");
 
 			gmePageFrame.src = "";
-			gmePageContainer.style.display = "none";
+			gmePageContainer.classList.add("hidden")
 			document.body.style.overflow = '';
 		};
 
