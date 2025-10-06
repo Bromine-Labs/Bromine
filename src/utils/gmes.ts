@@ -5,7 +5,7 @@ import gmesData from "@/assets/gmes.json";
 	const target = document.querySelector("#gmeContainer");
 	const searchInput = document.getElementById("search");
 
-  searchInput.placeholder = `Search from ${gmesData.length} games`
+  searchInput.placeholder = `Search from ${gmesData.length} gmes`
 
 	if (!target) {
 		console.error("Target container #gmeContainer not found.");
