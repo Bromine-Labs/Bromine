@@ -4,13 +4,23 @@ import Suggestions from "@/components/utils/Suggestions.astro";
 ---
 <html lang="en">
    <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NQ3WX8KNQW');
+</script>
       <meta charset="UTF-8" />
       <meta content="IE=edge" http-equiv="X-UA-Compatible" />
       <meta
          name="viewport"
          content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
          />
-      <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
+				 <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
+
    </head>
    <body class="text-text bg-base flex overflow-none">
       <main id="main" class="flex flex-col flex-grow h-screen justify-center items-center">
