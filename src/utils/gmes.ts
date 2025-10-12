@@ -33,9 +33,9 @@ target.innerHTML = `
     ${gmesToRender.map(gme => `
       <div
         onclick="opengme('${gme.file_name}', '${gme.title}', '${gme.frame}')"
-        class="bg-base border border-overlay rounded-xl p-3 m-2 inline-block w-64 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
+        class="bg-bg border border-overlay rounded-xl p-3 m-2 inline-block w-64 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
       >
-        <h3 class="mt-2 font-medium text-text truncate">${gme.title}</h3>
+        <h3 class="mt-2 font-medium  truncate">${gme.title}</h3>
       </div>
     `).join('')}
   </div>

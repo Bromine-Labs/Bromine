@@ -23,3 +23,5 @@
 - [ ] glassmorphism
 - [ ] extensions
 - [ ] mrigate to qwik
+- [ ] migrate to new theming system
+- [ ] make ui better

@@ -143,14 +143,10 @@ export function makeURL(
 		return wispURL;
 	}
 
-	export async function getProxied(input: string): Promise<any> {
-
-		if (input.startsWith("bromine://")) {
-			return input.replace("bromine://", "/")
+	export async function getProxied(url: string): Promise<any> {
+		if (url.startsWith("bromine://")) {
+			return url.replace("bromine://", "/")
 		}
-
-
-		const url = makeURL(input);
 
 		return scramjet.encodeUrl(url);
 	}
@@ -210,11 +206,7 @@ export function makeURL(
 				`frame-${this.tabNumber}`,
 			) as HTMLIFrameElement;
 
-			addressInput.value = decodeURIComponent(
-				(currentFrame?.contentWindow?.location.href ?? "")
-				.split("/")
-				.pop() as string,
-			);
+			addressInput.value = scramjet.decodeUrl(currentFrame?.contentWindow?.location.href ?? "")
 
 			document.dispatchEvent(
 				new CustomEvent("switch-tab", {

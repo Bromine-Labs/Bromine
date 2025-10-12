@@ -23,16 +23,16 @@ const flatSettingsConfig = settingsData.sections.flatMap(
     {
       settingsData.sections.map((section) => (
         <section class="space-y-4 border-t border-overlay pt-4 first:pt-0 first:border-t-0">
-          <h2 class="text-lg font-medium text-text">{section.title}</h2>
+          <h2 class="text-lg font-medium ">{section.title}</h2>
           {section.settings.map((setting) => (
             <div class="flex items-center justify-between gap-4">
               <div class="flex items-center gap-2">
-                <label class="text-text" for={setting.id}>
+                <label for={setting.id}>
                   {setting.label}
                 </label>
                 {setting.description && (
                   <button
-                    class="info-btn text-text/60 hover:text-iris transition-colors"
+                    class="info-btn /60 hover:text-iris transition-colors"
                     aria-label={`More info about ${setting.label}`}
                     data-description={setting.description}
                   >
@@ -44,7 +44,7 @@ const flatSettingsConfig = settingsData.sections.flatMap(
                 {setting.type === "select" && (
                   <select
                     id={setting.id}
-                    class="bg-base text-text rounded-md p-1 border border-overlay focus:border-iris focus:outline-none"
+                    class="bg-bg  rounded-md p-1 border border-overlay focus:border-iris focus:outline-none"
                   >
                     {setting.options?.map((option) => (
                       <option disabled={option.disabled} value={option.value}>
@@ -58,7 +58,7 @@ const flatSettingsConfig = settingsData.sections.flatMap(
                     <input
                       type="text"
                       id={setting.id}
-                      class="bg-base text-text rounded-md border p-1 border-overlay focus:border-iris focus:outline-none w-full sm:w-48"
+                      class="bg-bg  rounded-md border p-1 border-overlay focus:border-iris focus:outline-none w-full sm:w-48"
                       placeholder={setting.placeholder || ""}
                       aria-invalid="false"
                       aria-describedby={`${setting.id}-error`}
@@ -83,13 +83,13 @@ const flatSettingsConfig = settingsData.sections.flatMap(
       ))
     }
 
-		<div class="border-t border-overlay pt-4 flex items-center space-x-3 text-lg text-text">
+		<div class="border-t border-overlay pt-4 flex items-center space-x-3 text-lg ">
   		<a
  				href="https://github.com/Bromine-Labs/Bromine"
 				target="_blank"
  				rel="noopener noreferrer"
  				aria-label="GitHub Repository"
- 				class="hover:text-iris transition-colors"
+ 				class="hover:text-link transition-colors"
  			>
  				<Icon name="ph:github-logo-bold" />
  			</a>
@@ -98,20 +98,42 @@ const flatSettingsConfig = settingsData.sections.flatMap(
  				target="_blank"
  				rel="noopener noreferrer"
  				aria-label="Discord Server"
- 				class="hover:text-iris transition-colors"
+ 				class="hover:text-link transition-colors"
 		  >
 			  <Icon name="ph:discord-logo-bold" />
 		  </a>
-			<p class="text-xs text-text">
+			<p class="text-xs ">
 	  		Ping: <span id="ping-result" class="font-mono">Pinging...</span>
       </p>
 		</div>
-		<span class="text-sm">Made with ❤️ by <a class="text-iris" href="https://github.com/Coding4hours">Coding4hours</a>. If you would like to donate, press this <a class="text-iris" href="https://learningbuildingroughly.com/wrfwaku4k?key=db2c034a6c2bc1dea6d0b672e9469543">link</a>. If you would like to upvote, press this <a class="text-iris" href="https://ubghub.org/?site=Bromine&utm_source=https%3A%2F%2Fbromineproxy.netlify.app">link</a></span>
+		<span class="text-sm">
+
+
+
+<!-- UBGHub Upvote Widget -->
+<a href="https://ubghub.org/?site=Bromine&utm_source=https%3A%2F%2Fbromineproxy.netlify.app"
+   target="_blank"
+   rel="noopener"
+   class="inline-flex items-center gap-2 px-4 py-2 sm:px-3 sm:py-1.5 rounded-lg font-semibold text-[var(--color-bg)] 
+          bg-gradient-to-br from-[var(--color-secondary)] to-[var(--color-primary)]
+          shadow-md transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg
+          text-sm sm:text-base md:text-lg lg:text-xl"
+>
+  <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
+    <path d="M3 10l4-4v3h4V2l4 4v14H3V10z"/>
+  </svg>
+  <span class="font-bold">Vote on UBGHub</span>
+</a>
+
+
+
+			Made with ❤️ by <a class="text-link" href="https://github.com/Coding4hours">Coding4hours</a>. 
+		</span>
   </div>
 
   <div
     id="info-tooltip"
-    class="bg-overlay absolute z-10 hidden max-w-xs p-2 text-sm rounded-md shadow-lg bg-crust text-text border border-overlay pointer-events-none"
+    class="bg-overlay absolute z-10 hidden max-w-xs p-2 text-sm rounded-md shadow-lg bg-crust  border border-overlay pointer-events-none"
   >
   </div>
 </Popup>

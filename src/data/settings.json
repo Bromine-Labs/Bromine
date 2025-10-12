@@ -7,16 +7,36 @@
 					"id": "theme",
 					"label": "Theme",
 					"type": "select",
-					"defaultValue": "main",
+					"defaultValue": "mocha",
 					"description": "It's simple. Make this website look different",
 					"options": [
+						{
+							"label": "Catppuccin",
+							"disabled": true
+						},
+						{
+							"value": "mocha",
+							"label": "Mocha"
+						},
+						{
+							"value": "macchiato",
+							"label": "Macchiato"
+						},
+						{
+							"value": "frappe",
+							"label": "Frappe"
+						},
+						{
+							"value": "latte",
+							"label": "Latte"
+						},
 						{
 							"label": "Rosé Pine",
 							"disabled": true
 						},
 						{
 							"value": "main",
-							"label": "Default"
+							"label": "Rosé Pine"
 						},
 						{
 							"value": "moon",
@@ -27,24 +47,12 @@
 							"label": "Dawn"
 						},
 						{
-							"label": "Catppuccin",
+							"label": "Other",
 							"disabled": true
 						},
 						{
-							"value": "macchiato",
-							"label": "Macchiato"
-						},
-						{
-							"value": "mocha",
-							"label": "Mocha"
-						},
-						{
-							"value": "frappe",
-							"label": "Frappe"
-						},
-						{
-							"value": "latte",
-							"label": "Latte"
+							"value": "amoled",
+							"label": "Amoled Dark"
 						}
 					]
 				},

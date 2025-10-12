@@ -6,34 +6,32 @@ import Suggestions from "@/components/utils/Suggestions.astro";
 import { Icon } from "astro-icon/components";
 ---
 
-<header class="sticky top-0 bg-base/50 p-2 flex items-center justify-between space-x-2 z-[25]">
-	<span>bromine</span>
-
+<header class="bg-surface border-b border-overlay sticky top-0 bg-bg/50 p-2 flex items-center justify-between space-x-2 z-[25]">
   <div class="flex items-center flex-1 space-x-2 max-w-4xl mx-auto">
     <button
       aria-label="Back"
       id="back-btn"
-      class="shadow-md bg-surface p-1.5 rounded-md hover:bg-highlight-med"
+      class="shadow-md bg-overlay p-1.5 rounded-md hover:bg-highlight-med"
     >
       <Icon name="ph:arrow-left-bold" class="size-4.5" />
     </button>
     <button
       aria-label="Forward"
       id="forward-btn"
-      class="shadow-md bg-surface p-1.5 rounded-md hover:bg-highlight-med"
+      class="shadow-md bg-overlay p-1.5 rounded-md hover:bg-highlight-med"
     >
       <Icon name="ph:arrow-right-bold" class="size-4.5" />
     </button>
     <button
       aria-label="Reload"
       id="reload-btn"
-      class="shadow-md bg-surface p-1.5 rounded-md hover:bg-highlight-med"
+      class="shadow-md bg-overlay p-1.5 rounded-md hover:bg-highlight-med"
     >
       <Icon name="ph:arrow-clockwise-bold" class="size-4.5" />
     </button>
 
     <div class="flex-1 min-w-0">
-      <div class="relative shadow-md dark:bg-surface flex items-center rounded-md px-3 py-1.5">
+      <div class="relative shadow-md bg-overlay flex items-center rounded-md px-3 py-1.5">
         <Icon name="ph:magnifying-glass-bold" class="size-4.5 mr-2" />
         <form id="form" class="flex w-full">
           <input
@@ -53,7 +51,7 @@ import { Icon } from "astro-icon/components";
     <button
       aria-label="gmes"
       id="gmes-btn"
-      class="shadow-md bg-surface p-1.5 rounded-md hover:bg-highlight-med"
+      class="shadow-md bg-overlay p-1.5 rounded-md hover:bg-highlight-med"
     >
       <Icon name="ph:game-controller-bold" class="size-4.5" />
     </button>
@@ -67,13 +65,13 @@ import { Icon } from "astro-icon/components";
     <button
       aria-label="Context Menu"
       id="three-dots-btn"
-      class="shadow-md bg-surface p-1.5 rounded-md hover:bg-highlight-med"
+      class="shadow-md bg-overlay p-1.5 rounded-md hover:bg-highlight-med"
     >
       <Icon name="ph:dots-three-outline-vertical-bold" class="size-4.5" />
     </button>
     <div
       id="context-menu"
-      class="origin-top-right absolute right-0 mt-2 w-48 bg-surface shadow-lg rounded-md border border-overlay hidden z-50"
+      class="origin-top-right absolute right-0 mt-2 w-48 bg-overlay shadow-lg rounded-md border border-overlay hidden z-50"
     >
       <button
         id="dev-btn"
