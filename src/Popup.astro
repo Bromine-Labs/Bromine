@@ -1,4 +1,3 @@
-
 ---
 import "@/styles.css";
 import { Icon } from "astro-icon/components";
@@ -24,7 +23,7 @@ const { triggerId, popupId, contentId, closeBtnId, title, label, triggerIcon } =
 <button
   aria-label={label}
   id={triggerId}
-  class="shadow-md p-1.5 bg-overlay rounded-md hover:bg-highlight-med"
+  class="shadow-md p-1.5 bg-overlay rounded-md"
 >
   <Icon name={triggerIcon} class="size-4.5" />
 </button>
@@ -44,9 +43,8 @@ const { triggerId, popupId, contentId, closeBtnId, title, label, triggerIcon } =
       <button
         id={closeBtnId}
         aria-label={`Close ${title}`}
-        class="hover:text-iris transition-colors"
       >
-        <Icon name="ph:x-bold" class="size-6" />
+        <Icon name="ph:x-bold" class="size-6 transition-colors hover:text-primary" />
       </button>
     </div>
 

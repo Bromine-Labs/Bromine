@@ -24,7 +24,7 @@ import Popup from "../Popup.astro"
             id="bookmark-title"
             name="title"
             required
-            class="w-full bg-surface0  p-2 rounded focus:outline-none focus:ring-2 focus:ring-iris text-sm"
+            class="w-full bg-surface0  p-2 rounded focus:outline-none focus:ring-2 focus:ring-border text-sm"
             placeholder="e.g., My Favorite Site"
           />
         </div>
@@ -37,7 +37,7 @@ import Popup from "../Popup.astro"
             id="bookmark-url"
             name="url"
             required
-            class="w-full bg-surface0  p-2 rounded focus:outline-none focus:ring-2 focus:ring-iris text-sm"
+            class="w-full bg-surface0  p-2 rounded focus:outline-none focus:ring-2 focus:ring-border text-sm"
             placeholder="example.com or something else"
           />
         </div>
@@ -122,7 +122,7 @@ import Popup from "../Popup.astro"
 
       const linkContainer = document.createElement("span");
       linkContainer.className =
-        "flex-1 min-w-0 truncate text-sm  hover:text-iris transition-colors";
+        "flex-1 min-w-0 truncate text-sm  text-link transition-colors";
       linkContainer.title = `${bookmark.title}\n${bookmark.url}`;
       linkContainer.onclick = async () => {
         currentFrame.src = await getProxied(bookmark.url);

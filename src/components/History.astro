@@ -27,7 +27,7 @@ import { Icon } from "astro-icon/components";
       <button
         id="history-close-btn"
         aria-label="Close History"
-        class=" hover:text-iris transition-colors"
+        class="hover:text-primary transition-colors"
       >
         <Icon name="ph:x-bold" class="size-6" />
       </button>
@@ -88,7 +88,7 @@ import { Icon } from "astro-icon/components";
     list.innerHTML = "";
     history.forEach((item) => {
       const li = document.createElement("li");
-      li.innerHTML = `<span title="${item.url}" class="text-iris underline cursor-pointer">${item.title}</span>`;
+      li.innerHTML = `<span title="${item.url}" class="text-link underline cursor-pointer">${item.title}</span>`;
       li.addEventListener("click", async () => {
         currentFrame.src = await getProxied(item.url);
         close();

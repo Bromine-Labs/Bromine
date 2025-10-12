@@ -19,6 +19,11 @@ export const addressInput: HTMLInputElement = document.getElementById(
 	"address",
 ) as HTMLInputElement;
 
+const getIcon = (url: string) =>
+  /^https?:\/\/[\w.-]+\.[a-z]{2,}/i.test(url)
+    ? `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,URL&size=64&url=${url}`
+    : "/favicon.ico";
+
 window.tabs = [];
 
 const transportOptions: TransportOptions = {
@@ -155,110 +160,115 @@ export function makeURL(
 		framesElement = frames;
 	}
 
+
 	export class Tab {
-		frame: HTMLIFrameElement;
-		tabNumber: number;
-		title: string = "New Tab";
-		url: string = "bromine://newtab";
-
-		constructor() {
-			tabCounter++;
-			this.tabNumber = tabCounter;
-
-			this.frame = scramjet.createFrame();
-			this.frame.frame.setAttribute("class", "w-full h-full border-0 fixed");
-			this.frame.frame.setAttribute("class", "w-full h-full border-0 absolute");
-			this.frame.frame.setAttribute("title", "Proxy Frame");
-			this.frame.frame.setAttribute("src", "/newtab")
-			this.frame.frame.setAttribute("id", `frame-${tabCounter}`);
-			framesElement.appendChild(this.frame.frame);
-
-			window.tabs.push(this);
-
-			this.switch();
-
-			this.frame.addEventListener("urlchange", (e) => {
-				this.handleLoad(e.url);
-			});
-
-
-
-			document.dispatchEvent(
-				new CustomEvent("new-tab", {
-					detail: {
-						tabNumber: tabCounter,
-						tab: this,
-					},
-				}),
-			);
-		}
-
-		switch(): void {
-			currentTab = this.tabNumber;
-			let frames = framesElement.querySelectorAll("iframe");
-			let framesArr = [...frames];
-			framesArr.forEach((frame) => {
-				frame.classList.add("hidden");
-			});
-			this.frame.frame.classList.remove("hidden");
-
-			currentFrame = document.getElementById(
-				`frame-${this.tabNumber}`,
-			) as HTMLIFrameElement;
-
-			addressInput.value = scramjet.decodeUrl(currentFrame?.contentWindow?.location.href ?? "")
-
-			document.dispatchEvent(
-				new CustomEvent("switch-tab", {
-					detail: {
-						tabNumber: this.tabNumber,
-					},
-				}),
-			);
-		}
-
-		close(): void {
-			this.frame.frame.remove();
-
-			window.tabs = window.tabs.filter(tab => tab.tabNumber !== this.tabNumber);
-
-			document.dispatchEvent(
-				new CustomEvent("close-tab", {
-					detail: {
-						tabNumber: this.tabNumber,
-					},
-				}),
-			);
-		}
-
-		handleLoad(url): void {
-			if (this.tabNumber !== currentTab) return;
-
-			let title = this.frame.frame?.contentWindow?.document.title;
-
-			this.title = title;
-			this.url = url;
-			try{ 
-				let history = localStorage.getItem("history")
-					? JSON.parse(localStorage.getItem("history") as string)
-					: [];
-					history = [...history, { url: url, title: title }];
-					localStorage.setItem("history", JSON.stringify(history));
-
-			} catch{}
-			document.dispatchEvent(
-				new CustomEvent("url-changed", {
-					detail: {
-						tabId: currentTab,
-						title: title,
-						url: url,
-					},
-				}),
-			);
-				if (url === "newtab") url = "bromine://newtab";
-
-					if(this.frame.frame == currentFrame) addressInput.value = url;
-		}
+	  frame: HTMLIFrameElement;
+	  tabNumber: number;
+	  title: string = "New Tab";
+	  url: string = "bromine://newtab";
+	  uiElement: HTMLElement;
+	
+	  constructor() {
+	    tabCounter++;
+	    this.tabNumber = tabCounter;
+	
+	    this.frame = scramjet.createFrame();
+	    this.frame.frame.setAttribute("class", "w-full h-full border-0 absolute");
+	    this.frame.frame.setAttribute("title", "Proxy Frame");
+	    this.frame.frame.setAttribute("src", "/newtab");
+	    this.frame.frame.setAttribute("id", `frame-${tabCounter}`);
+	    framesElement.appendChild(this.frame.frame);
+	
+	    this.createUI();
+	    window.tabs.push(this);
+	    this.switch();
+	
+	    this.frame.addEventListener("urlchange", (e) => {
+	      this.handleLoad(e.url);
+	    });
+	  }
+	
+	  createUI() {
+	    const tabsDiv = document.getElementById("tabs");
+	    if (!tabsDiv) return;
+	
+	    const tabEl = document.createElement("div");
+	    tabEl.className =
+	      "flex items-center min-w-[8rem] max-w-xs px-4 py-1 bg-overlay light hover:bg-overlay cursor-pointer transition-all duration-150 draggable-tab";
+	    tabEl.dataset.tabId = this.tabNumber;
+	    tabEl.draggable = true;
+	
+	    tabEl.innerHTML = `
+	      <img class="w-4 h-4 mr-2 rounded" alt="Favicon" src="/favicon.ico" />
+	      <span class="tab truncate flex-1 text-sm">${this.title}</span>
+	      <button class="ml-2 /50 hover: text-sm focus:outline-none">&times;</button>
+	    `;
+	
+	    tabEl.querySelector("button")?.addEventListener("click", (e) => {
+	      e.stopPropagation();
+	      this.close();
+	    });
+	
+	    tabEl.addEventListener("click", () => this.switch());
+	
+	    tabsDiv.appendChild(tabEl);
+	    this.uiElement = tabEl;
+	  }
+	
+	  updateUI() {
+	    if (!this.uiElement) return;
+	    const img = this.uiElement.querySelector("img");
+	    const span = this.uiElement.querySelector(".tab");
+	    if (img) img.src = this.url ? getIcon(this.url) : "/favicon.ico";
+	    if (span) span.textContent = this.title || "New Tab";
+	
+	    window.tabs.forEach((tab) => {
+	      if (!tab.uiElement) return;
+	      const isActive = tab.tabNumber === currentTab;
+				tab.uiElement.classList.toggle("border-x-3", isActive);
+				tab.uiElement.classList.toggle("bg-overlay", isActive);
+				tab.uiElement.classList.toggle("active", isActive);
+				tab.uiElement.classList.toggle("font-medium", isActive);
+				tab.uiElement.classList.toggle("border-border", isActive);
+	    });
+	  }
+	
+	  switch(): void {
+	    currentTab = this.tabNumber;
+	    framesElement.querySelectorAll("iframe").forEach((frame) => frame.classList.add("hidden"));
+	    this.frame.frame.classList.remove("hidden");
+	
+	    currentFrame = this.frame.frame;
+	    addressInput.value = scramjet.decodeUrl(currentFrame?.contentWindow?.location.href ?? "");
+	    this.updateUI();
+	  }
+	
+	  close(): void {
+	    this.frame.frame.remove();
+	    this.uiElement?.remove();
+	    window.tabs = window.tabs.filter((t) => t.tabNumber !== this.tabNumber);
+	
+	    if (currentTab === this.tabNumber) {
+	      if (window.tabs.length > 0) window.tabs[0].switch();
+	      else newTab();
+	    }
+	  }
+	
+	  handleLoad(url: string): void {
+	    if (this.tabNumber !== currentTab) return;
+	
+	    this.title = this.frame.frame?.contentWindow?.document.title || "New Tab";
+	    this.url = url;
+	
+	    try {
+	      let history = JSON.parse(localStorage.getItem("history") || "[]");
+	      history.push({ url, title: this.title });
+	      localStorage.setItem("history", JSON.stringify(history));
+	    } catch {}
+	
+	    this.updateUI();
+	    addressInput.value = url;
+	  }
 	}
 
 	export async function newTab() {

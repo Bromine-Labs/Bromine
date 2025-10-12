@@ -4,31 +4,24 @@
 @theme {
   --font-display: "Switzer", Helvetica, sans-serif;
 
-  /* === Base === */
-  --color-bg: #191724;
-  --color-surface: #1f1d2e;
-  --color-overlay: #26233a;
-  --color-text: #e0def4;
-  --color-muted: #6e6a86;
-  --color-subtle: #908caa;
-
-  /* === Accents === */
-  --color-primary: #eb6f92;
-  --color-secondary: #9ccfd8;
-  --color-tertiary: #c4a7e7;
-
-  /* === UI Toggles === */
+  --color-bg: #1e1e2e;
+  --color-surface: #313244;
+  --color-overlay: #45475a;
+  --color-text: #cdd6f4;
+  --color-muted: #a6adc8;
+  --color-subtle: #bac2de;
+  --color-primary: #f38ba8;
+  --color-secondary: #94e2d5;
+  --color-tertiary: #cba6f7;
   --color-link: var(--color-secondary);
   --color-link-hover: var(--color-tertiary);
   --color-button-bg: var(--color-primary);
-  --color-button-hover: #f6c177;
+  --color-button-hover: #fab387;
   --color-border: var(--color-overlay);
   --color-highlight: var(--color-tertiary);
-
-  /* === Misc === */
   --color-input-bg: var(--color-surface);
   --color-input-border: var(--color-overlay);
-  --color-code-bg: #21202e;
+  --color-code-bg: #181825;
 }
 
 

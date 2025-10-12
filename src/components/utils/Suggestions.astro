@@ -55,7 +55,7 @@
 		suggsList.innerHTML = suggs
 			.map(
 				(item, index) => `
-			<li class="p-2 cursor-pointer hover:bg-highlight-low " data-index="${index}">
+			<li class="p-2 cursor-pointer hover:bg-overlay" data-index="${index}">
 				${item}
 			</li>
 		`
@@ -66,7 +66,7 @@
 
 		// Always highlight the first suggestion
 		currentHighlightedIndex = 0;
-		items[currentHighlightedIndex].classList.add("bg-highlight-low");
+		items[currentHighlightedIndex].classList.add("bg-overlay");
 		addressInput.value = items[currentHighlightedIndex].textContent.trim();
 
 		items.forEach((li) => {
@@ -88,13 +88,13 @@
 		if (items.length === 0) return;
 
 		if (currentHighlightedIndex > -1 && items[currentHighlightedIndex]) {
-			items[currentHighlightedIndex].classList.remove("bg-highlight-low");
+			items[currentHighlightedIndex].classList.remove("bg-overlay");
 		}
 
 		if (index < 0) index = items.length - 1;
 		if (index >= items.length) index = 0;
 
-		items[index].classList.add("bg-highlight-low");
+		items[index].classList.add("bg-overlay");
 		currentHighlightedIndex = index;
 
 		addressInput.value = items[currentHighlightedIndex].textContent.trim();

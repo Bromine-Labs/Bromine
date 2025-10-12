@@ -71,20 +71,9 @@ const {
         document.body.dataset.theme = theme;
       };
 
-      const applyCloak = () => {
-        const cloak = localStorage.getItem("cloak");
-        if (!cloak || cloak === "none") return;
-        const [newTitle, newIcon] = cloak.split("|");
-        document.title = newTitle;
-        const favicon = document.querySelector("link[rel=icon]");
-        if (favicon) favicon.href = newIcon;
-      };
-
       window.addEventListener("theme-changed", applyTheme);
-      window.addEventListener("cloak-changed", applyCloak);
       document.addEventListener("DOMContentLoaded", () => {
         applyTheme();
-        applyCloak();
       });
     </script>
   </head>
