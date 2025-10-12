@@ -182,7 +182,7 @@ ${l}`}}if((0,n.U5)("rewriterLogs",r.base))for(let e of s.errors)console.error("o
                             </div>
                         </div>
                         <br>
-                        <button id="reload" class="primary">Reload</button>
+                        <button id="reload" class="primary">this is a scramjet error Reload</button>
                     </div>
                     <p id="version-wrapper"><i>Scramjet v<span id="version"></span> (build <span id="build"></span>)</i></p>
                     <script src="${"data:application/javascript,"+encodeURIComponent(r)}"></script>

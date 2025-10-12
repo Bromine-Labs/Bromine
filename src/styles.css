@@ -4,22 +4,45 @@
 @theme {
   --font-display: "Switzer", Helvetica, sans-serif;
 
-  --color-base: #191724;
+  /* === Base === */
+  --color-bg: #191724;
   --color-surface: #1f1d2e;
   --color-overlay: #26233a;
+  --color-text: #e0def4;
   --color-muted: #6e6a86;
   --color-subtle: #908caa;
-  --color-text: #e0def4;
-  --color-love: #eb6f92;
-  --color-gold: #f6c177;
-  --color-rose: #ebbcba;
-  --color-pine: #31748f;
-  --color-foam: #9ccfd8;
-  --color-iris: #c4a7e7;
-  --color-highlight-low: #21202e;
-  --color-highlight-med: #403d52;
-  --color-highlight-high: #524f67;
+
+  /* === Accents === */
+  --color-primary: #eb6f92;
+  --color-secondary: #9ccfd8;
+  --color-tertiary: #c4a7e7;
+
+  /* === UI Toggles === */
+  --color-link: var(--color-secondary);
+  --color-link-hover: var(--color-tertiary);
+  --color-button-bg: var(--color-primary);
+  --color-button-hover: #f6c177;
+  --color-border: var(--color-overlay);
+  --color-highlight: var(--color-tertiary);
+
+  /* === Misc === */
+  --color-input-bg: var(--color-surface);
+  --color-input-border: var(--color-overlay);
+  --color-code-bg: #21202e;
 }
+
+
+.no-scrollbar {
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+
 
 @font-face {
   font-family: "Switzer";
@@ -43,6 +66,10 @@ h1 {
   @apply text-2xl;
 }
 
+body {
+	@apply text-text;
+}
+
 h2 {
   @apply text-xl;
 }
@@ -52,7 +79,7 @@ h3 {
 }
 
 label {
-  @apply text-xs text-text font-medium;
+  @apply text-xs  font-medium;
 }
 
 button {
@@ -93,4 +120,9 @@ button:active {
   z-index: -1;
   border-radius: 16px;
   /* Match parent border-radius */
+}
+
+
+#gmeContainer {
+  overflow-y: overlay; /* scrollable without taking space for scrollbar */
 }

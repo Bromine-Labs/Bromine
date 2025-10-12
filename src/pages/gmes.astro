@@ -1,59 +1,67 @@
 ---
 import Layout from "@/Layout.astro";
-import {Icon} from "astro-icon/components"
+import { Icon } from "astro-icon/components";
 ---
-<Layout title="gmes - bromine" desc="bromine's gmes page">
-  <script
-		src="@/utils/gmes.ts"
-		></script>
+<Layout title="gmes - bromine" desc="bromine's gmes page" class="no-scrollbar">
+  <script src="@/utils/gmes.ts"></script>
+
+<style>
+	/* Target the element that contains scrollable content */
+html, body, #gmeContainer {
+  overflow-y: scroll; /* content is scrollable */
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#gmeContainer::-webkit-scrollbar {
+  width: 0px; /* hide scrollbar in WebKit browsers */
+  background: transparent;
+}
+
+</style>
 
 
-
-
-
-
-<div class="flex justify-center py-3 sticky top-0 backdrop-blur shadow-md z-50">
-  <div class="flex items-center w-full max-w-xl bg-surface rounded-md shadow px-3">
-    <Icon name="ph:magnifying-glass-bold" class="size-5 text-muted"/>
-    <input
-      class="flex-1 bg-transparent pl-3 py-2 focus:outline-none text-text w-full"
-      id="search"
-      placeholder="Search..."
-      type="text"
-    />
+  <div class="flex justify-center py-3 sticky top-0 backdrop-blur shadow-md z-50">
+    <div class="flex items-center w-full max-w-xl bg-surface rounded-md shadow px-3">
+      <Icon name="ph:magnifying-glass-bold" class="size-5 text-muted"/>
+      <input
+        id="search"
+        type="text"
+        placeholder="Search..."
+        class="flex-1 bg-transparent pl-3 py-2 focus:outline-none  w-full"
+      />
+    </div>
   </div>
-</div>
 
-	<section id="gmeContainer"></section>
-<script async="async" data-cfasync="false" src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"></script>
-	<div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
+  <section id="gmeContainer"></section>
 
+  <script async data-cfasync="false" src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"></script>
+  <div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
 
-<div
-  id="gmePageContainer"
-  class="hidden fixed inset-0 z-[999] bg-surface/90"
->
-  <!-- Title on the top-left -->
-  <h2
-    id="gmePageTitle"
-    class="z-50 absolute top-[15px] left-[20px] text-3xl font-bold text-white"
-  ></h2>
-
-  <!-- Close button on the top-right -->
-  <button
-    id="backBtn"
-    class="z-50 flex items-center absolute top-[15px] right-[20px] px-4 py-2 text-text cursor-pointer bg-highlight-med/70 text-white rounded-lg border-0 hover:bg-surface/70 transition"
+  <div
+    id="gmePageContainer"
+    class="hidden fixed inset-0 z-[999] bg-surface/90"
   >
-    <Icon name="ph:x" class="size-5" />
-    Close
-  </button>
+    <h2
+      id="gmePageTitle"
+      class="z-50 absolute top-[15px] left-[20px] text-3xl font-bold "
+    ></h2>
 
-  <!-- Fullscreen iframe -->
-  <iframe
-    id="gmePageFrame"
-    class="absolute top-0 left-0 w-full h-full border-none"
-    allowfullscreen
-  ></iframe>
-</div>
+    <button
+      id="backBtn"
+      class="z-50 flex items-center absolute top-[15px] right-[20px] px-4 py-2 cursor-pointer rounded-lg border-0
+             bg-highlight-med/70  hover:bg-surface/70 transition"
+    >
+      <Icon name="ph:x" class="size-5" />
+      Close
+    </button>
 
+    <iframe
+      id="gmePageFrame"
+      class="absolute top-0 left-0 w-full h-full border-none"
+      allowfullscreen
+    ></iframe>
+  </div>
 </Layout>
+

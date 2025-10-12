@@ -19,29 +19,24 @@ import { Icon } from "astro-icon/components";
 
   const tabsDiv = document.getElementById("tabs");
 
-  /**
-   * Generates a favicon URL from a given page URL.
-   */
+
   const getIcon = (url: string) =>
     /^https?:\/\/[\w.-]+\.[a-z]{2,}/i.test(url)
-      ? `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,URL&size=64&url=${url}`
-      : "https://images.placeholders.dev/24"; // Fallback for local/internal pages
+			? `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,URL&size=64&url=${url}`
+	    : "/favicon.ico"
 
-  /**
-   * Creates the DOM element for a tab and links it to the tab instance.
-   * @param {object} tabInstance - The instance of the Tab class from window.tabs.
-   */
+
   function createTabElement(tabInstance) {
     const tabEl = document.createElement("div");
     tabEl.className =
-      "flex items-center min-w-[8rem] max-w-xs px-4 py-1 border-r border-overlay hover:bg-overlay cursor-pointer transition-all duration-150 draggable-tab";
+      "flex items-center min-w-[8rem] max-w-xs px-4 py-1 bg-overlay hover:bg-overlay cursor-pointer transition-all duration-150 draggable-tab";
     tabEl.dataset.tabId = tabInstance.tabNumber;
     tabEl.draggable = true;
 
     tabEl.innerHTML = `
       <img class="w-4 h-4 mr-2 rounded" alt="Favicon" src="${getIcon(tabInstance.url)}" />
       <span class="tab truncate flex-1 text-sm">${tabInstance.title}</span>
-      <button class="ml-2 text-text/50 hover:text-text text-sm focus:outline-none">&times;</button>
+      <button class="ml-2 /50 hover: text-sm focus:outline-none">&times;</button>
     `;
 
     // Attach event listeners
@@ -49,7 +44,7 @@ import { Icon } from "astro-icon/components";
       e.stopPropagation();
       closeTab?.(tabInstance.tabNumber);
     };
-    tabEl.onclick = () => switchTab?.(tabInstance.tabNumber);
+		tabEl.onclick = () => switchTab?.(tabInstance.tabNumber);
 
     // Link the DOM element to the tab instance for easy access
     tabInstance.uiElement = tabEl;
@@ -64,12 +59,12 @@ import { Icon } from "astro-icon/components";
   function updateActiveStyles(activeId) {
     window.tabs.forEach((tab) => {
       if (!tab.uiElement) return;
-      const isActive = tab.tabNumber === activeId;
+			const isActive = tab.tabNumber === activeId;
+			tab.uiElement.classList.toggle("border-x-3", isActive)
       tab.uiElement.classList.toggle("bg-overlay", isActive);
       tab.uiElement.classList.toggle("active", isActive);
       tab.uiElement.classList.toggle("font-medium", isActive);
-      tab.uiElement.classList.toggle("border-b-2", isActive);
-      tab.uiElement.classList.toggle("border-iris", isActive);
+			tab.uiElement.classList.toggle("border-iris", isActive);
     });
   }
   
