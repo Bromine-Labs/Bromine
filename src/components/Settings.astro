@@ -32,7 +32,7 @@ const flatSettingsConfig = settingsData.sections.flatMap(
                 </label>
                 {setting.description && (
                   <button
-                    class="info-btn /60 hover:text-iris transition-colors"
+										class="info-btn hover:text-tertiary transition-colors"
                     aria-label={`More info about ${setting.label}`}
                     data-description={setting.description}
                   >
@@ -44,7 +44,7 @@ const flatSettingsConfig = settingsData.sections.flatMap(
                 {setting.type === "select" && (
                   <select
                     id={setting.id}
-                    class="bg-bg  rounded-md p-1 border border-overlay focus:border-iris focus:outline-none"
+                    class="bg-bg  rounded-md p-1 border border-overlay focus:border-border focus:outline-none"
                   >
                     {setting.options?.map((option) => (
                       <option disabled={option.disabled} value={option.value}>
@@ -58,12 +58,12 @@ const flatSettingsConfig = settingsData.sections.flatMap(
                     <input
                       type="text"
                       id={setting.id}
-                      class="bg-bg  rounded-md border p-1 border-overlay focus:border-iris focus:outline-none w-full sm:w-48"
+                      class="bg-bg  rounded-md border p-1 border-overlay focus:border-border focus:outline-none w-full sm:w-48"
                       placeholder={setting.placeholder || ""}
                       aria-invalid="false"
                       aria-describedby={`${setting.id}-error`}
                     />
-                    <p id={`${setting.id}-error`} class="text-xs text-rose mt-1 hidden" role="alert"></p>
+                    <p id={`${setting.id}-error`} class="text-xs text-primary mt-1 hidden" role="alert"></p>
                   </div>
                 )}
                 {setting.type === "toggle" && (
@@ -73,7 +73,7 @@ const flatSettingsConfig = settingsData.sections.flatMap(
                       id={setting.id}
                       class="sr-only peer"
                     />
-                    <div class="bg-pine w-11 h-6 rounded-full peer peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-iris peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-iris" />
+                    <div class="bg-input-bg w-11 h-6 rounded-full peer peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-tertiary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-tertiary" />
                   </label>
                 )}
               </div>
@@ -137,32 +137,13 @@ const flatSettingsConfig = settingsData.sections.flatMap(
   >
   </div>
 </Popup>
-<script define:vars={{ settingsConfig: flatSettingsConfig }} defer is:inline>
+<script define:vars={{ settingsConfig: flatSettingsConfig }}>
 
 // --- variables ---
 const popupContent = document.getElementById("settings-popup-content");
 const tooltip = document.getElementById("info-tooltip");
 
 // --- Settings Change ---
-
-const checkRegex = (element, setting) => {
-  const errorElement = document.getElementById(`${setting.id}-error`);
-
-  if (!errorElement || setting.type !== "text" || !setting.regex) {
-    return true;
-  }
-
-  const regex = new RegExp(setting.regex);
-  const isValid = regex.test(element.value);
-
-  errorElement.classList.toggle("hidden", isValid);
-  errorElement.textContent = isValid ? "" : (setting.validationMessage ?? "Invalid input.");
-  element.classList.toggle("border-rose", !isValid); 
-  element.setAttribute("aria-invalid", (!isValid).toString()); 
-
-  return isValid;
-};
-
 const load = () => {
   settingsConfig.forEach((setting) => {
     const element = document.getElementById(setting.id);
@@ -184,10 +165,6 @@ const save = (event) => {
   const setting = settingsConfig.find((s) => s.id === element.id);
   if (!setting) return;
 
-  if (!checkRegex(element, setting)) {
-    return;
-  }
-
   const valueToStore = setting.type === "toggle" ? element.checked : element.value;
   localStorage.setItem(setting.id, valueToStore.toString());
 };
@@ -203,7 +180,7 @@ const init = () => {
       if (setting.type === "text" && setting.regex) {
         element.addEventListener("input", ({ target: currentElement }) => {
           const currentSetting = settingsConfig.find((s) => s.id === currentElement.id);
-          currentSetting && checkRegex(currentElement, currentSetting);
+          currentSetting;
         });
       }
     }

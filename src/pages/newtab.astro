@@ -30,7 +30,7 @@ import "@/styles.css";
                autocomplete="off"
                id="address"
                type="text"
-               class=" border border-iris rounded-lg p-2 mb-4 w-full max-w-md"
+               class="border border-border rounded-lg p-2 mb-4 w-full max-w-md"
                required
                placeholder="Search the world wide web"
             >
@@ -69,21 +69,7 @@ import "@/styles.css";
              document.body.dataset.theme = localStorage.getItem("theme");
            };
 
-           const applyWallpaper = () => {
-             const enabled = localStorage.getItem("wallpaper-enabled") === "true";
-             const url = localStorage.getItem("wallpaper-url");
-             if (enabled && url) {
-               document.body.style.backgroundImage = `url('${url}')`;
-               document.body.style.backgroundSize = "cover";
-               document.body.style.backgroundPosition = "center";
-               document.body.style.backgroundRepeat = "no-repeat";
-             } else {
-               document.body.style.backgroundImage = "none";
-             }
-           };
-
            applyTheme();
-           applyWallpaper();
 
            window.addEventListener("message", (event) => {
              const msg = event.data;
@@ -91,8 +77,6 @@ import "@/styles.css";
 
              switch(msg.type) {
                case "theme-changed": applyTheme(); break;
-               case "wallpaper-enabled-changed": applyWallpaper(); break;
-							 case "wallpaper-url-changed": applyWallpaper(); break;
 							 default: document.dispatchEvent(new CustomEvent(msg.type));
 							 case "search-engine-changed":
                  search = localStorage.getItem("search-engine");

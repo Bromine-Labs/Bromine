@@ -96,6 +96,13 @@
 							"label": "Yandex"
 						}
 					]
+				},
+				{
+					"id": "anti-close",
+					"label": "Anti Close",
+					"type": "toggle",
+					"defaultValue": "off",
+					"description": "Stops the bromine tab from being closed. This can either be a good thing or a bad thing."
 				}
 			]
 		},
@@ -194,24 +201,6 @@
 					"defaultValue": "",
 					"placeholder": "wss://wísp.pro/",
 					"description": "The transport server used. This requires a '/' at the end"
-				}
-			]
-		},
-		{
-			"title": "New Tab",
-			"settings": [
-				{
-					"id": "wallpaper-enabled",
-					"label": "Enable Wallpaper",
-					"type": "toggle",
-					"defaultValue": "false"
-				},
-				{
-					"id": "wallpaper-url",
-					"label": "Wallpaper URL",
-					"defaultValue": "",
-					"type": "text",
-					"placeholder": "wallpaper url..."
 				}
 			]
 		}

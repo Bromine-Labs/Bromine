@@ -10,18 +10,17 @@
 
 
 ## In Progress
-
+- [ ] make ui better
+- [ ] migrate to new theming system
 
 ## Not Started
 
+- [ ] fix the broken history
 - [ ] ai
-- [ ] custom script injection
+- [ ] userscripts
 - [ ] vertical tabs
 - [ ] pinable tabs
 - [ ] tab groups
 - [ ] custom theme
 - [ ] glassmorphism
 - [ ] extensions
-- [ ] mrigate to qwik
-- [ ] migrate to new theming system
-- [ ] make ui better
