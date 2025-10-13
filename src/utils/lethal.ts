@@ -201,7 +201,7 @@ export function makeURL(
 	    tabEl.innerHTML = `
 	      <img class="w-4 h-4 mr-2 rounded" alt="Favicon" src="/favicon.ico" />
 	      <span class="tab truncate flex-1 text-sm">${this.title}</span>
-	      <button class="ml-2 /50 hover: text-sm focus:outline-none">&times;</button>
+	      <button class="ml-2 text-xl focus:outline-none">&times;</button>
 	    `;
 	
 	    tabEl.querySelector("button")?.addEventListener("click", (e) => {

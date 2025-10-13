@@ -151,14 +151,62 @@ import { Icon } from "astro-icon/components";
         currentFrame.requestFullscreen();
       }
     },
-    {
-      id: "gmes-btn",
-      handler: () => {
-        if (currentFrame?.contentWindow) {
-          currentFrame.src = "/gmes";
-        }
-      }
-    },
+		  {
+		    id: "gmes-btn",
+		    handler: () => {
+		      if (currentFrame?.contentWindow) {
+		        currentFrame.src = "/gmes";
+		      }
+		    }
+		},
+
+
+		/*{
+  id: "gmes-btn",
+  handler: () => {
+    if (!currentFrame) return;
+
+    // Prevent multiple overlays
+    if (document.getElementById("gmes-overlay")) return;
+
+    // Create overlay container
+    const overlay = document.createElement("div");
+    overlay.id = "gmes-overlay";
+    overlay.className =
+      "fixed inset-0 z-[9999] flex flex-col bg-black";
+
+    // Create iframe
+    const iframe = document.createElement("iframe");
+    iframe.src = "/gmes";
+    iframe.className = "w-full h-full border-none";
+
+    // Create top-right close menu
+    const menu = document.createElement("div");
+    menu.className =
+      "absolute bottom-3 right-3 bg-overlay/80 backdrop-blur-md flex items-center space-x-2 p-2 rounded-xl shadow-lg";
+
+    const closeBtn = document.createElement("button");
+    closeBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    `;
+    closeBtn.className =
+      "p-2 hover:bg-highlight-med rounded-lg transition";
+    closeBtn.title = "Close";
+
+    // Close handler
+    closeBtn.addEventListener("click", () => {
+      overlay.remove();
+    });
+
+    // Assemble
+    menu.appendChild(closeBtn);
+    overlay.appendChild(menu);
+    overlay.appendChild(iframe);
+    document.body.appendChild(overlay);
+  },
+}*/
   ]
 
   actions.forEach(({ id, handler }) => {
