@@ -260,8 +260,30 @@ export function makeURL(
 	    this.title = this.frame.frame?.contentWindow?.document.title || "New Tab";
 	    this.url = url;
 	
-	    try {
-	      let history = JSON.parse(localStorage.getItem("history") || "[]");
+
+
+
+			const doc = this.frame.contentDocument || this.frame.contentWindow.document;
+			const text = doc.body?.textContent?.toLowerCase() || "";
+
+			const bareErr = text.includes("there are no bare clients");
+			const otherErr = doc.querySelector("#errorTitle");
+
+			if (bareErr) {
+				if (++this.statusObject.timesErrored <= 5) {
+					console.warn(`Bare client error (${this.statusObject.timesErrored}/5) → reloading`);
+					this.frame.contentWindow.location.reload();
+				}
+			} else if (otherErr) {
+				console.warn(`Iframe error (${++this.statusObject.timesErrored})`);
+			} else {
+				this.statusObject.timesErrored = 0;
+			}
+
+
+
+			try {
+				let history = JSON.parse(localStorage.getItem("history") || "[]");
 	      history.push({ url, title: this.title });
 	      localStorage.setItem("history", JSON.stringify(history));
 	    } catch {}
