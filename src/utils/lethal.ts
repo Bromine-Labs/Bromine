@@ -169,6 +169,7 @@ export function makeURL(
 	  uiElement: HTMLElement;
 	
 	  constructor() {
+		if(!framesElement) return;
 	    tabCounter++;
 	    this.tabNumber = tabCounter;
 	
