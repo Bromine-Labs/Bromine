@@ -1,5 +1,5 @@
 ---
-import Popup from "../Popup.astro"
+import Popup from "../Popup.astro";
 ---
 
 <Popup
@@ -16,7 +16,7 @@ import Popup from "../Popup.astro"
       <form id="bookmark-form" class="flex flex-col space-y-2">
         <input type="hidden" id="bookmark-id" />
         <div>
-          <label for="bookmark-title" class=" font-semibold text-sm"
+          <label for="bookmark-title" class="text-sm font-semibold"
             >Title:</label
           >
           <input
@@ -24,34 +24,32 @@ import Popup from "../Popup.astro"
             id="bookmark-title"
             name="title"
             required
-            class="w-full bg-surface0  p-2 rounded focus:outline-none focus:ring-2 focus:ring-border text-sm"
+            class="bg-surface0 focus:ring-border w-full rounded p-2 text-sm focus:ring-2 focus:outline-none"
             placeholder="e.g., My Favorite Site"
           />
         </div>
         <div>
-          <label for="bookmark-url" class=" font-semibold text-sm"
-            >URL:</label
-          >
+          <label for="bookmark-url" class="text-sm font-semibold">URL:</label>
           <input
             type="url"
             id="bookmark-url"
             name="url"
             required
-            class="w-full bg-surface0  p-2 rounded focus:outline-none focus:ring-2 focus:ring-border text-sm"
+            class="bg-surface0 focus:ring-border w-full rounded p-2 text-sm focus:ring-2 focus:outline-none"
             placeholder="example.com or something else"
           />
         </div>
         <div class="flex space-x-2 pt-2">
           <button
             type="submit"
-            class="bg-green  px-3 py-1.5 rounded hover:bg-opacity-80 transition-colors flex-grow text-sm"
+            class="bg-green hover:bg-opacity-80 flex-grow rounded px-3 py-1.5 text-sm transition-colors"
           >
             Save
           </button>
           <button
             type="button"
             id="delete-btn"
-            class="bg-red  px-3 py-1.5 rounded hover:bg-opacity-80 transition-colors flex-grow hidden text-sm"
+            class="bg-red hover:bg-opacity-80 hidden flex-grow rounded px-3 py-1.5 text-sm transition-colors"
           >
             Delete
           </button>
@@ -59,12 +57,9 @@ import Popup from "../Popup.astro"
       </form>
     </div>
 
-    <div class="border-t border-surface1 pt-3">
-      <h3 class=" font-semibold mb-2">Your Bookmarks</h3>
-      <ul
-        id="bookmarks"
-        class="space-y-2 max-h-[40vh] overflow-y-auto pr-2"
-      >
+    <div class="border-surface1 border-t pt-3">
+      <h3 class="mb-2 font-semibold">Your Bookmarks</h3>
+      <ul id="bookmarks" class="max-h-[40vh] space-y-2 overflow-y-auto pr-2">
         <li>Nothing here yet...</li>
       </ul>
     </div>
@@ -73,17 +68,17 @@ import Popup from "../Popup.astro"
 
 <div
   id="bookmark-context-menu"
-  class="z-[10000] fixed hidden bg-surface0  rounded shadow-lg py-0.5 border border-surface1"
+  class="bg-surface0 border-surface1 fixed z-[10000] hidden rounded border py-0.5 shadow-lg"
 >
   <button
     data-action="edit"
-    class="block w-full text-left px-3 py-1 hover:bg-surface1 text-sm"
+    class="hover:bg-surface1 block w-full px-3 py-1 text-left text-sm"
   >
     Edit
   </button>
   <button
     data-action="delete"
-    class="block w-full text-left px-3 py-1 hover:bg-surface1 text-sm text-red"
+    class="hover:bg-surface1 text-red block w-full px-3 py-1 text-left text-sm"
   >
     Delete
   </button>
@@ -101,7 +96,6 @@ import Popup from "../Popup.astro"
 
   let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
   let contextMenuIndex = -1;
-
 
   const renderList = () => {
     if (!bookmarksList) return;
@@ -276,5 +270,4 @@ import Popup from "../Popup.astro"
   });
 
   renderList();
-
 </script>

@@ -1,9 +1,7 @@
 declare global {
-
   interface Window {
     $scramjetLoadController: () => { ScramjetController: any };
   }
-
 
   // so uh this is transport interface guys mindblowing technology
   interface TransportOptions {
@@ -12,10 +10,10 @@ declare global {
   }
   type Transport = keyof TransportOptions;
 
-	interface Window {
-		tabs: Tab[];
-		scramjet: any;
+  interface Window {
+    tabs: Tab[];
+    scramjet: any;
   }
 }
 
-export { };
+export {};

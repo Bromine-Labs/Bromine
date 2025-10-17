@@ -1,98 +1,119 @@
 ---
 import "@/styles.css";
 ---
+
 <html lang="en">
-   <head>
-      <!-- Google tag (gtag.js) -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-NQ3WX8KNQW");
+    </script>
+    <meta charset="UTF-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
+  </head>
+  <body class="bg-base overflow-none text-text flex">
+    <main
+      id="main"
+      class="flex h-screen flex-grow flex-col items-center justify-center"
+    >
+      <h1 class="text-4xl font-bold">Bromine</h1>
+      <span class="mb-4">Unrestricted browsing</span>
+      <form id="form" class="flex w-full justify-center">
+        <input
+          autofocus
+          spellcheck="false"
+          autocomplete="off"
+          id="address"
+          type="text"
+          class="border-border mb-4 w-full max-w-md rounded-lg border p-2"
+          required
+          placeholder="Search the world wide web"
+        />
+      </form>
+
+      <script
+        async="async"
+        data-cfasync="false"
+        src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"
+      ></script>
+      <div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
+
       <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-NQ3WX8KNQW');
+        import {
+          setTransport,
+          setWisp,
+          makeURL,
+          currentFrame,
+          getProxied,
+        } from "@/utils/lethal";
+
+        let wisp = localStorage.getItem("wísp-server") || "wss://anura.pro/";
+        let transport = localStorage.getItem("prσxy-transport");
+
+        setWisp(wisp);
+        if (transport) setTransport(transport);
+        else if (navigator.userAgent.includes("Firefox"))
+          setTransport("libcurl");
+        else setTransport("epoxy");
+
+        let search =
+          localStorage.getItem("search-engine") ||
+          "https://duckduckgo.com/search?q=%s";
+
+        const form = document.getElementById("form");
+        const input = document.getElementById("address");
+
+        form?.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const proxiedUrl = await getProxied(makeURL(input.value, search));
+          if (localStorage.getItem("stealth-mode"))
+            location.replace(proxiedUrl);
+          else location.href = proxiedUrl;
+        });
+
+        // Theme + Wallpaper Handling
+        const applyTheme = () => {
+          document.body.dataset.theme = localStorage.getItem("theme");
+        };
+
+        applyTheme();
+
+        window.addEventListener("message", (event) => {
+          const msg = event.data;
+          if (!msg || !msg.type) return;
+
+          switch (msg.type) {
+            case "theme-changed":
+              applyTheme();
+              break;
+            default:
+              document.dispatchEvent(new CustomEvent(msg.type));
+            case "search-engine-changed":
+              search = localStorage.getItem("search-engine");
+              break;
+            case "wísp-server-changed":
+              wisp = localStorage.getItem("wísp-server");
+              setWisp(wisp);
+              break;
+            case "prσxy-transport-changed":
+              transport = localStorage.getItem("prσxy-transport");
+              setTransport(transport);
+              break;
+          }
+        });
       </script>
-      <meta charset="UTF-8" />
-      <meta content="IE=edge" http-equiv="X-UA-Compatible" />
-      <meta
-         name="viewport"
-         content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-      />
-      <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
-   </head>
-   <body class="bg-base flex overflow-none text-text">
-      <main id="main" class="flex flex-col flex-grow h-screen justify-center items-center">
-				<h1 class="text-4xl font-bold">Bromine</h1>
-				<span class="mb-4">Unrestricted browsing</span>
-         <form id="form" class="flex justify-center w-full">
-            <input
-               autofocus
-               spellcheck="false"
-               autocomplete="off"
-               id="address"
-               type="text"
-               class="border border-border rounded-lg p-2 mb-4 w-full max-w-md"
-               required
-               placeholder="Search the world wide web"
-            >
-         </form>
-
-         <script async="async" data-cfasync="false" src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"></script>
-         <div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
-
-         <script>
-           import { setTransport, setWisp, makeURL, currentFrame, getProxied } from "@/utils/lethal";
-
-           let wisp = localStorage.getItem("wísp-server") || "wss://anura.pro/";
-           let transport = localStorage.getItem("prσxy-transport");
-
-           setWisp(wisp);
-           if (transport) setTransport(transport);
-           else if (navigator.userAgent.includes("Firefox")) setTransport("libcurl");
-           else setTransport("epoxy");
-
-           let search = localStorage.getItem("search-engine") || "https://duckduckgo.com/search?q=%s";
-
-           const form = document.getElementById("form");
-           const input = document.getElementById("address");
-
-           form?.addEventListener("submit", async (e) => {
-             e.preventDefault();
-             const proxiedUrl = await getProxied(makeURL(input.value, search));
-             if (localStorage.getItem("stealth-mode")) location.replace(proxiedUrl);
-             else location.href = proxiedUrl;
-           });
-
-
-
-           // Theme + Wallpaper Handling
-           const applyTheme = () => {
-             document.body.dataset.theme = localStorage.getItem("theme");
-           };
-
-           applyTheme();
-
-           window.addEventListener("message", (event) => {
-             const msg = event.data;
-             if (!msg || !msg.type) return;
-
-             switch(msg.type) {
-               case "theme-changed": applyTheme(); break;
-							 default: document.dispatchEvent(new CustomEvent(msg.type));
-							 case "search-engine-changed":
-                 search = localStorage.getItem("search-engine");
-							 break; 
-							 case "wísp-server-changed":
-                 wisp = localStorage.getItem("wísp-server");
-                 setWisp(wisp);
-							 break;
-							 case "prσxy-transport-changed":
-                 transport = localStorage.getItem("prσxy-transport");
-             		 setTransport(transport);
-							 break;
-             }
-           });
-         </script>
-      </main>
-   </body>
+    </main>
+  </body>
 </html>
-

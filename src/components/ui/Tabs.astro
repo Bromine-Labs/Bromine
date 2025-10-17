@@ -2,11 +2,16 @@
 import { Icon } from "astro-icon/components";
 import { newTab } from "@/utils/lethal.ts";
 ---
-<nav class="flex items-center bg-surface border-b border-overlay h-10">
-  <div id="tabs" class="flex-1 flex overflow-x-auto scrollbar-hide items-stretch"></div>
+
+<nav class="bg-surface border-overlay flex h-10 items-center border-b">
+  <div
+    id="tabs"
+    class="scrollbar-hide flex flex-1 items-stretch overflow-x-auto"
+  >
+  </div>
   <button
     id="new-tab-btn"
-    class="mr-2 p-2 hover:bg-overlay hover:text-subtle transition-colors duration-150 rounded-md focus:outline-none focus:ring-2 focus:ring-tertiary"
+    class="hover:bg-overlay hover:text-subtle focus:ring-tertiary mr-2 rounded-md p-2 transition-colors duration-150 focus:ring-2 focus:outline-none"
     aria-label="New Tab"
     title="New Tab"
   >
@@ -41,4 +46,3 @@ import { newTab } from "@/utils/lethal.ts";
     border-bottom-color: var(--color-border);
   }
 </style>
-

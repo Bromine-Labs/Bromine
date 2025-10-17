@@ -24,7 +24,6 @@
   --color-code-bg: #181825;
 }
 
-
 .no-scrollbar {
   overflow: auto;
   scrollbar-width: none;
@@ -34,8 +33,6 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-
-
 
 @font-face {
   font-family: "Switzer";
@@ -60,7 +57,7 @@ h1 {
 }
 
 body {
-	@apply text-text;
+  @apply text-text;
 }
 
 h2 {
@@ -72,7 +69,7 @@ h3 {
 }
 
 label {
-  @apply text-xs  font-medium;
+  @apply text-xs font-medium;
 }
 
 button {
@@ -114,7 +111,6 @@ button:active {
   border-radius: 16px;
   /* Match parent border-radius */
 }
-
 
 #gmeContainer {
   overflow-y: overlay; /* scrollable without taking space for scrollbar */

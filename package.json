@@ -7,7 +7,7 @@
 		"check": "astro check --write *",
 		"build": "astro build",
 		"deploy": "wrangler deploy",
-		"format": "bunx prettier src/ --write"
+		"format": "bunx prettier . --write"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",

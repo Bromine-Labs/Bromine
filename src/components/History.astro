@@ -7,23 +7,23 @@ import { Icon } from "astro-icon/components";
 <button
   aria-label="History"
   id="omnibar-history-btn"
-  class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-highlight-med"
+  class="hover:bg-highlight-med flex w-full items-center px-4 py-2 text-left text-sm"
 >
-  <Icon name="ph:clock-counter-clockwise-bold" class="size-4.5 mr-2" /> History
+  <Icon name="ph:clock-counter-clockwise-bold" class="mr-2 size-4.5" /> History
 </button>
 
 <!-- Popup -->
 <div
   id="history-popup"
   style="content-visibility: auto"
-  class="popup backdrop-blur-[1px] fixed inset-0 flex items-center z-[50] justify-center bg-bg/80 hidden opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out"
+  class="popup bg-bg/80 pointer-events-none fixed inset-0 z-[50] flex hidden items-center justify-center opacity-0 backdrop-blur-[1px] transition-opacity duration-300 ease-in-out"
 >
   <div
     id="history-popup-content"
-    class="relative bg-overlay w-[90vw] max-w-[500px] rounded-lg shadow-xl p-6 m-4 max-h-[80vh] overflow-y-auto transform -translate-y-full transition-transform duration-300 ease-in-out"
+    class="bg-overlay relative m-4 max-h-[80vh] w-[90vw] max-w-[500px] -translate-y-full transform overflow-y-auto rounded-lg p-6 shadow-xl transition-transform duration-300 ease-in-out"
   >
-    <div class="flex justify-between items-center mb-3">
-      <h1 class="text-2xl font-semibold ">History</h1>
+    <div class="mb-3 flex items-center justify-between">
+      <h1 class="text-2xl font-semibold">History</h1>
       <button
         id="history-close-btn"
         aria-label="Close History"
@@ -53,7 +53,9 @@ import { Icon } from "astro-icon/components";
       popupContent.classList.remove("-translate-y-full");
       popupContent.classList.add("translate-y-0");
     });
-    document.dispatchEvent(new CustomEvent("popup-opened", { detail: { popupId: "history-popup" } }));
+    document.dispatchEvent(
+      new CustomEvent("popup-opened", { detail: { popupId: "history-popup" } }),
+    );
   }
 
   function close() {
@@ -64,7 +66,11 @@ import { Icon } from "astro-icon/components";
     // Wait for the transition to finish before hiding
     setTimeout(() => {
       popup.classList.add("hidden", "pointer-events-none");
-      document.dispatchEvent(new CustomEvent("popup-closed", { detail: { popupId: "history-popup" } }));
+      document.dispatchEvent(
+        new CustomEvent("popup-closed", {
+          detail: { popupId: "history-popup" },
+        }),
+      );
     }, 300);
   }
 
@@ -120,4 +126,3 @@ import { Icon } from "astro-icon/components";
     background: #9ca3af;
   }
 </style>
-

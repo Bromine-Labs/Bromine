@@ -23,7 +23,7 @@ const { triggerId, popupId, contentId, closeBtnId, title, label, triggerIcon } =
 <button
   aria-label={label}
   id={triggerId}
-  class="shadow-md p-1.5 bg-overlay rounded-md"
+  class="bg-overlay rounded-md p-1.5 shadow-md"
 >
   <Icon name={triggerIcon} class="size-4.5" />
 </button>
@@ -32,19 +32,19 @@ const { triggerId, popupId, contentId, closeBtnId, title, label, triggerIcon } =
 <div
   id={popupId}
   style="content-visibility: auto"
-  class="popup backdrop-blur-[1px] fixed inset-0 flex items-center z-[50] justify-center bg-bg/80 hidden pointer-events-none opacity-0 transition-opacity duration-300 ease-in-out"
+  class="popup bg-bg/80 pointer-events-none fixed inset-0 z-[50] flex hidden items-center justify-center opacity-0 backdrop-blur-[1px] transition-opacity duration-300 ease-in-out"
 >
   <div
     id={contentId}
-    class="relative bg-overlay w-[90vw] max-w-[500px] rounded-lg shadow-xl p-6 m-4 max-h-[80vh] overflow-y-auto transform -translate-y-full transition-transform duration-300 ease-in-out"
+    class="bg-overlay relative m-4 max-h-[80vh] w-[90vw] max-w-[500px] -translate-y-full transform overflow-y-auto rounded-lg p-6 shadow-xl transition-transform duration-300 ease-in-out"
   >
-    <div class="flex justify-between items-center mb-3">
-      <h1 class="text-2xl font-semibold text-text">{title}</h1>
-      <button
-        id={closeBtnId}
-        aria-label={`Close ${title}`}
-      >
-        <Icon name="ph:x-bold" class="size-6 transition-colors hover:text-primary" />
+    <div class="mb-3 flex items-center justify-between">
+      <h1 class="text-text text-2xl font-semibold">{title}</h1>
+      <button id={closeBtnId} aria-label={`Close ${title}`}>
+        <Icon
+          name="ph:x-bold"
+          class="hover:text-primary size-6 transition-colors"
+        />
       </button>
     </div>
 
@@ -75,7 +75,7 @@ const { triggerId, popupId, contentId, closeBtnId, title, label, triggerIcon } =
     popupContent.classList.remove("-translate-y-full");
     popupContent.classList.add("translate-y-0");
     document.dispatchEvent(
-      new CustomEvent("popup-opened", { detail: { popupId } })
+      new CustomEvent("popup-opened", { detail: { popupId } }),
     );
   }
 
@@ -85,7 +85,7 @@ const { triggerId, popupId, contentId, closeBtnId, title, label, triggerIcon } =
     popupContent.classList.remove("translate-y-0");
     popupContent.classList.add("-translate-y-full");
     document.dispatchEvent(
-      new CustomEvent("popup-closed", { detail: { popupId } })
+      new CustomEvent("popup-closed", { detail: { popupId } }),
     );
   }
 
@@ -120,4 +120,3 @@ const { triggerId, popupId, contentId, closeBtnId, title, label, triggerIcon } =
     background: var(--color-subtle);
   }
 </style>
-

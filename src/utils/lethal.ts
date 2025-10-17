@@ -16,7 +16,7 @@ export let currentTab: number = 0;
 export let framesElement: HTMLElement;
 export let currentFrame: HTMLIFrameElement;
 export const addressInput: HTMLInputElement = document.getElementById(
-	"address",
+  "address",
 ) as HTMLInputElement;
 
 const getIcon = (url: string) =>
@@ -27,11 +27,11 @@ const getIcon = (url: string) =>
 window.tabs = [];
 
 const transportOptions: TransportOptions = {
-	bare: "https://unpkg.com/@mercuryworkshop/bare-as-module3@2.2.5/dist/index.mjs",
-	epoxy:
-		"https://unpkg.com/@mercuryworkshop/epoxy-transport@2.1.27/dist/index.mjs",
-	libcurl:
-		"https://unpkg.com/@mercuryworkshop/libcurl-transport@1.5.0/dist/index.mjs",
+  bare: "https://unpkg.com/@mercuryworkshop/bare-as-module3@2.2.5/dist/index.mjs",
+  epoxy:
+    "https://unpkg.com/@mercuryworkshop/epoxy-transport@2.1.27/dist/index.mjs",
+  libcurl:
+    "https://unpkg.com/@mercuryworkshop/libcurl-transport@1.5.0/dist/index.mjs",
 };
 
 //////////////////////////////
@@ -41,286 +41,281 @@ const stockSW = "/ultraworker.js";
 const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
 async function registerSW(): Promise<void> {
-	if (!navigator.serviceWorker) {
-		if (
-			location.protocol !== "https:" &&
-			!swAllowedHostnames.includes(location.hostname)
-		)
-		throw new Error("Service workers cannot be registered without https.");
+  if (!navigator.serviceWorker) {
+    if (
+      location.protocol !== "https:" &&
+      !swAllowedHostnames.includes(location.hostname)
+    )
+      throw new Error("Service workers cannot be registered without https.");
 
-		throw new Error("Your browser doesn't support service workers.");
-	}
+    throw new Error("Your browser doesn't support service workers.");
+  }
 
-	await navigator.serviceWorker.register(stockSW);
-
-
-
+  await navigator.serviceWorker.register(stockSW);
 }
 
-
 requestIdleCallback(async () => {
-	await import("@/assets/scram/scramjet.all.js");
+  await import("@/assets/scram/scramjet.all.js");
 
-	const { ScramjetController } = $scramjetLoadController();
-	const scramjet = new ScramjetController({
-		files: {
-			wasm: "/scram/scramjet.wasm.wasm",
-			all: "/scram/scramjet.all.js",
-			sync: "/scram/scramjet.sync.js",
-		},
-		flags: {
-			rewriterLogs: false,
-			scramitize: false,
-			cleanErrors: true,
-		},
-		siteFlags: {
-			"https://worker-playground.glitch.me/.*": {
-				serviceworkers: true,
-			},
-		},
-	});
-	scramjet.init();
-	window.scramjet = scramjet;
-	registerSW()
-	.then(() => console.log("lethal.js: Service Worker registered"))
-	.catch((err) =>
-				 console.error("lethal.js: Failed to register Service Worker", err),
-				);
-				new Tab()
+  const { ScramjetController } = $scramjetLoadController();
+  const scramjet = new ScramjetController({
+    files: {
+      wasm: "/scram/scramjet.wasm.wasm",
+      all: "/scram/scramjet.all.js",
+      sync: "/scram/scramjet.sync.js",
+    },
+    flags: {
+      rewriterLogs: false,
+      scramitize: false,
+      cleanErrors: true,
+    },
+    siteFlags: {
+      "https://worker-playground.glitch.me/.*": {
+        serviceworkers: true,
+      },
+    },
+  });
+  scramjet.init();
+  window.scramjet = scramjet;
+  registerSW()
+    .then(() => console.log("lethal.js: Service Worker registered"))
+    .catch((err) =>
+      console.error("lethal.js: Failed to register Service Worker", err),
+    );
+  new Tab();
 });
-
 
 //////////////////////////////
 ///        Functions       ///
 //////////////////////////////
 export function makeURL(
-	input: string,
-	template = "https://duckduckgo.com/search?q=%s",
+  input: string,
+  template = "https://duckduckgo.com/search?q=%s",
 ): string {
-		try {
-			return new URL(input).toString();
-		} catch (err) { }
+  try {
+    return new URL(input).toString();
+  } catch (err) {}
 
-		try {
-			const url = new URL(`http://${input}`);
-				if (url.hostname.includes(".")) return url.toString();
+  try {
+    const url = new URL(`http://${input}`);
+    if (url.hostname.includes(".")) return url.toString();
+  } catch (err) {}
 
-		} catch (err) { }
+  return template.replace("%s", encodeURIComponent(input));
+}
 
+async function updateBareMux(): Promise<void> {
+  if (transportURL != null && wispURL != null) {
+    console.log(
+      `lethal.js: Setting BareMux to ${transportURL} and Wisp to ${wispURL}`,
+    );
 
-		return template.replace("%s", encodeURIComponent(input));
-	}
+    await connection.setTransport(transportURL, [{ wisp: wispURL }]);
+  }
+}
 
-	async function updateBareMux(): Promise<void> {
-		if (transportURL != null && wispURL != null) {
-			console.log(
-				`lethal.js: Setting BareMux to ${transportURL} and Wisp to ${wispURL}`,
-			);
+export async function setTransport(transport: Transport): Promise<void> {
+  console.log(`lethal.js: Setting transport to ${transport}`);
+  transportURL = transportOptions[transport];
+  if (!transportURL) {
+    transportURL = transport;
+  }
 
-			await connection.setTransport(transportURL, [{wisp: wispURL}])
-		}
-	}
+  await updateBareMux();
+}
 
-	export async function setTransport(transport: Transport): Promise<void> {
-		console.log(`lethal.js: Setting transport to ${transport}`);
-		transportURL = transportOptions[transport];
-		if (!transportURL) {
+export function getTransport(): string {
+  return transportURL;
+}
 
-			transportURL = transport;
-		}
+export async function setWisp(wisp: string): Promise<void> {
+  console.log(`lethal.js: Setting Wisp to ${wisp}`);
+  wispURL = wisp;
 
+  await updateBareMux();
+}
 
-		await updateBareMux();
-	}
+export function getWisp(): string {
+  return wispURL;
+}
 
-	export function getTransport(): string {
-		return transportURL;
-	}
+export async function getProxied(url: string): Promise<any> {
+  if (url.startsWith("bromine://")) {
+    return url.replace("bromine://", "/");
+  }
 
-	export async function setWisp(wisp: string): Promise<void> {
-		console.log(`lethal.js: Setting Wisp to ${wisp}`);
-		wispURL = wisp;
+  return scramjet.encodeUrl(url);
+}
 
-		await updateBareMux();
-	}
+export function setFrames(frames: HTMLElement): void {
+  framesElement = frames;
+}
 
-	export function getWisp(): string {
-		return wispURL;
-	}
+export class Tab {
+  frame: HTMLIFrameElement;
+  tabNumber: number;
+  title: string = "New Tab";
+  url: string = "bromine://newtab";
+  uiElement: HTMLElement;
 
-	export async function getProxied(url: string): Promise<any> {
-		if (url.startsWith("bromine://")) {
-			return url.replace("bromine://", "/")
-		}
+  constructor() {
+    if (!framesElement) return;
+    tabCounter++;
+    this.tabNumber = tabCounter;
 
-		return scramjet.encodeUrl(url);
-	}
+    this.frame = scramjet.createFrame();
+    this.frame.frame.setAttribute("class", "w-full h-full border-0 absolute");
+    this.frame.frame.setAttribute("title", "Proxy Frame");
+    this.frame.frame.setAttribute("src", "/newtab");
+    this.frame.frame.setAttribute("id", `frame-${tabCounter}`);
+    framesElement.appendChild(this.frame.frame);
 
-	export function setFrames(frames: HTMLElement): void {
-		framesElement = frames;
-	}
+    this.createUI();
+    window.tabs.push(this);
+    this.switch();
 
+    this.frame.addEventListener("urlchange", (e) => {
+      this.handleLoad(e.url);
+    });
+  }
 
-	export class Tab {
-	  frame: HTMLIFrameElement;
-	  tabNumber: number;
-	  title: string = "New Tab";
-	  url: string = "bromine://newtab";
-	  uiElement: HTMLElement;
-	
-	  constructor() {
-		if(!framesElement) return;
-	    tabCounter++;
-	    this.tabNumber = tabCounter;
-	
-	    this.frame = scramjet.createFrame();
-	    this.frame.frame.setAttribute("class", "w-full h-full border-0 absolute");
-	    this.frame.frame.setAttribute("title", "Proxy Frame");
-	    this.frame.frame.setAttribute("src", "/newtab");
-	    this.frame.frame.setAttribute("id", `frame-${tabCounter}`);
-	    framesElement.appendChild(this.frame.frame);
-	
-	    this.createUI();
-	    window.tabs.push(this);
-	    this.switch();
-	
-	    this.frame.addEventListener("urlchange", (e) => {
-	      this.handleLoad(e.url);
-	    });
-	  }
-	
-	  createUI() {
-	    const tabsDiv = document.getElementById("tabs");
-	    if (!tabsDiv) return;
-	
-	    const tabEl = document.createElement("div");
-	    tabEl.className =
-	      "flex items-center min-w-[8rem] max-w-xs px-4 py-1 bg-overlay light hover:bg-overlay cursor-pointer transition-all duration-150 draggable-tab";
-	    tabEl.dataset.tabId = this.tabNumber;
-	    tabEl.draggable = true;
-	
-	    tabEl.innerHTML = `
+  createUI() {
+    const tabsDiv = document.getElementById("tabs");
+    if (!tabsDiv) return;
+
+    const tabEl = document.createElement("div");
+    tabEl.className =
+      "flex items-center min-w-[8rem] max-w-xs px-4 py-1 bg-overlay light hover:bg-overlay cursor-pointer transition-all duration-150 draggable-tab";
+    tabEl.dataset.tabId = this.tabNumber;
+    tabEl.draggable = true;
+
+    tabEl.innerHTML = `
 	      <img class="w-4 h-4 mr-2 rounded" alt="Favicon" src="/favicon.ico" />
 	      <span class="tab truncate flex-1 text-sm">${this.title}</span>
 	      <button class="ml-2 text-xl focus:outline-none">&times;</button>
 	    `;
-	
-	    tabEl.querySelector("button")?.addEventListener("click", (e) => {
-	      e.stopPropagation();
-	      this.close();
-	    });
-	
-	    tabEl.addEventListener("click", () => this.switch());
-	
-	    tabsDiv.appendChild(tabEl);
-	    this.uiElement = tabEl;
-	  }
-	
-	  updateUI() {
-	    if (!this.uiElement) return;
-	    const img = this.uiElement.querySelector("img");
-	    const span = this.uiElement.querySelector(".tab");
-	    if (img) img.src = this.url ? getIcon(this.url) : "/favicon.ico";
-	    if (span) span.textContent = this.title || "New Tab";
-	
-	    window.tabs.forEach((tab) => {
-	      if (!tab.uiElement) return;
-	      const isActive = tab.tabNumber === currentTab;
-				tab.uiElement.classList.toggle("border-x-3", isActive);
-				tab.uiElement.classList.toggle("bg-overlay", isActive);
-				tab.uiElement.classList.toggle("active", isActive);
-				tab.uiElement.classList.toggle("font-medium", isActive);
-				tab.uiElement.classList.toggle("border-border", isActive);
-	    });
-	  }
-	
-	  switch(): void {
-	    currentTab = this.tabNumber;
-	    framesElement.querySelectorAll("iframe").forEach((frame) => frame.classList.add("hidden"));
-	    this.frame.frame.classList.remove("hidden");
-	
-	    currentFrame = this.frame.frame;
-	    addressInput.value = scramjet.decodeUrl(currentFrame?.contentWindow?.location.href ?? "");
-	    this.updateUI();
-	  }
-	
-	  close(): void {
-	    this.frame.frame.remove();
-	    this.uiElement?.remove();
-	    window.tabs = window.tabs.filter((t) => t.tabNumber !== this.tabNumber);
-	
-	    if (currentTab === this.tabNumber) {
-	      if (window.tabs.length > 0) window.tabs[0].switch();
-	      else newTab();
-	    }
-	  }
-	
-	  handleLoad(url: string): void {
-	    if (this.tabNumber !== currentTab) return;
-	
-	    this.title = this.frame.frame?.contentWindow?.document.title || "New Tab";
-	    this.url = url;
-	
 
+    tabEl.querySelector("button")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      this.close();
+    });
 
+    tabEl.addEventListener("click", () => this.switch());
 
-			const doc = this.frame.contentDocument || this.frame.contentWindow.document;
-			const text = doc.body?.textContent?.toLowerCase() || "";
+    tabsDiv.appendChild(tabEl);
+    this.uiElement = tabEl;
+  }
 
-			const bareErr = text.includes("there are no bare clients");
-			const otherErr = doc.querySelector("#errorTitle");
+  updateUI() {
+    if (!this.uiElement) return;
+    const img = this.uiElement.querySelector("img");
+    const span = this.uiElement.querySelector(".tab");
+    if (img) img.src = this.url ? getIcon(this.url) : "/favicon.ico";
+    if (span) span.textContent = this.title || "New Tab";
 
-			if (bareErr) {
-				if (++this.statusObject.timesErrored <= 5) {
-					console.warn(`Bare client error (${this.statusObject.timesErrored}/5) → reloading`);
-					this.frame.contentWindow.location.reload();
-				}
-			} else if (otherErr) {
-				console.warn(`Iframe error (${++this.statusObject.timesErrored})`);
-			} else {
-				this.statusObject.timesErrored = 0;
-			}
+    window.tabs.forEach((tab) => {
+      if (!tab.uiElement) return;
+      const isActive = tab.tabNumber === currentTab;
+      tab.uiElement.classList.toggle("border-x-3", isActive);
+      tab.uiElement.classList.toggle("bg-overlay", isActive);
+      tab.uiElement.classList.toggle("active", isActive);
+      tab.uiElement.classList.toggle("font-medium", isActive);
+      tab.uiElement.classList.toggle("border-border", isActive);
+    });
+  }
 
+  switch(): void {
+    currentTab = this.tabNumber;
+    framesElement
+      .querySelectorAll("iframe")
+      .forEach((frame) => frame.classList.add("hidden"));
+    this.frame.frame.classList.remove("hidden");
 
+    currentFrame = this.frame.frame;
+    addressInput.value = scramjet.decodeUrl(
+      currentFrame?.contentWindow?.location.href ?? "",
+    );
+    this.updateUI();
+  }
 
-			try {
-				let history = JSON.parse(localStorage.getItem("history") || "[]");
-	      history.push({ url, title: this.title });
-	      localStorage.setItem("history", JSON.stringify(history));
-	    } catch {}
-	
-	    this.updateUI();
-	    addressInput.value = url;
-	  }
-	}
+  close(): void {
+    this.frame.frame.remove();
+    this.uiElement?.remove();
+    window.tabs = window.tabs.filter((t) => t.tabNumber !== this.tabNumber);
 
-	export async function newTab() {
-		new Tab();
-	}
+    if (currentTab === this.tabNumber) {
+      if (window.tabs.length > 0) window.tabs[0].switch();
+      else newTab();
+    }
+  }
 
-	export function switchTab(tabNumber: number): void {
-		const tabToSwitchTo = window.tabs.find(tab => tab.tabNumber === tabNumber);
-		if (tabToSwitchTo) {
-			tabToSwitchTo.switch();
-		} else {
-			console.warn(`lethal.js: Attempted to switch to non-existent tab #${tabNumber}`);
-		}
-	}
+  handleLoad(url: string): void {
+    if (this.tabNumber !== currentTab) return;
 
-	export function closeTab(tabNumber: number): void {
-		const tabToClose = window.tabs.find(tab => tab.tabNumber === tabNumber);
+    this.title = this.frame.frame?.contentWindow?.document.title || "New Tab";
+    this.url = url;
 
-		if (tabToClose) {
-			tabToClose.close();
+    const doc = this.frame.contentDocument || this.frame.contentWindow.document;
+    const text = doc.body?.textContent?.toLowerCase() || "";
 
-			if (currentTab === tabNumber) {
-				if (window.tabs.length > 0) {
-					window.tabs[0].switch();
-				} else {
-					newTab();
-				}
-			}
-		} else {
-			console.warn(`lethal.js: Attempted to close non-existent tab #${tabNumber}`);
-		}
-	}
+    const bareErr = text.includes("there are no bare clients");
+    const otherErr = doc.querySelector("#errorTitle");
+
+    if (bareErr) {
+      if (++this.statusObject.timesErrored <= 5) {
+        console.warn(
+          `Bare client error (${this.statusObject.timesErrored}/5) → reloading`,
+        );
+        this.frame.contentWindow.location.reload();
+      }
+    } else if (otherErr) {
+      console.warn(`Iframe error (${++this.statusObject.timesErrored})`);
+    } else {
+      this.statusObject.timesErrored = 0;
+    }
+
+    try {
+      let history = JSON.parse(localStorage.getItem("history") || "[]");
+      history.push({ url, title: this.title });
+      localStorage.setItem("history", JSON.stringify(history));
+    } catch {}
+
+    this.updateUI();
+    addressInput.value = url;
+  }
+}
+
+export async function newTab() {
+  new Tab();
+}
+
+export function switchTab(tabNumber: number): void {
+  const tabToSwitchTo = window.tabs.find((tab) => tab.tabNumber === tabNumber);
+  if (tabToSwitchTo) {
+    tabToSwitchTo.switch();
+  } else {
+    console.warn(
+      `lethal.js: Attempted to switch to non-existent tab #${tabNumber}`,
+    );
+  }
+}
+
+export function closeTab(tabNumber: number): void {
+  const tabToClose = window.tabs.find((tab) => tab.tabNumber === tabNumber);
+
+  if (tabToClose) {
+    tabToClose.close();
+
+    if (currentTab === tabNumber) {
+      if (window.tabs.length > 0) {
+        window.tabs[0].switch();
+      } else {
+        newTab();
+      }
+    }
+  } else {
+    console.warn(
+      `lethal.js: Attempted to close non-existent tab #${tabNumber}`,
+    );
+  }
+}

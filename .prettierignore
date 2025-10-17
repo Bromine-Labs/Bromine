@@ -1,5 +1,10 @@
 # ignore everything inside public/scram
+public/alu-adblocker.js
+public/GoodbyeAds-AdBlock-Filter.txt
+public/GoodbyeAds-Youtube-AdBlock-Filter.txt
 public/scram/**
+public/workerware/**
+public/easyprivacy_general.txt
 
 # ignore everything inside src/assets/scram
 src/assets/scram/**
