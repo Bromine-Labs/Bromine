@@ -1,0 +1,5 @@
+# ignore everything inside public/scram
+public/scram/**
+
+# ignore everything inside src/assets/scram
+src/assets/scram/**
