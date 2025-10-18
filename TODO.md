@@ -8,8 +8,8 @@
 - [x] fullscreen
 - [x] games
 
-
 ## In Progress
+
 - [ ] make ui better
 - [ ] migrate to new theming system
 

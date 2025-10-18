@@ -1,4 +1,3 @@
-
 self.onmessage = async function (e) {
   const query = e.data;
 
@@ -9,10 +8,10 @@ self.onmessage = async function (e) {
 
   try {
     const response = await fetch(
-      `https://corsproxy.io/?url=https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}`
+      `https://corsproxy.io/?url=https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}`,
     );
     const data = await response.json();
-    const suggestions = data.map(item => item.phrase);
+    const suggestions = data.map((item) => item.phrase);
     self.postMessage(suggestions);
   } catch (err) {
     self.postMessage([]);

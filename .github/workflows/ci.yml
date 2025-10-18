@@ -88,11 +88,9 @@ jobs:
 
       - name: Push Docker container (timestamped)
         run: docker push ghcr.io/coding4hours/bromine:$IMAGE_TAG
-        
+
       - name: Push Docker container (latest)
         run: docker push ghcr.io/coding4hours/bromine:latest
-
-
 
   deploy:
     name: Deploy to GitHub Pages

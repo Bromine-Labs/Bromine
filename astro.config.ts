@@ -1,13 +1,16 @@
 // @ts-check
-import { defineConfig } from "astro/config"
-import tailwindcss from "@tailwindcss/vite"
-import icon from "astro-icon"
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
+import icon from "astro-icon";
 
 import partytown from "@astrojs/partytown";
 
-
 export default defineConfig({
-  integrations: [icon(), (await import("@playform/compress")).default(), partytown()],
+  integrations: [
+    icon(),
+    (await import("@playform/compress")).default(),
+    partytown(),
+  ],
 
   vite: {
     build: {
@@ -22,4 +25,4 @@ export default defineConfig({
   experimental: {
     preserveScriptOrder: true,
   },
-})
+});
