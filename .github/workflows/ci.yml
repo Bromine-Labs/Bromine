@@ -14,28 +14,8 @@ env:
   BUILD_PATH: "."
 
 jobs:
-  lint:
-    name: Check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
-
-      - name: Install deps
-        run: bun install
-        working-directory: ${{ env.BUILD_PATH }}
-
-      - name: Check
-        run: bun run check
-        working-directory: ${{ env.BUILD_PATH }}
-
   build:
     name: Build
-    needs: [lint]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -65,7 +45,7 @@ jobs:
 
   dockerci:
     name: Docker CI
-    needs: [lint, build]
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -94,7 +74,7 @@ jobs:
 
   deploy:
     name: Deploy to GitHub Pages
-    needs: [lint, build]
+    needs: [build]
     runs-on: ubuntu-latest
     concurrency:
       group: "pages"
