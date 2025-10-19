@@ -127,11 +127,11 @@
           "id": "cloak",
           "label": "Clσaking",
           "type": "select",
-          "defaultValue": "bromine|favicon.svg",
+          "defaultValue": "bromine|favicon.ico",
           "description": "Disguises the tab with a different title and favicon to hide your activity.",
           "options": [
             {
-              "value": "bromine|favicon.svg",
+              "value": "bromine|favicon.ico",
               "label": "Default/None"
             },
             {
