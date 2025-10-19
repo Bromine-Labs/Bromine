@@ -47,7 +47,51 @@ const {
     <link rel="icon" href="favicon.ico" sizes="48x48" type="image/x-icon" />
 
     <link rel="preconnect" href="https://images.placeholders.dev" />
-    <Lethal />
+    <link rel="preconnect" href="https://googletagmanager.com" />
+    <link rel="preconnect" href="https://learningbuildingroughly.com" />
+<script>
+	import {
+  setTransport,
+  setWisp,
+  makeURL,
+  getProxied,
+  setFrames,
+  addressInput,
+  currentTab
+} from "@/utils/lethal";
+
+const form = document.getElementById("form");
+let search = localStorage.getItem("search-engine") || "https://duckduckgo.com/search?q=%s";
+let wisp = localStorage.getItem("wísp-server") || "wss://anura.pro/";
+let transport = localStorage.getItem("prσxy-transport");
+
+setWisp(wisp);
+setTransport(transport || (navigator.userAgent.includes("Firefox") ? "libcurl" : "epoxy"));
+
+form?.addEventListener("submit", async e => {
+  e.preventDefault();
+  const url = makeURL(addressInput.value, search);
+  const proxied = await getProxied(url);
+  const frame = document.getElementById(`frame-${currentTab}`);
+  localStorage.getItem("stealth-mode")
+    ? frame?.contentWindow?.location.replace(proxied)
+    : (frame.src = proxied);
+  addressInput.value = url;
+});
+
+window.addEventListener("search-engine-changed", () =>
+  search = localStorage.getItem("search-engine") || search
+);
+window.addEventListener("wísp-server-changed", () =>
+  setWisp(wisp = localStorage.getItem("wísp-server") || wisp)
+);
+window.addEventListener("prσxy-transport-changed", () =>
+  setTransport(transport = localStorage.getItem("prσxy-transport") || transport)
+);
+
+setFrames(document.getElementById("frames"));
+
+</script>
 
     <title>{title}</title>
 
@@ -65,15 +109,6 @@ const {
       })(window, document, "script", "dataLayer", "GTM-WCSH8MWK");
     </script>
     <!-- End Google Tag Manager -->
-
-    <!-- Google Analytics -->
-    <!-- <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script> -->
-    <!-- <script type="text/partytown"> -->
-    <!--   window.dataLayer = window.dataLayer || []; -->
-    <!--   function gtag(){{dataLayer.push(arguments);}} -->
-    <!--   gtag('js', new Date()); -->
-    <!--   gtag('config', 'G-NQ3WX8KNQW'); -->
-    <!-- </script> -->
 
     <!-- Scripts -->
     <script>
