@@ -59,7 +59,7 @@ const {
       const form = document.getElementById("form");
       let search = localStorage.getItem("search-engine") || "https://duckduckgo.com/search?q=%s";
       let wisp = localStorage.getItem("wísp-server") || "wss://anura.pro/";
-      let transport = localStorage.getItem("prσxy-transport";
+      let transport = localStorage.getItem("prσxy-transport");
 
       setWisp(wisp);
       setTransport(transport || (navigator.userAgent.includes("Firefox") ? "libcurl" : "epoxy"));
