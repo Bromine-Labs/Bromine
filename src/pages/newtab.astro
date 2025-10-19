@@ -4,16 +4,17 @@ import "@/styles.css";
 
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"
-    ></script>
-    <script>
+		<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+		<link rel="preconnect" href="https://learningbuildingroughly.com" />
+		<link rel="preconnect" href="https://scripts.simpleanalyticscdn.com/" />
+
+    <script type="text/partytown" data-hostname="bromineproxy.netlify.app" src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
+    <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-NQ3WX8KNQW");
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-NQ3WX8KNQW');
     </script>
     <meta charset="UTF-8" />
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />

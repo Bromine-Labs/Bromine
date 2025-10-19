@@ -1,6 +1,5 @@
 ---
 import "@/styles.css";
-import Lethal from "@/components/utils/Lethal.astro";
 
 export interface Props {
   title?: string;
@@ -46,69 +45,65 @@ const {
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" sizes="48x48" type="image/x-icon" />
 
-    <link rel="preconnect" href="https://images.placeholders.dev" />
-    <link rel="preconnect" href="https://googletagmanager.com" />
-    <link rel="preconnect" href="https://learningbuildingroughly.com" />
-<script>
-	import {
-  setTransport,
-  setWisp,
-  makeURL,
-  getProxied,
-  setFrames,
-  addressInput,
-  currentTab
-} from "@/utils/lethal";
+    <script>
+      import {
+        setTransport,
+        setWisp,
+        makeURL,
+        getProxied,
+        setFrames,
+        addressInput,
+        currentTab
+      } from "@/utils/lethal";
 
-const form = document.getElementById("form");
-let search = localStorage.getItem("search-engine") || "https://duckduckgo.com/search?q=%s";
-let wisp = localStorage.getItem("wísp-server") || "wss://anura.pro/";
-let transport = localStorage.getItem("prσxy-transport");
+      const form = document.getElementById("form");
+      let search = localStorage.getItem("search-engine") || "https://duckduckgo.com/search?q=%s";
+      let wisp = localStorage.getItem("wísp-server") || "wss://anura.pro/";
+      let transport = localStorage.getItem("prσxy-transport";
 
-setWisp(wisp);
-setTransport(transport || (navigator.userAgent.includes("Firefox") ? "libcurl" : "epoxy"));
+      setWisp(wisp);
+      setTransport(transport || (navigator.userAgent.includes("Firefox") ? "libcurl" : "epoxy"));
 
-form?.addEventListener("submit", async e => {
-  e.preventDefault();
-  const url = makeURL(addressInput.value, search);
-  const proxied = await getProxied(url);
-  const frame = document.getElementById(`frame-${currentTab}`);
-  localStorage.getItem("stealth-mode")
-    ? frame?.contentWindow?.location.replace(proxied)
-    : (frame.src = proxied);
-  addressInput.value = url;
-});
+      form?.addEventListener("submit", async e => {
+        e.preventDefault();
+        const url = makeURL(addressInput.value, search);
+        const proxied = await getProxied(url);
+        const frame = document.getElementById(`frame-${currentTab}`);
+        localStorage.getItem("stealth-mode")
+          ? frame?.contentWindow?.location.replace(proxied)
+          : (frame.src = proxied);
+        addressInput.value = url;
+      });
 
-window.addEventListener("search-engine-changed", () =>
-  search = localStorage.getItem("search-engine") || search
-);
-window.addEventListener("wísp-server-changed", () =>
-  setWisp(wisp = localStorage.getItem("wísp-server") || wisp)
-);
-window.addEventListener("prσxy-transport-changed", () =>
-  setTransport(transport = localStorage.getItem("prσxy-transport") || transport)
-);
+      window.addEventListener("search-engine-changed", () =>
+        search = localStorage.getItem("search-engine") || search
+      );
+      window.addEventListener("wísp-server-changed", () =>
+        setWisp(wisp = localStorage.getItem("wísp-server") || wisp)
+      );
+      window.addEventListener("prσxy-transport-changed", () =>
+        setTransport(transport = localStorage.getItem("prσxy-transport") || transport)
+      );
 
-setFrames(document.getElementById("frames"));
-
-</script>
+      setFrames(document.getElementById("frames"));
+    </script>
 
     <title>{title}</title>
 
-    <!-- Google Tag Manager -->
+		<link rel="preconnect" href="https://images.placeholders.dev" />
+		<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+		<link rel="preconnect" href="https://learningbuildingroughly.com" />
+		<link rel="preconnect" href="https://scripts.simpleanalyticscdn.com/" />
+
+
+    <script type="text/partytown" data-hostname="bromineproxy.netlify.app" src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
     <script type="text/partytown">
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-WCSH8MWK");
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-NQ3WX8KNQW');
     </script>
-    <!-- End Google Tag Manager -->
 
     <!-- Scripts -->
     <script>
@@ -144,15 +139,7 @@ setFrames(document.getElementById("frames"));
   </head>
 
   <body class="bg-bg flex min-h-screen flex-col">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WCSH8MWK"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"></iframe></noscript
-    >
-    <!-- End Google Tag Manager (noscript) -->
+
     <a
       href="#main"
       class="bg-surface hover:bg-overlay absolute top-4 left-4 z-50 -translate-y-16 transform rounded-md px-4 py-2 opacity-0 shadow-lg transition-all duration-300 ease-in-out focus:translate-y-0 focus:opacity-100"
@@ -165,3 +152,4 @@ setFrames(document.getElementById("frames"));
     </main>
   </body>
 </html>
+
