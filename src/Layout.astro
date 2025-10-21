@@ -45,6 +45,55 @@ const {
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" sizes="48x48" type="image/x-icon" />
 
+
+
+    <title>{title}</title>
+
+		<link rel="preconnect" href="https://learningbuildingroughly.com" />
+		<link rel="preload" href="https://scripts.simpleanalyticscdn.com/latest.js" as="script">
+		<link rel="preload" href="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW" as="script">
+
+    <script type="text/partytown" data-hostname="bromineproxy.netlify.app" src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-NQ3WX8KNQW');
+    </script>
+
+    <!-- Scripts -->
+    <script>
+      const originalSetItem = localStorage.setItem;
+      localStorage.setItem = function (key) {
+        originalSetItem.apply(this, arguments);
+        window.dispatchEvent(new Event(`${key}-changed`));
+
+        window.parent.postMessage(
+          {
+            type: `${key}-changed`,
+          },
+          "*",
+        );
+        currentFrame.contentWindow.postMessage(
+          {
+            type: `${key}-changed`,
+          },
+          "*",
+        );
+      };
+
+      const applyTheme = () => {
+        const theme = localStorage.getItem("theme");
+        document.body.dataset.theme = theme;
+      };
+
+      window.addEventListener("theme-changed", applyTheme);
+      document.addEventListener("DOMContentLoaded", () => {
+        applyTheme();
+      });
+    </script>
+
     <script>
       import {
         setTransport,
@@ -86,55 +135,6 @@ const {
       );
 
       setFrames(document.getElementById("frames"));
-    </script>
-
-    <title>{title}</title>
-
-		<link rel="preconnect" href="https://images.placeholders.dev" />
-		<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-		<link rel="preconnect" href="https://learningbuildingroughly.com" />
-		<link rel="preconnect" href="https://scripts.simpleanalyticscdn.com/" />
-
-
-    <script type="text/partytown" data-hostname="bromineproxy.netlify.app" src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
-    <script type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-NQ3WX8KNQW');
-    </script>
-
-    <!-- Scripts -->
-    <script>
-      const originalSetItem = localStorage.setItem;
-      localStorage.setItem = function (key) {
-        originalSetItem.apply(this, arguments);
-        window.dispatchEvent(new Event(`${key}-changed`));
-
-        window.parent.postMessage(
-          {
-            type: `${key}-changed`,
-          },
-          "*",
-        );
-        currentFrame.contentWindow.postMessage(
-          {
-            type: `${key}-changed`,
-          },
-          "*",
-        );
-      };
-
-      const applyTheme = () => {
-        const theme = localStorage.getItem("theme");
-        document.body.dataset.theme = theme;
-      };
-
-      window.addEventListener("theme-changed", applyTheme);
-      document.addEventListener("DOMContentLoaded", () => {
-        applyTheme();
-      });
     </script>
   </head>
 
