@@ -4,9 +4,11 @@ import "@/styles.css";
 
 <html lang="en">
   <head>
-		<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+
+		<link rel="preconnect" href="https://scripts.simpleanalyticscdn.com" />
 		<link rel="preconnect" href="https://learningbuildingroughly.com" />
-		<link rel="preconnect" href="https://scripts.simpleanalyticscdn.com/" />
+		<link rel="preload" href="https://scripts.simpleanalyticscdn.com/latest.js" as="script">
+		<link rel="preload" href="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW" as="script">
 
     <script type="text/partytown" data-hostname="bromineproxy.netlify.app" src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
@@ -16,6 +18,8 @@ import "@/styles.css";
       gtag('js', new Date());
       gtag('config', 'G-NQ3WX8KNQW');
     </script>
+
+
     <meta charset="UTF-8" />
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
     <meta
