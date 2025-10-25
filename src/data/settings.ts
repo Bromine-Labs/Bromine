@@ -1,4 +1,4 @@
-const FILTER_OPTIMIZE_ON = import.meta.env.FILTER_OPTIMIZE === "true";
+const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
 
 function optimize(text: string) {
 	if (FILTER_OPTIMIZE_ON) {
