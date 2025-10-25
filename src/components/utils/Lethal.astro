@@ -18,11 +18,11 @@
   // --- INIT ---
   const form = document.getElementById("form");
   let search =
-    localStorage.getItem("search-engine") ||
+    localStorage.getItem("bromine_search_engine") ||
     "https://duckduckgo.com/search?q=%s";
 
-  let wisp = localStorage.getItem("wísp-server") || "wss://anura.pro/";
-  let transport = localStorage.getItem("prσxy-transport");
+  let wisp = localStorage.getItem("bromine_wisp") || "wss://anura.pro/";
+  let transport = localStorage.getItem("bromine_transport");
 
   setWisp(wisp);
 
@@ -41,7 +41,7 @@
       `frame-${currentTab}`,
     ) as HTMLIFrameElement;
 
-    if (localStorage.getItem("stealth-mode")) {
+    if (localStorage.getItem("bromine_stealth_mode")) {
       currentFrame?.contentWindow?.location.replace(proxiedUrl);
     } else {
       currentFrame.src = proxiedUrl;
@@ -50,18 +50,18 @@
       addressInput.value = urlToLoad;
   });
 
-  window.addEventListener("search-engine-changed", () => {
-    search = localStorage.getItem("search-engine") as string;
+  window.addEventListener("bromine_search_engine_changed", () => {
+    search = localStorage.getItem("bromine_search_engine") as string;
   });
 
-  window.addEventListener("wísp-server-changed", () => {
-    wisp = localStorage.getItem("wísp-server") as string;
-    setWisp(localStorage.getItem("wísp-server") as string);
+  window.addEventListener("bromine_wisp_changed", () => {
+    wisp = localStorage.getItem("bromine_wisp") as string;
+    setWisp(localStorage.getItem("bromine_wisp") as string);
   });
 
-  window.addEventListener("prσxy-transport-changed", () => {
-    transport = localStorage.getItem("prσxy-transport") as Transport;
-    setTransport(localStorage.getItem("prσxy-transport") as Transport);
+  window.addEventListener("bromine_transport_changed", () => {
+    transport = localStorage.getItem("bromine_transport") as Transport;
+    setTransport(localStorage.getItem("bromine_transport") as Transport);
   });
 
   setFrames(document.getElementById("frames") as HTMLElement);

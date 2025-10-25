@@ -168,7 +168,7 @@
         if (currentHighlightedIndex > -1) {
           e.preventDefault();
           let search =
-            localStorage.getItem("search-engine") ||
+            localStorage.getItem("bromine_search_engine") ||
             "https://duckduckgo.com/search?q=%s";
 
           const urlToLoad = makeURL(addressInput.value, search);
@@ -178,7 +178,7 @@
             `frame-${currentTab}`,
           ) as HTMLIFrameElement;
 
-          if (localStorage.getItem("stealth-mode")) {
+          if (localStorage.getItem("bromine_stealth_mode")) {
             currentFrame?.contentWindow?.location.replace(proxiedUrl);
           } else {
             currentFrame.src = proxiedUrl;

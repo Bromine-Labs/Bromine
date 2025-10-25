@@ -6,13 +6,17 @@ export interface Props {
   desc?: string;
 }
 
+const FILTER_OPTIMIZE_ON = import.meta.env.FILTER_OPTIMIZE === "true";
+
 const {
   title = "bromine",
-  desc = "Bromine is the ultimate spot where elements meet creativity, making even the toughest equations feel like a breeze. From element matching to chemical reactions, this site turns everyday chemistry into something easy.",
+  desc = FILTER_OPTIMIZE_ON
+    ? "Bromine is the ultimate spot where elements meet creativity, making even the toughest equations feel like a breeze. From element matching to chemical reactions, this site turns everyday chemistry into something easy."
+    : "Bromine is a clean and minimal web proxy service.",
 } = Astro.props;
 ---
 
-<html lang="en" data-theme="">
+<html lang="en" data-bromine_theme="">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,47 +24,56 @@ const {
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <meta name="description" content={desc} />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: dark)"
-      content="#191724"
-    />
     <meta name="version" content="2.0.0" />
     <meta name="sa-verify" content="obromineprok3bz" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="48x48" type="image/x-icon" />
 
     <!-- SEO -->
     <meta property="og:site_name" content="Bromine" />
     <meta property="og:title" content={title} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bromine.calculra.store/" />
+    <meta property="og:url" content="https://bromineproxy.netlify.app/" />
     <meta property="og:description" content={desc} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Bromine" />
+    <meta name="twitter:description" content={desc} />
     <meta
-      name="twitter:description"
-      content="Bromine is a minimal and clean secure web pr0xy service..."
+      name="bromine_theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#191724"
     />
-
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" sizes="48x48" type="image/x-icon" />
-
-
 
     <title>{title}</title>
 
-		<link rel="preconnect" href="https://scripts.simpleanalyticscdn.com" />
-		<link rel="preconnect" href="https://learningbuildingroughly.com" />
-		<link rel="preload" href="https://scripts.simpleanalyticscdn.com/latest.js" as="script">
-		<link rel="preload" href="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW" as="script">
+    <link rel="preconnect" href="https://scripts.simpleanalyticscdn.com" />
+    <link rel="preconnect" href="https://learningbuildingroughly.com" />
+    <link
+      rel="preload"
+      href="https://scripts.simpleanalyticscdn.com/latest.js"
+      as="script"
+    />
+    <link
+      rel="preload"
+      href="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"
+      as="script"
+    />
 
-    <script type="text/partytown" data-hostname="bromineproxy.netlify.app" src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
+    <script
+      type="text/partytown"
+      data-hostname="bromineproxy.netlify.app"
+      src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
     <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-NQ3WX8KNQW');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-NQ3WX8KNQW");
     </script>
 
     <!-- Scripts -->
@@ -68,28 +81,28 @@ const {
       const originalSetItem = localStorage.setItem;
       localStorage.setItem = function (key) {
         originalSetItem.apply(this, arguments);
-        window.dispatchEvent(new Event(`${key}-changed`));
+        window.dispatchEvent(new Event(`${key}_changed`));
 
         window.parent.postMessage(
           {
-            type: `${key}-changed`,
+            type: `${key}_changed`,
           },
           "*",
         );
         currentFrame.contentWindow.postMessage(
           {
-            type: `${key}-changed`,
+            type: `${key}_changed`,
           },
           "*",
         );
       };
 
       const applyTheme = () => {
-        const theme = localStorage.getItem("theme");
-        document.body.dataset.theme = theme;
+        const bromine_theme = localStorage.getItem("bromine_theme");
+        document.body.dataset.bromine_theme = bromine_theme;
       };
 
-      window.addEventListener("theme-changed", applyTheme);
+      window.addEventListener("bromine_theme_changed", applyTheme);
       document.addEventListener("DOMContentLoaded", () => {
         applyTheme();
       });
@@ -103,36 +116,44 @@ const {
         getProxied,
         setFrames,
         addressInput,
-        currentTab
+        currentTab,
       } from "@/utils/lethal";
 
       const form = document.getElementById("form");
-      let search = localStorage.getItem("search-engine") || "https://duckduckgo.com/search?q=%s";
-      let wisp = localStorage.getItem("wísp-server") || "wss://anura.pro/";
-      let transport = localStorage.getItem("prσxy-transport");
+      let search =
+        localStorage.getItem("bromine_search_engine") ||
+        "https://duckduckgo.com/search?q=%s";
+      let wisp = localStorage.getItem("bromine_wisp") || "wss://anura.pro/";
+      let transport = localStorage.getItem("bromine_transport");
 
       setWisp(wisp);
-      setTransport(transport || (navigator.userAgent.includes("Firefox") ? "libcurl" : "epoxy"));
+      setTransport(
+        transport ||
+          (navigator.userAgent.includes("Firefox") ? "libcurl" : "epoxy"),
+      );
 
-      form?.addEventListener("submit", async e => {
+      form?.addEventListener("submit", async (e) => {
         e.preventDefault();
         const url = makeURL(addressInput.value, search);
         const proxied = await getProxied(url);
         const frame = document.getElementById(`frame-${currentTab}`);
-        localStorage.getItem("stealth-mode")
+        localStorage.getItem("bromine_stealth_mode")
           ? frame?.contentWindow?.location.replace(proxied)
           : (frame.src = proxied);
         addressInput.value = url;
       });
 
-      window.addEventListener("search-engine-changed", () =>
-        search = localStorage.getItem("search-engine") || search
+      window.addEventListener(
+        "bromine_search_engine_changed",
+        () => (search = localStorage.getItem("bromine_search_engine") || search),
       );
-      window.addEventListener("wísp-server-changed", () =>
-        setWisp(wisp = localStorage.getItem("wísp-server") || wisp)
+      window.addEventListener("bromine_wisp_changed", () =>
+        setWisp((wisp = localStorage.getItem("bromine_wisp") || wisp)),
       );
-      window.addEventListener("prσxy-transport-changed", () =>
-        setTransport(transport = localStorage.getItem("prσxy-transport") || transport)
+      window.addEventListener("bromine_transport_changed", () =>
+        setTransport(
+          (transport = localStorage.getItem("bromine_transport") || transport),
+        ),
       );
 
       setFrames(document.getElementById("frames"));
@@ -140,7 +161,6 @@ const {
   </head>
 
   <body class="bg-bg flex min-h-screen flex-col">
-
     <a
       href="#main"
       class="bg-surface hover:bg-overlay absolute top-4 left-4 z-50 -translate-y-16 transform rounded-md px-4 py-2 opacity-0 shadow-lg transition-all duration-300 ease-in-out focus:translate-y-0 focus:opacity-100"
@@ -153,4 +173,3 @@ const {
     </main>
   </body>
 </html>
-

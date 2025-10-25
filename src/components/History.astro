@@ -106,7 +106,7 @@ import { Icon } from "astro-icon/components";
   window.addEventListener("storage", (event) => {
     if (event.key === "history") renderList();
   });
-  window.addEventListener("history-changed", renderList);
+  window.addEventListener("history_changed", renderList);
 
   renderList();
 </script>

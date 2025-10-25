@@ -1,4 +1,4 @@
-body[data-theme="main"] {
+body[data-bromine_theme="main"] {
   --color-bg: #191724;
   --color-surface: #1f1d2e;
   --color-overlay: #26233a;
@@ -22,7 +22,7 @@ body[data-theme="main"] {
   --color-code-bg: #21202e;
 }
 
-body[data-theme="macchiato"] {
+body[data-bromine_theme="macchiato"] {
   --color-bg: #24273a;
   --color-surface: #363a4f;
   --color-overlay: #494d64;
@@ -43,7 +43,7 @@ body[data-theme="macchiato"] {
   --color-code-bg: #1e2030;
 }
 
-body[data-theme="frappe"] {
+body[data-bromine_theme="frappe"] {
   --color-bg: #303446;
   --color-surface: #414559;
   --color-overlay: #51576d;
@@ -64,7 +64,7 @@ body[data-theme="frappe"] {
   --color-code-bg: #292c3c;
 }
 
-body[data-theme="latte"] {
+body[data-bromine_theme="latte"] {
   --color-bg: #eff1f5;
   --color-surface: #e6e9ef;
   --color-overlay: #dce0ee;
@@ -85,7 +85,7 @@ body[data-theme="latte"] {
   --color-code-bg: #ccd0da;
 }
 
-body[data-theme="dawn"] {
+body[data-bromine_theme="dawn"] {
   --color-bg: #f2fdff;
   --color-surface: #fff0f0;
   --color-overlay: #f4eccf;
@@ -106,7 +106,7 @@ body[data-theme="dawn"] {
   --color-code-bg: #f4ebd7;
 }
 
-body[data-theme="moon"] {
+body[data-bromine_theme="moon"] {
   --color-bg: #232136;
   --color-surface: #2a273f;
   --color-overlay: #393552;
@@ -127,7 +127,7 @@ body[data-theme="moon"] {
   --color-code-bg: #2a283e;
 }
 
-body[data-theme="amoled"] {
+body[data-bromine_theme="amoled"] {
   --color-bg: #000000;
   --color-surface: #1a1a1a;
   --color-overlay: #2c2c2c;

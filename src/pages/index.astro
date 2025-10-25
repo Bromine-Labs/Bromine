@@ -28,7 +28,7 @@ import Frame from "@/components/utils/Frame.astro";
 
   applyAntiClose();
 
-  window.addEventListener("anti-close-changed", applyAntiClose);
+  window.addEventListener("anti-close_changed", applyAntiClose);
 
   const applyCloak = () => {
     const cloak = localStorage.getItem("cloak");
@@ -44,10 +44,10 @@ import Frame from "@/components/utils/Frame.astro";
     applyCloak();
   });
 
-  window.addEventListener("cloak-changed", applyCloak);
+  window.addEventListener("cloak_changed", applyCloak);
 
   (() => {
-    if (localStorage.getItem("ab") === "true") {
+    if (localStorage.getItem("bromine_about_blank") === "true") {
       const popup = open("about:blank", "_blank");
       if (!popup || popup.closed) {
         alert("Please allow popups for about bnalk to work.");

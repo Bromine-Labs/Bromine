@@ -1,9 +1,14 @@
 ---
 import Layout from "@/Layout.astro";
 import { Icon } from "astro-icon/components";
+
+const FILTER_OPTIMIZE_ON = import.meta.env.FILTER_OPTIMIZE === "true";
+const desc = FILTER_OPTIMIZE_ON
+  ? "bromine's gᾰmes page"
+  : "bromine's gmes page";
 ---
 
-<Layout title="gmes - bromine" desc="bromine's gmes page" class="no-scrollbar">
+<Layout title="gmes - bromine" desc={desc} class="no-scrollbar">
   <script src="@/utils/gmes.ts"></script>
 
   <style>
@@ -33,7 +38,6 @@ import { Icon } from "astro-icon/components";
       <input
         id="search"
         type="text"
-        placeholder="Search..."
         class="w-full flex-1 bg-transparent py-2 pl-3 focus:outline-none"
       />
     </div>

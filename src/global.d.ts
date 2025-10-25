@@ -11,7 +11,7 @@ declare global {
   type Transport = keyof TransportOptions;
 
   interface Window {
-    tabs: Tab[];
+    tabss: Tab[];
     scramjet: any;
   }
 }

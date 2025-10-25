@@ -4,21 +4,34 @@ import "@/styles.css";
 
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://scripts.simpleanalyticscdn.com" />
+    <link rel="preconnect" href="https://learningbuildingroughly.com" />
+    <link
+      rel="preload"
+      href="https://scripts.simpleanalyticscdn.com/latest.js"
+      as="script"
+    />
+    <link
+      rel="preload"
+      href="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"
+      as="script"
+    />
 
-		<link rel="preconnect" href="https://scripts.simpleanalyticscdn.com" />
-		<link rel="preconnect" href="https://learningbuildingroughly.com" />
-		<link rel="preload" href="https://scripts.simpleanalyticscdn.com/latest.js" as="script">
-		<link rel="preload" href="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW" as="script">
-
-    <script type="text/partytown" data-hostname="bromineproxy.netlify.app" src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
+    <script
+      type="text/partytown"
+      data-hostname="bromineproxy.netlify.app"
+      src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
     <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-NQ3WX8KNQW');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-NQ3WX8KNQW");
     </script>
-
 
     <meta charset="UTF-8" />
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
@@ -64,8 +77,8 @@ import "@/styles.css";
           getProxied,
         } from "@/utils/lethal";
 
-        let wisp = localStorage.getItem("wísp-server") || "wss://anura.pro/";
-        let transport = localStorage.getItem("prσxy-transport");
+        let wisp = localStorage.getItem("bromine_wisp") || "wss://anura.pro/";
+        let transport = localStorage.getItem("bromine_transport");
 
         setWisp(wisp);
         if (transport) setTransport(transport);
@@ -74,7 +87,7 @@ import "@/styles.css";
         else setTransport("epoxy");
 
         let search =
-          localStorage.getItem("search-engine") ||
+          localStorage.getItem("bromine_search_engine") ||
           "https://duckduckgo.com/search?q=%s";
 
         const form = document.getElementById("form");
@@ -83,14 +96,14 @@ import "@/styles.css";
         form?.addEventListener("submit", async (e) => {
           e.preventDefault();
           const proxiedUrl = await getProxied(makeURL(input.value, search));
-          if (localStorage.getItem("stealth-mode"))
+          if (localStorage.getItem("bromine_stealth_mode"))
             location.replace(proxiedUrl);
           else location.href = proxiedUrl;
         });
 
         // Theme + Wallpaper Handling
         const applyTheme = () => {
-          document.body.dataset.theme = localStorage.getItem("theme");
+          document.body.dataset.bromine_theme = localStorage.getItem("bromine_theme");
         };
 
         applyTheme();
@@ -100,20 +113,20 @@ import "@/styles.css";
           if (!msg || !msg.type) return;
 
           switch (msg.type) {
-            case "theme-changed":
+            case "bromine_theme_changed":
               applyTheme();
               break;
             default:
               document.dispatchEvent(new CustomEvent(msg.type));
-            case "search-engine-changed":
-              search = localStorage.getItem("search-engine");
+            case "bromine_search_engine_changed":
+              search = localStorage.getItem("bromine_search_engine");
               break;
-            case "wísp-server-changed":
-              wisp = localStorage.getItem("wísp-server");
+            case "bromine_wisp_changed":
+              wisp = localStorage.getItem("bromine_wisp");
               setWisp(wisp);
               break;
-            case "prσxy-transport-changed":
-              transport = localStorage.getItem("prσxy-transport");
+            case "bromine_transport_changed":
+              transport = localStorage.getItem("bromine_transport");
               setTransport(transport);
               break;
           }

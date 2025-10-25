@@ -1,10 +1,13 @@
 import gmesData from "@/assets/gmes.json";
 
+const gmes_text =
+  import.meta.env.FILTER_OPTIMIZE === "true" ? "gᾰmes" : "games";
+
 (() => {
   const target = document.querySelector("#gmeContainer");
   const searchInput = document.getElementById("search");
 
-  searchInput.placeholder = `Search from ${gmesData.length} gmes`;
+  searchInput.placeholder = `Search from ${gmesData.length} ${gmes_text}`;
 
   if (!target) {
     console.error("Target container #gmeContainer not found.");
@@ -16,15 +19,13 @@ import gmesData from "@/assets/gmes.json";
     return;
   }
 
-  target.innerHTML =
-    "<p style='text-align: center; font-family: sans-serif; color: #555;'>Loading gmes...</p>";
+  target.innerHTML = `<p style='text-align: center; font-family: sans-serif; color: #555;'>Loading ${gmes_text}...</p>`;
 
   const allGmes = gmesData;
 
   const renderGmes = (gmesToRender) => {
     if (gmesToRender.length === 0) {
-      target.innerHTML =
-        "<p style='text-align: center; font-family: sans-serif; color: #555;'>No gmes found.</p>";
+      target.innerHTML = `<p style='text-align: center; font-family: sans-serif; color: #555;'>No ${gmes_text} found.</p>`;
       return;
     }
 
