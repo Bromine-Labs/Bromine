@@ -1,8 +1,6 @@
 import gmesData from "@/assets/gmes.json";
 
 const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
-
-console.log(FILTER_OPTIMIZE_ON);
 const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 
 (() => {
@@ -68,7 +66,7 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
     container.classList.remove("hidden");
     document.body.style.overflow = "hidden";
 
-    if (frameGme == true) {
+    if (frameGme == 'true') {
       // Directly load raw.githack URL
       frame.src = `https://raw.githack.com/Bromine-Labs/asseting-bromine/main/${file_name}`;
     } else {
