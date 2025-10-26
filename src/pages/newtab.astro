@@ -1,5 +1,13 @@
 ---
 import "@/styles.css";
+const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
+
+const {
+  title = "bromine",
+  desc = FILTER_OPTIMIZE_ON
+    ? "Bromine is the ultimate spot where elements meet creativity, making even the toughest equations feel like a breeze. From element matching to chemical reactions, this site turns everyday chemistry into something easy."
+    : "Bromine is a clean and minimal web proxy service.",
+} = Astro.props;
 ---
 
 <html lang="en">
@@ -16,7 +24,20 @@ import "@/styles.css";
       href="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"
       as="script"
     />
-
+    <meta property="meta:description" content={desc} />
+    <meta property="og:site_name" content="Bromine" />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bromineproxy.netlify.app/" />
+    <meta property="og:description" content={desc} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Bromine" />
+    <meta name="twitter:description" content={desc} />
+    <meta
+      name="bromine_theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#191724"
+    />
     <script
       type="text/partytown"
       data-hostname="bromineproxy.netlify.app"
