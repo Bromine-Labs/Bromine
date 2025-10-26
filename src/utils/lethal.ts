@@ -16,22 +16,23 @@ export let currentTab: number = 0;
 export let framesElement: HTMLElement;
 export let currentFrame: HTMLIFrameElement;
 export const addressInput: HTMLInputElement = document.getElementById(
-  "address",
+	"address",
 ) as HTMLInputElement;
 
-const getIcon = (url: string) =>
-  /^https?:\/\/[\w.-]+\.[a-z]{2,}/i.test(url)
-    ? `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,URL&size=64&url=${url}`
-    : "/favicon.ico";
+const getIcon = (url: string) => {
+	const domain = new URL(url).hostname;
+	return domain ? `https://favicone.com/${domain}`
+		: "/favicon.ico";
+}
 
 window.tabs = [];
 
 const transportOptions: TransportOptions = {
-  bare: "https://unpkg.com/@mercuryworkshop/bare-as-module3@2.2.5/dist/index.mjs",
-  epoxy:
-    "https://unpkg.com/@mercuryworkshop/epoxy-transport@2.1.27/dist/index.mjs",
-  libcurl:
-    "https://unpkg.com/@mercuryworkshop/libcurl-transport@1.5.0/dist/index.mjs",
+	bare: "https://unpkg.com/@mercuryworkshop/bare-as-module3@2.2.5/dist/index.mjs",
+	epoxy:
+		"https://unpkg.com/@mercuryworkshop/epoxy-transport@2.1.27/dist/index.mjs",
+	libcurl:
+		"https://unpkg.com/@mercuryworkshop/libcurl-transport@1.5.0/dist/index.mjs",
 };
 
 //////////////////////////////
@@ -41,281 +42,285 @@ const stockSW = "/ultraworker.js";
 const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
 async function registerSW(): Promise<void> {
-  if (!navigator.serviceWorker) {
-    if (
-      location.protocol !== "https:" &&
-      !swAllowedHostnames.includes(location.hostname)
-    )
-      throw new Error("Service workers cannot be registered without https.");
+	if (!navigator.serviceWorker) {
+		if (
+			location.protocol !== "https:" &&
+			!swAllowedHostnames.includes(location.hostname)
+		)
+			throw new Error("Service workers cannot be registered without https.");
 
-    throw new Error("Your browser doesn't support service workers.");
-  }
+		throw new Error("Your browser doesn't support service workers.");
+	}
 
-  await navigator.serviceWorker.register(stockSW);
+	await navigator.serviceWorker.register(stockSW);
 }
 
 requestIdleCallback(async () => {
-  await import("@/assets/scram/scramjet.all.js");
+	await import("@/assets/scram/scramjet.all.js");
 
-  const { ScramjetController } = $scramjetLoadController();
-  const scramjet = new ScramjetController({
-    files: {
-      wasm: "/scram/scramjet.wasm.wasm",
-      all: "/scram/scramjet.all.js",
-      sync: "/scram/scramjet.sync.js",
-    },
-    flags: {
-      rewriterLogs: false,
-      scramitize: false,
-      cleanErrors: true,
-    },
-    siteFlags: {
-      "https://worker-playground.glitch.me/.*": {
-        serviceworkers: true,
-      },
-    },
-  });
-  scramjet.init();
-  window.scramjet = scramjet;
-  registerSW()
-    .then(() => console.log("lethal.js: Service Worker registered"))
-    .catch((err) =>
-      console.error("lethal.js: Failed to register Service Worker", err),
-    );
-  new Tab();
+	const { ScramjetController } = $scramjetLoadController();
+	const scramjet = new ScramjetController({
+		files: {
+			wasm: "/scram/scramjet.wasm.wasm",
+			all: "/scram/scramjet.all.js",
+			sync: "/scram/scramjet.sync.js",
+		},
+		flags: {
+			rewriterLogs: false,
+			scramitize: false,
+			cleanErrors: true,
+		},
+		siteFlags: {
+			"https://worker-playground.glitch.me/.*": {
+				serviceworkers: true,
+			},
+		},
+	});
+	scramjet.init();
+	window.scramjet = scramjet;
+	registerSW()
+		.then(() => console.log("lethal.js: Service Worker registered"))
+		.catch((err) =>
+			console.error("lethal.js: Failed to register Service Worker", err),
+		);
+	new Tab();
 });
 
 //////////////////////////////
 ///        Functions       ///
 //////////////////////////////
 export function makeURL(
-  input: string,
-  template = "https://duckduckgo.com/search?q=%s",
+	input: string,
+	template = "https://duckduckgo.com/search?q=%s",
 ): string {
-  try {
-    return new URL(input).toString();
-  } catch (err) {}
+	try {
+		return new URL(input).toString();
+	} catch (err) { }
 
-  try {
-    const url = new URL(`http://${input}`);
-    if (url.hostname.includes(".")) return url.toString();
-  } catch (err) {}
+	try {
+		const url = new URL(`http://${input}`);
+		if (url.hostname.includes(".")) return url.toString();
+	} catch (err) { }
 
-  return template.replace("%s", encodeURIComponent(input));
+	return template.replace("%s", encodeURIComponent(input));
 }
 
 async function updateBareMux(): Promise<void> {
-  if (transportURL != null && wispURL != null) {
-    console.log(
-      `lethal.js: Setting BareMux to ${transportURL} and Wisp to ${wispURL}`,
-    );
+	if (transportURL != null && wispURL != null) {
+		console.log(
+			`lethal.js: Setting BareMux to ${transportURL} and Wisp to ${wispURL}`,
+		);
 
-    await connection.setTransport(transportURL, [{ wisp: wispURL }]);
-  }
+		await connection.setTransport(transportURL, [{ wisp: wispURL }]);
+	}
 }
 
 export async function setTransport(transport: Transport): Promise<void> {
-  console.log(`lethal.js: Setting transport to ${transport}`);
-  transportURL = transportOptions[transport];
-  if (!transportURL) {
-    transportURL = transport;
-  }
+	console.log(`lethal.js: Setting transport to ${transport}`);
+	transportURL = transportOptions[transport];
+	if (!transportURL) {
+		transportURL = transport;
+	}
 
-  await updateBareMux();
+	await updateBareMux();
 }
 
 export function getTransport(): string {
-  return transportURL;
+	return transportURL;
 }
 
 export async function setWisp(wisp: string): Promise<void> {
-  console.log(`lethal.js: Setting Wisp to ${wisp}`);
-  wispURL = wisp;
+	console.log(`lethal.js: Setting Wisp to ${wisp}`);
+	wispURL = wisp;
 
-  await updateBareMux();
+	await updateBareMux();
 }
 
 export function getWisp(): string {
-  return wispURL;
+	return wispURL;
 }
 
 export async function getProxied(url: string): Promise<any> {
-  if (url.startsWith("bromine://")) {
-    return url.replace("bromine://", "/");
-  }
+	if (url.startsWith("bromine://")) {
+		return url.replace("bromine://", "/");
+	}
 
-  return scramjet.encodeUrl(url);
+	return scramjet.encodeUrl(url);
 }
 
 export function setFrames(frames: HTMLElement): void {
-  framesElement = frames;
+	framesElement = frames;
 }
 
 export class Tab {
-  frame: HTMLIFrameElement;
-  tabNumber: number;
-  title: string = "New Tab";
-  url: string = "bromine://newtab";
-  uiElement: HTMLElement;
+	frame: any;
+	tabNumber: number;
+	title: string = "New Tab";
+	url: string = "bromine://newtab";
+	timesErrored: number;
+	uiElement: HTMLElement;
 
-  constructor() {
-    if (!framesElement) return;
-    tabCounter++;
-    this.tabNumber = tabCounter;
+	constructor() {
+		if (!framesElement) return;
+		tabCounter++;
+		this.tabNumber = tabCounter;
 
-    this.frame = scramjet.createFrame();
-    this.frame.frame.setAttribute("class", "w-full h-full border-0 absolute");
-    this.frame.frame.setAttribute("title", "Proxy Frame");
-    this.frame.frame.setAttribute("src", "/newtab");
-    this.frame.frame.setAttribute("id", `frame-${tabCounter}`);
-    framesElement.appendChild(this.frame.frame);
+		this.frame = scramjet.createFrame();
+		this.frame.frame.setAttribute("class", "w-full h-full border-0 absolute");
+		this.frame.frame.setAttribute("title", "Proxy Frame");
+		this.frame.frame.setAttribute("src", "/newtab");
+		this.frame.frame.setAttribute("id", `frame-${tabCounter}`);
+		framesElement.appendChild(this.frame.frame);
 
-    this.createUI();
-    window.tabs.push(this);
-    this.switch();
+		this.createUI();
+		window.tabs.push(this);
+		this.switch();
 
-    this.frame.addEventListener("urlchange", (e) => {
-      this.handleLoad(e.url);
-    });
-  }
 
-  createUI() {
-    const tabsDiv = document.getElementById("tabs");
-    if (!tabsDiv) return;
+		this.frame.frame.addEventListener("load", () => {
+			const url = scramjet.decodeUrl(this.frame.frame.contentWindow.location.href);
+			this.handleLoad(url);
+		});
+	}
 
-    const tabEl = document.createElement("div");
-    tabEl.className =
-      "flex items-center min-w-[8rem] max-w-xs px-4 py-1 bg-overlay light hover:bg-overlay cursor-pointer transition-all duration-150 draggable-tab";
-    tabEl.dataset.tabId = this.tabNumber;
-    tabEl.draggable = true;
+	createUI() {
+		const tabsDiv = document.getElementById("tabs");
+		if (!tabsDiv) return;
 
-    tabEl.innerHTML = `
+		const tabEl = document.createElement("div");
+		tabEl.className =
+			"flex items-center min-w-[8rem] max-w-xs px-4 py-1 bg-overlay light hover:bg-overlay cursor-pointer transition-all duration-150 draggable-tab";
+		tabEl.dataset.tabId = this.tabNumber;
+		tabEl.draggable = true;
+
+		tabEl.innerHTML = `
 	      <img class="w-4 h-4 mr-2 rounded" alt="Favicon" src="/favicon.ico" />
 	      <span class="tab truncate flex-1 text-sm">${this.title}</span>
 	      <button class="ml-2 text-xl focus:outline-none">&times;</button>
 	    `;
 
-    tabEl.querySelector("button")?.addEventListener("click", (e) => {
-      e.stopPropagation();
-      this.close();
-    });
+		tabEl.querySelector("button")?.addEventListener("click", (e) => {
+			e.stopPropagation();
+			this.close();
+		});
 
-    tabEl.addEventListener("click", () => this.switch());
+		tabEl.addEventListener("click", () => this.switch());
 
-    tabsDiv.appendChild(tabEl);
-    this.uiElement = tabEl;
-  }
+		tabsDiv.appendChild(tabEl);
+		this.uiElement = tabEl;
+	}
 
-  updateUI() {
-    if (!this.uiElement) return;
-    const img = this.uiElement.querySelector("img");
-    const span = this.uiElement.querySelector(".tab");
-    if (img) img.src = this.url ? getIcon(this.url) : "/favicon.ico";
-    if (span) span.textContent = this.title || "New Tab";
+	updateUI() {
+		if (!this.uiElement) return;
+		const img = this.uiElement.querySelector("img");
+		const span = this.uiElement.querySelector(".tab");
 
-    window.tabs.forEach((tab) => {
-      if (!tab.uiElement) return;
-      const isActive = tab.tabNumber === currentTab;
-      tab.uiElement.classList.toggle("border-x-3", isActive);
-      tab.uiElement.classList.toggle("bg-overlay", isActive);
-      tab.uiElement.classList.toggle("active", isActive);
-      tab.uiElement.classList.toggle("font-medium", isActive);
-      tab.uiElement.classList.toggle("border-border", isActive);
-    });
-  }
+		if (img) img.src = this.url ? getIcon(this.url) : "/favicon.ico";
+		if (span) span.textContent = this.title || "New Tab";
 
-  switch(): void {
-    currentTab = this.tabNumber;
-    framesElement
-      .querySelectorAll("iframe")
-      .forEach((frame) => frame.classList.add("hidden"));
-    this.frame.frame.classList.remove("hidden");
+		window.tabs.forEach((tab) => {
+			if (!tab.uiElement) return;
+			const isActive = tab.tabNumber === currentTab;
+			tab.uiElement.classList.toggle("border-x-3", isActive);
+			tab.uiElement.classList.toggle("bg-overlay", isActive);
+			tab.uiElement.classList.toggle("active", isActive);
+			tab.uiElement.classList.toggle("font-medium", isActive);
+			tab.uiElement.classList.toggle("border-border", isActive);
+		});
+	}
 
-    currentFrame = this.frame.frame;
-    addressInput.value = scramjet.decodeUrl(
-      currentFrame?.contentWindow?.location.href ?? "",
-    );
-    this.updateUI();
-  }
+	switch(): void {
+		currentTab = this.tabNumber;
+		framesElement
+			.querySelectorAll("iframe")
+			.forEach((frame) => frame.classList.add("hidden"));
+		this.frame.frame.classList.remove("hidden");
 
-  close(): void {
-    this.frame.frame.remove();
-    this.uiElement?.remove();
-    window.tabs = window.tabs.filter((t) => t.tabNumber !== this.tabNumber);
+		currentFrame = this.frame.frame;
+		addressInput.value = scramjet.decodeUrl(
+			currentFrame?.contentWindow?.location.href ?? "",
+		);
+		this.updateUI();
+	}
 
-    if (currentTab === this.tabNumber) {
-      if (window.tabs.length > 0) window.tabs[0].switch();
-      else newTab();
-    }
-  }
+	close(): void {
+		this.frame.frame.remove();
+		this.uiElement?.remove();
+		window.tabs = window.tabs.filter((t) => t.tabNumber !== this.tabNumber);
 
-  handleLoad(url: string): void {
-    if (this.tabNumber !== currentTab) return;
+		if (currentTab === this.tabNumber) {
+			if (window.tabs.length > 0) window.tabs[0].switch();
+			else newTab();
+		}
+	}
 
-    this.title = this.frame.frame?.contentWindow?.document.title || "New Tab";
-    this.url = url;
+	handleLoad(url: string): void {
+		if (this.tabNumber !== currentTab) return;
 
-    const doc = this.frame.contentDocument || this.frame.contentWindow.document;
-    const text = doc.body?.textContent?.toLowerCase() || "";
+		this.title = this.frame.frame?.contentWindow?.document.title || "New Tab";
+		this.url = url;
 
-    const bareErr = text.includes("there are no bare clients");
-    const otherErr = doc.querySelector("#errorTitle");
+		const doc = this.frame.frame.contentDocument || this.frame.frame.contentWindow.document;
+		const text = doc.body?.textContent?.toLowerCase() || "";
 
-    if (bareErr) {
-      if (++this.statusObject.timesErrored <= 5) {
-        console.warn(
-          `Bare client error (${this.statusObject.timesErrored}/5) → reloading`,
-        );
-        this.frame.contentWindow.location.reload();
-      }
-    } else if (otherErr) {
-      console.warn(`Iframe error (${++this.statusObject.timesErrored})`);
-    } else {
-      this.statusObject.timesErrored = 0;
-    }
+		const bareErr = text.includes("there are no bare clients");
+		const otherErr = doc.querySelector("#errorTitle");
 
-    try {
-      let history = JSON.parse(localStorage.getItem("history") || "[]");
-      history.push({ url, title: this.title });
-      localStorage.setItem("history", JSON.stringify(history));
-    } catch {}
+		if (bareErr) {
+			if (++this.timesErrored <= 5) {
+				console.warn(
+					`Bare client error (${this.timesErrored}/5) → reloading`,
+				);
+				this.frame.frame.contentWindow.location.reload();
+			}
+		} else if (otherErr) {
+			console.warn(`Iframe error (${++this.timesErrored})`);
+		} else {
+			this.timesErrored = 0;
+		}
 
-    this.updateUI();
-    addressInput.value = url;
-  }
+		try {
+			let history = JSON.parse(localStorage.getItem("history") || "[]");
+			history.push({ url, title: this.title });
+			localStorage.setItem("history", JSON.stringify(history));
+		} catch { }
+
+		this.updateUI();
+		addressInput.value = url;
+	}
 }
 
 export async function newTab() {
-  new Tab();
+	new Tab();
 }
 
 export function switchTab(tabNumber: number): void {
-  const tabToSwitchTo = window.tabs.find((tab) => tab.tabNumber === tabNumber);
-  if (tabToSwitchTo) {
-    tabToSwitchTo.switch();
-  } else {
-    console.warn(
-      `lethal.js: Attempted to switch to non-existent tab #${tabNumber}`,
-    );
-  }
+	const tabToSwitchTo = window.tabs.find((tab) => tab.tabNumber === tabNumber);
+	if (tabToSwitchTo) {
+		tabToSwitchTo.switch();
+	} else {
+		console.warn(
+			`lethal.js: Attempted to switch to non-existent tab #${tabNumber}`,
+		);
+	}
 }
 
 export function closeTab(tabNumber: number): void {
-  const tabToClose = window.tabs.find((tab) => tab.tabNumber === tabNumber);
+	const tabToClose = window.tabs.find((tab) => tab.tabNumber === tabNumber);
 
-  if (tabToClose) {
-    tabToClose.close();
+	if (tabToClose) {
+		tabToClose.close();
 
-    if (currentTab === tabNumber) {
-      if (window.tabs.length > 0) {
-        window.tabs[0].switch();
-      } else {
-        newTab();
-      }
-    }
-  } else {
-    console.warn(
-      `lethal.js: Attempted to close non-existent tab #${tabNumber}`,
-    );
-  }
+		if (currentTab === tabNumber) {
+			if (window.tabs.length > 0) {
+				window.tabs[0].switch();
+			} else {
+				newTab();
+			}
+		}
+	} else {
+		console.warn(
+			`lethal.js: Attempted to close non-existent tab #${tabNumber}`,
+		);
+	}
 }

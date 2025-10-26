@@ -19,7 +19,7 @@
     "@mercuryworkshop/bare-mux": "^2.1.7",
     "@playform/compress": "^0.1.9",
     "@tailwindcss/vite": "^4.1.16",
-    "astro": "5.14.3",
+    "astro": "5.15.1",
     "astro-icon": "^1.1.5",
     "tailwindcss": "^4.1.16",
     "typescript": "^5.9.3"
