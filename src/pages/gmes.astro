@@ -5,13 +5,10 @@ import { Icon } from "astro-icon/components";
 const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
 const desc = FILTER_OPTIMIZE_ON
   ? "bromine's gᾰmes page"
-	: "bromine's games page";
-const title = FILTER_OPTIMIZE_ON
-  ? "gᾰmes - bromine"
-	: "games - bromine";
+  : "bromine's games page";
+const title = FILTER_OPTIMIZE_ON ? "gᾰmes - bromine" : "games - bromine";
 
-const gmes_text =
- FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
+const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 ---
 
 <Layout title={title} desc={desc} class="no-scrollbar">

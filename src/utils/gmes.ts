@@ -1,11 +1,9 @@
 import gmesData from "@/assets/gmes.json";
 
-
 const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
 
-console.log(FILTER_OPTIMIZE_ON)
-const gmes_text =
- FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
+console.log(FILTER_OPTIMIZE_ON);
+const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 
 (() => {
   const target = document.querySelector("#gmeContainer");

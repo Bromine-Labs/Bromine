@@ -1,10 +1,10 @@
 const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
 
 function optimize(text: string) {
-	if (FILTER_OPTIMIZE_ON) {
-		text = text.replace("o", "σ");
-	}
-	return text;
+  if (FILTER_OPTIMIZE_ON) {
+    text = text.replace("o", "σ");
+  }
+  return text;
 }
 
 export const settingsData = {
@@ -36,7 +36,7 @@ export const settingsData = {
           id: "bromine_search_engine",
           label: "Default Search Engine",
           type: "select",
-          defaultValue: "https://duckduckgo.com/?q=%s&ia=web",
+          defaultValue: "https://search.brave.com/search?q=%s",
           description:
             "Choose the search engine used when you search from the address bar.",
           options: [
@@ -79,8 +79,7 @@ export const settingsData = {
           label: optimize("About Blank"),
           type: "toggle",
           defaultValue: "false",
-          description:
-            `${optimize("About blanks")} the ${optimize("proxy")}. Hides the ${optimize("proxy")} from history but not back/forward buttons.`,
+          description: `${optimize("About blanks")} the ${optimize("proxy")}. Hides the ${optimize("proxy")} from history but not back/forward buttons.`,
         },
         {
           id: "bromine_cloak",
@@ -136,8 +135,7 @@ export const settingsData = {
           label: optimize("Proxy Transport"),
           type: "select",
           defaultValue: "epoxy",
-          description:
-            `Select the transport layer for ${optimize("proxy")} communication. Epσxy is best for chrome and libcurl with firefox, and bare is deprecated.`,
+          description: `Select the transport layer for ${optimize("proxy")} communication. Epσxy is best for chrome and libcurl with firefox, and bare is deprecated.`,
           options: [
             { value: "bare", label: "Bare" },
             { value: "epoxy", label: "Epσxy" },

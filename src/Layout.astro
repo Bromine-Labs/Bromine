@@ -145,7 +145,8 @@ const {
 
       window.addEventListener(
         "bromine_search_engine_changed",
-        () => (search = localStorage.getItem("bromine_search_engine") || search),
+        () =>
+          (search = localStorage.getItem("bromine_search_engine") || search),
       );
       window.addEventListener("bromine_wisp_changed", () =>
         setWisp((wisp = localStorage.getItem("bromine_wisp") || wisp)),
