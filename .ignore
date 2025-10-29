@@ -1,0 +1,4 @@
+# so my flie picker wont look in .jj
+node_modules
+.jj
+scram
