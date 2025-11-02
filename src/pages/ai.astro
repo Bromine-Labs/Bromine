@@ -1,0 +1,126 @@
+
+
+---
+import Layout from "@/Layout.astro";
+---
+
+<Layout>
+  <main class="w-full max-w-5xl min-w-[700px] mx-auto py-8 px-6">
+    <h1 class="text-3xl font-bold mb-6 text-center">AI Chat</h1>
+
+    <div
+      id="chat-box"
+      class="border border-muted rounded-md p-4 h-[55vh] overflow-y-auto bg-surface"
+    ></div>
+
+    <form id="chat-form" class="flex gap-3 mt-4 items-center">
+      <!-- Model Selector -->
+      <div class="flex items-center gap-2">
+        <label for="model-selector" class="font-medium">Model:</label>
+        <select
+          id="model-selector"
+          class="border border-muted rounded-md px-3 py-2 bg-surface text-text"
+        >
+          <option value="openai">Loading models...</option>
+        </select>
+      </div>
+
+      <input
+        id="user-input"
+        type="text"
+        class="flex-1 p-3 border border-muted rounded-md text-base"
+        placeholder="Type a message..."
+      />
+
+      <button
+        type="submit"
+        class="bg-overlay text-text px-5 py-2 rounded-md font-medium hover:opacity-90 transition"
+      >
+        Send
+      </button>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("user-input");
+    const chatBox = document.getElementById("chat-box");
+    const modelSelector = document.getElementById("model-selector");
+
+    let messages = [];
+
+    const predefinedModels = ["gemini", "deepseek", "openai", "evil"];
+
+    function loadModels() {
+      modelSelector.innerHTML = "";
+      predefinedModels.forEach((model) => {
+        const option = document.createElement("option");
+        option.value = model;
+        option.textContent = model;
+        modelSelector.appendChild(option);
+      });
+
+      const lastModel = localStorage.getItem("pollinations-model");
+      if (lastModel && predefinedModels.includes(lastModel)) {
+        modelSelector.value = lastModel;
+      }
+    }
+    loadModels();
+
+    modelSelector.addEventListener("change", () => {
+      localStorage.setItem("pollinations-model", modelSelector.value);
+      messages = [];
+      chatBox.innerHTML = "";
+    });
+
+    function addMessage(role, content) {
+      const msg = document.createElement("div");
+      msg.className =
+        role === "user" ? "text-right mb-2" : "text-left mb-2 text-text";
+
+      const span = document.createElement("span");
+      span.className =
+        "inline-block px-3 py-2 rounded-lg bg-overlay text-text whitespace-pre-wrap";
+      span.textContent = content.trim();
+
+      msg.appendChild(span);
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const userText = input.value.trim();
+      if (!userText) return;
+
+      const selectedModel = modelSelector.value || "openai";
+
+      addMessage("user", userText);
+      input.value = "";
+
+      messages.push({ role: "user", content: userText });
+      addMessage("assistant", "Thinking...");
+
+      try {
+        const response = await fetch(`https://text.pollinations.ai/`, {
+          method: "POST",
+          body: JSON.stringify({
+            model: selectedModel,
+            messages,
+          }),
+        });
+
+        const reply = await response.text();
+
+        chatBox.lastChild.remove();
+        addMessage("assistant", reply);
+
+        messages.push({ role: "assistant", content: reply });
+      } catch (error) {
+        chatBox.lastChild.remove();
+        addMessage("assistant", "⚠️ Error connecting to Pollinations API.");
+        console.error(error);
+      }
+    });
+  </script>
+</Layout>
