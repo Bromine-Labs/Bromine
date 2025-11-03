@@ -27,7 +27,6 @@ const getIcon = (url: string) => {
 window.tabs = [];
 
 const transportOptions: TransportOptions = {
-	bare: "https://unpkg.com/@mercuryworkshop/bare-as-module3@2.2.5/dist/index.mjs",
 	epoxy:
 		"https://unpkg.com/@mercuryworkshop/epoxy-transport@2.1.27/dist/index.mjs",
 	libcurl:
@@ -55,9 +54,7 @@ async function registerSW(): Promise<void> {
 }
 
 requestIdleCallback(async () => {
-	await import("@/assets/scram/scramjet.all.js");
-
-	const { ScramjetController } = $scramjetLoadController();
+	const { ScramjetController } = window.$scramjetLoadController();
 	const scramjet = new ScramjetController({
 		files: {
 			wasm: "/scram/scramjet.wasm.wasm",
