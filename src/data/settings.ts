@@ -3,6 +3,7 @@ const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
 function optimize(text: string) {
 	if (FILTER_OPTIMIZE_ON) {
 		text = text.replace("o", "σ");
+		text = text.replace("u", "ú")
 	}
 	return text;
 }
@@ -137,8 +138,8 @@ export const settingsData = {
 					defaultValue: "libcurl",
 					description: `This is basically a TLS layer communication. ${optimize("Epoxy")} is faster but libcurl supports more websites.`,
 					options: [
-						{ value: "epoxy", label: "Epσxy" },
-						{ value: "libcurl", label: "Libcúrl" },
+						{ value: "epoxy", label: optimize("Epoxy") },
+						{ value: "libcurl", label: optimize("Libcurl") },
 					],
 				},
 				{
