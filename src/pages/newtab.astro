@@ -1,95 +1,31 @@
 ---
-import "@/styles.css";
-const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
-
-const {
-  title = "bromine",
-  desc = FILTER_OPTIMIZE_ON
-    ? "Bromine is the ultimate spot where elements meet creativity, making even the toughest equations feel like a breeze. From element matching to chemical reactions, this site turns everyday chemistry into something easy."
-    : "Bromine is a clean and minimal web proxy service.",
-} = Astro.props;
+import Layout from "@/Layout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <link rel="preconnect" href="https://scripts.simpleanalyticscdn.com" />
-    <link rel="preconnect" href="https://learningbuildingroughly.com" />
-    <link
-      rel="preload"
-      href="https://scripts.simpleanalyticscdn.com/latest.js"
-      as="script"
-    />
-    <link
-      rel="preload"
-      href="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"
-      as="script"
-    />
-    <meta property="meta:description" content={desc} />
-    <meta property="og:site_name" content="Bromine" />
-    <meta property="og:title" content={title} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bromineproxy.netlify.app/" />
-    <meta property="og:description" content={desc} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Bromine" />
-    <meta name="twitter:description" content={desc} />
-    <meta
-      name="bromine_theme-color"
-      media="(prefers-color-scheme: dark)"
-      content="#191724"
-    />
-    <script
-      type="text/partytown"
-      data-hostname="bromineproxy.netlify.app"
-      src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-    <script
-      type="text/partytown"
-      src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
-    <script type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-NQ3WX8KNQW");
-    </script>
+<Layout title="bromine">
 
-    <script src="/scram/scramjet.all.js" async defer is:inline></script>
+<script src="/scram/scramjet.all.js" async defer is:inline></script>
+  <div class="flex flex-col items-center justify-center flex-grow text-center px-4 py-12">
+    <h1 class="text-4xl font-bold mb-2">Bromine</h1>
+    <span class="mb-6 text-lg opacity-80">Unrestricted browsing</span>
 
-    <meta charset="UTF-8" />
-    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <link rel="icon" href="favicon.ico" sizes="48x48" type="image/x-icon" />
-  </head>
-  <body class="bg-base overflow-none text-text flex">
-    <main
-      id="main"
-      class="flex h-screen flex-grow flex-col items-center justify-center"
-    >
-      <h1 class="text-4xl font-bold">Bromine</h1>
-      <span class="mb-4">Unrestricted browsing</span>
-      <form id="form" class="flex w-full justify-center">
-        <input
-          autofocus
-          spellcheck="false"
-          autocomplete="off"
-          id="address"
-          type="text"
-          class="border-border mb-4 w-full max-w-md rounded-lg border p-2"
-          required
-          placeholder="Search the world wide web"
-        />
-      </form>
+    <form id="form" class="flex w-full justify-center mb-6">
+      <input
+        autofocus
+        spellcheck="false"
+        autocomplete="off"
+        id="address"
+        type="text"
+        class="border-border w-full max-w-md rounded-lg border p-2 text-center bg-bg/60 backdrop-blur-md placeholder:opacity-60"
+        required
+        placeholder="Search the world wide web"
+      />
+    </form>
 
-      <script
-        async="async"
-        data-cfasync="false"
-        src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"
-      ></script>
-      <div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
+<script async="async" data-cfasync="false" src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"></script>
+<div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
+
+  </div>
 
       <script>
         import {
@@ -100,18 +36,16 @@ const {
           getProxied,
         } from "@/utils/lethal";
 
-        let wisp = localStorage.getItem("bromine_wisp") || "wss://anura.pro/";
+        let wisp = localStorage.getItem("bromine_wisp");
         let transport = localStorage.getItem("bromine_transport");
 
         setWisp(wisp);
         if (transport) setTransport(transport);
-        else if (navigator.userAgent.includes("Firefox"))
-          setTransport("libcurl");
+        else if (navigator.userAgent.includes("Firefox")) setTransport("libcurl");
         else setTransport("epoxy");
 
         let search =
-          localStorage.getItem("bromine_search_engine") ||
-          "https://duckduckgo.com/search?q=%s";
+				localStorage.getItem("bromine_search_engine");
 
         const form = document.getElementById("form");
         const input = document.getElementById("address");
@@ -140,8 +74,6 @@ const {
             case "bromine_theme_changed":
               applyTheme();
               break;
-            default:
-              document.dispatchEvent(new CustomEvent(msg.type));
             case "bromine_search_engine_changed":
               search = localStorage.getItem("bromine_search_engine");
               break;
@@ -153,9 +85,8 @@ const {
               transport = localStorage.getItem("bromine_transport");
               setTransport(transport);
               break;
+            default:
+              document.dispatchEvent(new CustomEvent(msg.type));
           }
         });
-      </script>
-    </main>
-  </body>
-</html>
+      </script></Layout>

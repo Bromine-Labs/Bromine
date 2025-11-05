@@ -68,7 +68,18 @@ const {
     </script>
 
     <!-- Scripts -->
-    <script>
+		<script>
+import { settingsData } from "@/data/settings.ts";
+
+const flatSettingsConfig = settingsData.sections.flatMap(
+  (section) => section.settings,
+);
+
+  flatSettingsConfig.forEach((setting) => {
+    if (localStorage.getItem(setting.id) === null) {
+      localStorage.setItem(setting.id, setting.defaultValue.toString());
+    }
+  });
       const originalSetItem = localStorage.setItem;
       localStorage.setItem = function (key) {
         originalSetItem.apply(this, arguments);
@@ -99,57 +110,6 @@ const {
       });
     </script>
 
-    <script>
-      import {
-        setTransport,
-        setWisp,
-        makeURL,
-        getProxied,
-        setFrames,
-        addressInput,
-        currentTab,
-      } from "@/utils/lethal";
-
-      const form = document.getElementById("form");
-      let search =
-        localStorage.getItem("bromine_search_engine") ||
-        "https://duckduckgo.com/search?q=%s";
-      let wisp = localStorage.getItem("bromine_wisp") || "wss://anura.pro/";
-      let transport = localStorage.getItem("bromine_transport");
-
-      setWisp(wisp);
-      setTransport(
-        transport ||
-          (navigator.userAgent.includes("Firefox") ? "libcurl" : "epoxy"),
-      );
-
-      form?.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const url = makeURL(addressInput.value, search);
-        const proxied = await getProxied(url);
-        const frame = document.getElementById(`frame-${currentTab}`);
-        localStorage.getItem("bromine_stealth_mode")
-          ? frame?.contentWindow?.location.replace(proxied)
-          : (frame.src = proxied);
-        addressInput.value = url;
-      });
-
-      window.addEventListener(
-        "bromine_search_engine_changed",
-        () =>
-          (search = localStorage.getItem("bromine_search_engine") || search),
-      );
-      window.addEventListener("bromine_wisp_changed", () =>
-        setWisp((wisp = localStorage.getItem("bromine_wisp") || wisp)),
-      );
-      window.addEventListener("bromine_transport_changed", () =>
-        setTransport(
-          (transport = localStorage.getItem("bromine_transport") || transport),
-        ),
-      );
-
-      setFrames(document.getElementById("frames"));
-    </script>
   </head>
 
   <body class="bg-bg flex min-h-screen flex-col">

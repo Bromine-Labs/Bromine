@@ -13,6 +13,56 @@ import Frame from "@/components/utils/Frame.astro";
   <Frame />
 </Layout>
 
+    <script>
+      import {
+        setTransport,
+        setWisp,
+        makeURL,
+        getProxied,
+        setFrames,
+        addressInput,
+        currentTab,
+      } from "@/utils/lethal";
+
+      const form = document.getElementById("form");
+      let search =
+			localStorage.getItem("bromine_search_engine");
+      let wisp = localStorage.getItem("bromine_wisp");
+      let transport = localStorage.getItem("bromine_transport");
+
+      setWisp(wisp);
+      setTransport(
+        transport ||
+          (navigator.userAgent.includes("Firefox") ? "libcurl" : "epoxy"),
+      );
+
+      form?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const url = makeURL(addressInput.value, search);
+        const proxied = await getProxied(url);
+        const frame = document.getElementById(`frame-${currentTab}`);
+        localStorage.getItem("bromine_stealth_mode")
+          ? frame?.contentWindow?.location.replace(proxied)
+          : (frame.src = proxied);
+        addressInput.value = url;
+      });
+
+      window.addEventListener(
+        "bromine_search_engine_changed",
+        () =>
+          (search = localStorage.getItem("bromine_search_engine") || search),
+      );
+      window.addEventListener("bromine_wisp_changed", () =>
+        setWisp((wisp = localStorage.getItem("bromine_wisp") || wisp)),
+      );
+      window.addEventListener("bromine_transport_changed", () =>
+        setTransport(
+          (transport = localStorage.getItem("bromine_transport") || transport),
+        ),
+      );
+
+      setFrames(document.getElementById("frames"));
+    </script>
 <script>
   const handleBeforeUnload = (e) => {
     e.preventDefault();
