@@ -59,6 +59,13 @@ import { Icon } from "astro-icon/components";
       <Icon name="ph:game-controller-bold" class="size-4.5" />
     </button>
 
+    <button
+      aria-label="ai"
+      id="ai-btn"
+      class="bg-overlay hover:bg-highlight-med rounded-md p-1.5 shadow-md"
+    >
+      <Icon name="ph:robot-bold" class="size-4.5" />
+    </button>
     <Bookmarks />
     <Settings />
   </div>
@@ -157,6 +164,14 @@ import { Icon } from "astro-icon/components";
       handler: () => {
         if (currentFrame?.contentWindow) {
           currentFrame.src = "/gmes";
+        }
+      },
+    },
+    {
+      id: "ai-btn",
+      handler: () => {
+        if (currentFrame?.contentWindow) {
+          currentFrame.src = "/ai";
         }
       },
     },
