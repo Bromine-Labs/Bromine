@@ -1,12 +1,12 @@
 importScripts("/workerware/workerware.js");
 importScripts("/alu-adblocker.js");
-importScripts("/scram/scramjet.all.js");
+importScripts("/crasm/scramjet.all.js");
 
 if (navigator.userAgent.includes("Firefox")) {
-  Object.defineProperty(globalThis, "crossOriginIsolated", {
-    value: true,
-    writable: true,
-  });
+	Object.defineProperty(globalThis, "crossOriginIsolated", {
+		value: true,
+		writable: true,
+	});
 }
 
 const { ScramjetServiceWorker } = $scramjetLoadWorker();
@@ -15,18 +15,18 @@ const scramjet = new ScramjetServiceWorker();
 const ww = new WorkerWare({});
 
 async function handleRequest(event) {
-  await scramjet.loadConfig();
+	await scramjet.loadConfig();
 
-  let mwResponse = await ww.run(event)();
-  if (mwResponse.includes(null)) return;
+	let mwResponse = await ww.run(event)();
+	if (mwResponse.includes(null)) return;
 
-  if (scramjet.route(event)) {
-    return scramjet.fetch(event);
-  }
+	if (scramjet.route(event)) {
+		return scramjet.fetch(event);
+	}
 
-  return await fetch(event.request);
+	return await fetch(event.request);
 }
 
 self.addEventListener("fetch", (event) => {
-  event.respondWith(handleRequest(event));
+	event.respondWith(handleRequest(event));
 });
