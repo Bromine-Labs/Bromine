@@ -57,9 +57,9 @@ requestIdleCallback(async () => {
 	const { ScramjetController } = window.$scramjetLoadController();
 	const scramjet = new ScramjetController({
 		files: {
-			wasm: "/crasm/scramjet.wasm.wasm",
-			all: "/crasm/scramjet.all.js",
-			sync: "/crasm/scramjet.sync.js",
+			wasm: "https://cdn.jsdelivr.net/gh/Bromine-Labs/cdn@main/crasm/scramjet.wasm.wasm",
+			all: "https://cdn.jsdelivr.net/gh/Bromine-Labs/cdn@main/crasm/scramjet.all.js",
+			sync: "https://cdn.jsdelivr.net/gh/Bromine-Labs/cdn@main/crasm/scramjet.sync.js",
 		},
 		flags: {
 			rewriterLogs: false,

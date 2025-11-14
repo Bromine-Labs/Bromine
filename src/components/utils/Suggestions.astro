@@ -16,6 +16,7 @@
     getProxied,
     currentFrame,
   } from "@/utils/lethal.ts";
+  import { fetch } from "@/utils/fetch.ts";
   const addressInput = document.getElementById("address");
   const suggsContainer = document.getElementById("suggs-container");
   const suggsList = document.getElementById("suggs-list");
@@ -32,9 +33,7 @@
 
       try {
         const response = await fetch(
-          await getProxied(
             `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}`,
-          ),
         );
         const data = await response.json();
         const suggestions = data.map((item) => item.phrase);

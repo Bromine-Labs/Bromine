@@ -29,6 +29,8 @@ import Layout from "@/Layout.astro";
   </main>
 
   <script>
+    import { fetch } from "@/utils/fetch.ts";
+    
     const form = document.getElementById("chat-form");
     const input = document.getElementById("user-input");
     const chatBox = document.getElementById("chat-box");
