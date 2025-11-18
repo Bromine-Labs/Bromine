@@ -25,7 +25,7 @@
 
 ```bash
 # asumming you have either docker or podman
-docker pull docker.io/coding3hours/bromine:latest
+docker pull ghcr.io/coding4hours/bromine
 docker run -d -p 8080:8080 ghcr.io/coding4hours/bromine
 ```
 
