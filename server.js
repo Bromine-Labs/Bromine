@@ -1,11 +1,10 @@
-
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import { server as wisp } from "@mercuryworkshop/wisp-js/server";
 
-const PORT = parseInt(process.env.PORT) || 4040;
+const PORT = parseInt(process.env.PORT) || 8080;
 const HOST = process.env.HOST || "0.0.0.0";
 const NODE_ENV = process.env.NODE_ENV || "production";
 
