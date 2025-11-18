@@ -26,7 +26,7 @@
 ```bash
 # asumming you have either docker or podman
 docker pull docker.io/coding3hours/bromine:latest
-docker run -d -p 8080:80 ghcr.io/coding4hours/bromine
+docker run -d -p 8080:8080 ghcr.io/coding4hours/bromine
 ```
 
 Then go to [localhost:8080](http://localhost:8080)
