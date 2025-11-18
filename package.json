@@ -1,35 +1,41 @@
 {
-  "name": "bromine",
-  "version": "1.0.0",
-  "description": "bromine",
-  "scripts": {
-    "dev": "astro dev",
-    "check": "astro check --write *",
-    "build": "astro build",
-    "deploy": "wrangler deploy",
-    "format": "bunx prettier . --write"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.9.5",
-    "@astrojs/partytown": "^2.1.4",
-    "@astrojs/sitemap": "3.6.0",
-    "@astrojs/ts-plugin": "^1.10.5",
-    "@iconify-json/ph": "^1.2.2",
-    "@iconify-json/simple-icons": "^1.2.55",
-    "@mercuryworkshop/bare-mux": "^2.1.7",
-    "@playform/compress": "^0.1.9",
-    "@tailwindcss/vite": "^4.1.16",
-    "astro": "5.15.6",
-    "astro-icon": "^1.1.5",
-    "tailwindcss": "^4.1.16",
-    "typescript": "^5.9.3"
-  },
-  "trustedDependencies": [
-    "@tailwindcss/oxide"
-  ],
-  "devDependencies": {
-    "prettier": "3.6.2",
-    "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "^0.7.1"
-  }
+	"name": "bromine",
+	"version": "1.0.0",
+	"description": "bromine",
+	"type": "module",
+	"scripts": {
+		"dev": "astro dev",
+		"check": "astro check --write *",
+		"build": "astro build",
+		"deploy": "wrangler deploy",
+		"format": "bunx prettier . --write"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.9.5",
+		"@astrojs/partytown": "^2.1.4",
+		"@astrojs/sitemap": "3.6.0",
+		"@astrojs/ts-plugin": "^1.10.5",
+		"@iconify-json/ph": "^1.2.2",
+		"@iconify-json/simple-icons": "^1.2.55",
+		"@mercuryworkshop/bare-mux": "^2.1.7",
+		"@mercuryworkshop/wisp-js": "^0.4.0",
+		"@playform/compress": "^0.1.9",
+		"@tailwindcss/vite": "^4.1.16",
+		"astro": "5.15.1",
+		"astro-icon": "^1.1.5",
+		"express": "^5.1.0",
+		"tailwindcss": "^4.1.16",
+		"typescript": "^5.9.3"
+	},
+	"trustedDependencies": [
+		"@tailwindcss/oxide",
+		"bufferutil",
+		"esbuild",
+		"sharp"
+	],
+	"devDependencies": {
+		"prettier": "3.6.2",
+		"prettier-plugin-astro": "0.14.1",
+		"prettier-plugin-tailwindcss": "^0.7.1"
+	}
 }
