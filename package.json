@@ -4,6 +4,7 @@
 	"description": "bromine",
 	"type": "module",
 	"scripts": {
+		"start": "bun run server.js",
 		"dev": "astro dev",
 		"check": "astro check --write *",
 		"build": "astro build",
