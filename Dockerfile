@@ -15,6 +15,7 @@ FROM docker.io/oven/bun:alpine
 WORKDIR /app
 
 COPY --from=build /app .
+ENV PUBLIC_HOST_WISP="true"
 
 EXPOSE 8080
 
