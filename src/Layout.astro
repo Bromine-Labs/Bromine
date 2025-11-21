@@ -75,11 +75,13 @@ const flatSettingsConfig = settingsData.sections.flatMap(
   (section) => section.settings,
 );
 
+if(localStorage.getItem("bromine_wisp") == null) localStorage.setItem("bromine_wisp",(location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/")
   flatSettingsConfig.forEach((setting) => {
     if (localStorage.getItem(setting.id) === null) {
       localStorage.setItem(setting.id, setting.defaultValue.toString());
     }
-  });
+});
+
       const originalSetItem = localStorage.setItem;
       localStorage.setItem = function (key) {
         originalSetItem.apply(this, arguments);

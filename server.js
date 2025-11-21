@@ -1,32 +1,33 @@
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-import fs from "fs";
 import { server as wisp } from "@mercuryworkshop/wisp-js/server";
+import express from "express";
 
 const PORT = parseInt(process.env.PORT) || 8080;
-const HOST = process.env.HOST || "0.0.0.0";
 const NODE_ENV = process.env.NODE_ENV || "production";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const distDir = path.join(__dirname, "dist");
+// NEW
+const PUBLIC_HOST_WISP = process.env.PUBLIC_HOST_WISP === "true";
 
 const app = express();
 
-app.use(express.static('dist'))
-// Start HTTP server
-const server = app.listen(PORT, HOST, () => {
-	console.log(`Wisp-only server running in ${NODE_ENV} mode`);
-	console.log(`Listening on http://${HOST}:${PORT}`);
+// Serve static files if you still want the dist/ client
+app.use(express.static("dist"));
+
+const server = app.listen(PORT, () => {
+	console.log(`Server running in ${NODE_ENV} mode`);
+	console.log(`Listening on http://localhost:${PORT}`);
+
+	if (PUBLIC_HOST_WISP) {
+		console.log("Wisp hosting ENABLED");
+	} else {
+		console.log("Wisp hosting DISABLED");
+	}
 });
 
 server.on("upgrade", (req, socket, head) => {
-	if (req.url.startsWith("/wisp")) {
+	if (PUBLIC_HOST_WISP && req.url.startsWith("/wisp")) {
 		wisp.routeRequest(req, socket, head);
 	} else {
 		socket.destroy();
 	}
 });
-
 

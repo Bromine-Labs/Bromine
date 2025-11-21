@@ -1,5 +1,5 @@
 const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
-
+const HOST_WISP = import.meta.env.PUBLIC_HOST_WISP === "true";
 function optimize(text: string) {
 	if (FILTER_OPTIMIZE_ON) {
 		text = text.replace("o", "σ");
@@ -146,7 +146,7 @@ export const settingsData = {
 					id: "bromine_wisp",
 					label: "Wisp Server",
 					type: "text",
-					defaultValue: "wss://anura.pro/",
+					defaultValue: HOST_WISP ? null : "wss://anura.pro/",
 					placeholder: "wss://wisp.pro/",
 					description:
 						"The transport server used. This requires a '/' at the end",
@@ -155,3 +155,4 @@ export const settingsData = {
 		},
 	],
 };
+
