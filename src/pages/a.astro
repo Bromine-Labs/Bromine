@@ -3,25 +3,11 @@ import Layout from "@/Layout.astro";
 ---
 
 <Layout>
-  <div class="flex h-[calc(100vh-4rem)] overflow-hidden bg-background text-text">
-    
-    <aside class="w-64 flex-shrink-0 flex flex-col border-r border-muted bg-surface/50">
-      <div class="p-4 border-b border-muted">
-        <button
-          id="new-chat-btn"
-          type="button"
-          class="w-full flex items-center justify-center gap-2 bg-overlay hover:bg-overlay/80 text-text border border-muted px-4 py-3 rounded-md transition font-medium cursor-pointer"
-        >
-          <span>+</span> New Chat
-        </button>
-      </div>
-
-      <div id="chat-history" class="flex-1 overflow-y-auto p-2 space-y-1"> </div>
-    </aside>
-
-
+	<aside clas="mx-auto ">
+		f
+	</aside>
   <main class="w-full max-w-5xl min-w-[700px] mx-auto py-8 px-6">
-    <h1 class="text-3xl font-bold mb-6 text-center">AI Chat</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center">AI Chat (Gemini)</h1>
 
     <div
       id="chat-box"
@@ -46,7 +32,7 @@ import Layout from "@/Layout.astro";
       </button>
     </form>
   </main>
-	</div>
+
 	<script>
     // import { fetch } from "@/utils/fetch.ts";
     
@@ -56,9 +42,7 @@ import Layout from "@/Layout.astro";
     const selchat = document.getElementById("select-chat");
     const chatBox = document.getElementById("chat-box");
 
-		const API_URL = "https://text.pollinations.ai/openai";
-		// couldnt think of anything else :sob:
-		const delimiter = "--MESSAGE END--";
+    const API_URL = "https://text.pollinations.ai/openai";
 
 		let chatstorageid = "messages"
     window.messages = localStorage.getItem(chatstorageid)|| "";
@@ -86,7 +70,7 @@ import Layout from "@/Layout.astro";
       addMessage("user", userText);
       input.value = "";
 
-			messages += `user:${userText}`
+			messages += `user:${userText}--MESSAGE END--`
 
       addMessage("assistant", "Thinking...");
 
@@ -98,7 +82,7 @@ import Layout from "@/Layout.astro";
         chatBox.lastChild.remove();
         addMessage("assistant", reply);
 
-				messages += `assistant:${reply}${delimiter}`
+        messages += `assistant:${reply}--MESSAGE END--`
 				localStorage.setItem(chatstorageid, messages)
       } catch (error) {
         chatBox.lastChild.remove();
@@ -129,7 +113,7 @@ import Layout from "@/Layout.astro";
 
 		
 		  const msseag = localStorage.getItem(mseag)
-			const messages_arr = msseag.split(delimiter)
+			const messages_arr = msseag.split("--MESSAGE END--")
 	    for(const message of messages_arr) {
 		    const fad = message.split(":");
 		    const role = fad[0];
@@ -139,7 +123,7 @@ import Layout from "@/Layout.astro";
 		})
 
 if (messages.trim() !== "") {
-  const messages_arr = messages.split(delimiter);
+  const messages_arr = messages.split("--MESSAGE END--");
   for (const message of messages_arr) {
     if (!message.includes(":")) continue;   // skip invalid/empty entries
     const [role, text] = message.split(":");
