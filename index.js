@@ -4,12 +4,10 @@ import express from "express";
 const PORT = parseInt(process.env.PORT) || 8080;
 const NODE_ENV = process.env.NODE_ENV || "production";
 
-// NEW
 const PUBLIC_HOST_WISP = process.env.PUBLIC_HOST_WISP === "true";
 
 const app = express();
 
-// Serve static files if you still want the dist/ client
 app.use(express.static("dist"));
 
 const server = app.listen(PORT, () => {
