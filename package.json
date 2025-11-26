@@ -2,10 +2,10 @@
 	"name": "bromine",
 	"version": "1.0.0",
 	"description": "bromine",
-	"module": "server.js",
+	"module": "index.js",
 	"type": "module",
 	"scripts": {
-		"start": "bun run server.js",
+		"start": "bun run index.js",
 		"dev": "astro dev",
 		"check": "astro check --write *",
 		"build": "astro build",
