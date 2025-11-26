@@ -64,6 +64,13 @@ import Frame from "@/components/utils/Frame.astro";
       setFrames(document.getElementById("frames"));
     </script>
 <script>
+let inFrame;
+
+try {
+  inFrame = window !== top;
+} catch (e) {
+  inFrame = true;
+}
   const handleBeforeUnload = (e) => {
     e.preventDefault();
     e.returnValue = "";
@@ -98,7 +105,7 @@ import Frame from "@/components/utils/Frame.astro";
   window.addEventListener("cloak_changed", applyCloak);
 
   (() => {
-    if (localStorage.getItem("bromine_about_blank") === "true") {
+    if (!inFrame && localStorage.getItem("bromine_about_blank") === "true") {
       const popup = open("about:blank", "_blank");
       if (!popup || popup.closed) {
         alert("Please allow popups for about bnalk to work.");
