@@ -2,6 +2,7 @@
 	"name": "bromine",
 	"version": "1.0.0",
 	"description": "bromine",
+	"module": "server.js",
 	"type": "module",
 	"scripts": {
 		"start": "bun run server.js",
