@@ -20,4 +20,4 @@ ENV PUBLIC_HOST_WISP="true"
 EXPOSE 8080
 
 # Run your Bun server
-CMD ["bun", "run", "server.js"]
+CMD ["bun", "run", "index.js"]
