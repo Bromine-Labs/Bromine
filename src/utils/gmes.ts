@@ -1,5 +1,4 @@
 import gmesData from "@/data/gmes.json";
-import { fetch } from "@/utils/fetch.ts";
 
 const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
 const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
