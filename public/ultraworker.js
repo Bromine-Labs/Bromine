@@ -1,6 +1,6 @@
-importScripts("https://cdn.jsdelivr.net/gh/Bromine-Labs/cdn@main/workerware/workerware.js");
-importScripts("https://cdn.jsdelivr.net/gh/Bromine-Labs/cdn@main/alu-adblocker.js");
-importScripts("https://cdn.jsdelivr.net/gh/Bromine-Labs/cdn@main/crasm/scramjet.all.js");
+importScripts("/workerware/workerware.js");
+importScripts("/alu-adblocker.js");
+importScripts("/crasm/scramjet.all.js");
 
 if (navigator.userAgent.includes("Firefox")) {
 	Object.defineProperty(globalThis, "crossOriginIsolated", {
