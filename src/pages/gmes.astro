@@ -4,75 +4,58 @@ import { Icon } from "astro-icon/components";
 
 const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
 const desc = FILTER_OPTIMIZE_ON
-  ? "bromine's gᾰmes page"
-  : "bromine's games page";
+	? "bromine's gᾰmes page"
+	: "bromine's games page";
 const title = FILTER_OPTIMIZE_ON ? "gᾰmes - bromine" : "games - bromine";
 
 const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 ---
 
 <Layout title={title} desc={desc}>
-  <script src="@/utils/gmes.ts"></script>
+	<script src="@/utils/gmes.ts"></script>
 
-  <style>
-    /* Target the element that contains scrollable content */
-    html,
-    body,
-    #gmeContainer {
-      overflow-y: scroll; /* content is scrollable */
-      scrollbar-width: none; /* Firefox */
-    }
+	<div
+		class="sticky top-0 z-10 flex justify-center py-3 shadow-md backdrop-blur"
+	>
+		<div
+			class="bg-surface flex w-full max-w-xl items-center rounded-md px-3 shadow"
+		>
+			<Icon name="ph:magnifying-glass-bold" class="text-muted size-5" />
+			<input
+				id="search"
+				type="text"
+				class="w-full flex-1 bg-transparent py-2 pl-3 focus:outline-none"
+			/>
+		</div>
+	</div>
 
-    html::-webkit-scrollbar,
-    body::-webkit-scrollbar,
-    #gmeContainer::-webkit-scrollbar {
-      width: 0px; /* hide scrollbar in WebKit browsers */
-      background: transparent;
-    }
-  </style>
+	<section id="gmeContainer"></section>
 
-  <div
-    class="sticky top-0 z-50 flex justify-center py-3 shadow-md backdrop-blur"
-  >
-    <div
-      class="bg-surface flex w-full max-w-xl items-center rounded-md px-3 shadow"
-    >
-      <Icon name="ph:magnifying-glass-bold" class="text-muted size-5" />
-      <input
-        id="search"
-        type="text"
-        class="w-full flex-1 bg-transparent py-2 pl-3 focus:outline-none"
-      />
-    </div>
-  </div>
+	<script
+		async
+		data-cfasync="false"
+		src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"
+	></script>
+	<div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
 
-  <section id="gmeContainer"></section>
+	<div id="gmePageContainer" class="bg-surface/90 fixed inset-0 z-[999] hidden">
+		<h2
+			id="gmePageTitle"
+			class="absolute top-[15px] left-[20px] z-50 text-3xl font-bold"
+		>
+		</h2>
 
-  <script
-    async
-    data-cfasync="false"
-    src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"
-  ></script>
-  <div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
+		<button
+			id="backBtn"
+			class="bg-overlay/70 hover:bg-surface/70 absolute top-[15px] right-[20px] z-50 flex cursor-pointer items-center rounded-lg border-0 px-4 py-2 transition"
+		>
+			<Icon name="ph:x" class="size-5" />
+			Close
+		</button>
 
-  <div id="gmePageContainer" class="bg-surface/90 fixed inset-0 z-[999] hidden">
-    <h2
-      id="gmePageTitle"
-      class="absolute top-[15px] left-[20px] z-50 text-3xl font-bold"
-    >
-    </h2>
-
-    <button
-      id="backBtn"
-      class="bg-overlay/70 hover:bg-surface/70 absolute top-[15px] right-[20px] z-50 flex cursor-pointer items-center rounded-lg border-0 px-4 py-2 transition"
-    >
-      <Icon name="ph:x" class="size-5" />
-      Close
-    </button>
-
-    <iframe
-      id="gmePageFrame"
-      class="absolute top-0 left-0 h-full w-full border-none"
-      allowfullscreen></iframe>
-  </div>
+		<iframe
+			id="gmePageFrame"
+			class="absolute top-0 left-0 h-full w-full border-none"
+			allowfullscreen></iframe>
+	</div>
 </Layout>
