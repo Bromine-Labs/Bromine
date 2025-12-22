@@ -146,7 +146,7 @@ export const settingsData = {
 					id: "bromine_wisp",
 					label: "Wisp Server",
 					type: "text",
-					defaultValue: HOST_WISP ? null : "wss://anura.pro/",
+					defaultValue: HOST_WISP ? "customwispblahblahblah" : "wss://anura.pro/",
 					placeholder: "wss://wisp.pro/",
 					description:
 						"The transport server used. This requires a '/' at the end",
