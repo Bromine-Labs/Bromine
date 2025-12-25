@@ -7,9 +7,9 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 	const target = document.querySelector("#gmeContainer");
 	const searchInput = document.getElementById("search");
 
-
+	// --- Infinite Scroll State ---
 	let currentPage = 1;
-	const itemsPerPage = 20;
+	const itemsPerPage = 20; 
 	let currentFilteredGmes = [];
 	let observer = null;
 
@@ -18,10 +18,10 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 	const allGmes = [...gmesData].sort((a, b) =>
 		a.title.localeCompare(b.title, undefined, { sensitivity: "base" }),
 	);
-
+	
 	currentFilteredGmes = allGmes;
 
-
+	// Helper to generate the HTML for a single game card
 	const createGmeCard = (gme) => {
 		const thumb_url = gme.thumb
 			? `https://raw.githubusercontent.com/Galaxy-Vortex/asseting-bromine/main/${gme.thumb}`
@@ -51,13 +51,13 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 			return;
 		}
 
-
+		// Append new items
 		const container = target.querySelector(".gme-grid");
 		container.insertAdjacentHTML("beforeend", batch.map(createGmeCard).join(""));
 
-
+		// Check if we have more to load
 		if (endIndex >= currentFilteredGmes.length) {
-
+			// No more items, stop observing
 			if (observer) observer.disconnect();
 			const sentinel = document.getElementById("infinite-sentinel");
 			if (sentinel) sentinel.style.display = "none";
@@ -65,10 +65,10 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 	};
 
 	const initInfiniteScroll = () => {
-
+		// Clean up old observer if it exists
 		if (observer) observer.disconnect();
 
-
+		// Initial setup of the container
 		target.innerHTML = `
 			<div class="gme-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px;"></div>
 			<div id="infinite-sentinel" style="height: 50px; width: 100%;"></div>
@@ -82,7 +82,7 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 				currentPage++;
 			}
 		}, {
-			rootMargin: "200px",
+			rootMargin: "200px", // Start loading 200px before reaching the bottom
 		});
 
 		observer.observe(sentinel);
@@ -94,13 +94,13 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 			gme.title.toLowerCase().includes(searchQuery),
 		);
 		currentPage = 1;
-		initInfiniteScroll();
+		initInfiniteScroll(); // Reset everything on search
 	});
 
-
+	// Initial trigger
 	initInfiniteScroll();
 
-
+	// --- Frame Logic ---
 	window.opengme = async (file_name, title, frameGme) => {
 		const frame = document.getElementById("gmePageFrame");
 		const container = document.getElementById("gmePageContainer");
