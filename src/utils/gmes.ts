@@ -7,6 +7,7 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 	const target = document.querySelector("#gmeContainer");
 	const searchInput = document.getElementById("search");
 
+
 	let currentPage = 1;
 	const itemsPerPage = 20;
 	let currentFilteredGmes = [];
@@ -21,7 +22,7 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 	currentFilteredGmes = allGmes;
 
 
-	const create_card = (gme) => {
+	const createGmeCard = (gme) => {
 		const thumb_url = gme.thumb
 			? `https://raw.githubusercontent.com/Galaxy-Vortex/asseting-bromine/main/${gme.thumb}`
 			: null;
@@ -40,7 +41,7 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 		`;
 	};
 
-	const render_batch = () => {
+	const renderNextBatch = () => {
 		const startIndex = (currentPage - 1) * itemsPerPage;
 		const endIndex = startIndex + itemsPerPage;
 		const batch = currentFilteredGmes.slice(startIndex, endIndex);
@@ -52,7 +53,7 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 
 
 		const container = target.querySelector(".gme-grid");
-		container.insertAdjacentHTML("beforeend", batch.map(create_card).join(""));
+		container.insertAdjacentHTML("beforeend", batch.map(createGmeCard).join(""));
 
 
 		if (endIndex >= currentFilteredGmes.length) {
@@ -63,7 +64,7 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 		}
 	};
 
-	const init = () => {
+	const initInfiniteScroll = () => {
 
 		if (observer) observer.disconnect();
 
@@ -77,7 +78,7 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 
 		observer = new IntersectionObserver((entries) => {
 			if (entries[0].isIntersecting) {
-				render_batch();
+				renderNextBatch();
 				currentPage++;
 			}
 		}, {
@@ -93,11 +94,11 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 			gme.title.toLowerCase().includes(searchQuery),
 		);
 		currentPage = 1;
-		init();
+		initInfiniteScroll();
 	});
 
 
-	init();
+	initInfiniteScroll();
 
 
 	window.opengme = async (file_name, title, frameGme) => {
