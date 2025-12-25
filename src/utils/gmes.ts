@@ -7,67 +7,98 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 	const target = document.querySelector("#gmeContainer");
 	const searchInput = document.getElementById("search");
 
+	let currentPage = 1;
+	const itemsPerPage = 20;
+	let currentFilteredGmes = [];
+	let observer = null;
+
 	searchInput.placeholder = `Search from ${gmesData.length} ${gmes_text}`;
-
-	if (!target) {
-		console.error("Target container #gmeContainer not found.");
-		return;
-	}
-
-	if (!searchInput) {
-		console.error("Search input with id 'search' not found.");
-		return;
-	}
-
-	target.innerHTML = `<p style='text-align: center; font-family: sans-serif; color: #555;'>Loading ${gmes_text}...</p>`;
 
 	const allGmes = [...gmesData].sort((a, b) =>
 		a.title.localeCompare(b.title, undefined, { sensitivity: "base" }),
 	);
 
-	const renderGmes = (gmesToRender) => {
-		if (gmesToRender.length === 0) {
-			target.innerHTML = `<p style='text-align: center; font-family: sans-serif; color: #555;'>No ${gmes_text} found.</p>`;
+	currentFilteredGmes = allGmes;
+
+
+	const create_card = (gme) => {
+		const thumb_url = gme.thumb
+			? `https://raw.githubusercontent.com/Galaxy-Vortex/asseting-bromine/main/${gme.thumb}`
+			: null;
+		const thumb_html = thumb_url
+			? `<img src="${thumb_url}" alt="${gme.title}" class="w-full h-40 object-cover rounded-lg mb-2" loading="lazy"/>`
+			: `<div class="w-full h-40 rounded-lg bg-surface-800 mb-2 flex items-center justify-center"><p class="text-text-500">No Image</p></div>`;
+
+		return `
+			<div
+				onclick="opengme('${gme.file_name}', '${gme.title}', '${gme.frame}')"
+				class="bg-bg border border-overlay rounded-xl p-3 m-2 inline-block w-64 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
+			>
+				${thumb_html}
+				<h3 class="mt-2 font-medium truncate">${gme.title}</h3>
+			</div>
+		`;
+	};
+
+	const render_batch = () => {
+		const startIndex = (currentPage - 1) * itemsPerPage;
+		const endIndex = startIndex + itemsPerPage;
+		const batch = currentFilteredGmes.slice(startIndex, endIndex);
+
+		if (batch.length === 0 && currentPage === 1) {
+			target.innerHTML = `<p style='text-align: center; padding: 20px;'>No ${gmes_text} found.</p>`;
 			return;
 		}
 
-		target.innerHTML = `
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px;">
-    ${gmesToRender
-				.map(
-					(gme) => {
-						const thumb_url = gme.thumb
-							? `https://raw.githubusercontent.com/Galaxy-Vortex/asseting-bromine/main/${gme.thumb}`
-							: null;
-						const thumb_html = thumb_url
-							? `<img src="${thumb_url}" alt="${gme.title}" class="w-full h-40 object-cover rounded-lg mb-2"/>`
-							: `<div class="w-full h-40 rounded-lg bg-surface-800 mb-2 flex items-center justify-center"><p class="text-text-500">No Image</p></div>`;
 
-						return `
-		
-      <div
-        onclick="opengme('${gme.file_name}', '${gme.title}', '${gme.frame}')"
-        class="bg-bg border border-overlay rounded-xl p-3 m-2 inline-block w-64 text-center shadow-sm transition-transform duration-200 hover:scale-105 cursor-pointer"
-      >
-        ${thumb_html}
-        <h3 class="mt-2 font-medium  truncate">${gme.title}</h3>
-      </div>
-    `;
-					})
-				.join("")}
-  </div>
-`;
+		const container = target.querySelector(".gme-grid");
+		container.insertAdjacentHTML("beforeend", batch.map(create_card).join(""));
+
+
+		if (endIndex >= currentFilteredGmes.length) {
+
+			if (observer) observer.disconnect();
+			const sentinel = document.getElementById("infinite-sentinel");
+			if (sentinel) sentinel.style.display = "none";
+		}
+	};
+
+	const init = () => {
+
+		if (observer) observer.disconnect();
+
+
+		target.innerHTML = `
+			<div class="gme-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px;"></div>
+			<div id="infinite-sentinel" style="height: 50px; width: 100%;"></div>
+		`;
+
+		const sentinel = document.getElementById("infinite-sentinel");
+
+		observer = new IntersectionObserver((entries) => {
+			if (entries[0].isIntersecting) {
+				render_batch();
+				currentPage++;
+			}
+		}, {
+			rootMargin: "200px",
+		});
+
+		observer.observe(sentinel);
 	};
 
 	searchInput.addEventListener("input", (event) => {
 		const searchQuery = event.target.value.toLowerCase();
-		const filteredGmes = allGmes.filter((gme) =>
+		currentFilteredGmes = allGmes.filter((gme) =>
 			gme.title.toLowerCase().includes(searchQuery),
 		);
-		renderGmes(filteredGmes);
+		currentPage = 1;
+		init();
 	});
 
-	renderGmes(allGmes);
+
+	init();
+
 
 	window.opengme = async (file_name, title, frameGme) => {
 		const frame = document.getElementById("gmePageFrame");
@@ -79,49 +110,33 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 		document.body.style.overflow = "hidden";
 
 		if (frameGme == "true") {
-			// Directly load raw.githack URL
 			frame.src = `https://raw.githack.com/Bromine-Labs/asseting-bromine/main/${file_name}`;
 		} else {
 			delete frame.dataset.loaded;
 			frame.onload = async () => {
 				if (frame.dataset.loaded) return;
 				const doc = frame.contentDocument;
-
-				const html = await fetch(
-					`https://raw.githubusercontent.com/Bromine-Labs/asseting-bromine/main/${file_name}`,
-				).then((r) => r.text());
-
-				doc.open();
-				doc.write(html);
-				doc.close();
-
-				// Re-run scripts
-				doc.querySelectorAll("script").forEach((s) => {
+				const html = await fetch(`https://raw.githubusercontent.com/Bromine-Labs/asseting-bromine/main/${file_name}`).then(r => r.text());
+				doc.open(); doc.write(html); doc.close();
+				doc.querySelectorAll("script").forEach(s => {
 					const script = doc.createElement("script");
 					script.src = s.src || "";
 					if (!s.src) script.textContent = s.textContent;
 					s.replaceWith(script);
 				});
-
 				frame.dataset.loaded = true;
 			};
-
 			frame.src = "/asdf.html";
 		}
 	};
 
 	window.closegme = () => {
-		const gmePageContainer = document.getElementById("gmePageContainer");
-		const gmePageFrame = document.getElementById("gmePageFrame");
-
-		gmePageFrame.src = "";
-		gmePageContainer.classList.add("hidden");
+		document.getElementById("gmePageFrame").src = "";
+		document.getElementById("gmePageContainer").classList.add("hidden");
 		document.body.style.overflow = "";
 	};
 
-	document.getElementById("backBtn").addEventListener("click", () => {
-		closegme();
-	});
+	document.getElementById("backBtn").addEventListener("click", closegme);
 	document.getElementById("fullscreenBtn").addEventListener("click", () => {
 		document.getElementById("gmePageFrame").requestFullscreen();
 	});
