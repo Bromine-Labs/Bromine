@@ -12,7 +12,6 @@ import Frame from "@/components/utils/Frame.astro";
 	<Omnibar />
 	<Frame />
 </Layout>
-<script src="/crasm/scramjet.all.js" async defer is:inline></script>
 
 <script>
 	import {
@@ -64,80 +63,80 @@ import Frame from "@/components/utils/Frame.astro";
 
 	setFrames(document.getElementById("frames"));
 </script>
-<script>
-	let inFrame;
-
-	try {
-		inFrame = window !== top;
-	} catch (e) {
-		inFrame = true;
-	}
-	const handleBeforeUnload = (e) => {
-		e.preventDefault();
-		e.returnValue = "";
-	};
-
-	function applyAntiClose() {
-		if (localStorage.getItem("anti-close") === "true") {
-			window.addEventListener("beforeunload", handleBeforeUnload);
-		} else {
-			window.removeEventListener("beforeunload", handleBeforeUnload);
-		}
-	}
-
-	applyAntiClose();
-
-	window.addEventListener("anti-close_changed", applyAntiClose);
-
-	const applyCloak = () => {
-		const cloak = localStorage.getItem("cloak");
-		if (!cloak || cloak === "none") return;
-		const [newTitle, newIcon] = cloak.split("|");
-		document.title = newTitle;
-		const favicon = document.querySelector("link[rel=icon]");
-		if (favicon) favicon.href = newIcon;
-	};
-
-	document.addEventListener("DOMContentLoaded", () => {
-		applyAntiClose();
-		applyCloak();
-	});
-
-	window.addEventListener("cloak_changed", applyCloak);
-
-	(() => {
-		if (!inFrame && localStorage.getItem("bromine_about_blank") === "true") {
-			const popup = open("about:blank", "_blank");
-			if (!popup || popup.closed) {
-				alert("Please allow popups for about bnalk to work.");
-			} else {
-				const doc = popup.document;
-				const iframe = doc.createElement("iframe");
-				const style = iframe.style;
-				const link = doc.createElement("link");
-
-				const name = "My Drive - Google Drive";
-				const icon =
-					"https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
-
-				doc.title = name;
-				link.rel = "icon";
-				link.href = icon;
-
-				iframe.src = location.href;
-				style.position = "fixed";
-				style.top = style.bottom = style.left = style.right = 0;
-				style.border = style.outline = "none";
-				style.width = style.height = "100%";
-
-				doc.head.appendChild(link);
-				doc.body.appendChild(iframe);
-
-				const pLink = "https://classroom.google.com/h";
-				location.replace(pLink);
-
-				const script = doc.createElement("script");
-				script.textContent = `
+ <script>
+ let inFrame;
+ 
+ try {
+   inFrame = window !== top;
+ } catch (e) {
+   inFrame = true;
+ }
+   const handleBeforeUnload = (e) => {
+     e.preventDefault();
+     e.returnValue = "";
+   };
+ 
+   function applyAntiClose() {
+     if (localStorage.getItem("anti-close") === "true") {
+       window.addEventListener("beforeunload", handleBeforeUnload);
+     } else {
+       window.removeEventListener("beforeunload", handleBeforeUnload);
+     }
+   }
+ 
+   applyAntiClose();
+ 
+   window.addEventListener("anti-close_changed", applyAntiClose);
+ 
+   const applyCloak = () => {
+     const cloak = localStorage.getItem("cloak");
+     if (!cloak || cloak === "none") return;
+     const [newTitle, newIcon] = cloak.split("|");
+     document.title = newTitle;
+     const favicon = document.querySelector("link[rel=icon]");
+     if (favicon) favicon.href = newIcon;
+   };
+ 
+   document.addEventListener("DOMContentLoaded", () => {
+     applyAntiClose();
+     applyCloak();
+   });
+ 
+   window.addEventListener("cloak_changed", applyCloak);
+ 
+   (() => {
+     if (!inFrame && localStorage.getItem("bromine_about_blank") === "true") {
+       const popup = open("about:blank", "_blank");
+       if (!popup || popup.closed) {
+         alert("Please allow popups for about bnalk to work.");
+       } else {
+         const doc = popup.document;
+         const iframe = doc.createElement("iframe");
+         const style = iframe.style;
+         const link = doc.createElement("link");
+ 
+         const name = "My Drive - Google Drive";
+         const icon =
+           "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
+ 
+         doc.title = name;
+         link.rel = "icon";
+         link.href = icon;
+ 
+         iframe.src = location.href;
+         style.position = "fixed";
+         style.top = style.bottom = style.left = style.right = 0;
+         style.border = style.outline = "none";
+         style.width = style.height = "100%";
+ 
+         doc.head.appendChild(link);
+         doc.body.appendChild(iframe);
+ 
+         const pLink = "https://classroom.google.com/h";
+         location.replace(pLink);
+ 
+         const script = doc.createElement("script");
+         script.textContent = `
 	      window.onbeforeunload = function (event) {
 	        const confirmationMessage = 'Leave Site?';
 	        (event || window.event).returnValue = confirmationMessage;
