@@ -7,13 +7,13 @@ import Frame from "@/components/utils/Frame.astro";
 ---
 <meta name="google-adsense-account" content="ca-pub-3510278623917680">
 <Layout title="bromine">
-<script src="/crasm/scramjet.all.js" async defer is:inline></script>
   <Tabs />
   <Omnibar />
   <Frame />
 </Layout>
 
     <script>
+await import("/crasm/scramjet.all.js")
       import {
         setTransport,
         setWisp,
