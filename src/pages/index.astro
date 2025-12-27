@@ -5,145 +5,146 @@ import Tabs from "@/components/ui/Tabs.astro";
 import Omnibar from "@/components/ui/Omnibar.astro";
 import Frame from "@/components/utils/Frame.astro";
 ---
-<meta name="google-adsense-account" content="ca-pub-3510278623917680">
+
+<meta name="google-adsense-account" content="ca-pub-3510278623917680" />
 <Layout title="bromine">
-  <Tabs />
-  <Omnibar />
-  <Frame />
+	<Tabs />
+	<Omnibar />
+	<Frame />
 </Layout>
 
-    <script>
-      import {
-        setTransport,
-        setWisp,
-        makeURL,
-        getProxied,
-        setFrames,
-        addressInput,
-        currentTab,
-      } from "@/utils/lethal";
-
-      const form = document.getElementById("form");
-      let search =
-			localStorage.getItem("bromine_search_engine");
-      let wisp = localStorage.getItem("bromine_wisp");
-      let transport = localStorage.getItem("bromine_transport");
-
-      setWisp(wisp);
-      setTransport(
-        transport ||
-          (navigator.userAgent.includes("Firefox") ? "libcurl" : "epoxy"),
-      );
-
-      form?.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const url = makeURL(addressInput.value, search);
-        const proxied = await getProxied(url);
-        const frame = document.getElementById(`frame-${currentTab}`);
-        localStorage.getItem("bromine_stealth_mode")
-          ? frame?.contentWindow?.location.replace(proxied)
-          : (frame.src = proxied);
-        addressInput.value = url;
-      });
-
-      window.addEventListener(
-        "bromine_search_engine_changed",
-        () =>
-          (search = localStorage.getItem("bromine_search_engine") || search),
-      );
-      window.addEventListener("bromine_wisp_changed", () =>
-        setWisp((wisp = localStorage.getItem("bromine_wisp") || wisp)),
-      );
-      window.addEventListener("bromine_transport_changed", () =>
-        setTransport(
-          (transport = localStorage.getItem("bromine_transport") || transport),
-        ),
-      );
-
-      setFrames(document.getElementById("frames"));
-    </script>
 <script>
-let inFrame;
+	import {
+		setTransport,
+		setWisp,
+		makeURL,
+		getProxied,
+		setFrames,
+		addressInput,
+		currentTab,
+	} from "@/utils/lethal";
 
-try {
-  inFrame = window !== top;
-} catch (e) {
-  inFrame = true;
-}
-  const handleBeforeUnload = (e) => {
-    e.preventDefault();
-    e.returnValue = "";
-  };
+	await import("/crasm/scramjet.all.js?url");
 
-  function applyAntiClose() {
-    if (localStorage.getItem("anti-close") === "true") {
-      window.addEventListener("beforeunload", handleBeforeUnload);
-    } else {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    }
-  }
+	const form = document.getElementById("form");
+	let search = localStorage.getItem("bromine_search_engine");
+	let wisp = localStorage.getItem("bromine_wisp");
+	let transport = localStorage.getItem("bromine_transport");
 
-  applyAntiClose();
+	setWisp(wisp);
+	setTransport(
+		transport ||
+			(navigator.userAgent.includes("Firefox") ? "libcurl" : "epoxy"),
+	);
 
-  window.addEventListener("anti-close_changed", applyAntiClose);
+	form?.addEventListener("submit", async (e) => {
+		e.preventDefault();
+		const url = makeURL(addressInput.value, search);
+		const proxied = await getProxied(url);
+		const frame = document.getElementById(`frame-${currentTab}`);
+		localStorage.getItem("bromine_stealth_mode")
+			? frame?.contentWindow?.location.replace(proxied)
+			: (frame.src = proxied);
+		addressInput.value = url;
+	});
 
-  const applyCloak = () => {
-    const cloak = localStorage.getItem("cloak");
-    if (!cloak || cloak === "none") return;
-    const [newTitle, newIcon] = cloak.split("|");
-    document.title = newTitle;
-    const favicon = document.querySelector("link[rel=icon]");
-    if (favicon) favicon.href = newIcon;
-  };
+	window.addEventListener(
+		"bromine_search_engine_changed",
+		() => (search = localStorage.getItem("bromine_search_engine") || search),
+	);
+	window.addEventListener("bromine_wisp_changed", () =>
+		setWisp((wisp = localStorage.getItem("bromine_wisp") || wisp)),
+	);
+	window.addEventListener("bromine_transport_changed", () =>
+		setTransport(
+			(transport = localStorage.getItem("bromine_transport") || transport),
+		),
+	);
 
-  document.addEventListener("DOMContentLoaded", () => {
-    applyAntiClose();
-    applyCloak();
-  });
-
-  window.addEventListener("cloak_changed", applyCloak);
-
-  (() => {
-    if (!inFrame && localStorage.getItem("bromine_about_blank") === "true") {
-      const popup = open("about:blank", "_blank");
-      if (!popup || popup.closed) {
-        alert("Please allow popups for about bnalk to work.");
-      } else {
-        const doc = popup.document;
-        const iframe = doc.createElement("iframe");
-        const style = iframe.style;
-        const link = doc.createElement("link");
-
-        const name = "My Drive - Google Drive";
-        const icon =
-          "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
-
-        doc.title = name;
-        link.rel = "icon";
-        link.href = icon;
-
-        iframe.src = location.href;
-        style.position = "fixed";
-        style.top = style.bottom = style.left = style.right = 0;
-        style.border = style.outline = "none";
-        style.width = style.height = "100%";
-
-        doc.head.appendChild(link);
-        doc.body.appendChild(iframe);
-
-        const pLink = "https://classroom.google.com/h";
-        location.replace(pLink);
-
-        const script = doc.createElement("script");
-        script.textContent = `
+	setFrames(document.getElementById("frames"));
+</script>
+ <script>
+ let inFrame;
+ 
+ try {
+   inFrame = window !== top;
+ } catch (e) {
+   inFrame = true;
+ }
+   const handleBeforeUnload = (e) => {
+     e.preventDefault();
+     e.returnValue = "";
+   };
+ 
+   function applyAntiClose() {
+     if (localStorage.getItem("anti-close") === "true") {
+       window.addEventListener("beforeunload", handleBeforeUnload);
+     } else {
+       window.removeEventListener("beforeunload", handleBeforeUnload);
+     }
+   }
+ 
+   applyAntiClose();
+ 
+   window.addEventListener("anti-close_changed", applyAntiClose);
+ 
+   const applyCloak = () => {
+     const cloak = localStorage.getItem("cloak");
+     if (!cloak || cloak === "none") return;
+     const [newTitle, newIcon] = cloak.split("|");
+     document.title = newTitle;
+     const favicon = document.querySelector("link[rel=icon]");
+     if (favicon) favicon.href = newIcon;
+   };
+ 
+   document.addEventListener("DOMContentLoaded", () => {
+     applyAntiClose();
+     applyCloak();
+   });
+ 
+   window.addEventListener("cloak_changed", applyCloak);
+ 
+   (() => {
+     if (!inFrame && localStorage.getItem("bromine_about_blank") === "true") {
+       const popup = open("about:blank", "_blank");
+       if (!popup || popup.closed) {
+         alert("Please allow popups for about bnalk to work.");
+       } else {
+         const doc = popup.document;
+         const iframe = doc.createElement("iframe");
+         const style = iframe.style;
+         const link = doc.createElement("link");
+ 
+         const name = "My Drive - Google Drive";
+         const icon =
+           "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
+ 
+         doc.title = name;
+         link.rel = "icon";
+         link.href = icon;
+ 
+         iframe.src = location.href;
+         style.position = "fixed";
+         style.top = style.bottom = style.left = style.right = 0;
+         style.border = style.outline = "none";
+         style.width = style.height = "100%";
+ 
+         doc.head.appendChild(link);
+         doc.body.appendChild(iframe);
+ 
+         const pLink = "https://classroom.google.com/h";
+         location.replace(pLink);
+ 
+         const script = doc.createElement("script");
+         script.textContent = `
 	      window.onbeforeunload = function (event) {
 	        const confirmationMessage = 'Leave Site?';
 	        (event || window.event).returnValue = confirmationMessage;
 	        return confirmationMessage;
 	      };
 	    `;
-        doc.head.appendChild(script);
-      }
-    }
-  })();
+				doc.head.appendChild(script);
+			}
+		}
+	})();
 </script>
