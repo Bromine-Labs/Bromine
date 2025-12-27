@@ -24,8 +24,6 @@ import Frame from "@/components/utils/Frame.astro";
 		currentTab,
 	} from "@/utils/lethal";
 
-	await import("/crasm/scramjet.all.js?url");
-
 	const form = document.getElementById("form");
 	let search = localStorage.getItem("bromine_search_engine");
 	let wisp = localStorage.getItem("bromine_wisp");
