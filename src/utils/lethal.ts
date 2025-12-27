@@ -54,6 +54,7 @@ async function registerSW(): Promise<void> {
 }
 
 requestIdleCallback(async () => {
+	await import("/crasm/scramjet.all.js?url")
 	const { ScramjetController } = window.$scramjetLoadController();
 	const scramjet = new ScramjetController({
 		files: {
