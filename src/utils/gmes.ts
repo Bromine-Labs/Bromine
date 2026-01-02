@@ -24,7 +24,7 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 	// Helper to generate the HTML for a single game card
 	const createGmeCard = (gme) => {
 		const thumb_url = gme.thumb
-			? `https://raw.githubusercontent.com/Galaxy-Vortex/asseting-bromine/main/${gme.thumb}`
+			? `https://raw.githubusercontent.com/Galaxy-Vortex/hydra-assets/main/${gme.thumb}`
 			: null;
 		const thumb_html = thumb_url
 			? `<img src="${thumb_url}" alt="${gme.title}" class="w-full h-40 object-cover rounded-lg mb-2" loading="lazy"/>`
@@ -111,13 +111,13 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 		document.body.style.overflow = "hidden";
 
 		if (frameGme == "true") {
-			frame.src = `https://raw.githack.com/Bromine-Labs/asseting-bromine/main/${file_name}`;
+			frame.src = `https://raw.githack.com/Bromine-Labs/hydra-assets/main/${file_name}`;
 		} else {
 			delete frame.dataset.loaded;
 			frame.onload = async () => {
 				if (frame.dataset.loaded) return;
 				const doc = frame.contentDocument;
-				const html = await fetch(`https://raw.githubusercontent.com/Bromine-Labs/asseting-bromine/main/${file_name}`).then(r => r.text());
+				const html = await fetch(`https://raw.githubusercontent.com/Bromine-Labs/hydra-assets/main/${file_name}`).then(r => r.text());
 				doc.open(); doc.write(html); doc.close();
 				doc.querySelectorAll("script").forEach(s => {
 					const script = doc.createElement("script");
