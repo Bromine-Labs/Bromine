@@ -53,6 +53,11 @@ jobs:
       - name: Set image tag
         run: echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
 
+      - name: Modify ENV
+        run: |
+          rm .env
+          printf "PUBLIC_HOST_WISP=true\nPUBLIC_FILTER_OPTIMIZE=true\n" > .env
+
       - name: Build Docker image (timestamped)
         run: docker build . --file Dockerfile --tag ghcr.io/coding4hours/bromine:$IMAGE_TAG
 
