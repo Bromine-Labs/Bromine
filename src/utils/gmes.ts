@@ -3,40 +3,6 @@ import gmesData from "@/data/gmes.json";
 const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
 const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 
-const popularGmes = [
-	"Hollow Knight",
-	"ULTRAKILL",
-	"Celeste",
-	"Katana ZERO",
-	"Dead Cells",
-	"Hyper Light Drifter",
-	"DOOM",
-	"Doom 64",
-	"Balatro",
-	"Castlevania",
-	"Castlevania Aria of Sorrow",
-	"Super Meat Boy",
-	"Cuphead",
-	"Among Us",
-	"Cookie Clicker",
-	"Baldis Basics",
-	"Buckshot Roulette",
-	"A Dark Room",
-	"Binding of Isaac",
-	"Undertale",
-	"Deltarune",
-	"Celeste 2",
-	"Alien Hominid",
-	"Chaos Faction 2",
-	"Bloons TD 5",
-	"Age of War",
-	"Duck Life",
-	"Burrito Bison",
-	"Happy Wheels",
-	"Cluster Rush",
-	"Drive Mad",
-];
-
 
 
 (() => {
@@ -50,6 +16,42 @@ const popularGmes = [
 	let observer = null;
 
 	searchInput.placeholder = `Search from ${gmesData.length} ${gmes_text}`;
+
+	const popularGmes = [
+		"Hollow Knight",
+		"ULTRAKILL",
+		"Celeste",
+		"Katana ZERO",
+		"Dead Cells",
+		"Hyper Light Drifter",
+		"DOOM",
+		"Doom 64",
+		"Balatro",
+		"Castlevania",
+		"Castlevania Aria of Sorrow",
+		"Super Meat Boy",
+		"Cuphead",
+		"Among Us",
+		"Cookie Clicker",
+		"Baldis Basics",
+		"Buckshot Roulette",
+		"A Dark Room",
+		"Binding of Isaac",
+		"Undertale",
+		"Deltarune",
+		"Celeste 2",
+		"Alien Hominid",
+		"Chaos Faction 2",
+		"Bloons TD 5",
+		"Age of War",
+		"Duck Life",
+		"Burrito Bison",
+		"Happy Wheels",
+		"Cluster Rush",
+		"Drive Mad",
+	];
+
+
 
 	const allGmes = [...gmesData].sort((a, b) => {
 		const aIsPopular = popularGmes.includes(a.title);
