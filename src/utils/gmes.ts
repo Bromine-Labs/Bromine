@@ -60,7 +60,7 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 		if (aIsPopular && !bIsPopular) return -1;
 		if (!aIsPopular && bIsPopular) return 1;
 		if (aIsPopular && bIsPopular) {
-			return popularGmes.indexOf(a.title) - popularGames.indexOf(b.title);
+			return popularGmes.indexOf(a.title) - popularGmes.indexOf(b.title);
 		}
 		return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
 	});
