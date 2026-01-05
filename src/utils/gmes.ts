@@ -3,6 +3,42 @@ import gmesData from "@/data/gmes.json";
 const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
 const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 
+const popularGmes = [
+	"Hollow Knight",
+	"ULTRAKILL",
+	"Celeste",
+	"Katana ZERO",
+	"Dead Cells",
+	"Hyper Light Drifter",
+	"DOOM",
+	"Doom 64",
+	"Balatro",
+	"Castlevania",
+	"Castlevania Aria of Sorrow",
+	"Super Meat Boy",
+	"Cuphead",
+	"Among Us",
+	"Cookie Clicker",
+	"Baldis Basics",
+	"Buckshot Roulette",
+	"A Dark Room",
+	"Binding of Isaac",
+	"Undertale",
+	"Deltarune",
+	"Celeste 2",
+	"Alien Hominid",
+	"Chaos Faction 2",
+	"Bloons TD 5",
+	"Age of War",
+	"Duck Life",
+	"Burrito Bison",
+	"Happy Wheels",
+	"Cluster Rush",
+	"Drive Mad",
+];
+
+
+
 (() => {
 	const target = document.querySelector("#gmeContainer");
 	const searchInput = document.getElementById("search");
@@ -15,13 +51,20 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 
 	searchInput.placeholder = `Search from ${gmesData.length} ${gmes_text}`;
 
-	const allGmes = [...gmesData].sort((a, b) =>
-		a.title.localeCompare(b.title, undefined, { sensitivity: "base" }),
-	);
+	const allGmes = [...gmesData].sort((a, b) => {
+		const aIsPopular = popularGmes.includes(a.title);
+		const bIsPopular = popularGmes.includes(b.title);
+
+		if (aIsPopular && !bIsPopular) return -1;
+		if (!aIsPopular && bIsPopular) return 1;
+		if (aIsPopular && bIsPopular) {
+			return popularGmes.indexOf(a.title) - popularGames.indexOf(b.title);
+		}
+		return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+	});
 
 	currentFilteredGmes = allGmes;
 
-	// Helper to generate the HTML for a single game card
 	const createGmeCard = (gme) => {
 		const thumb_url = gme.thumb
 			? `https://raw.githubusercontent.com/Hydra-Network/hydra-assets/main/${gme.thumb}`
