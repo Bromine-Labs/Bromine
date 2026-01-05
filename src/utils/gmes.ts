@@ -9,7 +9,7 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 
 	// --- Infinite Scroll State ---
 	let currentPage = 1;
-	const itemsPerPage = 20; 
+	const itemsPerPage = 20;
 	let currentFilteredGmes = [];
 	let observer = null;
 
@@ -18,13 +18,13 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 	const allGmes = [...gmesData].sort((a, b) =>
 		a.title.localeCompare(b.title, undefined, { sensitivity: "base" }),
 	);
-	
+
 	currentFilteredGmes = allGmes;
 
 	// Helper to generate the HTML for a single game card
 	const createGmeCard = (gme) => {
 		const thumb_url = gme.thumb
-			? `https://raw.githubusercontent.com/Galaxy-Vortex/hydra-assets/main/${gme.thumb}`
+			? `https://raw.githubusercontent.com/Hydra-Network/hydra-assets/main/${gme.thumb}`
 			: null;
 		const thumb_html = thumb_url
 			? `<img src="${thumb_url}" alt="${gme.title}" class="w-full h-40 object-cover rounded-lg mb-2" loading="lazy"/>`
