@@ -156,13 +156,13 @@ const gmes_text = FILTER_OPTIMIZE_ON ? "gᾰmes" : "games";
 		document.body.style.overflow = "hidden";
 
 		if (frameGme == "true") {
-			frame.src = `https://raw.githack.com/Bromine-Labs/hydra-assets/main/${file_name}`;
+			frame.src = `https://raw.githack.com/Hydra-Network/hydra-assets/main/${file_name}`;
 		} else {
 			delete frame.dataset.loaded;
 			frame.onload = async () => {
 				if (frame.dataset.loaded) return;
 				const doc = frame.contentDocument;
-				const html = await fetch(`https://raw.githubusercontent.com/Bromine-Labs/hydra-assets/main/${file_name}`).then(r => r.text());
+				const html = await fetch(`https://raw.githubusercontent.com/Hydra-Network/hydra-assets/main/${file_name}`).then(r => r.text());
 				doc.open(); doc.write(html); doc.close();
 				doc.querySelectorAll("script").forEach(s => {
 					const script = doc.createElement("script");
