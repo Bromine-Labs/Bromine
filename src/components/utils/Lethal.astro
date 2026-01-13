@@ -21,7 +21,7 @@
     localStorage.getItem("bromine_search_engine") ||
     "https://duckduckgo.com/search?q=%s";
 
-  let wisp = localStorage.getItem("bromine_wisp") || "wss://anura.pro/";
+  let wisp = localStorage.getItem("bromine_wisp");
   let transport = localStorage.getItem("bromine_transport");
 
   setWisp(wisp);

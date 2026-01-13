@@ -146,10 +146,10 @@ export const settingsData = {
 					id: "bromine_wisp",
 					label: "Wisp Server",
 					type: "text",
-					defaultValue: HOST_WISP ? "customwispblahblahblah" : "wss://anura.pro/",
+					defaultValue: HOST_WISP ? "customwispblahblahblah" : "wss://wisp.galxy.autos/",
 					placeholder: "wss://wisp.pro/",
 					description:
-						"The transport server used. This requires a '/' at the end",
+						"The transport server used. This requires a '/' at the end. Shout out Rogo for giving us our default wisp server.",
 				},
 			],
 		},
