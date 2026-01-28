@@ -5,124 +5,120 @@ import { Icon } from "astro-icon/components";
 
 <!-- Trigger Button -->
 <button
-  aria-label="History"
-  id="omnibar-history-btn"
-  class="hover:bg-highlight-med flex w-full items-center px-4 py-2 text-left text-sm"
+	aria-label="History"
+	id="omnibar-history-btn"
+	class="hover:bg-highlight-med flex w-full items-center px-4 py-2 text-left text-sm"
 >
-  <Icon name="ph:clock-counter-clockwise-bold" class="mr-2 size-4.5" /> History
+	<Icon name="ph:clock-counter-clockwise-bold" class="mr-2 size-4.5" /> History
 </button>
 
 <!-- Popup -->
 <div
-  id="history-popup"
-  style="content-visibility: auto"
-  class="popup bg-bg/80 pointer-events-none fixed inset-0 z-[50] flex hidden items-center justify-center opacity-0 backdrop-blur-[1px] transition-opacity duration-300 ease-in-out"
+	id="history-popup"
+	style="content-visibility: auto"
+	class="popup bg-bg/80 pointer-events-none fixed inset-0 z-[50] flex hidden items-center justify-center opacity-0 backdrop-blur-[1px] duration-300 ease-in-out"
 >
-  <div
-    id="history-popup-content"
-    class="bg-overlay relative m-4 max-h-[80vh] w-[90vw] max-w-[500px] -translate-y-full transform overflow-y-auto rounded-lg p-6 shadow-xl transition-transform duration-300 ease-in-out"
-  >
-    <div class="mb-3 flex items-center justify-between">
-      <h1 class="text-2xl font-semibold">History</h1>
-      <button
-        id="history-close-btn"
-        aria-label="Close History"
-        class="hover:text-primary transition-colors"
-      >
-        <Icon name="ph:x-bold" class="size-6" />
-      </button>
-    </div>
+	<div
+		id="history-popup-content"
+		class="bg-surface relative m-4 max-h-[80vh] w-[90vw] max-w-[500px] -translate-y-full transform overflow-y-auto rounded-lg p-6 duration-300 ease-in-out"
+	>
+		<div class="mb-3 flex items-center justify-between">
+			<h1 class="text-2xl font-semibold">History</h1>
+			<button
+				id="history-close-btn"
+				aria-label="Close History"
+				class="hover:text-primary transition-colors"
+			>
+				<Icon name="ph:x-bold" class="size-6" />
+			</button>
+		</div>
 
-    <ul class="space-y-2" id="history"></ul>
-  </div>
+		<ul class="space-y-2" id="history"></ul>
+	</div>
 </div>
 
 <script>
-  import { currentFrame, getProxied } from "@/utils/lethal.ts";
+	import { currentFrame, getProxied } from "@/utils/lethal.ts";
 
-  const triggerButton = document.getElementById("omnibar-history-btn");
-  const popup = document.getElementById("history-popup");
-  const popupContent = document.getElementById("history-popup-content");
-  const closeButton = document.getElementById("history-close-btn");
+	const triggerButton = document.getElementById("omnibar-history-btn");
+	const popup = document.getElementById("history-popup");
+	const popupContent = document.getElementById("history-popup-content");
+	const closeButton = document.getElementById("history-close-btn");
 
-  // --- Popup Logic ---
-  function open() {
-    popup.classList.remove("hidden", "pointer-events-none");
-    requestAnimationFrame(() => {
-      popup.classList.add("opacity-100");
-      popupContent.classList.remove("-translate-y-full");
-      popupContent.classList.add("translate-y-0");
-    });
-    document.dispatchEvent(
-      new CustomEvent("popup-opened", { detail: { popupId: "history-popup" } }),
-    );
-  }
+	// --- Popup Logic ---
+	function open() {
+		popup.classList.remove("hidden", "pointer-events-none");
+		popup.classList.add("opacity-100");
+		popupContent.classList.remove("-translate-y-full");
+		popupContent.classList.add("translate-y-0");
+		document.dispatchEvent(
+			new CustomEvent("popup-opened", { detail: { popupId: "history-popup" } }),
+		);
+	}
 
-  function close() {
-    popup.classList.remove("opacity-100");
-    popupContent.classList.remove("translate-y-0");
-    popupContent.classList.add("-translate-y-full");
+	function close() {
+		popup.classList.remove("opacity-100");
+		popupContent.classList.remove("translate-y-0");
+		popupContent.classList.add("-translate-y-full");
 
-    // Wait for the transition to finish before hiding
-    setTimeout(() => {
-      popup.classList.add("hidden", "pointer-events-none");
-      document.dispatchEvent(
-        new CustomEvent("popup-closed", {
-          detail: { popupId: "history-popup" },
-        }),
-      );
-    }, 300);
-  }
+		// Wait for the transition to finish before hiding
+		popup.classList.add("hidden", "pointer-events-none");
+		document.dispatchEvent(
+			new CustomEvent("popup-closed", {
+				detail: { popupId: "history-popup" },
+			}),
+		);
+	}
 
-  triggerButton.addEventListener("click", open);
-  closeButton.addEventListener("click", close);
-  popup.addEventListener("click", (event) => {
-    if (event.target === popup) close();
-  });
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !popup.classList.contains("hidden")) {
-      event.preventDefault();
-      close();
-    }
-  });
+	triggerButton.addEventListener("click", open);
+	closeButton.addEventListener("click", close);
+	popup.addEventListener("click", (event) => {
+		if (event.target === popup) close();
+	});
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape" && !popup.classList.contains("hidden")) {
+			event.preventDefault();
+			close();
+		}
+	});
 
-  // --- History List Logic ---
-  function renderList() {
-    const history = JSON.parse(localStorage.getItem("history") || "[]");
-    const list = document.getElementById("history");
-    if (!list) return;
-    list.innerHTML = "";
-    history.forEach((item) => {
-      const li = document.createElement("li");
-      li.innerHTML = `<span title="${item.url}" class="text-link underline cursor-pointer">${item.title}</span>`;
-      li.addEventListener("click", async () => {
-        currentFrame.src = await getProxied(item.url);
-        close();
-      });
-      list.appendChild(li);
-    });
-  }
+	// --- History List Logic ---
+	function renderList() {
+		const history = JSON.parse(localStorage.getItem("history") || "[]");
+		const list = document.getElementById("history");
+		if (!list) return;
+		list.innerHTML = "";
+		history.forEach((item) => {
+			const li = document.createElement("li");
+			li.innerHTML = `<span title="${item.url}" class="text-link underline cursor-pointer">${item.title}</span>`;
+			li.addEventListener("click", async () => {
+				currentFrame.src = await getProxied(item.url);
+				close();
+			});
+			list.appendChild(li);
+		});
+	}
 
-  window.addEventListener("storage", (event) => {
-    if (event.key === "history") renderList();
-  });
-  window.addEventListener("history_changed", renderList);
+	window.addEventListener("storage", (event) => {
+		if (event.key === "history") renderList();
+	});
+	window.addEventListener("history_changed", renderList);
 
-  renderList();
+	renderList();
 </script>
 
 <style is:global>
-  .overflow-y-auto::-webkit-scrollbar {
-    width: 8px;
-  }
-  .overflow-y-auto::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .overflow-y-auto::-webkit-scrollbar-thumb {
-    background: #6b7280;
-    border-radius: 4px;
-  }
-  .overflow-y-auto::-webkit-scrollbar-thumb:hover {
-    background: #9ca3af;
-  }
+	.overflow-y-auto::-webkit-scrollbar {
+		width: 8px;
+	}
+	.overflow-y-auto::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	.overflow-y-auto::-webkit-scrollbar-thumb {
+		background: #6b7280;
+		border-radius: 4px;
+	}
+	.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+		background: #9ca3af;
+	}
 </style>

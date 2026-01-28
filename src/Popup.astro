@@ -3,120 +3,116 @@ import "@/styles.css";
 import { Icon } from "astro-icon/components";
 
 export interface Props {
-  // --- Element IDs ---
-  triggerId: string;
-  popupId: string;
-  contentId: string;
-  closeBtnId: string;
+	// --- Element IDs ---
+	triggerId: string;
+	popupId: string;
+	contentId: string;
+	closeBtnId: string;
 
-  // --- Content ---
-  title: string;
-  label: string;
-  triggerIcon: string;
+	// --- Content ---
+	title: string;
+	label: string;
+	triggerIcon: string;
 }
 
 const { triggerId, popupId, contentId, closeBtnId, title, label, triggerIcon } =
-  Astro.props;
+	Astro.props;
 ---
 
 <!-- 1. Trigger Button -->
-<button
-  aria-label={label}
-  id={triggerId}
-  class="bg-overlay rounded-md p-1.5 shadow-md"
->
-  <Icon name={triggerIcon} class="size-4.5" />
+<button aria-label={label} id={triggerId}>
+	<Icon name={triggerIcon} class="size-4.5" />
 </button>
 
 <!-- 2. Popup Overlay -->
 <div
-  id={popupId}
-  style="content-visibility: auto"
-  class="popup bg-bg/80 pointer-events-none fixed inset-0 z-[50] flex hidden items-center justify-center opacity-0 backdrop-blur-[1px] transition-opacity duration-300 ease-in-out"
+	id={popupId}
+	style="content-visibility: auto"
+	class="popup bg-bg/80 pointer-events-none fixed inset-0 z-[50] flex hidden items-center justify-center opacity-0 backdrop-blur-[1px] transition-opacity duration-300 ease-in-out"
 >
-  <div
-    id={contentId}
-    class="bg-overlay relative m-4 max-h-[80vh] w-[90vw] max-w-[500px] -translate-y-full transform overflow-y-auto rounded-lg p-6 shadow-xl transition-transform duration-300 ease-in-out"
-  >
-    <div class="mb-3 flex items-center justify-between">
-      <h1 class="text-text text-2xl font-semibold">{title}</h1>
-      <button id={closeBtnId} aria-label={`Close ${title}`}>
-        <Icon
-          name="ph:x-bold"
-          class="hover:text-primary size-6 transition-colors"
-        />
-      </button>
-    </div>
+	<div
+		id={contentId}
+		class="bg-surface relative m-4 max-h-[80vh] w-[90vw] max-w-[500px] -translate-y-full transform overflow-y-auto rounded-lg p-6 transition-transform duration-300 ease-in-out"
+	>
+		<div class="mb-3 flex items-center justify-between">
+			<h1 class="text-text text-2xl font-semibold">{title}</h1>
+			<button id={closeBtnId} aria-label={`Close ${title}`}>
+				<Icon
+					name="ph:x-bold"
+					class="hover:text-primary size-6 transition-colors"
+				/>
+			</button>
+		</div>
 
-    <slot />
-  </div>
+		<slot />
+	</div>
 </div>
 
 <!-- 3. Popup JS -->
 <script
-  define:vars={{ triggerId, popupId, contentId, closeBtnId }}
-  is:inline
-  defer
-  async
+	define:vars={{ triggerId, popupId, contentId, closeBtnId }}
+	is:inline
+	defer
+	async
 >
-  const triggerButton = document.getElementById(triggerId);
-  const popup = document.getElementById(popupId);
-  const popupContent = document.getElementById(contentId);
-  const closeButton = document.getElementById(closeBtnId);
+	const triggerButton = document.getElementById(triggerId);
+	const popup = document.getElementById(popupId);
+	const popupContent = document.getElementById(contentId);
+	const closeButton = document.getElementById(closeBtnId);
 
-  if (!triggerButton || !popup || !popupContent || !closeButton) {
-    console.error("One or more popup elements are missing from the DOM.");
-    return;
-  }
+	if (!triggerButton || !popup || !popupContent || !closeButton) {
+		console.error("One or more popup elements are missing from the DOM.");
+		return;
+	}
 
-  function open() {
-    popup.classList.remove("hidden", "pointer-events-none");
-    popup.classList.add("opacity-100");
-    popupContent.classList.remove("-translate-y-full");
-    popupContent.classList.add("translate-y-0");
-    document.dispatchEvent(
-      new CustomEvent("popup-opened", { detail: { popupId } }),
-    );
-  }
+	function open() {
+		popup.classList.remove("hidden", "pointer-events-none");
+		popup.classList.add("opacity-100");
+		popupContent.classList.remove("-translate-y-full");
+		popupContent.classList.add("translate-y-0");
+		document.dispatchEvent(
+			new CustomEvent("popup-opened", { detail: { popupId } }),
+		);
+	}
 
-  function close() {
-    popup.classList.remove("opacity-100");
-    popup.classList.add("hidden", "pointer-events-none");
-    popupContent.classList.remove("translate-y-0");
-    popupContent.classList.add("-translate-y-full");
-    document.dispatchEvent(
-      new CustomEvent("popup-closed", { detail: { popupId } }),
-    );
-  }
+	function close() {
+		popup.classList.remove("opacity-100");
+		popup.classList.add("hidden", "pointer-events-none");
+		popupContent.classList.remove("translate-y-0");
+		popupContent.classList.add("-translate-y-full");
+		document.dispatchEvent(
+			new CustomEvent("popup-closed", { detail: { popupId } }),
+		);
+	}
 
-  triggerButton.addEventListener("click", open);
-  closeButton.addEventListener("click", close);
+	triggerButton.addEventListener("click", open);
+	closeButton.addEventListener("click", close);
 
-  popup.addEventListener("click", (event) => {
-    if (event.target === popup) close();
-  });
+	popup.addEventListener("click", (event) => {
+		if (event.target === popup) close();
+	});
 
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !popup.classList.contains("hidden")) {
-      event.preventDefault();
-      close();
-    }
-  });
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape" && !popup.classList.contains("hidden")) {
+			event.preventDefault();
+			close();
+		}
+	});
 </script>
 
 <style is:global>
-  /* Scrollbar */
-  .overflow-y-auto::-webkit-scrollbar {
-    width: 8px;
-  }
-  .overflow-y-auto::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .overflow-y-auto::-webkit-scrollbar-thumb {
-    background: var(--color-muted);
-    border-radius: 4px;
-  }
-  .overflow-y-auto::-webkit-scrollbar-thumb:hover {
-    background: var(--color-subtle);
-  }
+	/* Scrollbar */
+	.overflow-y-auto::-webkit-scrollbar {
+		width: 8px;
+	}
+	.overflow-y-auto::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	.overflow-y-auto::-webkit-scrollbar-thumb {
+		background: var(--color-muted);
+		border-radius: 4px;
+	}
+	.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+		background: var(--color-subtle);
+	}
 </style>

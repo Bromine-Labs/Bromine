@@ -2,46 +2,21 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<nav class="bg-surface border-overlay flex h-10 items-center border-b">
-  <div
-    id="tabs"
-    class="scrollbar-hide flex flex-1 items-stretch overflow-x-auto"
-  >
-  </div>
-  <button
-    id="new-tab-btn"
-    class="hover:bg-overlay hover:text-subtle focus:ring-tertiary mr-2 rounded-md p-2 transition-colors duration-150 focus:ring-2 focus:outline-none"
-    aria-label="New Tab"
-    title="New Tab"
-  >
-    <Icon name="ph:plus-bold" class="size-5" />
-  </button>
+<nav class="border-overlay flex h-10 items-center border-b">
+	<div id="tabs" class="flex flex-1 items-stretch overflow-x-auto"></div>
+	<button
+		id="new-tab-btn"
+		class="hover:bg-overlay hover:text-subtle focus:ring-tertiary mr-2 rounded-md p-2 transition-colors duration-300 focus:ring-2 focus:outline-none"
+		aria-label="New Tab"
+		title="New Tab"
+	>
+		<Icon name="ph:plus-bold" class="size-5" />
+	</button>
 </nav>
 
 <script>
-  import { newTab } from "@/utils/lethal.ts";
+	import { newTab } from "@/utils/lethal.ts";
 
-  const btn = document.getElementById("new-tab-btn");
-  btn?.addEventListener("click", () => newTab());
+	const btn = document.getElementById("new-tab-btn");
+	btn?.addEventListener("click", () => newTab());
 </script>
-
-<style>
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  [data-tab-id] {
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s ease;
-  }
-  [data-tab-id]:hover,
-  [data-tab-id].active {
-    background-color: var(--color-overlay);
-  }
-  [data-tab-id].active {
-    border-bottom-color: var(--color-border);
-  }
-</style>

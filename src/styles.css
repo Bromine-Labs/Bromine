@@ -72,17 +72,10 @@ label {
   @apply text-xs font-medium;
 }
 
-button {
-  transition: transform 0.2s ease-in-out;
+header button {
+	@apply transition duration-300 ease-in-out hover:bg-overlay rounded-md p-1.5 shadow-md;
 }
 
-button:hover {
-  transform: scale(1.1) translateY(-2px);
-}
-
-button:active {
-  transform: scale(0.95);
-}
 
 [data-icon] {
   stroke-width: 3;

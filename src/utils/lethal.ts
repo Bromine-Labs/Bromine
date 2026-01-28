@@ -53,7 +53,8 @@ async function registerSW(): Promise<void> {
 	await navigator.serviceWorker.register(stockSW);
 }
 
-requestIdleCallback(async () => {
+
+document.addEventListener("DOMContentLoaded", async () => {
 	await import("@/scramjet.all.js")
 	const { ScramjetController } = window.$scramjetLoadController();
 	const scramjet = new ScramjetController({
@@ -81,7 +82,7 @@ requestIdleCallback(async () => {
 			console.error("lethal.js: Failed to register Service Worker", err),
 		);
 	new Tab();
-});
+})
 
 //////////////////////////////
 ///        Functions       ///
@@ -155,7 +156,7 @@ export class Tab {
 	title: string = "New Tab";
 	url: string = "bromine://newtab";
 	timesErrored: number;
-	uiElement: HTMLElement;
+	el: HTMLElement;
 
 	constructor() {
 		if (!framesElement) return;
@@ -187,7 +188,7 @@ export class Tab {
 
 		const tabEl = document.createElement("div");
 		tabEl.className =
-			"flex items-center min-w-[8rem] max-w-xs px-4 py-1 bg-overlay light hover:bg-overlay cursor-pointer transition-all duration-150 draggable-tab";
+			"flex items-center min-w-[8rem] max-w-xs px-4 py-1 hover:bg-surface cursor-pointer transition duration-300 draggable-tab";
 		tabEl.dataset.tabId = this.tabNumber;
 		tabEl.draggable = true;
 
@@ -205,25 +206,23 @@ export class Tab {
 		tabEl.addEventListener("click", () => this.switch());
 
 		tabsDiv.appendChild(tabEl);
-		this.uiElement = tabEl;
+		this.el = tabEl;
 	}
 
 	updateUI() {
-		if (!this.uiElement) return;
-		const img = this.uiElement.querySelector("img");
-		const span = this.uiElement.querySelector(".tab");
+		if (!this.el) return;
+		const img = this.el.querySelector("img");
+		const span = this.el.querySelector(".tab");
 
 		if (img) img.src = this.url ? getIcon(this.url) : "/favicon.ico";
 		if (span) span.textContent = this.title || "New Tab";
 
 		window.tabs.forEach((tab) => {
-			if (!tab.uiElement) return;
+			if (!tab.el) return;
 			const isActive = tab.tabNumber === currentTab;
-			tab.uiElement.classList.toggle("border-x-3", isActive);
-			tab.uiElement.classList.toggle("bg-overlay", isActive);
-			tab.uiElement.classList.toggle("active", isActive);
-			tab.uiElement.classList.toggle("font-medium", isActive);
-			tab.uiElement.classList.toggle("border-border", isActive);
+			tab.el.classList.toggle("active", isActive);
+			tab.el.classList.toggle("bg-surface", isActive);
+			tab.el.classList.toggle("font-medium", isActive);
 		});
 	}
 
@@ -243,7 +242,7 @@ export class Tab {
 
 	close(): void {
 		this.frame.frame.remove();
-		this.uiElement?.remove();
+		this.el?.remove();
 		window.tabs = window.tabs.filter((t) => t.tabNumber !== this.tabNumber);
 
 		if (currentTab === this.tabNumber) {

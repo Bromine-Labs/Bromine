@@ -7,241 +7,172 @@ import { Icon } from "astro-icon/components";
 ---
 
 <header
-  class="bg-surface border-overlay bg-bg/50 sticky top-0 z-[25] flex items-center justify-between space-x-2 border-b p-2"
+	class="border-overlay sticky top-0 z-[25] flex items-center justify-between space-x-2 border-b p-2"
 >
-  <div class="mx-auto flex max-w-4xl flex-1 items-center space-x-2">
-    <button
-      aria-label="Back"
-      id="back-btn"
-      class="bg-overlay hover:bg-highlight-med rounded-md p-1.5 shadow-md"
-    >
-      <Icon name="ph:arrow-left-bold" class="size-4.5" />
-    </button>
-    <button
-      aria-label="Forward"
-      id="forward-btn"
-      class="bg-overlay hover:bg-highlight-med rounded-md p-1.5 shadow-md"
-    >
-      <Icon name="ph:arrow-right-bold" class="size-4.5" />
-    </button>
-    <button
-      aria-label="Reload"
-      id="reload-btn"
-      class="bg-overlay hover:bg-highlight-med rounded-md p-1.5 shadow-md"
-    >
-      <Icon name="ph:arrow-clockwise-bold" class="size-4.5" />
-    </button>
+	<div class="mx-auto flex max-w-4xl flex-1 items-center space-x-2">
+		<button aria-label="Back" id="back-btn">
+			<Icon name="ph:arrow-left-bold" class="size-4.5" />
+		</button>
+		<button aria-label="Forward" id="forward-btn">
+			<Icon name="ph:arrow-right-bold" class="size-4.5" />
+		</button>
+		<button aria-label="Reload" id="reload-btn">
+			<Icon name="ph:arrow-clockwise-bold" class="size-4.5" />
+		</button>
 
-    <div class="min-w-0 flex-1">
-      <div
-        class="bg-overlay relative flex items-center rounded-md px-3 py-1.5 shadow-md"
-      >
-        <Icon name="ph:magnifying-glass-bold" class="mr-2 size-4.5" />
-        <form id="form" class="flex w-full">
-          <input
-            spellcheck="false"
-            autocomplete="off"
-            id="address"
-            type="text"
-            placeholder="Search the web freely"
-            class="w-full bg-transparent text-sm focus:outline-none"
-          />
-        </form>
-        <Suggestions />
-      </div>
-    </div>
+		<div class="min-w-0 flex-1">
+			<div class="bg-surface relative flex items-center rounded-md px-3 py-1.5">
+				<Icon name="ph:magnifying-glass-bold" class="mr-2 size-4.5" />
+				<form id="form" class="flex w-full">
+					<input
+						spellcheck="false"
+						autocomplete="off"
+						id="address"
+						type="text"
+						placeholder="Search the web freely"
+						class="w-full bg-transparent text-sm focus:outline-none"
+					/>
+				</form>
+				<Suggestions />
+			</div>
+		</div>
 
-    <button
-      aria-label="gmes"
-      id="gmes-btn"
-      class="bg-overlay hover:bg-highlight-med rounded-md p-1.5 shadow-md"
-    >
-      <Icon name="ph:game-controller-bold" class="size-4.5" />
-    </button>
+		<button aria-label="gmes" id="gmes-btn">
+			<Icon name="ph:game-controller-bold" class="size-4.5" />
+		</button>
 
-    <button
-      aria-label="ai"
-      id="ai-btn"
-      class="bg-overlay hover:bg-highlight-med rounded-md p-1.5 shadow-md"
-    >
-      <Icon name="ph:robot-bold" class="size-4.5" />
-    </button>
-    <Bookmarks />
-    <Settings />
-  </div>
+		<button aria-label="ai" id="ai-btn">
+			<Icon name="ph:robot-bold" class="size-4.5" />
+		</button>
+		<Bookmarks />
+		<Settings />
+	</div>
 
-  <div class="relative flex-shrink-0">
-    <button
-      aria-label="Context Menu"
-      id="three-dots-btn"
-      class="bg-overlay hover:bg-highlight-med rounded-md p-1.5 shadow-md"
-    >
-      <Icon name="ph:dots-three-outline-vertical-bold" class="size-4.5" />
-    </button>
-    <div
-      id="context-menu"
-      class="bg-overlay border-overlay absolute right-0 z-50 mt-2 hidden w-48 origin-top-right rounded-md border shadow-lg"
-    >
-      <button
-        id="dev-btn"
-        class="hover:bg-highlight-med flex w-full items-center px-4 py-2 text-left text-sm"
-      >
-        <Icon name="ph:code-bold" class="mr-2 size-4.5" />
-        Dev Tools
-      </button>
-      <History />
-      <button
-        id="full-btn"
-        class="hover:bg-highlight-med flex w-full items-center px-4 py-2 text-left text-sm"
-      >
-        <Icon name="ph:arrows-out-bold" class="mr-2 size-4.5" />
-        Fullscreen
-      </button>
-    </div>
-  </div>
+	<div class="relative shrink-0">
+		<button
+			aria-label="Context Menu"
+			id="three-dots-btn"
+			class="hover:bg-overlay rounded-md p-1.5"
+		>
+			<Icon name="ph:dots-three-outline-vertical-bold" class="size-4.5" />
+		</button>
+		<div
+			id="context-menu"
+			class="bg-bg absolute right-0 z-50 hidden w-48 origin-top-right rounded-md"
+		>
+			<button
+				id="dev-btn"
+				class="hover:bg-overlay flex w-full items-center px-4 py-2 text-left text-sm"
+			>
+				<Icon name="ph:code-bold" class="mr-2 size-4.5" />
+				Dev Tools
+			</button>
+			<History />
+			<button
+				id="full-btn"
+				class="hover:bg-overlay flex w-full items-center px-4 py-2 text-left text-sm"
+			>
+				<Icon name="ph:arrows-out-bold" class="mr-2 size-4.5" />
+				Fullscreen
+			</button>
+		</div>
+	</div>
 </header>
 
 <script>
-  import { currentFrame } from "@/utils/lethal.ts";
-  let devtoolsVisible = false;
+	import { currentFrame } from "@/utils/lethal.ts";
+	let devtoolsVisible = false;
 
-  const actions = [
-    {
-      id: "back-btn",
-      handler: () => {
-        if (currentFrame?.contentWindow) {
-          currentFrame.contentWindow.history.back();
-        }
-      },
-    },
-    {
-      id: "forward-btn",
-      handler: () => {
-        if (currentFrame?.contentWindow) {
-          currentFrame.contentWindow.history.forward();
-        }
-      },
-    },
-    {
-      id: "reload-btn",
-      handler: () => {
-        if (currentFrame?.contentWindow) {
-          currentFrame.contentWindow.location.reload();
-        }
-      },
-    },
-    {
-      id: "dev-btn",
-      handler: () => {
-        const iframe = currentFrame?.contentWindow;
-        if (!iframe) return;
+	const actions = [
+		{
+			id: "back-btn",
+			handler: () => {
+				if (currentFrame?.contentWindow) {
+					currentFrame.contentWindow.history.back();
+				}
+			},
+		},
+		{
+			id: "forward-btn",
+			handler: () => {
+				if (currentFrame?.contentWindow) {
+					currentFrame.contentWindow.history.forward();
+				}
+			},
+		},
+		{
+			id: "reload-btn",
+			handler: () => {
+				if (currentFrame?.contentWindow) {
+					currentFrame.contentWindow.location.reload();
+				}
+			},
+		},
+		{
+			id: "dev-btn",
+			handler: () => {
+				const iframe = currentFrame?.contentWindow;
+				if (!iframe) return;
 
-        if (iframe.eruda) {
-          devtoolsVisible ? iframe.eruda.hide() : iframe.eruda.show();
-          devtoolsVisible = !devtoolsVisible;
-        } else {
-          const script = iframe.document.createElement("script");
-          script.src = "https://unpkg.com/eruda@3.4.3/eruda.js";
-          script.onload = () => {
-            iframe.eruda.init({ tool: ["console", "elements", "sources"] });
-            iframe.eruda.show();
-            devtoolsVisible = true;
-          };
-          iframe.document.head.appendChild(script);
-        }
+				if (iframe.eruda) {
+					devtoolsVisible ? iframe.eruda.hide() : iframe.eruda.show();
+					devtoolsVisible = !devtoolsVisible;
+				} else {
+					const script = iframe.document.createElement("script");
+					script.src = "https://unpkg.com/eruda@3.4.3/eruda.js";
+					script.onload = () => {
+						iframe.eruda.init({ tool: ["console", "elements", "sources"] });
+						iframe.eruda.show();
+						devtoolsVisible = true;
+					};
+					iframe.document.head.appendChild(script);
+				}
 
-        document.getElementById("context-menu")?.classList.add("hidden");
-      },
-    },
-    {
-      id: "full-btn",
-      handler: () => {
-        currentFrame.requestFullscreen();
-      },
-    },
-    {
-      id: "gmes-btn",
-      handler: () => {
-        if (currentFrame?.contentWindow) {
-          currentFrame.src = "/gmes";
-        }
-      },
-    },
-    {
-      id: "ai-btn",
-      handler: () => {
-        if (currentFrame?.contentWindow) {
-          currentFrame.src = "/ai";
-        }
-      },
-    },
+				document.getElementById("context-menu")?.classList.add("hidden");
+			},
+		},
+		{
+			id: "full-btn",
+			handler: () => {
+				currentFrame.requestFullscreen();
+			},
+		},
+		{
+			id: "gmes-btn",
+			handler: () => {
+				if (currentFrame?.contentWindow) {
+					currentFrame.src = "/gmes";
+				}
+			},
+		},
+		{
+			id: "ai-btn",
+			handler: () => {
+				if (currentFrame?.contentWindow) {
+					currentFrame.src = "/ai";
+				}
+			},
+		},
+	];
 
-    /*{
-  id: "gmes-btn",
-  handler: () => {
-    if (!currentFrame) return;
+	actions.forEach(({ id, handler }) => {
+		const el = document.getElementById(id);
+		if (el) el.addEventListener("click", handler);
+	});
 
-    // Prevent multiple overlays
-    if (document.getElementById("gmes-overlay")) return;
+	const menuBtn = document.getElementById("three-dots-btn");
+	const contextMenu = document.getElementById("context-menu");
 
-    // Create overlay container
-    const overlay = document.createElement("div");
-    overlay.id = "gmes-overlay";
-    overlay.className =
-      "fixed inset-0 z-[9999] flex flex-col bg-black";
+	menuBtn?.addEventListener("click", () => {
+		contextMenu?.classList.toggle("hidden");
+	});
 
-    // Create iframe
-    const iframe = document.createElement("iframe");
-    iframe.src = "/gmes";
-    iframe.className = "w-full h-full border-none";
-
-    // Create top-right close menu
-    const menu = document.createElement("div");
-    menu.className =
-      "absolute bottom-3 right-3 bg-overlay/80 backdrop-blur-md flex items-center space-x-2 p-2 rounded-xl shadow-lg";
-
-    const closeBtn = document.createElement("button");
-    closeBtn.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    `;
-    closeBtn.className =
-      "p-2 hover:bg-highlight-med rounded-lg transition";
-    closeBtn.title = "Close";
-
-    // Close handler
-    closeBtn.addEventListener("click", () => {
-      overlay.remove();
-    });
-
-    // Assemble
-    menu.appendChild(closeBtn);
-    overlay.appendChild(menu);
-    overlay.appendChild(iframe);
-    document.body.appendChild(overlay);
-  },
-}*/
-  ];
-
-  actions.forEach(({ id, handler }) => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener("click", handler);
-  });
-
-  const menuBtn = document.getElementById("three-dots-btn");
-  const contextMenu = document.getElementById("context-menu");
-
-  menuBtn?.addEventListener("click", () => {
-    contextMenu?.classList.toggle("hidden");
-  });
-
-  document.addEventListener("click", (e) => {
-    if (
-      !menuBtn?.contains(e.target as Node) &&
-      !contextMenu?.contains(e.target as Node)
-    ) {
-      contextMenu?.classList.add("hidden");
-    }
-  });
+	document.addEventListener("click", (e) => {
+		if (
+			!menuBtn?.contains(e.target as Node) &&
+			!contextMenu?.contains(e.target as Node)
+		) {
+			contextMenu?.classList.add("hidden");
+		}
+	});
 </script>

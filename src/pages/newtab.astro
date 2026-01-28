@@ -3,90 +3,65 @@ import Layout from "@/Layout.astro";
 ---
 
 <Layout title="bromine">
+	<script src="/crasm/scramjet.all.js" async defer is:inline></script>
+	<div
+		class="flex flex-grow flex-col items-center justify-center px-4 py-12 text-center"
+	>
+		<h1 class="mb-2 text-4xl font-bold">Bromine</h1>
+		<span class="mb-6 text-lg opacity-80">Unrestricted browsing</span>
 
-<script src="/crasm/scramjet.all.js" async defer is:inline></script>
-  <div class="flex flex-col items-center justify-center flex-grow text-center px-4 py-12">
-    <h1 class="text-4xl font-bold mb-2">Bromine</h1>
-    <span class="mb-6 text-lg opacity-80">Unrestricted browsing</span>
+		<form id="form" class="mb-6 flex w-full justify-center">
+			<input
+				autofocus
+				spellcheck="false"
+				autocomplete="off"
+				id="address"
+				type="text"
+				class="border-border bg-bg/60 w-full max-w-md rounded-lg border p-2 text-center backdrop-blur-md placeholder:opacity-60"
+				required
+				placeholder="Search the world wide web"
+			/>
+		</form>
 
-    <form id="form" class="flex w-full justify-center mb-6">
-      <input
-        autofocus
-        spellcheck="false"
-        autocomplete="off"
-        id="address"
-        type="text"
-        class="border-border w-full max-w-md rounded-lg border p-2 text-center bg-bg/60 backdrop-blur-md placeholder:opacity-60"
-        required
-        placeholder="Search the world wide web"
-      />
-    </form>
+		<script
+			async="async"
+			data-cfasync="false"
+			src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"
+		></script>
+		<div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
+	</div>
 
-<script async="async" data-cfasync="false" src="//learningbuildingroughly.com/b113e1888ef757be96cdcc722c0f31c8/invoke.js"></script>
-<div id="container-b113e1888ef757be96cdcc722c0f31c8"></div>
+	<script>
+		const form = document.getElementById("form");
+		const input = document.getElementById("address");
+		const parentInput = window.parent.document.querySelector("input#address");
+		const parentForm = window.parent.document.querySelector("form#form");
 
-  </div>
+		form?.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			parentInput.value = input.value;
+			parentForm.dispatchEvent(new CustomEvent("submit"));
+		});
 
-      <script>
-        import {
-          setTransport,
-          setWisp,
-          makeURL,
-          currentFrame,
-          getProxied,
-        } from "@/utils/lethal";
+		// Theme + Wallpaper Handling
+		const applyTheme = () => {
+			document.body.dataset.bromine_theme =
+				localStorage.getItem("bromine_theme");
+		};
 
-        let wisp = localStorage.getItem("bromine_wisp");
-        let transport = localStorage.getItem("bromine_transport");
+		applyTheme();
 
-        setWisp(wisp);
-        if (transport) setTransport(transport);
-        else if (navigator.userAgent.includes("Firefox")) setTransport("libcurl");
-        else setTransport("epoxy");
+		window.addEventListener("message", (event) => {
+			const msg = event.data;
+			if (!msg || !msg.type) return;
 
-        let search =
-				localStorage.getItem("bromine_search_engine");
-
-        const form = document.getElementById("form");
-        const input = document.getElementById("address");
-
-        form?.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const proxiedUrl = await getProxied(makeURL(input.value, search));
-          if (localStorage.getItem("bromine_stealth_mode"))
-            location.replace(proxiedUrl);
-          else location.href = proxiedUrl;
-        });
-
-        // Theme + Wallpaper Handling
-        const applyTheme = () => {
-          document.body.dataset.bromine_theme =
-            localStorage.getItem("bromine_theme");
-        };
-
-        applyTheme();
-
-        window.addEventListener("message", (event) => {
-          const msg = event.data;
-          if (!msg || !msg.type) return;
-
-          switch (msg.type) {
-            case "bromine_theme_changed":
-              applyTheme();
-              break;
-            case "bromine_search_engine_changed":
-              search = localStorage.getItem("bromine_search_engine");
-              break;
-            case "bromine_wisp_changed":
-              wisp = localStorage.getItem("bromine_wisp");
-              setWisp(wisp);
-              break;
-            case "bromine_transport_changed":
-              transport = localStorage.getItem("bromine_transport");
-              setTransport(transport);
-              break;
-            default:
-              document.dispatchEvent(new CustomEvent(msg.type));
-          }
-        });
-      </script></Layout>
+			switch (msg.type) {
+				case "bromine_theme_changed":
+					applyTheme();
+					break;
+				default:
+					document.dispatchEvent(new CustomEvent(msg.type));
+			}
+		});
+	</script></Layout
+>
