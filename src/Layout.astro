@@ -2,128 +2,134 @@
 import "@/styles.css";
 
 export interface Props {
-  title?: string;
-  desc?: string;
+	title?: string;
+	desc?: string;
 }
 
 const FILTER_OPTIMIZE_ON = import.meta.env.PUBLIC_FILTER_OPTIMIZE === "true";
 
 const {
-  title = "bromine",
-  desc = FILTER_OPTIMIZE_ON
-    ? "Bromine is the ultimate spot where elements meet creativity, making even the toughest equations feel like a breeze. From element matching to chemical reactions, this site turns everyday chemistry into something easy."
-    : "Bromine is a clean and minimal web proxy service.",
+	title = "bromine",
+	desc = FILTER_OPTIMIZE_ON
+		? "Bromine is the ultimate spot where elements meet creativity, making even the toughest equations feel like a breeze. From element matching to chemical reactions, this site turns everyday chemistry into something easy."
+		: "Bromine is a clean and minimal web proxy service.",
 } = Astro.props;
 ---
 
 <html lang="en" data-bromine_theme="">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <meta name="version" content="2.0.0" />
-    <meta name="sa-verify" content="obromineprok3bz" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+		/>
+		<meta name="version" content="2.0.0" />
+		<meta name="sa-verify" content="obromineprok3bz" />
 
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" sizes="48x48" type="image/x-icon" />
+		<!-- Favicon -->
+		<link rel="icon" href="favicon.ico" sizes="48x48" type="image/x-icon" />
 
-    <!-- SEO -->
-    <meta name="description" content={desc} />
-    <meta property="og:site_name" content="Bromine" />
-    <meta property="og:title" content={title} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bromineproxy.netlify.app/" />
-    <meta property="og:description" content={desc} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Bromine" />
-    <meta name="twitter:description" content={desc} />
-    <meta
-      name="bromine_theme-color"
-      media="(prefers-color-scheme: dark)"
-      content="#191724"
-    />
+		<!-- SEO -->
+		<meta name="description" content={desc} />
+		<meta property="og:site_name" content="Bromine" />
+		<meta property="og:title" content={title} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://bromineproxy.netlify.app/" />
+		<meta property="og:description" content={desc} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Bromine" />
+		<meta name="twitter:description" content={desc} />
+		<meta
+			name="bromine_theme-color"
+			media="(prefers-color-scheme: dark)"
+			content="#191724"
+		/>
 
-    <title>{title}</title>
+		<title>{title}</title>
 
-    <link rel="preconnect" href="https://scripts.simpleanalyticscdn.com" />
-    <link rel="preconnect" href="https://learningbuildingroughly.com" />
+		<link rel="preconnect" href="https://scripts.simpleanalyticscdn.com" />
+		<link rel="preconnect" href="https://learningbuildingroughly.com" />
 
-    <script
-      type="text/partytown"
-      data-hostname="bromineproxy.netlify.app"
-      src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-    <script
-      type="text/partytown"
-      src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
-    <script type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-NQ3WX8KNQW");
-    </script>
+		<script
+			type="text/partytown"
+			data-hostname="bromineproxy.netlify.app"
+			src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+		<script
+			type="text/partytown"
+			src="https://www.googletagmanager.com/gtag/js?id=G-NQ3WX8KNQW"></script>
+		<script type="text/partytown">
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", "G-NQ3WX8KNQW");
+		</script>
 
-    <!-- Scripts -->
+		<!-- Scripts -->
 		<script>
-import { settingsData } from "@/data/settings.ts";
+			import { currentFrame } from "@/utils/lethal";
+			import { settingsData } from "@/data/settings.ts";
 
-const flatSettingsConfig = settingsData.sections.flatMap(
-  (section) => section.settings,
-);
+			const flatSettingsConfig = settingsData.sections.flatMap(
+				(section) => section.settings,
+			);
 
-if(localStorage.getItem("bromine_wisp") == "customwispblahblahblah") localStorage.setItem("bromine_wisp",(location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/")
-  flatSettingsConfig.forEach((setting) => {
-    if (localStorage.getItem(setting.id) === null) {
-      localStorage.setItem(setting.id, setting.defaultValue.toString());
-    }
-});
+			if (localStorage.getItem("bromine_wisp") == "customwispblahblahblah")
+				localStorage.setItem(
+					"bromine_wisp",
+					(location.protocol === "https:" ? "wss://" : "ws://") +
+						location.host +
+						"/wisp/",
+				);
+			flatSettingsConfig.forEach((setting) => {
+				if (localStorage.getItem(setting.id) === null) {
+					localStorage.setItem(setting.id, setting.defaultValue.toString());
+				}
+			});
 
-      const originalSetItem = localStorage.setItem;
-      localStorage.setItem = function (key) {
-        originalSetItem.apply(this, arguments);
-        window.dispatchEvent(new Event(`${key}_changed`));
+			const originalSetItem = localStorage.setItem;
+			localStorage.setItem = function (key) {
+				originalSetItem.apply(this, arguments);
+				window.dispatchEvent(new Event(`${key}_changed`));
 
-        window.parent.postMessage(
-          {
-            type: `${key}_changed`,
-          },
-          "*",
-        );
-        currentFrame.contentWindow.postMessage(
-          {
-            type: `${key}_changed`,
-          },
-          "*",
-        );
-      };
+				window.parent.postMessage(
+					{
+						type: `${key}_changed`,
+					},
+					"*",
+				);
+				currentFrame.contentWindow.postMessage(
+					{
+						type: `${key}_changed`,
+					},
+					"*",
+				);
+			};
 
-      const applyTheme = () => {
-        const bromine_theme = localStorage.getItem("bromine_theme");
-        document.body.dataset.bromine_theme = bromine_theme;
-      };
+			const applyTheme = () => {
+				const bromine_theme = localStorage.getItem("bromine_theme");
+				document.body.dataset.bromine_theme = bromine_theme;
+			};
 
-      window.addEventListener("bromine_theme_changed", applyTheme);
-      document.addEventListener("DOMContentLoaded", () => {
-        applyTheme();
-      });
-    </script>
+			window.addEventListener("bromine_theme_changed", applyTheme);
+			document.addEventListener("DOMContentLoaded", () => {
+				applyTheme();
+			});
+		</script>
+	</head>
 
-  </head>
+	<body class="bg-bg flex min-h-screen flex-col">
+		<a
+			href="#main"
+			class="bg-surface hover:bg-overlay absolute top-4 left-4 z-50 -translate-y-16 transform rounded-md px-4 py-2 opacity-0 shadow-lg transition-all duration-300 ease-in-out focus:translate-y-0 focus:opacity-100"
+		>
+			Skip to main content
+		</a>
 
-  <body class="bg-bg flex min-h-screen flex-col">
-    <a
-      href="#main"
-      class="bg-surface hover:bg-overlay absolute top-4 left-4 z-50 -translate-y-16 transform rounded-md px-4 py-2 opacity-0 shadow-lg transition-all duration-300 ease-in-out focus:translate-y-0 focus:opacity-100"
-    >
-      Skip to main content
-    </a>
-
-    <main id="main" class="flex flex-grow flex-col">
-      <slot />
-    </main>
-  </body>
+		<main id="main" class="flex flex-grow flex-col">
+			<slot />
+		</main>
+	</body>
 </html>
